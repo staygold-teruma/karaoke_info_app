@@ -27,9 +27,9 @@ class MainPlan < ApplicationRecord
 
   enum time_unit: {
     half_hour: 0,
-    three_hours: 1
-    four_hours: 2
+    three_hours: 1,
+    four_hours: 2,
     free_time: 3
   }
-  
+
 end
