@@ -1,14 +1,14 @@
 class MainPlan < ApplicationRecord
   validates :name, presence: true
-  validates :note, length: { maximam: 50 }
+  validates :note, length: { maximum: 50 }
   validates :div_member, presence: true
   validates :div_day, presence: true
   validates :div_time, presence: true
   validates :time_unit, presence: true
-  validates :adult_fee, presence: true
-  validates :student_fee, presence: true
-  validates :senior_fee, presence: true
-  validates :child_fee, presence: true
+  validates :adult_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :student_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :senior_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :child_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   enum div_member: {
     other: 0,
@@ -31,5 +31,4 @@ class MainPlan < ApplicationRecord
     four_hours: 2,
     free_time: 3
   }
-
 end

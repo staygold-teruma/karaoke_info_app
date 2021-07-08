@@ -1,10 +1,10 @@
 ja:
   activerecord:
     models:
-      mainplan: メインプラン
+      main_plan: メインプラン
     attributes:
-      mainplan:
-        name: 名前
+      main_plan:
+        name: プラン名
         note: 備考
         div_member: 会員区分
         div_day: 曜日区分
@@ -14,19 +14,3 @@ ja:
         student_fee: 学生料金
         senior_fee: シニア料金
         child_fee: 小学生料金
-  enums:
-    mainplan:
-      div_member:
-        others: '一般'
-        member: '会員'
-      enum div_day:
-        weekday: '平日'
-        weekend: '週末'
-      enum div_time:
-        day: ’昼'
-        night: '夜'
-      enum time_unit:
-        half_hour: '30分'
-        three_hours: '3時間'
-        four_hours: '4時間'
-        free_time: 'フリータイム'

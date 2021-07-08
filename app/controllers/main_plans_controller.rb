@@ -9,6 +9,7 @@ class MainPlansController < ApplicationController
 
   def create
     MainPlan.create!(main_plan_params)
+    redirect_to main_plans_path
   end
 
   def show; end
@@ -20,6 +21,7 @@ class MainPlansController < ApplicationController
   private
 
   def main_plan_params
-    params.require(:main_plan).permit(:name, :note, :div_member, :div_day, :div_time, :time_unit, :adult_fee, :student_fee, :senior_fee, :child_fee)
+    params.require(:main_plan).permit(:name, :note, :div_member, :div_day, :div_time, :time_unit, :adult_fee,
+                                      :student_fee, :senior_fee, :child_fee)
   end
 end
