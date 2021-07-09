@@ -2,7 +2,7 @@
 <table class="table table-bordered" id="plan_table">
   <thead>
     <tr id="table_heading">
-      <th scope="col">ID</th>
+      <th scope="col"><%= sort_order "id", "ID" %></th>
       <th scope="col">プラン名</th>
       <th scope="col">会員</th>
       <th scope="col">曜日</th>
@@ -18,7 +18,7 @@
     <% @main_plans.each do |main_plan| %>
       <tr>
         <td><%= main_plan.id %></td>
-        <td><%= main_plan.name %></td>
+        <td><%= link_to main_plan.name, main_plan %></td>
         <td><%= main_plan.div_member_i18n %></td>
         <td><%= main_plan.div_day_i18n %></td>
         <td><%= main_plan.div_time_i18n %></td>

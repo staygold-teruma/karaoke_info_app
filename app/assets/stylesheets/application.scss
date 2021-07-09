@@ -87,14 +87,22 @@
   margin-bottom: 60px;
   width: 800px;
   #table_heading {
-    background: yellow;
+    background: forestgreen;
   }
   thead,
   tbody {
     tr {
+      th {
+        color: ghostwhite;
+      }
       th,
       td {
         text-align: center;
+      }
+      td {
+        a {
+          text-decoration: none;
+        }
       }
     }
   }
