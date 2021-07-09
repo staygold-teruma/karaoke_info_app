@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'rails-i18n', '~> 6.0'
+gem 'enum_help'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

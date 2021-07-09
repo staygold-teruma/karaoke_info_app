@@ -1,31 +1,33 @@
+<h1>料金プラン登録</h1>
 <%= form_with model: @main_plan, local: true do |f| %>
-  <div>
+  <div id="l_name">
     <%= f.label :name %>
     <%= f.text_field :name, required: true %>
   </div>
-  <div>
-    <%= f.label :note %>
-    <%= f.text_area :note %>
-  </div>
-  <div>
+  <div id="l_div">
     <%= f.label :div_member %>
-    <%= f.select :div_member, MainPlan.div_members.keys %>
+    <%= f.select :div_member, MainPlan.div_members_i18n.invert %>
     <%= f.label :div_day %>
-    <%= f.select :div_day, MainPlan.div_days.keys %>
+    <%= f.select :div_day, MainPlan.div_days_i18n.invert %>
     <%= f.label :div_time %>
-    <%= f.select :div_time, MainPlan.div_times.keys %>
+    <%= f.select :div_time, MainPlan.div_times_i18n.invert %>
     <%= f.label :time_unit %>
-    <%= f.select :time_unit, MainPlan.time_units.keys %>
+    <%= f.select :time_unit, MainPlan.time_units_i18n.invert %>
   </div>
-  <div>
+  <div id="l_fee">
     <%= f.label :adult_fee %>
     <%= f.text_field :adult_fee, required: true %>
     <%= f.label :student_fee %>
     <%= f.text_field :student_fee, required: true %>
+    <br>
     <%= f.label :senior_fee %>
     <%= f.text_field :senior_fee, required: true %>
     <%= f.label :child_fee %>
     <%= f.text_field :child_fee, required: true %>
+  </div>
+  <div id="l_note">
+    <%= f.label :note %>
+    <%= f.text_area :note %>
   </div>
   <%= f.submit "登録" %>
 <% end %>

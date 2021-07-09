@@ -1,0 +1,17 @@
+ja:
+  enums:
+    main_plan:
+      div_member:
+        other: '一般'
+        member: '会員'
+      div_day:
+        weekday: '平日'
+        weekend: '週末'
+      div_time:
+        day: '昼'
+        night: '夜'
+      time_unit:
+        half_hour: '30分'
+        three_hours: '3時間'
+        four_hours: '4時間'
+        free_time: 'フリータイム'
