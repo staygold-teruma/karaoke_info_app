@@ -15,7 +15,9 @@ class MainPlansController < ApplicationController
     redirect_to main_plans_path
   end
 
-  def show; end
+  def show
+    @main_plan = MainPlan.find(params[:id])
+  end
 
   def edit; end
 

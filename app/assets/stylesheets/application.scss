@@ -157,6 +157,42 @@
   }
 }
 
+// メインプラン詳細
+#show_wrapper {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+#plan_title,
+#div_plan,
+#plan_fee {
+  display: flex;
+  width: 600px;
+  justify-content: space-evenly;
+  p {
+    span {
+      margin-right: 5px;
+    }
+  }
+}
+
+#div_plan,
+#plan_fee {
+  p {
+    width: 25%;
+  }
+}
+
+#plan_note {
+  #note_area {
+    width: 600px;
+    height: 200px;
+    border: gray 1px solid;
+    border-radius: 30px;
+  }
+}
+
 // メインプラン登録フォーム
 #form_wrap {
   margin: 0 auto;

@@ -1,2 +1,23 @@
-<h1>MainPlans#show</h1>
-<p>Find me in app/views/main_plans/show.html.erb</p>
+<h1 class="page_title">料金詳細</h1>
+<div id="show_wrapper">
+  <div id="plan_title">
+    <p><span>ID:</span><%= @main_plan.id %></p>
+    <p><span>プラン名:</span><%= @main_plan.name %></p>
+  </div>
+  <div id="div_plan">
+    <p><span>会員区分:</span><%= @main_plan.div_member_i18n %></p>
+    <p><span>曜日区分:</span><%= @main_plan.div_day_i18n %></p>
+    <p><span>時間区分:</span><%= @main_plan.div_time_i18n %></p>
+    <p><span>曜日単位:</span><%= @main_plan.time_unit_i18n %></p>
+  </div>
+  <div id="plan_fee">
+    <p><span>一般料金:</span><%= @main_plan.adult_fee %></p>
+    <p><span>学生料金:</span><%= @main_plan.student_fee %></p>
+    <p><span>シニア料金:</span><%= @main_plan.senior_fee %></p>
+    <p><span>小学生料金:</span><%= @main_plan.child_fee %></p>
+  </div>
+  <div id="plan_note">
+    <p><span>備考:</span></p>
+    <p id="note_area"><%= @main_plan.note %></p>
+  </div>
+</div>

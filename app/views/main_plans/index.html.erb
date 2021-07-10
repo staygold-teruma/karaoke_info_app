@@ -7,7 +7,7 @@
     <%= f.select :div_member_eq, MainPlan.div_members.map{|k, v| [MainPlan.div_members_i18n[k], v]}, include_blank: true %>
     <%= f.label :div_day_eq, "曜日" %>
     <%= f.select :div_day_eq, MainPlan.div_days.map{|k, v| [MainPlan.div_days_i18n[k], v]}, include_blank: true %>
-    <%= f.label :div_time_eq, "時間" %>
+    <%= f.label :div_time_eq, "時間帯" %>
     <%= f.select :div_time_eq, MainPlan.div_times.map{|k, v| [MainPlan.div_times_i18n[k], v]}, include_blank: true %>
     <%= f.label :time_unit_eq, "単位" %>
     <%= f.select :time_unit_eq, MainPlan.time_units.map{|k, v| [MainPlan.time_units_i18n[k], v]}, include_blank: true %>
@@ -21,7 +21,7 @@
       <th scope="col">プラン名</th>
       <th scope="col">会員</th>
       <th scope="col">曜日</th>
-      <th scope="col">時間</th>
+      <th scope="col">時間帯</th>
       <th scope="col">単位</th>
       <th scope="col">一般</th>
       <th scope="col">学生</th>
