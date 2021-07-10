@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  note: MyText
+  div_member: 1
+  div_day: 1
+  div_time: 1
+  time_unit: 1
+  adult_fee: 1
+  student_fee: 1
+  senior_fee: 1
+  child_fee: 1
+
+two:
+  name: MyString
+  note: MyText
+  div_member: 1
+  div_day: 1
+  div_time: 1
+  time_unit: 1
+  adult_fee: 1
+  student_fee: 1
+  senior_fee: 1
+  child_fee: 1

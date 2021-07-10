@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      main_plan: メインプラン
+    attributes:
+      main_plan:
+        name: プラン名
+        note: 備考
+        div_member: 会員区分
+        div_day: 曜日区分
+        div_time: 時間帯区分
+        time_unit: 時間単位
+        adult_fee: 一般料金
+        student_fee: 学生料金
+        senior_fee: シニア料金
+        child_fee: 小学生料金
