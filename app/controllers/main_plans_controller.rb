@@ -19,7 +19,15 @@ class MainPlansController < ApplicationController
     @main_plan = MainPlan.find(params[:id])
   end
 
-  def edit; end
+  def edit
+    @main_plan = MainPlan.find(params[:id])
+  end
+
+  def update
+    @main_plan = MainPlan.find(params[:id])
+    @main_plan.update(main_plan_params)
+    redirect_to @main_plan
+  end
 
   def destroy; end
 
