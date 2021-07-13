@@ -1,11 +1,12 @@
+<%= render "main_plans/header_main_plans" %>
 <h1 class="page_title">料金詳細</h1>
 <div id="show_wrapper">
   <div id="plan_title">
-    <p><span>プラン名:</span><%= @main_plan.name %></p>
+    <p>【<%= @main_plan.name %>】</p>
   </div>
   <table class="table table-bordered table-sm" id="plan_div_table">
     <thead>
-      <tr id="table_heading" class="bg-primary">
+      <tr id="table_heading">
         <th scope="col">会員</th>
         <th scope="col">曜日</th>
         <th scope="col">時間帯</th>
@@ -40,10 +41,10 @@
     </tbody>
   </table>
   <div id="plan_note">
-    <p><span>備考:</span></p>
-    <p id="note_area"><%= @main_plan.note %></p>
+    <h2 id="note_title">備考:</h2>
+    <%= simple_format(@main_plan.note) %>
   </div>
 </div>
 <div class="link_btn">
-  <%= link_to "料金一覧", main_plans_path, class: "btn btn-primary" %>
+  <%= link_to "編集", edit_main_plan_path(@main_plan), class: "btn btn-primary" %>
 </div>

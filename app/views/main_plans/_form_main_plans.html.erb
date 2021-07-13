@@ -50,13 +50,13 @@
       </div>
     </div>
     <div id="l_note">
-      <i class="fas fa-caret-square-right"></i>
-      <%= f.label :note %>
+      <div>
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :note %>
+      </div>
       <%= f.text_area :note %>
     </div>
     <%= f.submit "登録", class: "btn btn-primary" %>
   <% end %>
 </div>
-<div class="link_btn">
-  <%= link_to "料金一覧", main_plans_path, class: "btn btn-primary" %>
-</div>
+
