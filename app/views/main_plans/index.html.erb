@@ -1,4 +1,4 @@
-<h1 class="page_title">設定料金一覧</h1>
+<h1 class="page_title">料金一覧</h1>
 <div id="search_box">
   <%= search_form_for @q do |f| %>
     <%= f.label :name_cont, "プラン名:", class: 'first_label'%>
@@ -14,10 +14,10 @@
     <%= f.submit "検索", class: "btn btn-primary btn-sm"  %>
   <% end %>
 </div>
-<table class="table table-bordered" id="plan_table">
+<table class="table table-bordered table-hover" id="index_plan_table">
   <thead>
     <tr id="table_heading" class="bg-primary">
-      <th scope="col">ID</th>
+      <th scope="col">No.</th>
       <th scope="col">プラン名</th>
       <th scope="col">会員</th>
       <th scope="col">曜日</th>
@@ -27,13 +27,13 @@
       <th scope="col">学生</th>
       <th scope="col">シニア</th>
       <th scope="col">小学生</th>
-      <th scope="col"></th>
+      <th scope="col" colspan="2"></th>
     </tr>
   </thead>
   <tbody>
-    <% @main_plans.each do |main_plan| %>
+    <% @main_plans.each.with_index(1) do |main_plan, i| %>
       <tr>
-        <td><%= main_plan.id %></td>
+        <td><%= i %></td>
         <td><%= link_to main_plan.name, main_plan %></td>
         <td><%= main_plan.div_member_i18n %></td>
         <td><%= main_plan.div_day_i18n %></td>
@@ -44,6 +44,7 @@
         <td><%= main_plan.senior_fee %>円</td>
         <td><%= main_plan.child_fee %>円</td>
         <td><%= link_to "編集", edit_main_plan_path(main_plan) %></td>
+        <td><%= link_to "削除", main_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
       </tr>
     <% end %>
   </tbody>

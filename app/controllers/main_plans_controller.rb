@@ -29,7 +29,11 @@ class MainPlansController < ApplicationController
     redirect_to @main_plan
   end
 
-  def destroy; end
+  def destroy
+    main_plan = MainPlan.find(params[:id])
+    main_plan.destroy!
+    redirect_to main_plans_path
+  end
 
   private
 

@@ -1,1 +1,62 @@
-
+<div id="form_wrap">
+  <%= form_with model: @main_plan, local: true do |f| %>
+    <div id="l_name">
+      <i class="fas fa-caret-square-right"></i>
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
+    </div>
+    <div id="l_div">
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :div_member %>
+        <%= f.select :div_member, MainPlan.div_members_i18n.invert %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :div_day %>
+        <%= f.select :div_day, MainPlan.div_days_i18n.invert %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :div_time %>
+        <%= f.select :div_time, MainPlan.div_times_i18n.invert %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :time_unit %>
+        <%= f.select :time_unit, MainPlan.time_units_i18n.invert, class: "time_unit_select" %>
+      </div>
+    </div>
+    <div id="l_fee">
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :adult_fee %>
+        <%= f.text_field :adult_fee, required: true %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :student_fee %>
+        <%= f.text_field :student_fee, required: true %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :senior_fee %>
+        <%= f.text_field :senior_fee, required: true %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right"></i>
+        <%= f.label :child_fee %>
+        <%= f.text_field :child_fee, required: true %>
+      </div>
+    </div>
+    <div id="l_note">
+      <i class="fas fa-caret-square-right"></i>
+      <%= f.label :note %>
+      <%= f.text_area :note %>
+    </div>
+    <%= f.submit "登録", class: "btn btn-primary" %>
+  <% end %>
+</div>
+<div class="link_btn">
+  <%= link_to "料金一覧", main_plans_path, class: "btn btn-primary" %>
+</div>
