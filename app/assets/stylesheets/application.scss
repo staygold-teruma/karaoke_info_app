@@ -201,7 +201,10 @@
 }
 
 .link_btn {
-  text-align: center;
+  margin-top: 10px;
+  a:first-child {
+    margin-right: 20px;
+  }
 }
 
 // メインプラン詳細
@@ -278,6 +281,7 @@
     line-height: 40px;
     text-align-last: justify;
     margin-right: 10px;
+    font-weight: 600;
   }
   i {
     color: dodgerblue;
