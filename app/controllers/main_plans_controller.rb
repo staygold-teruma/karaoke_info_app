@@ -1,5 +1,6 @@
 class MainPlansController < ApplicationController
   helper_method :sort_column, :sort_direction
+  before_action :set_main_plan, only: %i[show edit update destroy]
 
   def index
     @q = MainPlan.ransack(params[:q])
@@ -15,27 +16,25 @@ class MainPlansController < ApplicationController
     redirect_to main_plans_path
   end
 
-  def show
-    @main_plan = MainPlan.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @main_plan = MainPlan.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @main_plan = MainPlan.find(params[:id])
-    @main_plan.update(main_plan_params)
+    @main_plan.update!(main_plan_params)
     redirect_to @main_plan
   end
 
   def destroy
-    main_plan = MainPlan.find(params[:id])
-    main_plan.destroy!
+    @main_plan.destroy!
     redirect_to main_plans_path
   end
 
   private
+
+  def set_main_plan
+    @main_plan = MainPlan.find(params[:id])
+  end
 
   def main_plan_params
     params.require(:main_plan).permit(:name, :note, :div_member, :div_day, :div_time, :time_unit, :adult_fee,
