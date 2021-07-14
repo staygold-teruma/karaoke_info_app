@@ -15,11 +15,25 @@ class MainPlansController < ApplicationController
     redirect_to main_plans_path
   end
 
-  def show; end
+  def show
+    @main_plan = MainPlan.find(params[:id])
+  end
 
-  def edit; end
+  def edit
+    @main_plan = MainPlan.find(params[:id])
+  end
 
-  def destroy; end
+  def update
+    @main_plan = MainPlan.find(params[:id])
+    @main_plan.update(main_plan_params)
+    redirect_to @main_plan
+  end
+
+  def destroy
+    main_plan = MainPlan.find(params[:id])
+    main_plan.destroy!
+    redirect_to main_plans_path
+  end
 
   private
 
