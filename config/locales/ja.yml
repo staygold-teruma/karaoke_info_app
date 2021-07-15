@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       main_plan: 料金
+      drink_plan: 料金
     attributes:
       main_plan:
         name: 料金名
@@ -9,6 +10,14 @@ ja:
         div_member: 会員区分
         div_day: 曜日区分
         div_time: 時間帯区分
+        time_unit: 時間単位
+        adult_fee: 一般料金
+        student_fee: 学生料金
+        senior_fee: シニア料金
+        child_fee: 小学生料金
+      drink_plan:
+        name: 料金名
+        note: 備考
         time_unit: 時間単位
         adult_fee: 一般料金
         student_fee: 学生料金
