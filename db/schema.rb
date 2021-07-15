@@ -10,22 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_210_708_080_912) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+ActiveRecord::Schema.define(version: 2021_07_15_130234) do
 
-  create_table 'main_plans', force: :cascade do |t|
-    t.string 'name', null: false
-    t.text 'note'
-    t.integer 'div_member', default: 0, null: false
-    t.integer 'div_day', default: 0, null: false
-    t.integer 'div_time', default: 0, null: false
-    t.integer 'time_unit', default: 0, null: false
-    t.integer 'adult_fee', null: false
-    t.integer 'student_fee', null: false
-    t.integer 'senior_fee', null: false
-    t.integer 'child_fee', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "drink_plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "note"
+    t.integer "time_unit", default: 0, null: false
+    t.integer "adult_fee", null: false
+    t.integer "student_fee", null: false
+    t.integer "senior_fee", null: false
+    t.integer "child_fee", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
+
+  create_table "main_plans", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "note"
+    t.integer "div_member", default: 0, null: false
+    t.integer "div_day", default: 0, null: false
+    t.integer "div_time", default: 0, null: false
+    t.integer "time_unit", default: 0, null: false
+    t.integer "adult_fee", null: false
+    t.integer "student_fee", null: false
+    t.integer "senior_fee", null: false
+    t.integer "child_fee", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
 end
