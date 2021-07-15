@@ -1,6 +1,6 @@
 class MainPlan < ApplicationRecord
   validates :name, presence: true
-  validates :note, length: { maximum: 50 }
+  validates :note, length: { maximum: 250 }
   validates :div_member, presence: true
   validates :div_day, presence: true
   validates :div_time, presence: true

@@ -1,4 +1,6 @@
 class DrinkPlansController < ApplicationController
+  before_action :set_drink_plan, only: %i[show edit update destroy]
+
   def index
     @q = DrinkPlan.ransack(params[:q])
     @drink_plans = @q.result(distinct: true).order(id: "ASC")
@@ -17,13 +19,16 @@ class DrinkPlansController < ApplicationController
 
   def edit; end
 
-  def update; end
+  def update
+    @drink_plan.update!(drink_plan_params)
+    redirect_to drink_plans_path
+  end
 
   def destroy; end
 
   private
 
-  def set_main_plan
+  def set_drink_plan
     @drink_plan = DrinkPlan.find(params[:id])
   end
 

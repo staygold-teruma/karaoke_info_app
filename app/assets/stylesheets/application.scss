@@ -67,7 +67,6 @@
         p {
           font-size: 15px;
           font-weight: 600;
-          margin-left: 5px;
           margin-bottom: 0;
           line-height: 50px;
         }
@@ -81,7 +80,7 @@
 }
 
 // メインプランヘッダー
-#main_plan_header_box {
+#plan_header_box {
   background: rgb(237, 237, 237);
   width: 100%;
   display: flex;
@@ -96,17 +95,17 @@
       height: 100%;
     }
   }
-  #main_plan_header_nav {
+  #plan_header_nav {
     width: calc(100% - 200px);
-    max-width: 600px;
+    max-width: 700px;
     height: 70px;
-    #main_plan_nav_list {
-      width: 75%;
+    #plan_nav_list {
+      width: 100%;
       height: 100%;
-      padding: 0 30px 0 30px;
+      padding: 0 10px 0 10px;
       display: flex;
       justify-content: space-between;
-      #main_plan_nav_item {
+      #plan_nav_item {
         display: flex;
         align-items: center;
         a {
@@ -115,25 +114,24 @@
           text-decoration: none;
           p {
             display: flex;
-            font-size: 15px;
+            font-size: 12px;
             font-weight: 600;
-            margin-left: 5px;
             margin-bottom: 0;
             align-items: center;
             line-height: 40px;
             i {
-              font-size: 20px;
+              font-size: 16px;
               color: rgb(255, 85, 0);
               margin-right: 5px;
             }
-            i:last-child {
-              margin-left: 10px;
+            #drop_down_i {
+              margin-left: 5px;
             }
           }
         }
         a:hover {
-          border-bottom: rgb(255, 85, 0) 2px solid;
-          margin-bottom: -2px;
+          border-bottom: rgb(255, 85, 0) 4px solid;
+          margin-bottom: -4px;
         }
       }
     }

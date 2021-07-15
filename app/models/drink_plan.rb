@@ -1,6 +1,6 @@
 class DrinkPlan < ApplicationRecord
   validates :name, presence: true
-  validates :note, length: { maximum: 50 }
+  validates :note, length: { maximum: 250 }
   validates :time_unit, presence: true
   validates :adult_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :student_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
