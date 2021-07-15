@@ -126,6 +126,9 @@
               color: rgb(255, 85, 0);
               margin-right: 5px;
             }
+            i:last-child {
+              margin-left: 10px;
+            }
           }
         }
         a:hover {
@@ -138,7 +141,7 @@
 }
 
 // メインプラン一覧表示
-#search_box {
+#m_search_box {
   display: flex;
   align-content: center;
   margin: 0 auto;
@@ -346,5 +349,30 @@
   display: contents;
   input {
     @extend .is-invalid;
+  }
+}
+
+// ドリンクプラン一覧表示
+#d_search_box {
+  display: flex;
+  align-content: center;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 800px;
+  font-size: 14px;
+  .drink_plan_search {
+    display: flex;
+    align-items: flex-end;
+    label {
+      margin-left: 15px;
+      margin-right: 5px;
+      margin-bottom: 0;
+    }
+    .first_label {
+      margin-left: 0;
+    }
+    input:last-child {
+      margin-left: 15px;
+    }
   }
 }
