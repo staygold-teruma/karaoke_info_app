@@ -4,7 +4,7 @@ class MainPlansController < ApplicationController
 
   def index
     @q = MainPlan.ransack(params[:q])
-    @main_plans = @q.result(distinct: true).order(id: 'ASC')
+    @main_plans = @q.result(distinct: true).order(id: "ASC")
   end
 
   def new
@@ -14,6 +14,12 @@ class MainPlansController < ApplicationController
   def create
     MainPlan.create!(main_plan_params)
     redirect_to main_plans_path
+    # if @main_plan.save
+    #   redirect_to @main_plan, notice: "登録しました"
+    # else
+    #   flash.now[:alert] = "登録できませんでした"
+    #   render :new
+    # end
   end
 
   def show; end
@@ -23,6 +29,12 @@ class MainPlansController < ApplicationController
   def update
     @main_plan.update!(main_plan_params)
     redirect_to @main_plan
+    # if @main_plan.update(main_plan_params)
+    #   redirect_to @main_plan, notice: "更新しました"
+    # else
+    #   flash.now[:alert] = "更新できませんでした"
+    #   render :edit
+    # end
   end
 
   def destroy

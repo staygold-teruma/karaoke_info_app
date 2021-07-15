@@ -1,10 +1,10 @@
 ja:
   activerecord:
     models:
-      main_plan: メインプラン
+      main_plan: 料金
     attributes:
       main_plan:
-        name: プラン名
+        name: 料金名
         note: 備考
         div_member: 会員区分
         div_day: 曜日区分

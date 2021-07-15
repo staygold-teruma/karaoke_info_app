@@ -3,9 +3,9 @@
 <h1 class="page_title">料金一覧</h1>
 <div id="search_box">
   <%= search_form_for @q do |f| %>
-    <%= f.label :name_cont, "プラン名:", class: 'first_label'%>
+    <%= f.label :name_cont, "料金名称:", class: 'first_label'%>
     <%= f.search_field :name_cont %>
-    <%= f.label :div_member_eq, "会員:" %>
+    <%= f.label :div_member_eq, "区分:" %>
     <%= f.select :div_member_eq, MainPlan.div_members.map{|k, v| [MainPlan.div_members_i18n[k], v]}, include_blank: true %>
     <%= f.label :div_day_eq, "曜日:" %>
     <%= f.select :div_day_eq, MainPlan.div_days.map{|k, v| [MainPlan.div_days_i18n[k], v]}, include_blank: true %>
@@ -21,8 +21,8 @@
     <thead>
       <tr id="table_heading" class="bg-primary">
         <th scope="col">No.</th>
-        <th scope="col">プラン名</th>
-        <th scope="col">会員</th>
+        <th scope="col">料金名称</th>
+        <th scope="col">区分</th>
         <th scope="col">曜日</th>
         <th scope="col">時間帯</th>
         <th scope="col">単位</th>
