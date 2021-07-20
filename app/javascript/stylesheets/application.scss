@@ -23,6 +23,14 @@
   @apply border border-gray-400 px-2 py-1 text-center text-sm;
 }
 
+.show_table_head {
+  @apply border border-gray-400 px-1 py-2 text-white text-sm font-bold w-1/4;
+}
+
+.show_table_body {
+  @apply border border-gray-200 px-1 py-2 text-center text-sm;
+}
+
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
@@ -206,24 +214,22 @@
   }
 }
 
-.link_btn {
-  margin-top: 10px;
-  a:first-child {
-    margin-right: 20px;
-  }
-}
-
 // メインプラン詳細
 #show_wrapper {
-  width: 600px;
+  width: 80%;
+  max-width: 600px;
   margin: 0 auto;
   margin-top: 30px;
   #plan_title {
     font-size: 25px;
   }
-  #plan_div_table {
+  #m_plan_div_table {
     margin-top: 20px;
     width: 50%;
+  }
+  #d_plan_div_table {
+    margin-top: 20px;
+    width: 20%;
   }
   #plan_fee_table {
     margin-top: 20px;
@@ -239,7 +245,7 @@
 #plan_note {
   margin-top: 20px;
   #note_title {
-    font-size: 20px;
+    font-size: 16px;
   }
   p {
     width: calc(100% - 32px);
