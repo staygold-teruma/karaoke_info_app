@@ -2,41 +2,41 @@
 <h1 class="page_title">ルーム料金詳細</h1>
 <div id="show_wrapper">
   <div id="plan_title">
-    <p>【<%= @main_plan.name %>】</p>
+    <p class="bg-yellow-300 px-2 py-2 border-2 border-gray-500 rounded-md"><%= @main_plan.name %></p>
   </div>
   <table class="table-auto border-collapse border-2 border-gray-500" id="m_plan_div_table">
     <thead>
       <tr id="table_heading" class="bg-blue-500 text-center text-sm font-bold">
-        <th class="show_table_head">区分</th>
-        <th class="show_table_head">曜日</th>
-        <th class="show_table_head">時間帯</th>
-        <th class="show_table_head">単位</th>
+        <th class="show_div_table_head">区分</th>
+        <th class="show_div_table_head">曜日</th>
+        <th class="show_div_table_head">時間帯</th>
+        <th class="show_div_table_head">単位</th>
       </tr>
     </thead>
     <tbody>
       <tr class="border-b border-gray-200 hover:bg-gray-100  text-center text-sm">
-        <td class="show_table_body"><%= @main_plan.div_member_i18n %></td>
-        <td class="show_table_body"><%= @main_plan.div_day_i18n %></td>
-        <td class="show_table_body"><%= @main_plan.div_time_i18n %></td>
-        <td class="show_table_body"><%= @main_plan.time_unit_i18n %></td>
+        <td class="show_div_table_body"><%= @main_plan.div_member_i18n %></td>
+        <td class="show_div_table_body"><%= @main_plan.div_day_i18n %></td>
+        <td class="show_div_table_body"><%= @main_plan.div_time_i18n %></td>
+        <td class="show_div_table_body"><%= @main_plan.time_unit_i18n %></td>
       </tr>
     </tbody>
   </table>
   <table class="table-auto border-collapse border-2 border-gray-500 w-full" id="plan_fee_table">
     <thead>
       <tr id="table_heading" class="bg-blue-500 text-center text-sm font-bold">
-        <th class="show_table_head w-1/4">一般料金</th>
-        <th class="show_table_head w-1/4">学生料金</th>
-        <th class="show_table_head w-1/4">シニア料金</th>
-        <th class="show_table_head w-1/4">小学生料金</th>
+        <th class="show_fee_table_head w-1/4">一般料金</th>
+        <th class="show_fee_table_head w-1/4">学生料金</th>
+        <th class="show_fee_table_head w-1/4">シニア料金</th>
+        <th class="show_fee_table_head w-1/4">小学生料金</th>
       </tr>
     </thead>
     <tbody>
       <tr class="border-b border-gray-200 hover:bg-gray-100  text-center text-sm">
-        <td class="show_table_body"><%= @main_plan.adult_fee %>円</td>
-        <td class="show_table_body"><%= @main_plan.student_fee %>円</td>
-        <td class="show_table_body"><%= @main_plan.senior_fee %>円</td>
-        <td class="show_table_body"><%= @main_plan.child_fee %>円</td>
+        <td class="show_fee_table_body"><%= @main_plan.adult_fee %>円</td>
+        <td class="show_fee_table_body"><%= @main_plan.student_fee %>円</td>
+        <td class="show_fee_table_body"><%= @main_plan.senior_fee %>円</td>
+        <td class="show_fee_table_body"><%= @main_plan.child_fee %>円</td>
       </tr>
     </tbody>
   </table>
