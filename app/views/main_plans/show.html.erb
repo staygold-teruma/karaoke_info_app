@@ -4,39 +4,39 @@
   <div id="plan_title">
     <p>【<%= @main_plan.name %>】</p>
   </div>
-  <table class="table table-bordered table-sm" id="plan_div_table">
+  <table class="table-auto border-collapse border-2 border-gray-500" id="plan_div_table">
     <thead>
-      <tr id="table_heading">
-        <th scope="col">区分</th>
-        <th scope="col">曜日</th>
-        <th scope="col">時間帯</th>
-        <th scope="col">単位</th>
+      <tr id="table_heading" class="bg-blue-500 text-center text-sm font-bold">
+        <th class="border border-gray-400 px-2 py-2  text-white">区分</th>
+        <th class="border border-gray-400 px-2 py-2  text-white">曜日</th>
+        <th class="border border-gray-400 px-2 py-2  text-white">時間帯</th>
+        <th class="border border-gray-400 px-2 py-2  text-white">単位</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td style="width: 25%"><%= @main_plan.div_member_i18n %></td>
-        <td style="width: 25%"><%= @main_plan.div_day_i18n %></td>
-        <td style="width: 25%"><%= @main_plan.div_time_i18n %></td>
-        <td style="width: 25%"><%= @main_plan.time_unit_i18n %></td>
+      <tr class="border-b border-gray-200 hover:bg-gray-100  text-center text-sm">
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.div_member_i18n %></td>
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.div_day_i18n %></td>
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.div_time_i18n %></td>
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.time_unit_i18n %></td>
       </tr>
     </tbody>
   </table>
-  <table class="table table-bordered" id="plan_fee_table">
+  <table class="table-auto border-collapse border-2 border-gray-500 w-full" id="plan_fee_table">
     <thead>
-      <tr id="table_heading" class="bg-primary">
-        <th scope="col">一般料金</th>
-        <th scope="col">学生料金</th>
-        <th scope="col">シニア料金</th>
-        <th scope="col">小学生料金</th>
+      <tr id="table_heading" class="bg-blue-500 text-center text-sm font-bold">
+        <th class="border border-gray-400 px-2 py-2  text-white">一般料金</th>
+        <th class="border border-gray-400 px-2 py-2  text-white">学生料金</th>
+        <th class="border border-gray-400 px-2 py-2  text-white">シニア料金</th>
+        <th class="border border-gray-400 px-2 py-2  text-white">小学生料金</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><%= @main_plan.adult_fee %>円</td>
-        <td><%= @main_plan.student_fee %>円</td>
-        <td><%= @main_plan.senior_fee %>円</td>
-        <td><%= @main_plan.child_fee %>円</td>
+      <tr class="border-b border-gray-200 hover:bg-gray-100  text-center text-sm">
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.adult_fee %>円</td>
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.student_fee %>円</td>
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.senior_fee %>円</td>
+        <td class="border border-gray-400 px-2 py-2"><%= @main_plan.child_fee %>円</td>
       </tr>
     </tbody>
   </table>
@@ -44,8 +44,8 @@
     <h2 id="note_title">備考:</h2>
     <%= simple_format(@main_plan.note) %>
   </div>
-  <div class="link_btn">
-    <%= link_to "編集", edit_main_plan_path(@main_plan), class: "btn btn-primary" %>
-    <%= link_to "削除", main_plan_path(@main_plan), method: :delete, data: { confirm: "このプランを削除しますか?" }, class: "btn btn-danger" %>
+  <div id="link_btn">
+    <%= link_to "編集", edit_main_plan_path(@main_plan), class: "btn_edit" %>
+    <%= link_to "削除", main_plan_path(@main_plan), method: :delete, data: { confirm: "このプランを削除しますか?" }, class: "btn_delete" %>
   </div>
 </div>

@@ -12,9 +12,9 @@ gem "rails", "~> 6.1.4"
 gem "rails-i18n", "~> 6.0"
 gem "ransack"
 gem "sass-rails", ">= 6"
+gem "tailwindcss-rails"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
-gem "tailwindcss-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
