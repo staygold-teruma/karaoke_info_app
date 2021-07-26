@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  div_member: 1
+  number_of_adults: 1
+  number_of_students: 1
+  number_of_seniors: 1
+  number_of_children: 1
+  usage_time: 1
+  drink_plan: 1
+  number_of_customers: 1
+  total_fee: 1
+
+two:
+  div_member: 1
+  number_of_adults: 1
+  number_of_students: 1
+  number_of_seniors: 1
+  number_of_children: 1
+  usage_time: 1
+  drink_plan: 1
+  number_of_customers: 1
+  total_fee: 1

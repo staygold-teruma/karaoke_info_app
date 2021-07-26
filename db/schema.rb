@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_130234) do
+ActiveRecord::Schema.define(version: 2021_07_26_182144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,20 @@ ActiveRecord::Schema.define(version: 2021_07_15_130234) do
     t.integer "student_fee", null: false
     t.integer "senior_fee", null: false
     t.integer "child_fee", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "fee_infos", force: :cascade do |t|
+    t.integer "div_member", default: 1, null: false
+    t.integer "number_of_adults", default: 0, null: false
+    t.integer "number_of_students", default: 0, null: false
+    t.integer "number_of_seniors", default: 0, null: false
+    t.integer "number_of_children", default: 0, null: false
+    t.integer "usage_time", default: 0, null: false
+    t.integer "drink_plan", default: 0, null: false
+    t.integer "number_of_customers", null: false
+    t.integer "total_fee", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
