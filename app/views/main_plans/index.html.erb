@@ -31,7 +31,7 @@
   <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
     <thead>
       <tr id="table_heading" class="bg-blue-500">
-        <th class="index_table_head">No.</th>
+        <th class="index_table_head hidden md:table-cell">No.</th>
         <th class="index_table_head">料金名称</th>
         <th class="index_table_head">区分</th>
         <th class="index_table_head">曜日</th>
@@ -47,7 +47,7 @@
     <tbody>
       <% @main_plans.each.with_index(1) do |main_plan, i| %>
         <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="index_table_body"><%= i %></td>
+          <td class="index_table_body hidden md:table-cell"><%= i %></td>
           <td class="index_table_body text-blue-600"><%= link_to main_plan.name, main_plan %></td>
           <td class="index_table_body"><%= main_plan.div_member_i18n %></td>
           <td class="index_table_body"><%= main_plan.div_day_i18n %></td>
@@ -64,3 +64,4 @@
     </tbody>
   </table>
 </div>
+<%= render "layouts/footer_plans" %>

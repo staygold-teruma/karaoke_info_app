@@ -15,6 +15,10 @@
   @apply bg-blue-500 hover:bg-blue-700 text-white py-1 rounded w-full;
 }
 
+.btn_link_new {
+  @apply bg-blue-500 hover:bg-blue-700 text-white mx-4 px-2 py-2 rounded-lg;
+}
+
 .index_table_head {
   @apply border border-gray-400 px-2 py-3 text-white text-sm font-bold;
 }
@@ -107,7 +111,7 @@
   }
 }
 
-// メインプランヘッダー
+// 各プランヘッダー
 #plan_header_box {
   background: rgb(237, 237, 237);
   width: 100%;
@@ -163,6 +167,19 @@
         }
       }
     }
+  }
+}
+
+// 各プランフッター
+#footer_plans_box {
+  display: flex;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  .btn_link_new {
+    width: 200px;
   }
 }
 

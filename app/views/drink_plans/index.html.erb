@@ -18,26 +18,26 @@
   <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
     <thead>
       <tr id="table_heading" class="bg-blue-500">
-        <th class="index_table_head">No.</th>
+        <th class="index_table_head  hidden md:table-cell">No.</th>
         <th class="index_table_head">料金名称</th>
-        <th class="index_table_head  hidden md:table-cell">単位</th>
-        <th class="index_table_head  hidden md:table-cell">一般</th>
-        <th class="index_table_head  hidden md:table-cell">学生</th>
-        <th class="index_table_head  hidden md:table-cell">シニア</th>
-        <th class="index_table_head  hidden md:table-cell">小学生</th>
+        <th class="index_table_head hidden md:table-cell">単位</th>
+        <th class="index_table_head hidden md:table-cell">一般</th>
+        <th class="index_table_head hidden md:table-cell">学生</th>
+        <th class="index_table_head hidden md:table-cell">シニア</th>
+        <th class="index_table_head hidden md:table-cell">小学生</th>
         <th class="index_table_head" colspan="2"><i class="fas fa-edit text-white"></th>
       </tr>
     </thead>
     <tbody>
       <% @drink_plans.each.with_index(1) do |drink_plan, i| %>
         <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="index_table_body"><%= i %></td>
+          <td class="index_table_body hidden md:table-cell"><%= i %></td>
           <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= link_to drink_plan.name, drink_plan %></td>
-          <td class="index_table_body  hidden md:table-cell"><%= drink_plan.time_unit_i18n %></td>
-          <td class="index_table_body  hidden md:table-cell"><%= drink_plan.adult_fee %>円</td>
-          <td class="index_table_body  hidden md:table-cell"><%= drink_plan.student_fee %>円</td>
-          <td class="index_table_body  hidden md:table-cell"><%= drink_plan.senior_fee %>円</td>
-          <td class="index_table_body  hidden md:table-cell"><%= drink_plan.child_fee %>円</td>
+          <td class="index_table_body hidden md:table-cell"><%= drink_plan.time_unit_i18n %></td>
+          <td class="index_table_body hidden md:table-cell"><%= drink_plan.adult_fee %>円</td>
+          <td class="index_table_body hidden md:table-cell"><%= drink_plan.student_fee %>円</td>
+          <td class="index_table_body hidden md:table-cell"><%= drink_plan.senior_fee %>円</td>
+          <td class="index_table_body hidden md:table-cell"><%= drink_plan.child_fee %>円</td>
           <td class="index_table_body text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
           <td class="index_table_body text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
         </tr>
@@ -45,3 +45,4 @@
     </tbody>
   </table>
 </div>
+<%= render "layouts/footer_plans" %>
