@@ -14,4 +14,8 @@ ja:
         half_hour: '30分'
         three_hours: '3時間'
         four_hours: '4時間'
-        free_time: 'フリータイム'
+        free_time: 'フリー'
+    drink_plan:
+      time_unit:
+        half_hour: '30分'
+        free_time: 'フリー'

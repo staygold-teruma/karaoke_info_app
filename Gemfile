@@ -12,6 +12,7 @@ gem "rails", "~> 6.1.4"
 gem "rails-i18n", "~> 6.0"
 gem "ransack"
 gem "sass-rails", ">= 6"
+gem "tailwindcss-rails"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
 
@@ -42,4 +43,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+gem "tzinfo-data"
