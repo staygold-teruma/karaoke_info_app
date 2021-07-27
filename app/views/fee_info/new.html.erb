@@ -1,2 +1,24 @@
-<h1>FeeInfo#new</h1>
-<p>Find me in app/views/fee_info/new.html.erb</p>
+<div class="flex" id="fee_info_wrap">
+  <div class="w-1/2  bg-no-repeat bg-cover relative items-center" id="fee_info_img">
+  </div>
+  <div class="w-1/2" id="fee_info_form">
+    <%= form_with model: @fee_info, local: true do |f| %>
+      <div>
+        <p>STEP1</p>
+        <p>会員登録はされていますか？</p>
+      </div>
+      <div>
+        <%= f.radio_button :div_member, :member %>
+        <%= f.label :会員ありor店頭で登録 %>
+        <%= f.radio_button :div_member, :other %>
+        <%= f.label :会員登録の予定なし %>
+      </div>
+      <div>
+        <p>STEP2</p>
+        <p>ご利用人数を入力してください</p>
+        <%= f.label :一般 %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

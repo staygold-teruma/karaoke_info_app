@@ -4,7 +4,10 @@
     <p>会員登録はされていますか？</p>
   </div>
   <div>
-
+    <%= f.radio_button :div_member, :member %>
+    <%= f.label :会員ありor店頭で登録 %>
+    <%= f.radio_button :gender, :other %>
+    <%= f.label :会員登録の予定なし %>
   </div>
   <div>
     <p>STEP1</p>

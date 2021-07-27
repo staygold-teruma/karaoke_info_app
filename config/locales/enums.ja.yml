@@ -19,3 +19,16 @@ ja:
       time_unit:
         half_hour: '30分'
         free_time: 'フリー'
+    fee_info:
+      div_member:
+        other: '一般'
+        member: '会員'
+      usage_time:
+        half_hour: '30分'
+        one_hour: '1時間'
+        one_half_hour: '1時間30分'
+        two_hour: '2時間'
+        two_half_hour: '2時間30分'
+        three_hours: '3時間'
+        four_hours: '4時間'
+        free_time: 'フリー'
