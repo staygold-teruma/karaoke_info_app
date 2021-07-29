@@ -11,6 +11,11 @@
   @apply bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded;
 }
 
+.btn_fee_info {
+  @apply hover:bg-white hover:border-yellow-500 hover:text-yellow-500
+  bg-yellow-500 text-white border-2 border-yellow-500 mt-5 mb-3 px-2 py-2 rounded-xl w-40 text-lg font-black;
+}
+
 .btn_form_create {
   @apply bg-blue-500 hover:bg-blue-700 text-white py-1 rounded w-full;
 }
@@ -394,9 +399,34 @@
 
 // 料金案内フォーム
 #fee_info_wrap {
-  margin-top: 100px;
   #fee_info_img {
-    height: auto;
     background-image: url(/assets/room_title.jpg);
+    background-position: 61% 70%;
+  }
+  #fee_info_input {
+    label {
+      width: 40px;
+      display: inline-block;
+      text-align: justify;
+      text-align-last: justify;
+    }
+    input {
+      text-align: end;
+      padding-right: 10px;
+      width: 25px;
+      height: 20px;
+      border: gray 1px solid;
+      border-radius: 8px;
+    }
+  }
+  #fee_info_select {
+    select {
+      font-size: 12px;
+      width: 150px;
+      height: 30px;
+      padding-left: 5px;
+      border: gray 1px solid;
+      border-radius: 8px;
+    }
   }
 }

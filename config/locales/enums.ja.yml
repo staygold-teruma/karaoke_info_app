@@ -12,8 +12,8 @@ ja:
         night: '夜'
       time_unit:
         half_hour: '30分'
-        three_hours: '3時間'
-        four_hours: '4時間'
+        three_hour: '3時間'
+        four_hour: '4時間'
         free_time: 'フリー'
     drink_plan:
       time_unit:
@@ -29,6 +29,12 @@ ja:
         one_half_hour: '1時間30分'
         two_hour: '2時間'
         two_half_hour: '2時間30分'
-        three_hours: '3時間'
-        four_hours: '4時間'
+        three_hour: '3時間'
+        four_hour: '4時間'
         free_time: 'フリー'
+      drink_plan:
+        one_drink: 'ワンドリンク'
+        drink_bar: 'ドリンクバー'
+        lite_plan: 'ライト飲み放題'
+        variety_plan: 'バラエティ飲み放題'
+        deluxe_plan: 'デラックス飲み放題'

@@ -1,13 +1,13 @@
 class FeeInfo < ApplicationRecord
-  validates :div_member presence: true
-  validates :number_of_adults presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :number_of_students presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :number_of_seniors presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :number_of_children presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :usage_time presence: true
-  validates :drink_plan presence: true
-  validates :number_of_customers presence: true, , numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :total_fee presence: true, , numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :div_member, presence: true
+  validates :number_of_adults, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :number_of_students, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :number_of_seniors, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :number_of_children, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :usage_time, presence: true
+  validates :drink_plan, presence: true
+  validates :number_of_customers, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   enum div_member: {
     other: 0,
@@ -26,11 +26,10 @@ class FeeInfo < ApplicationRecord
   }
 
   enum drink_plan: {
-    drink_bar: 0,
-    lite_plan: 1,
-    variety_plan: 2,
-    deluxe_plan: 3
+    one_drink: 0,
+    drink_bar: 1,
+    lite_plan: 2,
+    variety_plan: 3,
+    deluxe_plan: 4
   }
-
-
 end
