@@ -47,10 +47,14 @@ class FeeInfosController < ApplicationController
     chosen_drink_plan = DrinkPlan.find_by(name: drink_plan, time_unit: drink_unit)
 
     # ドリンク料金を計算
-    total_drink_plan_fee = FeeInfo.calculate_drink_fee(chosen_drink_plan, number_of_people, drink_count)
+    total_drink_plan_fee = if drink_plan == "ワンドリンク"
+                             0
+                           else
+                             FeeInfo.calculate_drink_fee(chosen_drink_plan, number_of_people, drink_count)
+                           end
 
     total_fee_value = total_main_plan_fee + total_drink_plan_fee
-    
+
     # パラメータの合計人数・合計金額を書き換え
     fee_info["number_of_customers"] = total_customers
     fee_info["total_fee"] = total_fee_value

@@ -59,7 +59,6 @@ class FeeInfo < ApplicationRecord
                      now_time.day
                    end
     change_point = Time.local(now_time.year, now_time.month, business_day, 19)
-    change_point
     usage_seconds = count * 30 * 60
     end_time = now_time + usage_seconds
     if now_time > change_point
@@ -95,6 +94,8 @@ class FeeInfo < ApplicationRecord
   # ドリンクコースの種類を取得
   def self.get_drink_plan(plan_n)
     case plan_n
+    when "one_drink"
+      "ワンドリンク"
     when "drink_bar"
       "ドリンクバー料金"
     when "lite_plan"

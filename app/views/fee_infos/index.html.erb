@@ -18,7 +18,7 @@
       <% @fee_infos.each.with_index(1) do |fee_info, i| %>
         <tr class="border-b border-gray-200 hover:bg-gray-100">
           <td class="index_table_body hidden md:table-cell"><%= i %></td>
-          <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= fee_info.total_fee %>円</td>
+          <td class="border border-gray-400 px-2 py-1 text-center text-sm"><%= fee_info.total_fee %>円</td>
           <td class="index_table_body hidden md:table-cell"><%= fee_info.div_member_i18n %></td>
           <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_adults %>名</td>
           <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_students %>名</td>

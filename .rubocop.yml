@@ -14,6 +14,10 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
 
+# メソッド名のprefixに「set_」「get_」を許可
+AccessorMethodName:
+  Enabled: false
+
 # 日本語のコメントを許可
 Style/AsciiComments:
   Enabled: false
