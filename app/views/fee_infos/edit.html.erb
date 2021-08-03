@@ -1,2 +1,87 @@
-<h1>FeeInfo#edit</h1>
-<p>Find me in app/views/fee_info/edit.html.erb</p>
+<div class="sm:flex" id="fee_info_wrap">
+  <div class="w-full h-32 sm:h-screen sm:relative sm:bg-center bg-no-repeat bg-cover items-center bg-top-image">
+  </div>
+  <div class="sm:w-1/2 sm:absolute sm:right-0 sm:mx-6 sm:px-4 sm:py-3 mx-3 my-2 px-1 py-1  border-4 mt-5 bg-white sm:bg-gray-600 sm:bg-opacity-80 border-yellow-500 text-sm rounded-2xl" id="fee_info_form">
+    <%= form_with model: @fee_info, local: true do |f| %>
+      <div class="px-3 pt-4 pb-1 sm:px-2 sm:py-2 rounded hover:bg-yellow-600 hover:bg-opacity-10 sm:hover:bg-opacity-50">
+        <div class="sm:flex items-center mb-1">
+          <p class="text-base sm:text-sm bg-yellow-500 text-white px-2 py-1 rounded-lg font-black mb-2 sm:mb-1 sm:mr-0.5">STEP 1</p>
+          <p class="text-base sm:text-sm px-2 mb-2 sm:mb-1 sm:text-white">会員登録はされていますか？</p>
+        </div>
+        <div class="mb-2 sm:flex flex-wrap px-2">
+          <div class="flex items-center mr-5 mb-1">
+            <%= f.radio_button :div_member, :member %>
+            <%= f.label :会員登録済みor店頭で登録予定, class: "ml-1 text-red-500 sm:text-white" %>
+          </div>
+          <div class="flex items-center mb-1">
+            <%= f.radio_button :div_member, :other %>
+            <%= f.label :会員登録の予定なし, class: "ml-1 sm:text-white" %>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs px-2 sm:text-white">※アプリ/LINE/各種会員カード</p>
+          <p class="text-xs px-2 mb-3 sm:mb-2 sm:text-white">※受付でLINEの友達登録での入会が簡単にできます</p>
+        </div>
+      </div>
+      <div class="px-3 pt-4 pb-1 sm:px-2 sm:pt-3 sm:pb-1 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 sm:hover:bg-opacity-50">
+        <div class="sm:flex items-center mb-3 sm:mb-1">
+          <p class="text-base sm:text-sm bg-yellow-500 text-white px-2 py-1 rounded-lg font-black mb-2 sm:mr-0.5">STEP 2</p>
+          <p class="text-base sm:text-sm px-2 sm:mb-2 sm:text-white">ご利用人数を入力してください</p>
+        </div>
+        <div class="flex flex-wrap w-full px-2 mb-2 sm:mb-1">
+          <div class="flex items-end w1/4 mr-6 mb-2 sm:mb-1 text-xs" id="fee_info_input">
+            <%= f.label :一般, class: "text-green-500 font-black sm:text-white" %><span class="sm:text-white">:</span>
+            <%= f.text_field :number_of_adults, required: true, class: "w1/3 mx-1", value: "0" %><span class="sm:text-white">名</span>
+          </div>
+          <div class="flex items-end w1/4 mr-6 mb-2 sm:mb-1 text-xs" id="fee_info_input">
+            <%= f.label :学生, class: "text-blue-500 font-black sm:text-white"  %><span class="sm:text-white">:</span>
+            <%= f.text_field :number_of_students, required: true, class: "mx-1", value: "0" %><span class="sm:text-white">名</span>            
+          </div>
+          <div class="flex items-end w1/4 mr-6 mb-2 sm:mb-1 text-xs" id="fee_info_input">
+            <%= f.label :シニア, class: "text-yellow-900 font-black sm:text-white"  %><span class="sm:text-white">:</span>
+            <%= f.text_field :number_of_seniors, required: true, class: "mx-1", value: "0" %><span class="sm:text-white">名</span>
+          </div>
+          <div class="flex items-end w1/4 mr-6 mb-2 sm:mb-1 text-xs" id="fee_info_input">
+            <%= f.label :小学生, class: "text-red-500 font-black sm:text-white"  %><span class="sm:text-white">:</span>
+            <%= f.text_field :number_of_children, required: true, class: "mx-1", value: "0" %> <span class="sm:text-white">名</span>
+          </div>
+        </div>
+      </div>
+      <div class="px-3 pt-4 pb-5 sm:px-2 sm:pb-3 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 sm:hover:bg-opacity-50">
+        <div class="sm:flex items-center mb-3 sm:mb-1">
+          <p class="text-base sm:text-sm bg-yellow-500 text-white px-2 py-1 rounded-lg font-black mb-2 sm:mr-0.5">STEP 3</p>
+          <p class="text-base sm:text-sm px-2 sm:mb-2 sm:text-white">ご利用時間を選んでください</p>       
+        </div>
+        <div class="px-2" id="fee_info_select">
+          <%= f.select :usage_time, FeeInfo.usage_times_i18n.invert %>
+        </div>
+        <div>
+          <p class="text-xs px-2 mt-2 sm:text-white">※3時間を超える場合はフリータイムを選んでください</p>
+        </div>
+      </div>
+      <div class="px-3 pt-4 pb-5 sm:px-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 sm:hover:bg-opacity-50">
+        <div class="sm:flex items-botom mb-3 sm:mb-1">
+          <p class="text-base sm:text-sm bg-yellow-500 text-white px-2 py-1 rounded-lg font-black mb-2 sm:mr-0.5">STEP 4</p>
+          <p class="text-base sm:text-sm px-2 sm:mb-2 sm:text-white">ドリンクコースを選んでください</p>   
+        </div>
+        <div class="px-2" id="fee_info_select">
+          <%= f.select :drink_plan, FeeInfo.drink_plans_i18n.invert %>
+        </div>    
+        <div>
+          <p class="text-xs px-2 mt-2 sm:text-white">【ワンドリンク】</p>
+          <p class="text-xs px-2 pl-3 sm:text-white">ご注文の商品代金が加算されます</p>
+        </div>        
+        <div>
+          <p class="text-xs px-2 mt-2 sm:text-white">【ドリンクバー/アルコール飲み放題】</p>
+          <p class="text-xs px-2 pl-3 sm:text-white">2杯以上で飲み放題がお得です</p>
+        </div>        
+        <div>
+          <p class="text-xs px-2 mt-2 pl-3 sm:text-white">※アルコール飲み放題コースの詳細は<a href="" class="text-yellow-500 underline font-black">こちら</a></p>
+        </div>        
+      </div>
+      <div class="text-center">
+        <%= f.submit "料金を計算する", class: "btn_fee_info" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,2 +1,37 @@
-<h1>FeeInfo#index</h1>
-<p>Find me in app/views/fee_info/index.html.erb</p>
+<h1 class="text-center">料金案内履歴</h1>
+<div class="flex justify-center" id="table_wrap">
+  <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
+    <thead>
+      <tr id="table_heading" class="bg-blue-500">
+        <th class="index_table_head">No.</th>
+        <th class="index_table_head">料金合計</th>
+        <th class="index_table_head">会員</th>
+        <th class="index_table_head">一般人数</th>
+        <th class="index_table_head">学生人数</th>
+        <th class="index_table_head">シニア人数</th>
+        <th class="index_table_head">小学生人数</th>
+        <th class="index_table_head">利用時間</th>
+        <th class="index_table_head">ドリンクプラン</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fee_infos.each.with_index(1) do |fee_info, i| %>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="index_table_body hidden md:table-cell"><%= i %></td>
+          <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= fee_info.total_fee %>円</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.div_member_i18n %></td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_adults %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_students %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_seniors %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_children %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.usage_time_i18n %></td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.drink_plan_i18n %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% @fee_infos.each do |fee_info| %>
+
+
+<% end %>

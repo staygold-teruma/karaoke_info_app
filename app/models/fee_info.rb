@@ -49,6 +49,7 @@ class FeeInfo < ApplicationRecord
     end
   end
 
+  # 昼料金と夜料金のカウント数を取得
   def self.get_count(count)
     now_time = Time.now
     business_day = case now_time.hour
@@ -74,19 +75,6 @@ class FeeInfo < ApplicationRecord
     [day_count, night_count]
   end
 
-  def self.get_drink_plan(plan_n)
-    case plan_n
-    when "drink_bar"
-      "ドリンクバー料金"
-    when "lite_plan"
-      "ライト飲み放題料金"
-    when "variety_plan"
-      "バラエティー飲み放題料金"
-    when "deluxe_plan"
-      "デラックス飲み放題料金"
-    end
-  end
-
   # ルーム料金を計算
   def self.calculate_main_fee(plan_day, plan_night, number_of_people, unit_count)
     day_adult_fee = plan_day.adult_fee * unit_count[0] * number_of_people[0]
@@ -104,6 +92,21 @@ class FeeInfo < ApplicationRecord
     total_adult_fee + total_student_fee + total_senior_fee + total_child_fee
   end
 
+  # ドリンクコースの種類を取得
+  def self.get_drink_plan(plan_n)
+    case plan_n
+    when "drink_bar"
+      "ドリンクバー料金"
+    when "lite_plan"
+      "ライト飲み放題料金"
+    when "variety_plan"
+      "バラエティー飲み放題料金"
+    when "deluxe_plan"
+      "デラックス飲み放題料金"
+    end
+  end
+
+  # ドリンク料金を計算
   def self.calculate_drink_fee(drink_plan, number_of_people, drink_count)
     adult_drink_fee = drink_plan.adult_fee * number_of_people[0] * drink_count
     student_drink_fee = drink_plan.student_fee * number_of_people[1] * drink_count
@@ -120,10 +123,5 @@ class FeeInfo < ApplicationRecord
   # 合計金額を計算
   def total_fee_value
     adults_fee_value + students_fee_value + seniors_fee_value + cildren_fee_value
-  end
-
-  # 合計人���・合計金額をハッシュに
-  def set_total_value
-    { number_of_customers: total_customers_value, total_fee: total_fee_value }
   end
 end

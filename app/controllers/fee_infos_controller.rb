@@ -1,5 +1,7 @@
 class FeeInfosController < ApplicationController
-  def index; end
+  def index
+    @fee_infos = FeeInfo.all
+  end
 
   def new
     @fee_info = FeeInfo.new
@@ -8,6 +10,7 @@ class FeeInfosController < ApplicationController
   def create
     fee_info = FeeInfo.new(fee_info_params)
 
+    # 合計人数を計算
     total_customers = fee_info[:number_of_adults] + fee_info[:number_of_students] + fee_info[:number_of_seniors] + fee_info[:number_of_children]
 
     # 曜日がどの曜日区分かを確定
@@ -43,21 +46,21 @@ class FeeInfosController < ApplicationController
                   end
     chosen_drink_plan = DrinkPlan.find_by(name: drink_plan, time_unit: drink_unit)
 
+    # ドリンク料金を計算
     total_drink_plan_fee = FeeInfo.calculate_drink_fee(chosen_drink_plan, number_of_people, drink_count)
 
     total_fee_value = total_main_plan_fee + total_drink_plan_fee
-
+    
+    # パラメータの合計人数・合計金額を書き換え
     fee_info["number_of_customers"] = total_customers
     fee_info["total_fee"] = total_fee_value
     @fee_info = fee_info
-    binding.pry
 
-    # フォームで受け取ったパラメータに計算した結果をマージ
-    # プライベートメソッドfee_info_value
-
-    # 完成した保存すべきパラメータをDBに保存
-    # @fee_info = FeeInfo.new(fee_info_value)
-    # @fee.save
+    if @fee_info.save!
+      redirect_to fee_infos_path
+    else
+      render :new
+    end
   end
 
   def show; end
