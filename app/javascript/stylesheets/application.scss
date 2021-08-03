@@ -13,7 +13,7 @@
 
 .btn_fee_info {
   @apply hover:bg-white hover:border-yellow-500 hover:text-yellow-500
-  bg-yellow-500 text-white border-2 border-yellow-500 mt-5 mb-3 px-2 py-2 rounded-xl w-40 text-lg font-black;
+  bg-yellow-500 text-white border-2 border-yellow-500 mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3;
 }
 
 .btn_form_create {
@@ -62,7 +62,10 @@
     'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, Arial, Helvetica, Verdana, sans-serif;
   font-weight: 500;
   color: rgb(75, 75, 75);
-  white-space: nowrap;
+}
+
+p {
+  word-break: break-all;
 }
 
 .page_title {
@@ -413,8 +416,9 @@
     input {
       text-align: end;
       padding-right: 10px;
+      padding-bottom: 2px;
       width: 25px;
-      height: 20px;
+      height: 18px;
       border: gray 1px solid;
       border-radius: 8px;
     }
@@ -425,6 +429,7 @@
       width: 150px;
       height: 30px;
       padding-left: 5px;
+      padding-bottom: 2px;
       border: gray 1px solid;
       border-radius: 8px;
     }

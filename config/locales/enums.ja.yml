@@ -6,6 +6,7 @@ ja:
         member: '会員'
       div_day:
         weekday: '平日'
+        friday: '金曜日'
         weekend: '週末'
       div_time:
         day: '昼'
@@ -30,7 +31,6 @@ ja:
         two_hour: '2時間'
         two_half_hour: '2時間30分'
         three_hour: '3時間'
-        four_hour: '4時間'
         free_time: 'フリー'
       drink_plan:
         one_drink: 'ワンドリンク'
