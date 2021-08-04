@@ -10,6 +10,18 @@ class FeeInfo < ApplicationRecord
   validates :drink_plan, presence: true
   validates :number_of_customers, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :adult_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :student_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :senior_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :child_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :adult_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :student_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :senior_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :child_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :adult_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :student_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :senior_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :child_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   enum div_member: {
     other: 0,
@@ -74,23 +86,6 @@ class FeeInfo < ApplicationRecord
     [day_count, night_count]
   end
 
-  # ルーム料金を計算
-  def self.calculate_main_fee(plan_day, plan_night, number_of_people, unit_count)
-    day_adult_fee = plan_day.adult_fee * unit_count[0] * number_of_people[0]
-    night_adult_fee = plan_night.adult_fee * unit_count[1] * number_of_people[0]
-    total_adult_fee = day_adult_fee + night_adult_fee
-    day_student_fee = plan_day.student_fee * unit_count[0] * number_of_people[1]
-    night_student_fee = plan_night.student_fee * unit_count[1] * number_of_people[1]
-    total_student_fee = day_student_fee + night_student_fee
-    day_senior_fee = plan_day.senior_fee * unit_count[0] * number_of_people[2]
-    night_senior_fee = plan_night.senior_fee * unit_count[1] * number_of_people[2]
-    total_senior_fee = day_senior_fee + night_senior_fee
-    day_child_fee = plan_day.child_fee * unit_count[0] * number_of_people[3]
-    night_child_fee = plan_night.child_fee * unit_count[1] * number_of_people[3]
-    total_child_fee = day_child_fee + night_child_fee
-    total_adult_fee + total_student_fee + total_senior_fee + total_child_fee
-  end
-
   # ドリンクコースの種類を取得
   def self.get_drink_plan(plan_n)
     case plan_n
@@ -107,14 +102,36 @@ class FeeInfo < ApplicationRecord
     end
   end
 
-  # ドリンク料金を計算
-  def self.calculate_drink_fee(drink_plan, number_of_people, drink_count)
-    adult_drink_fee = drink_plan.adult_fee * number_of_people[0] * drink_count
-    student_drink_fee = drink_plan.student_fee * number_of_people[1] * drink_count
-    senior_drink_fee = drink_plan.senior_fee * number_of_people[2] * drink_count
-    child_drink_fee = drink_plan.child_fee * number_of_people[3] * drink_count
-    adult_drink_fee + student_drink_fee + senior_drink_fee + child_drink_fee
+  # ドリンクコースの時間単位の取得
+  def self.get_drink_unit(drink_plan)
+    if drink_plan == "ワンドリンク" || "ドリンクバー料金"
+      1
+    else
+      0
+    end
   end
+
+  # ドリンクコースの30分単位料金を乗算するカウントを取得
+  def self.get_drink_count(drink_plan)
+    if drink_plan == "ワンドリンク" || "ドリンクバー料金"
+      1
+    else
+      count
+    end
+  end
+
+  # ドリンク料金を計算
+  # def self.calculate_drink_fee(drink_plan, number_of_people, drink_count)
+  #   if drink_plan == "ワンドリンク"
+  #     0
+  #   else
+  #     adult_drink_fee = drink_plan.adult_fee * number_of_people[0] * drink_count
+  #     student_drink_fee = drink_plan.student_fee * number_of_people[1] * drink_count
+  #     senior_drink_fee = drink_plan.senior_fee * number_of_people[2] * drink_count
+  #     child_drink_fee = drink_plan.child_fee * number_of_people[3] * drink_count
+  #     adult_drink_fee + student_drink_fee + senior_drink_fee + child_drink_fee
+  #   end
+  # end
 
   # 合計人数を計算
   def total_customers_value(_params)

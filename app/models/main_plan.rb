@@ -17,7 +17,8 @@ class MainPlan < ApplicationRecord
 
   enum div_day: {
     weekday: 0,
-    weekend: 1
+    friday: 1,
+    weekend: 2
   }
 
   enum div_time: {
