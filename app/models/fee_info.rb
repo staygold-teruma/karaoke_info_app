@@ -65,9 +65,9 @@ class FeeInfo < ApplicationRecord
 
   # それぞれのルーム料金を計算
   def set_each_main_fee
-    business_wday = get_business_wday
-    chosen_day_plan = get_day_plan(business_wday)
-    chosen_night_plan = get_night_plan(business_wday)
+    wday = get_business_wday
+    chosen_day_plan = get_day_plan(wday)
+    chosen_night_plan = get_night_plan(wday)
     unit_count = get_unit_count(@count)
     self.adult_main_fee = calculate_main_fee(chosen_day_plan.adult_fee, chosen_night_plan.adult_fee, unit_count)
     self.student_main_fee = calculate_main_fee(chosen_day_plan.student_fee, chosen_night_plan.student_fee, unit_count)
@@ -100,6 +100,22 @@ class FeeInfo < ApplicationRecord
                      (student_main_fee + student_drink_fee) * number_of_students +
                      (senior_main_fee + senior_drink_fee) * number_of_seniors +
                      (child_main_fee + child_drink_fee) * number_of_children
+  end
+
+  def adult_fee_all
+    adult_total_fee * number_of_adults
+  end
+
+  def student_fee_all
+    student_total_fee * number_of_students
+  end
+
+  def senior_fee_all
+    senior_total_fee * number_of_seniors
+  end
+
+  def child_fee_all
+    child_total_fee * number_of_children
   end
 
   private

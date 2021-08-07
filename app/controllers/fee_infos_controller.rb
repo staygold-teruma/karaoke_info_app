@@ -1,4 +1,6 @@
 class FeeInfosController < ApplicationController
+  before_action :set_fee_info, only: %i[show edit update destroy]
+
   def index
     @fee_infos = FeeInfo.all
   end
@@ -11,7 +13,8 @@ class FeeInfosController < ApplicationController
     @fee_info = FeeInfo.new(fee_info_params)
     @fee_info.set_info
     if @fee_info.save!
-      redirect_to fee_infos_path
+      # redirect_to @fee_info
+      redirect_to edit_fee_info_url(@fee_info)
     else
       render :new
     end
@@ -29,5 +32,9 @@ class FeeInfosController < ApplicationController
 
   def fee_info_params
     params.require(:fee_info).permit(:div_member, :number_of_adults, :number_of_students, :number_of_seniors, :number_of_children, :usage_time, :drink_plan)
+  end
+
+  def set_fee_info
+    @fee_info = FeeInfo.find(params[:id])
   end
 end

@@ -27,10 +27,10 @@
     </thead>
     <tbody>
       <tr>
-        <td class="show_fee_table_body"><%= @drink_plan.adult_fee %>円</td>
-        <td class="show_fee_table_body"><%= @drink_plan.student_fee %>円</td>
-        <td class="show_fee_table_body"><%= @drink_plan.senior_fee %>円</td>
-        <td class="show_fee_table_body"><%= @drink_plan.child_fee %>円</td>
+        <td class="show_fee_table_body"><%= @drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
+        <td class="show_fee_table_body"><%= @drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
+        <td class="show_fee_table_body"><%= @drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
+        <td class="show_fee_table_body"><%= @drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
       </tr>
     </tbody>
   </table>

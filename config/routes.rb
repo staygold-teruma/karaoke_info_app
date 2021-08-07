@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "main_plans#index"
+  root "fee_infos#new"
   resources :fee_infos
   resources :main_plans
   resources :drink_plans
