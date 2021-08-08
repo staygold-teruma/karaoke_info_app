@@ -49,11 +49,11 @@
 }
 
 .fee_info_table_head {
-  @apply w-12 border-2 border-yellow-500 px-2 py-3 text-xs sm:text-xs font-black;
+  @apply w-12 border-2 border-yellow-500 px-2 py-3 text-xxs sm:text-xs font-black;
 }
 
 .fee_info_table_body {
-  @apply border-2 border-yellow-500 px-1 py-2 text-center text-xs sm:text-sm;
+  @apply border-2 border-yellow-500 px-1 py-2 text-center text-xxs sm:text-sm;
 }
 
 @import 'tailwindcss/utilities';
@@ -438,3 +438,10 @@ p {
     }
   }
 }
+
+// #fee_info_edit {
+//   th,
+//   td {
+//     font-size: 5px;
+//   }
+// }

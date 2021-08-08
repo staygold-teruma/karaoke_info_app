@@ -12,8 +12,8 @@ class FeeInfosController < ApplicationController
   def create
     @fee_info = FeeInfo.new(fee_info_params)
     @fee_info.set_info
+    binding.pry
     if @fee_info.save!
-      # redirect_to @fee_info
       redirect_to edit_fee_info_url(@fee_info)
     else
       render :new
