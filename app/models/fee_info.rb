@@ -48,11 +48,11 @@ class FeeInfo < ApplicationRecord
 
   HALFHOUR_TO_SECONDS = 1800
 
-  def set_info
+  def set_values
     @count = FeeInfo.usage_times[usage_time] + 1
     set_number_of_customers
-    set_each_main_fee
-    set_each_drink_fee
+    set_main_fee
+    set_drink_fee
     set_each_total_fee
     set_total_fee
   end
@@ -64,7 +64,7 @@ class FeeInfo < ApplicationRecord
   end
 
   # それぞれのルーム料金を計算
-  def set_each_main_fee
+  def set_main_fee
     wday = get_business_wday
     chosen_day_plan = get_day_plan(wday)
     chosen_night_plan = get_night_plan(wday)
@@ -76,11 +76,11 @@ class FeeInfo < ApplicationRecord
   end
 
   # それぞれのドリンク料金を計算
-  def set_each_drink_fee
+  def set_drink_fee
     drink_plan_name = get_drink_name(drink_plan)
     drink_plan_unit = get_drink_unit(drink_plan_name)
     drink_plan_count = get_drink_count(drink_plan_name, @count)
-    chosen_drink_plan = get_drink_plan(drink_plan_name, drink_plan_unit)
+    chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: drink_plan_unit)
     self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, drink_plan_count)
     self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, drink_plan_count)
     self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, drink_plan_count)
@@ -122,7 +122,7 @@ class FeeInfo < ApplicationRecord
 
   # 曜日区分を取得
   def get_business_wday
-    today = Date.today
+    today = Time.zone.today
     case today.wday
     when 1..4
       0
@@ -135,14 +135,14 @@ class FeeInfo < ApplicationRecord
 
   # 昼料金と夜料金のカウント数を取得
   def get_unit_count(count)
-    now_time = Time.now
+    now_time = Time.zone.now
     business_day = case now_time.hour
                    when 0..6
                      now_time.day - 1
                    else
                      now_time.day
                    end
-    change_point = Time.local(now_time.year, now_time.month, business_day, 19)
+    change_point = Time.zone.local(now_time.year, now_time.month, business_day, 19)
     usage_seconds = HALFHOUR_TO_SECONDS * count
     end_time = now_time + usage_seconds
     if now_time > change_point
@@ -158,12 +158,12 @@ class FeeInfo < ApplicationRecord
     [day_count, night_count]
   end
 
-  # フォームで取得した内容から該当の「昼料金を取得」
+  # フォ���ムで取得した内容から該当の「昼料金を取得」
   def get_day_plan(wday)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 0, time_unit: 0)
   end
 
-  # フォームで取得した内容から該当の「夜料金を取得」
+  # フォームで取得した内容��ら該当の「夜料金を取得」
   def get_night_plan(wday)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, time_unit: 0)
   end
@@ -173,7 +173,7 @@ class FeeInfo < ApplicationRecord
     day_fee * count[0] + night_fee * count[1]
   end
 
-  # ドリンクコースの種類を取得
+  # ドリンクコースの種類を���得
   def get_drink_name(drink_plan)
     case drink_plan
     when "one_drink"
@@ -205,11 +205,6 @@ class FeeInfo < ApplicationRecord
     else
       count
     end
-  end
-
-  # フォームで取得した内容から該当の「ドリンクコースを取得」
-  def get_drink_plan(name, unit)
-    chosen_drink_plan = DrinkPlan.find_by(name: name, time_unit: unit)
   end
 
   # ドリンク料金を計算

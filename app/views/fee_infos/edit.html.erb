@@ -1,11 +1,31 @@
 <div class="" id="fee_info_edit">
-  <div class="bg-top-image bg-bottom h-40 mb-6"></div>
+  <div class="bg-top-image bg-center h-28 sm:h-40 mb-10"></div>
   <div class="px-3 sm:px-7 mx-auto sm:max-w-screen-md">
-    <div class="mx-auto mb-6 py-8 flex justify-center border-2 border-yellow-500 rounded-xl w-4/5 sm:w-1/2">
-      <p class="text-xl mr-3">料金の合計</p>
-      <p class="text-xl"><%= @fee_info.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+    <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-yellow-500 rounded-xl w-4/5 sm:w-3/5">
+      <h1 class="w-full h-30 py-4 border border-yellow-500 rounded-tl-lg  rounded-tr-lg bg-yellow-500 text-xl text-white text-center mb-6">料金のご案内</h1>
+      <div class="mx-auto">
+        <div class="flex justify-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+          <p class="w-28"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用時間</p>
+          <p><i class="fas fa-angle-double-right mr-2"></i></p>
+          <p class="w-28"><%= @fee_info.usage_time_i18n %></p>
+        </div>
+        <div class="flex justify-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+          <p class="w-28"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用人数</p>
+          <p><i class="fas fa-angle-double-right mr-2"></i></p>
+          <p class="w-28"><%= @fee_info.number_of_customers %>名様</p>
+        </div>
+        <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+          <p class="w-28 text-xs"><i class="far fa-check-circle mr-1 text-base text-yellow-500"></i>ドリンクコース</p>
+          <p><i class="fas fa-angle-double-right mr-2"></i></p>
+          <p class="w-28 text-xs"><%= @fee_info.drink_plan_i18n %></p>
+        </div>
+      </div>
+      <div class="flex justify-center items-center mt-5">
+        <p class="text-xl text-white px-3 py-2 mr-5 rounded-xl shadow bg-yellow-500">料金合計</p>
+        <p class="text-3xl mr-2 py-1"><%= @fee_info.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+      </div>
     </div>
-    <h3 class="mb-2"><i class="fas fa-play-circle text-yellow-500"></i> 料金内訳</h3>
+    <h3 class="mb-2 font-black"><i class="fas fa-play-circle text-yellow-500"></i> 料金内訳</h3>
     <table class="w-full border-collapse border-2 border-yellow-500  overflow-y-scroll sm:w-full sm:max-w-screen-md">
       <thead>
         <tr id="table_heading" class="">
@@ -43,7 +63,7 @@
             <td class="fee_info_table_body  text-green-500"><%= @fee_info.number_of_adults %>名</td>
             <td class="fee_info_table_body  text-green-500"><%= @fee_info.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% else %>
-            <td class="border-2 border-yellow-500 px-2 py-1  text-green-100 text-center text-xs sm:text-sm font-black">一般</td>
+            <td class="border-2 border-yellow-500 px-2 py-1  text-green-500 text-center text-xs sm:text-sm font-black">一般</td>
             <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
@@ -105,7 +125,7 @@
       </tbody>
     </table>
     <div class="text-xxs sm:text-xs mt-2">
-      <p><i class="far fa-check-circle text-yellow-500 mr-1 sm:mr-2"></i>学生/シニア料金はドリンクバー無料です。</p>
+      <p class="text-red-500"><i class="far fa-check-circle text-yellow-500 mr-1 sm:mr-2"></i>学生/シニア料金はドリンクバー無料です。</p>
       <p><i class="far fa-check-circle text-yellow-500 mr-1 sm:mr-2"></i>昼料金/夜料金は19時を超えたご利用分から切り替わります。</p>
       <p><i class="far fa-check-circle text-yellow-500 mr-1 sm:mr-2"></i>実際のチェックイン時間によって、誤差が発生する場合がございます。</p>
     </div>
@@ -113,7 +133,7 @@
 </div>
 
 <div class="sm:max-w-screen-md sm:mx-auto px-1 sm:px-7" id="fee_info_wrap">
-  <h3 class="mt-8 ml-3 sm:ml-0"><i class="fas fa-play-circle text-yellow-500 mr-1"></i>条件を変えて計算する</h3>
+  <h3 class="mt-8 ml-3 sm:ml-0 font-black"><i class="fas fa-play-circle text-yellow-500 mr-1"></i>条件を変えて計算する</h3>
   <div class="mx-3 my-2 px-1 py-1 sm:max-w-screen-lg sm:mx-auto  border-2 bg-white border-yellow-500 text-sm rounded-2xl">
     <%= form_with model: @fee_info, local: true do |f| %>
       <div class="px-3 pt-4 pb-2 sm:px-2  sm:pt-3 sm:pb-2 rounded hover:bg-yellow-600 hover:bg-opacity-10">
