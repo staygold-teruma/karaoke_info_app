@@ -2,20 +2,33 @@
   <div class="bg-top-image bg-center h-28 sm:h-40 mb-10"></div>
   <div class="px-3 sm:px-7 mx-auto sm:max-w-screen-md">
     <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-yellow-500 rounded-xl w-4/5 sm:w-3/5">
-      <h1 class="w-full h-30 py-4 border border-yellow-500 rounded-tl-lg  rounded-tr-lg bg-yellow-500 text-xl text-white text-center mb-6">料金のご案内</h1>
-      <div class="mx-auto">
-        <div class="flex justify-center ml-3 sm:ml-5 lg:ml-8 mb-2">
-          <p class="w-28"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用時間</p>
-          <p><i class="fas fa-angle-double-right mr-2"></i></p>
-          <p class="w-28"><%= @fee_info.usage_time_i18n %></p>
-        </div>
+      <h1 class="w-full h-30 py-4 border border-yellow-500 rounded-tl-lg  rounded-tr-lg bg-yellow-500 text-xl text-white text-center mb-5 font-black">料金のご案内</h1>
+      <div class="mx-auto text-sm">
+        <% if @fee_info.usage_time_i18n == "フリータイム" %>
+          <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+            <p class="w-28 text-sm"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用プラン</p>
+            <p><i class="fas fa-angle-double-right mr-2"></i></p>
+            <p class="w-28">フリータイム</p>
+          </div>
+        <% else %>         
+          <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+            <p class="w-28 text-sm"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用プラン</p>
+            <p><i class="fas fa-angle-double-right mr-2"></i></p>
+            <p class="w-28 text-sm">30分単位プラン</p>
+          </div>
+          <div class="flex justify-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+            <p class="w-28"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用時間</p>
+            <p><i class="fas fa-angle-double-right mr-2"></i></p>
+            <p class="w-28"><%= @fee_info.usage_time_i18n %></p>
+          </div>
+        <% end %>
         <div class="flex justify-center ml-3 sm:ml-5 lg:ml-8 mb-2">
           <p class="w-28"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用人数</p>
           <p><i class="fas fa-angle-double-right mr-2"></i></p>
           <p class="w-28"><%= @fee_info.number_of_customers %>名様</p>
         </div>
         <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
-          <p class="w-28 text-xs"><i class="far fa-check-circle mr-1 text-base text-yellow-500"></i>ドリンクコース</p>
+          <p class="w-28 text-xs"><i class="far fa-check-circle mr-1 text-sm text-yellow-500"></i>ドリンクプラン</p>
           <p><i class="fas fa-angle-double-right mr-2"></i></p>
           <p class="w-28 text-xs"><%= @fee_info.drink_plan_i18n %></p>
         </div>
@@ -24,6 +37,10 @@
         <p class="text-xl text-white px-3 py-2 mr-5 rounded-xl shadow bg-yellow-500">料金合計</p>
         <p class="text-3xl mr-2 py-1"><%= @fee_info.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
       </div>
+      <% if @fee_info.drink_plan_i18n == "ワンドリンク" %>
+          <p class="mt-3 text-center text-xs text-red-500">お一人様1杯、ドリンク(400円〜)のご注文が必要です</p>
+          <p class="text-center text-xs text-red-500">上記料金にご注文のドリンク代金が加算されます</p>
+      <% end %>
     </div>
     <h3 class="mb-2 font-black"><i class="fas fa-play-circle text-yellow-500"></i> 料金内訳</h3>
     <table class="w-full border-collapse border-2 border-yellow-500  overflow-y-scroll sm:w-full sm:max-w-screen-md">
@@ -189,7 +206,7 @@
           <%= f.select :usage_time, FeeInfo.usage_times_i18n.invert %>
         </div>
         <div>
-          <p class="text-xs px-2 mt-2 mb-1">※3時間を超える場合はフリータイムを選んでください</p>
+          <p class="text-xxs sm:text-xs px-2 mt-2 mb-1">※3時間を超える場合はフリータイムを選んでください</p>
         </div>
       </div>
       <div class="px-3 pt-4 pb-3 sm:px-2  sm:pt-3 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
@@ -202,15 +219,16 @@
         </div>    
         <div>
           <p class="text-xs px-2 mt-2">【ワンドリンク】</p>
-          <p class="text-xs px-2 pl-3">お一人様1杯ドリンク(400円〜)のご注文が必要です</p>
-          <p class="text-xs px-2 pl-3">ご注文の商品代金が加算されます</p>
+          <p class="text-xxs sm:text-xs px-2 pl-3">お一人様1杯、ドリンク(400円〜)のご注文が必要です</p>
+          <p class="text-xxs sm:text-xs px-2 pl-3">ご注文の商品代金が加算されます</p>
         </div>        
         <div>
           <p class="text-xs px-2 mt-2">【ドリンクバー/アルコール飲み放題】</p>
-          <p class="text-xs px-2 pl-3">2杯以上で各種飲み放題がお得です</p>
+          <p class="text-xxs sm:text-xs px-2 pl-3"><span class="text-red-500 mr-1">オススメ!!</span>学生/シニア料金はドリンクバー料金が<span class="text-red-500">無料</span>です</p>
+          <p class="text-xxs sm:text-xs px-2 pl-3"><span class="text-red-500 mr-1">オススメ!!</span>2杯以上で各種飲み放題がお得です</p>
         </div>        
         <div>
-          <p class="text-xs px-2 mt-2 pl-3 mb-1">※アルコール飲み放題コースの詳細は<a href="" class="text-yellow-500 underline font-black">こちら</a></p>
+          <p class="text-xxs sm:text-xs px-2 mt-2 pl-3 mb-1">※アルコール飲み放題コースの詳細は<a href="" class="text-yellow-500 underline font-black">こちら</a></p>
         </div>        
       </div>
       <div class="text-center">

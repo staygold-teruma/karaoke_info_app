@@ -24,7 +24,10 @@ class DrinkPlansController < ApplicationController
     redirect_to drink_plans_path
   end
 
-  def destroy; end
+  def destroy
+    @drink_plan.destroy!
+    redirect_to drink_plans_path
+  end
 
   private
 
