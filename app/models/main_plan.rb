@@ -23,13 +23,13 @@ class MainPlan < ApplicationRecord
 
   enum div_time: {
     day: 0,
-    night: 1
+    night: 1,
+    evening: 2
   }
 
   enum time_unit: {
     half_hour: 0,
     three_hour: 1,
-    four_hour: 2,
-    free_time: 3
+    free_time: 2
   }
 end

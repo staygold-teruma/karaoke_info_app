@@ -4,11 +4,17 @@
     <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-yellow-500 rounded-xl w-4/5 sm:w-3/5">
       <h1 class="w-full h-30 py-4 border border-yellow-500 rounded-tl-lg  rounded-tr-lg bg-yellow-500 text-xl text-white text-center mb-5 font-black">料金のご案内</h1>
       <div class="mx-auto text-sm">
-        <% if @fee_info.usage_time_i18n == "フリータイム" %>
+        <% if @fee_info.usage_time_i18n == "フリー" %>
           <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
             <p class="w-28 text-sm"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用プラン</p>
             <p><i class="fas fa-angle-double-right mr-2"></i></p>
             <p class="w-28">フリータイム</p>
+          </div>
+        <% elsif @fee_info.usage_time_i18n == "3時間" %>         
+          <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
+            <p class="w-28 text-sm"><i class="far fa-check-circle mr-1 text-yellow-500"></i>ご利用プラン</p>
+            <p><i class="fas fa-angle-double-right mr-2"></i></p>
+            <p class="w-28 text-sm">3時間パック</p>
           </div>
         <% else %>         
           <div class="flex justify-center items-center ml-3 sm:ml-5 lg:ml-8 mb-2">
@@ -81,10 +87,10 @@
             <td class="fee_info_table_body  text-green-500"><%= @fee_info.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% else %>
             <td class="border-2 border-yellow-500 px-2 py-1  text-green-500 text-center text-xs sm:text-sm font-black">一般</td>
-            <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_info_table_body  text-green-100"><%= @fee_info.number_of_adults %>名</td>
+            <td class="fee_info_table_body text-green-100"><%= @fee_info.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_info_table_body text-green-100"><%= @fee_info.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_info_table_body text-green-100"><%= @fee_info.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_info_table_body text-green-100"><%= @fee_info.number_of_adults %>名</td>
             <td class="fee_info_table_body  text-green-100"><%= @fee_info.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% end %>
         </tr>

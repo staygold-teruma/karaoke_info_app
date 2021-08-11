@@ -51,8 +51,13 @@ class FeeInfo < ApplicationRecord
   def set_values
     @count = FeeInfo.usage_times[usage_time] + 1
     set_number_of_customers
-    set_main_fee
-    set_drink_fee
+    if usage_time == "three_hour" || "free_time"
+      set_main_fee_free
+      set_drink_fee_free
+    else
+      set_main_fee
+      set_drink_fee
+    end
     set_each_total_fee
     set_total_fee
   end
@@ -72,10 +77,29 @@ class FeeInfo < ApplicationRecord
     self.adult_main_fee = calculate_main_fee(chosen_day_plan.adult_fee, chosen_night_plan.adult_fee, unit_count)
     self.student_main_fee = calculate_main_fee(chosen_day_plan.student_fee, chosen_night_plan.student_fee, unit_count)
     self.senior_main_fee = calculate_main_fee(chosen_day_plan.senior_fee, chosen_night_plan.senior_fee, unit_count)
+    self.senior_main_fee = adult_main_fee if senior_main_fee > adult_main_fee
     self.child_main_fee = calculate_main_fee(chosen_day_plan.child_fee, chosen_night_plan.child_fee, unit_count)
   end
 
-  # それぞれのドリンク料金を計算
+  # それぞれのルーム料金を計算
+  def set_main_fee_free
+    wday = get_business_wday
+    if usage_time == "three_hour"
+      time = get_div_time_three
+      unit = 1
+    else
+      time = get_div_time_free
+      unit = 2
+    end
+    chosen_free_plan = get_free_plan(wday, time, unit)
+    self.adult_main_fee = chosen_free_plan.adult_fee
+    self.student_main_fee = chosen_free_plan.student_fee
+    self.senior_main_fee = chosen_free_plan.senior_fee
+    self.senior_main_fee = adult_main_fee if senior_main_fee > adult_main_fee
+    self.child_main_fee = chosen_free_plan.child_fee
+  end
+
+  # それぞれのドリンク料金を計算(30分単位)
   def set_drink_fee
     drink_plan_name = get_drink_name(drink_plan)
     drink_plan_unit = get_drink_unit(drink_plan_name)
@@ -85,6 +109,16 @@ class FeeInfo < ApplicationRecord
     self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, drink_plan_count)
     self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, drink_plan_count)
     self.child_drink_fee = calculate_drink_fee(chosen_drink_plan.child_fee, drink_plan_count)
+  end
+
+  # それぞれのドリンク料金を計算(3時間パック・フリータイム)
+  def set_drink_fee_free
+    drink_plan_name = get_drink_name(drink_plan)
+    chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: 1)
+    self.adult_drink_fee = chosen_drink_plan.adult_fee
+    self.student_drink_fee = chosen_drink_plan.student_fee
+    self.senior_drink_fee = chosen_drink_plan.senior_fee
+    self.child_drink_fee = chosen_drink_plan.child_fee
   end
 
   def set_each_total_fee
@@ -120,7 +154,7 @@ class FeeInfo < ApplicationRecord
 
   private
 
-  # 曜日区分を取得
+  # 曜日区分を���得
   def get_business_wday
     today = Time.zone.today
     case today.wday
@@ -158,22 +192,26 @@ class FeeInfo < ApplicationRecord
     [day_count, night_count]
   end
 
-  # フォ���ムで取得した内容から該当の「昼料金を取得」
+  # フォームで取得した内容から該当の「昼料金を取得」
   def get_day_plan(wday)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 0, time_unit: 0)
   end
 
-  # フォームで取得した内容��ら該当の「夜料金を取得」
+  # フォームで取得した内容から該当の「夜料金を取得」
   def get_night_plan(wday)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, time_unit: 0)
   end
 
-  # ルーム料金を計算
-  def calculate_main_fee(day_fee, night_fee, count)
-    day_fee * count[0] + night_fee * count[1]
+  def get_free_plan(wday, time, unit)
+    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
 
-  # ドリンクコースの種類を���得
+  # ルーム��金を計算
+  def calculate_main_fee(fee0, fee1, count)
+    fee0 * count[0] + fee1 * count[1]
+  end
+
+  # ドリンクコースの種類を取得
   def get_drink_name(drink_plan)
     case drink_plan
     when "one_drink"
@@ -210,5 +248,29 @@ class FeeInfo < ApplicationRecord
   # ドリンク料金を計算
   def calculate_drink_fee(drink_fee, count)
     drink_fee * count
+  end
+
+  # 3時間パックの適用が昼か夜かを取得
+  def get_div_time_three
+    now_time = Time.zone.now
+    case now_time.hour
+    when 6..15
+      0
+    else
+      1
+    end
+  end
+
+  # フリータイムの適用が昼か夜か夕方かを取得
+  def get_div_time_free
+    now_time = Time.zone.now
+    case now_time.hour
+    when 6..15
+      0
+    when 15..19
+      2
+    else
+      1
+    end
   end
 end

@@ -11,6 +11,7 @@ ja:
       div_time:
         day: '昼'
         night: '夜'
+        evening: '夕方'
       time_unit:
         half_hour: '30分'
         three_hour: '3時間'
