@@ -15,8 +15,8 @@
   </div>
   <% end %>
 </div>
-<div class="max-w-screen-lg border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-5 my-6 lg:mx-auto items-center">
-  <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative" id="table_index">
+<div class="max-w-screen-lg border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto mx-5 my-6 lg:mx-auto items-center">
+  <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped">
       <tr id="table_heading" class="bg-blue-500">
         <th class="index_table_head  hidden md:table-cell">No.</th>
         <th class="index_table_head">料金名称</th>
@@ -38,8 +38,8 @@
           <td class="index_table_body hidden md:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
           <td class="index_table_body hidden md:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
           <td class="index_table_body hidden md:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
-          <td class="index_table_body text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
+          <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
+          <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
         </tr>
       <% end %>
     </tbody>
