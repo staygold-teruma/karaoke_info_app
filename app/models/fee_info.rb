@@ -154,10 +154,15 @@ class FeeInfo < ApplicationRecord
 
   private
 
-  # 曜日区分を���得
+  # 曜日区分を���������得
   def get_business_wday
-    today = Time.zone.today
-    case today.wday
+    wday = Time.zone.today.wday
+    now_time = Time.zone.now
+    case now_time.hour
+    when 0..6
+      wday -= 1
+    end
+    case wday
     when 1..4
       0
     when 0, 6
@@ -254,7 +259,7 @@ class FeeInfo < ApplicationRecord
   def get_div_time_three
     now_time = Time.zone.now
     case now_time.hour
-    when 6..15
+    when 6..19
       0
     else
       1
