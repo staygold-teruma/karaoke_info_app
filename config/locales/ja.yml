@@ -3,6 +3,7 @@ ja:
     models:
       main_plan: 料金
       drink_plan: 料金
+      fee_info: 料金案内
     attributes:
       main_plan:
         name: 料金名
@@ -23,3 +24,12 @@ ja:
         student_fee: 学生料金
         senior_fee: シニア料金
         child_fee: 小学生料金
+      fee_info:
+        div_member: 会員区分
+        number_of_adults: 一般人数
+        number_of_students: 学生人数
+        number_of_seniorss: シニア人数
+        number_of_children: 小学生人数
+        usage_time: ご利用時間
+        number_of_customers: 合計人数
+        total_fee: ご利用料金

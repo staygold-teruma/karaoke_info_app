@@ -14,6 +14,10 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
 
+# メソッド名のprefixに「set_」「get_」を許可
+AccessorMethodName:
+  Enabled: false
+
 # 日本語のコメントを許可
 Style/AsciiComments:
   Enabled: false
@@ -43,4 +47,9 @@ Style/SymbolArray:
 
 MethodLength:
   CountComments: true # count full line comments?
-  Max: 15
+  Max: 25
+
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 25

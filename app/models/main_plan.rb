@@ -17,18 +17,19 @@ class MainPlan < ApplicationRecord
 
   enum div_day: {
     weekday: 0,
-    weekend: 1
+    friday: 1,
+    weekend: 2
   }
 
   enum div_time: {
     day: 0,
-    night: 1
+    night: 1,
+    evening: 2
   }
 
   enum time_unit: {
     half_hour: 0,
-    three_hours: 1,
-    four_hours: 2,
-    free_time: 3
+    three_hour: 1,
+    free_time: 2
   }
 end

@@ -1,0 +1,53 @@
+<div class="" id="fee_info_wrap">
+  <div>
+    <p>料金合計</p>
+    <p><%= @fee_info.total_fee %></p>
+  </div>
+  <div class="flex justify-center" id="table_wrap">
+  <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
+    <thead>
+      <tr id="table_heading" class="bg-blue-500">
+        <th class="index_table_head"></th>
+        <th class="index_table_head">ルーム料金</th>
+        <th class="index_table_head">ドリンク料金</th>
+        <th class="index_table_head">お一人様あたり</th>
+        <th class="index_table_head">ご利用人数</th>
+        <th class="index_table_head">合計</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-2 py-1 text-center text-sm">一般</td>
+          <td class="index_table_body"><%= @fee_info.adult_main_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.adult_dorink_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.adult_total_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.number_of_adults %>名</td>
+          <td class="index_table_body"><%= @fee_info.adult_fee_all %>円</td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-2 py-1 text-center text-sm">学生</td>
+          <td class="index_table_body"><%= @fee_info.student_main_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.student_dorink_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.student_total_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.number_of_students %>名</td>
+          <td class="index_table_body"><%= @fee_info.student_fee_all %>円</td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-2 py-1 text-center text-sm">シニア</td>
+          <td class="index_table_body"><%= @fee_info.senior_main_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.senior_dorink_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.senior_total_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.number_of_seniors %>名</td>
+          <td class="index_table_body"><%= @fee_info.senior_fee_all %>円</td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-2 py-1 text-center text-sm">小学生</td>
+          <td class="index_table_body"><%= @fee_info.child_main_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.child_dorink_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.child_total_fee %>円</td>
+          <td class="index_table_body"><%= @fee_info.number_of_children %>名</td>
+          <td class="index_table_body"><%= @fee_info.child_fee_all %>円</td>
+        </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,42 @@
+<%= render "layouts/header_plans" %>
+<h1 class="page_title">料金案内履歴</h1>
+<div class="flex justify-center px-8">
+  <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
+    <thead>
+      <tr id="table_heading" class="bg-blue-500">
+        <th class="index_table_head">No.</th>
+        <th class="index_table_head">利用日</th>
+        <th class="index_table_head">料金合計</th>
+        <th class="index_table_head hidden md:table-cell">会員</th>
+        <th class="index_table_head hidden md:table-cell">一般</th>
+        <th class="index_table_head hidden md:table-cell">学生</th>
+        <th class="index_table_head hidden md:table-cell">シニア</th>
+        <th class="index_table_head hidden md:table-cell">小学生</th>
+        <th class="index_table_head">利用時間</th>
+        <th class="index_table_head">ドリンクプラン</th>
+        <th class="border border-gray-400 px-2 py-3"><i class="fas fa-edit text-white"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @fee_infos.each.with_index(1) do |fee_info, i| %>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="index_table_body"><%= i %></td>
+          <td class="border border-gray-400 px-2 py-1 text-center text-xs"><%= fee_info.created_at.strftime('%Y/%m/%d') %></td>
+          <td class="border border-gray-400 px-2 py-1 text-center text-xs lg:text-sm"><%= fee_info.total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.div_member_i18n %></td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_adults %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_students %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_seniors %>名</td>
+          <td class="index_table_body hidden md:table-cell"><%= fee_info.number_of_children %>名</td>
+          <td class="index_table_body"><%= fee_info.usage_time_i18n %></td>
+          <td class="index_table_body text-xxs sm:text-xs"><%= fee_info.drink_plan_i18n %></td>
+          <td class="index_table_body text-red-600"><%= link_to "削除", fee_info, method: :delete, data: { confirm: "この履歴を削除しますか?" } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% @fee_infos.each do |fee_info| %>
+
+
+<% end %>
