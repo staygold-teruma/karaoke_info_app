@@ -154,7 +154,7 @@ class FeeInfo < ApplicationRecord
 
   private
 
-  # 曜日区分を���������得
+  # 曜日区分を���得
   def get_business_wday
     wday = Time.zone.today.wday
     now_time = Time.zone.now
@@ -211,7 +211,7 @@ class FeeInfo < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
 
-  # ルーム��金を計算
+  # ルーム料金を計算
   def calculate_main_fee(fee0, fee1, count)
     fee0 * count[0] + fee1 * count[1]
   end
