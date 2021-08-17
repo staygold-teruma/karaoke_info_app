@@ -1,10 +1,47 @@
 <h2><%= t('.title', resource: resource.model_name.human) %></h2>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :name, "店舗名" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
+
+  <div class="field">
+    <%= f.label :phone_number, "電話番号" %><br />
+    <%= f.text_field :phone_number, autocomplete: "phone_number" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :postcode, "郵便番号" %><br />
+    <%= f.text_field :postcode, autocomplete: "postcode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :prefecture_name, "都道府県" %><br />
+    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, autocomplete: "prefecture_name" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_city, "市区町村" %><br />
+    <%= f.text_field :address_city, autocomplete: "address_city" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_street, "番地" %><br />
+    <%= f.text_field :address_street, autocomplete: "address_street" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_building, "建物" %><br />
+    <%= f.text_field :address_building, autocomplete: "address_building" %>
+  </div>
+  
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
   <% end %>
