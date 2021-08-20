@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :fee_infos
   resources :main_plans
   resources :drink_plans
+  resources :informations
 end
