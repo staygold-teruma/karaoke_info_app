@@ -1,70 +1,92 @@
-<h2><%= t('.title', resource: resource.model_name.human) %></h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<h2 class="mt-12 mb-6 text-center">店舗アカウント編集</h2>
+<div class="border-2 border-yellow-500 rounded-xl shadow w-5/6 mx-auto px-3 py-12 max-w-xl">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :name, "店舗名" %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <div class="flex justify-between items-center ml-2 mb-1">
+        <%= f.label :name, "店舗名", class: "text-sm" %>
+        <p class="w-6 bg-red-500 text-white text-xs text-center mr-3 px-2 py-1 rounded-lg">必須</p>
+      </div>
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :phone_number, "電話番号" %><br />
-    <%= f.text_field :phone_number, autocomplete: "phone_number" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <div class="flex items-center ml-2 mb-1">
+        <%= f.label :email, "メールアドレス", class: "text-sm" %>
+        <p class="w-6 bg-red-500 text-white text-xs text-center ml-1 px-2 py-1 rounded-lg">必須</p>
+      </div>
+      <%= f.email_field :email, autocomplete: "email", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <div class="flex justify-between items-center ml-2 mb-1">
+        <%= f.label :phone_number, "電話番号", class: "text-sm" %>
+        <p class="text-xs text-gray-400">(ハイフンなし)</p>
+      </div>
+      <%= f.text_field :phone_number, autocomplete: "phone_number", placeholder: "例: 0312345678", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :postcode, "郵便番号" %><br />
-    <%= f.text_field :postcode, autocomplete: "postcode" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <%= f.label :postcode, "郵便番号", class: "text-sm ml-2" %><br />
+      <%= f.text_field :postcode, autocomplete: "postcode", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :prefecture_name, "都道府県" %><br />
-    <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, autocomplete: "prefecture_name" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <%= f.label :prefecture_name, "都道府県", class: "text-sm ml-2" %><br />
+      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, autocomplete: "prefecture_name", class: "border border-gray-400 rounded-lg ml-2 pl-1 pr-3 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :address_city, "市区町村" %><br />
-    <%= f.text_field :address_city, autocomplete: "address_city" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <%= f.label :address_city, "市区町村", class: "text-sm ml-2" %><br />
+      <%= f.text_field :address_city, autocomplete: "address_city", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :address_street, "番地" %><br />
-    <%= f.text_field :address_street, autocomplete: "address_street" %>
-  </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <%= f.label :address_street, "番地", class: "text-sm ml-2" %><br />
+      <%= f.text_field :address_street, autocomplete: "address_street", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :address_building, "建物" %><br />
-    <%= f.text_field :address_building, autocomplete: "address_building" %>
-  </div>
-  
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-  <% end %>
-  <div class="field">
-    <%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it') %>)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <%= f.label :address_building, "建物", class: "text-sm ml-2" %><br />
+      <%= f.text_field :address_building, autocomplete: "address_building", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
     <% end %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :current_password %> <i>(<%= t('.we_need_your_current_password_to_confirm_your_changes') %>)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-  <div class="actions">
-    <%= f.submit t('.update') %>
-  </div>
-<% end %>
-<h3><%= t('.cancel_my_account') %></h3>
-<p><%= t('.unhappy') %> <%= button_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete %></p>
-<%= link_to t('devise.shared.links.back'), :back %>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <div class="sm:flex items-end">
+        <%= f.label :password, "新しいパスワード", class: "text-sm ml-2" %> 
+        <p class="text-xxs sm:text-xxs text-gray-400 pl-2 sm:pl-0">(空欄のままなら変更しません)</p>
+      </div>
+      <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+      <% if @minimum_password_length %>
+        <br />
+        <em class="text-xs text-gray-400 -ml-3 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+      <% end %>
+    </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <%= f.label :password_confirmation, "パスワード確認", class: "text-sm ml-2" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
+    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+      <div class="sm:flex items-end">
+        <%= f.label :current_password, "現在のパスワード", class: "text-sm ml-2" %>
+        <p class="text-xxs text-gray-400 pl-2 sm:pl-0">(変更を反映するためには現在のパスワードが必要です)</p>
+      </div>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
+    <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
+      <div class="w-1/4 mx-auto text-center bg-green-500 hover:bg-green-700 py-1 rounded text-white">
+        <%= f.submit t('.update'), class: "bg-green-500 hover:bg-green-700" %>
+      </div>
+      <div class="w-1/4 mx-auto text-center bg-red-500 hover:bg-red-700 py-1 rounded text-white">
+        <%= button_to "削除", registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "bg-red-500 hover:bg-red-700" %>
+      </div>
+      <div class="w-1/4 mx-auto text-center bg-yellow-500 hover:bg-yellow-700 py-1 rounded text-white">
+        <%= link_to t('devise.shared.links.back'), :back %>
+      </div>
+    </div>
+  <% end %>
+</div>

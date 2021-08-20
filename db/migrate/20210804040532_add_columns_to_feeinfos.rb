@@ -1,16 +1,18 @@
 class AddColumnsToFeeinfos < ActiveRecord::Migration[6.1]
   def change
-    add_column :fee_infos, :adult_main_fee, :integer
-    add_column :fee_infos, :student_main_fee, :integer
-    add_column :fee_infos, :senior_main_fee, :integer
-    add_column :fee_infos, :child_main_fee, :integer
-    add_column :fee_infos, :adult_drink_fee, :integer
-    add_column :fee_infos, :student_drink_fee, :integer
-    add_column :fee_infos, :senior_drink_fee, :integer
-    add_column :fee_infos, :child_drink_fee, :integer
-    add_column :fee_infos, :adult_total_fee, :integer
-    add_column :fee_infos, :student_total_fee, :integer
-    add_column :fee_infos, :senior_total_fee, :integer
-    add_column :fee_infos, :child_total_fee, :integer
+    change_table :fee_infos, bulk: true do |t|
+      t.integer :adult_main_fee
+      t.integer :student_main_fee
+      t.integer :senior_main_fee
+      t.integer :child_main_fee
+      t.integer :adult_drink_fee
+      t.integer :student_drink_fee
+      t.integer :senior_drink_fee
+      t.integer :child_drink_fee
+      t.integer :adult_total_fee
+      t.integer :student_total_fee
+      t.integer :senior_total_fee
+      t.integer :child_total_fee
+    end
   end
 end
