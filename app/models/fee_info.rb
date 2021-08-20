@@ -53,12 +53,13 @@ class FeeInfo < ApplicationRecord
   HALFHOUR_TO_SECONDS = 1800
   DRINKPLAN = {
     "one_drink" => "ワンドリンク",
-    "drink_bar" => "ドリンクバー",
+    "drink_bar" => "ドリンクバー料金",
     "lite_plan" => "ライト飲み放題料金",
     "variety_plan" => "バラエティー飲み放題料金",
     "deluxe_plan" => "デラックス飲み放題料金"
   }.freeze
 
+  # 料金計算して値をセット
   def set_values
     @count = FeeInfo.usage_times[usage_time] + 1
     set_number_of_customers
@@ -132,6 +133,7 @@ class FeeInfo < ApplicationRecord
     self.child_drink_fee = chosen_drink_plan.child_fee
   end
 
+  # それぞれの1名あたりの料金を計算
   def set_each_total_fee
     self.adult_total_fee = adult_main_fee + adult_drink_fee
     self.student_total_fee = student_main_fee + student_drink_fee
@@ -139,12 +141,12 @@ class FeeInfo < ApplicationRecord
     self.child_total_fee = child_main_fee + child_drink_fee
   end
 
-  # 合計金額を取得
+  # 全員の合計金額を計算
   def set_total_fee
-    self.total_fee = (adult_main_fee + adult_drink_fee) * number_of_adults +
-                     (student_main_fee + student_drink_fee) * number_of_students +
-                     (senior_main_fee + senior_drink_fee) * number_of_seniors +
-                     (child_main_fee + child_drink_fee) * number_of_children
+    self.total_fee = (adult_total_fee * number_of_adults) +
+                     (student_total_fee * number_of_students) +
+                     (senior_total_fee * number_of_seniors) +
+                     (child_total_fee * number_of_children)
   end
 
   def adult_fee_all
@@ -241,7 +243,7 @@ class FeeInfo < ApplicationRecord
     end
   end
 
-  # ドリンクコースのカウント数を取得
+  # ドリンクコースの�����ウント数を取得
   def get_drink_count(name, count)
     if ["ワンドリンク", "ドリンクバー料金"].include?(name)
       1
