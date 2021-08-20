@@ -6,7 +6,19 @@ class ApplicationController < ActionController::Base
                                         :name,
                                         :phone_number,
                                         :postcode,
-                                        :prefecture_name,
+                                        :prefecture_code,
+                                        :address_city,
+                                        :address_street,
+                                        :address_building,
+                                        :image
+                                      ])
+
+    devise_parameter_sanitizer.permit(:account_update, keys: [
+                                        :email,
+                                        :name,
+                                        :phone_number,
+                                        :postcode,
+                                        :prefecture_code,
                                         :address_city,
                                         :address_street,
                                         :address_building,

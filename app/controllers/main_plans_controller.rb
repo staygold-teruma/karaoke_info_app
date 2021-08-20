@@ -1,6 +1,7 @@
 class MainPlansController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_main_plan, only: %i[show edit update destroy]
+  before_action :authenticate_shop!
 
   def index
     @q = MainPlan.includes(:shop).ransack(params[:q])

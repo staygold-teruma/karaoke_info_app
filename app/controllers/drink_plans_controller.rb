@@ -1,5 +1,6 @@
 class DrinkPlansController < ApplicationController
   before_action :set_drink_plan, only: %i[show edit update destroy]
+  before_action :authenticate_shop!
 
   def index
     @q = DrinkPlan.includes(:shop).ransack(params[:q])
