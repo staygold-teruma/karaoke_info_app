@@ -1,11 +1,16 @@
 class DrinkPlan < ApplicationRecord
-  validates :name, presence: true
+  belongs_to :shop
+  with_options presence: true do
+    validates :name
+    validates :time_unit
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 0 } do
+      validates :adult_fee
+      validates :student_fee
+      validates :senior_fee
+      validates :child_fee
+    end
+  end
   validates :note, length: { maximum: 250 }
-  validates :time_unit, presence: true
-  validates :adult_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :student_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :senior_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :child_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   enum time_unit: {
     half_hour: 0,

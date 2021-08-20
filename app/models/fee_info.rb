@@ -1,27 +1,31 @@
 require "date"
 
 class FeeInfo < ApplicationRecord
-  validates :div_member, presence: true
-  validates :number_of_adults, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :number_of_students, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :number_of_seniors, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :number_of_children, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :usage_time, presence: true
-  validates :drink_plan, presence: true
-  validates :number_of_customers, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :adult_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :student_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :senior_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :child_main_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :adult_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :student_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :senior_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :child_drink_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :adult_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :student_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :senior_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :child_total_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  with_options presence: true do
+    validates :div_member
+    validates :usage_time
+    validates :drink_plan
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 0 } do
+      validates :number_of_adults
+      validates :number_of_students
+      validates :number_of_seniors
+      validates :number_of_children
+      validates :number_of_customers
+      validates :total_fee
+      validates :adult_main_fee
+      validates :student_main_fee
+      validates :senior_main_fee
+      validates :child_main_fee
+      validates :adult_drink_fee
+      validates :student_drink_fee
+      validates :senior_drink_fee
+      validates :child_drink_fee
+      validates :adult_total_fee
+      validates :student_total_fee
+      validates :senior_total_fee
+      validates :child_total_fee
+    end
+  end
 
   enum div_member: {
     other: 0,
@@ -47,11 +51,19 @@ class FeeInfo < ApplicationRecord
   }
 
   HALFHOUR_TO_SECONDS = 1800
+  DRINKPLAN = {
+    "one_drink" => "ワンドリンク",
+    "drink_bar" => "ドリンクバー料金",
+    "lite_plan" => "ライト飲み放題料金",
+    "variety_plan" => "バラエティー飲み放題料金",
+    "deluxe_plan" => "デラックス飲み放題料金"
+  }.freeze
 
+  # 料金計算して値をセット
   def set_values
     @count = FeeInfo.usage_times[usage_time] + 1
     set_number_of_customers
-    if usage_time == "three_hour" || "free_time"
+    if usage_time == "three_hour" || usage_time == "free_time"
       set_main_fee_free
       set_drink_fee_free
     else
@@ -101,7 +113,7 @@ class FeeInfo < ApplicationRecord
 
   # それぞれのドリンク料金を計算(30分単位)
   def set_drink_fee
-    drink_plan_name = get_drink_name(drink_plan)
+    drink_plan_name = DRINKPLAN[drink_plan]
     drink_plan_unit = get_drink_unit(drink_plan_name)
     drink_plan_count = get_drink_count(drink_plan_name, @count)
     chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: drink_plan_unit)
@@ -113,7 +125,7 @@ class FeeInfo < ApplicationRecord
 
   # それぞれのドリンク料金を計算(3時間パック・フリータイム)
   def set_drink_fee_free
-    drink_plan_name = get_drink_name(drink_plan)
+    drink_plan_name = DRINKPLAN[drink_plan]
     chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: 1)
     self.adult_drink_fee = chosen_drink_plan.adult_fee
     self.student_drink_fee = chosen_drink_plan.student_fee
@@ -121,6 +133,7 @@ class FeeInfo < ApplicationRecord
     self.child_drink_fee = chosen_drink_plan.child_fee
   end
 
+  # それぞれの1名あたりの料金を計算
   def set_each_total_fee
     self.adult_total_fee = adult_main_fee + adult_drink_fee
     self.student_total_fee = student_main_fee + student_drink_fee
@@ -128,12 +141,12 @@ class FeeInfo < ApplicationRecord
     self.child_total_fee = child_main_fee + child_drink_fee
   end
 
-  # 合計金額を取得
+  # 全員の合計金額を計算
   def set_total_fee
-    self.total_fee = (adult_main_fee + adult_drink_fee) * number_of_adults +
-                     (student_main_fee + student_drink_fee) * number_of_students +
-                     (senior_main_fee + senior_drink_fee) * number_of_seniors +
-                     (child_main_fee + child_drink_fee) * number_of_children
+    self.total_fee = (adult_total_fee * number_of_adults) +
+                     (student_total_fee * number_of_students) +
+                     (senior_total_fee * number_of_seniors) +
+                     (child_total_fee * number_of_children)
   end
 
   def adult_fee_all
@@ -154,7 +167,7 @@ class FeeInfo < ApplicationRecord
 
   private
 
-  # 曜日区分を���������得
+  # 曜日区分を取得
   def get_business_wday
     wday = Time.zone.today.wday
     now_time = Time.zone.now
@@ -211,39 +224,28 @@ class FeeInfo < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
 
-  # ルーム��金を計算
+  # ルーム料金を計算
   def calculate_main_fee(fee0, fee1, count)
     fee0 * count[0] + fee1 * count[1]
   end
 
   # ドリンクコースの種類を取得
   def get_drink_name(drink_plan)
-    case drink_plan
-    when "one_drink"
-      "ワンドリンク"
-    when "drink_bar"
-      "ドリンクバー料金"
-    when "lite_plan"
-      "ライト飲み放題料金"
-    when "variety_plan"
-      "バラエティー飲み放題料金"
-    when "deluxe_plan"
-      "デラックス飲み放題料金"
-    end
+    DRINKPLAN[drink_plan]
   end
 
   # ドリンクコースの時間単位の取得
   def get_drink_unit(name)
-    if name == "ワンドリンク" || "ドリンクバー料金"
+    if ["ワンドリンク", "ドリンクバー料金"].include?(name)
       1
     else
       0
     end
   end
 
-  # ドリンクコースのカウント数を取得
+  # ドリンクコースの�����ウント数を取得
   def get_drink_count(name, count)
-    if name == "ワンドリンク" || "ドリンクバー料金"
+    if ["ワンドリンク", "ドリンクバー料金"].include?(name)
       1
     else
       count

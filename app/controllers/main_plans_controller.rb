@@ -1,9 +1,10 @@
 class MainPlansController < ApplicationController
   helper_method :sort_column, :sort_direction
   before_action :set_main_plan, only: %i[show edit update destroy]
+  before_action :authenticate_shop!
 
   def index
-    @q = MainPlan.ransack(params[:q])
+    @q = MainPlan.includes(:shop).ransack(params[:q])
     @main_plans = @q.result(distinct: true).order(id: "ASC")
   end
 
@@ -12,7 +13,7 @@ class MainPlansController < ApplicationController
   end
 
   def create
-    MainPlan.create!(main_plan_params)
+    current_shop.main_plans.create!(main_plan_params)
     redirect_to main_plans_path
     # if @main_plan.save
     #   redirect_to @main_plan, notice: "登録しました"
@@ -45,7 +46,7 @@ class MainPlansController < ApplicationController
   private
 
   def set_main_plan
-    @main_plan = MainPlan.find(params[:id])
+    @main_plan = current_shop.main_plans.find(params[:id])
   end
 
   def main_plan_params

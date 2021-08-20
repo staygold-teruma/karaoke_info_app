@@ -34,6 +34,13 @@
           <p><i class="fas fa-archive"></i>料金案内履歴</p>
         </a>
       </li>
+      <li>
+        <% if shop_signed_in? %>
+          <%= link_to "編集", edit_shop_registration_path %>
+          <%= link_to "ログアウト", destroy_shop_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
+          <%= current_shop.email %>         
+        <% end %>
+      </li>
     </ul>
   </div>
 </div>

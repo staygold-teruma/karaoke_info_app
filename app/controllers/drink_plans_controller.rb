@@ -1,8 +1,9 @@
 class DrinkPlansController < ApplicationController
   before_action :set_drink_plan, only: %i[show edit update destroy]
+  before_action :authenticate_shop!
 
   def index
-    @q = DrinkPlan.ransack(params[:q])
+    @q = DrinkPlan.includes(:shop).ransack(params[:q])
     @drink_plans = @q.result(distinct: true).order(id: "ASC")
   end
 
@@ -11,7 +12,7 @@ class DrinkPlansController < ApplicationController
   end
 
   def create
-    DrinkPlan.create(drink_plan_params)
+    current_shop.drink_plans.create!(drink_plan_params)
     redirect_to drink_plans_path
   end
 
@@ -32,7 +33,7 @@ class DrinkPlansController < ApplicationController
   private
 
   def set_drink_plan
-    @drink_plan = DrinkPlan.find(params[:id])
+    @drink_plan = current_shop.drink_plans.find(params[:id])
   end
 
   def drink_plan_params
