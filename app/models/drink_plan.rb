@@ -1,4 +1,5 @@
 class DrinkPlan < ApplicationRecord
+  belongs_to :shop
   validates :name, presence: true
   validates :note, length: { maximum: 250 }
   validates :time_unit, presence: true
