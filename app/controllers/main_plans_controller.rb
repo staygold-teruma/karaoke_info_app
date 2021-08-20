@@ -12,7 +12,7 @@ class MainPlansController < ApplicationController
   end
 
   def create
-    main_plan = current_shop.main_plans.create!(main_plan_params)
+    current_shop.main_plans.create!(main_plan_params)
     redirect_to main_plans_path
     # if @main_plan.save
     #   redirect_to @main_plan, notice: "登録しました"
