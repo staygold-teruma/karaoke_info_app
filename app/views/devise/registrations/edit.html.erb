@@ -12,15 +12,15 @@
     </div>
 
     <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-      <div class="flex items-center ml-2 mb-1">
+      <div class="flex justify-between items-center ml-2 mb-1">
         <%= f.label :email, "メールアドレス", class: "text-sm" %>
-        <p class="w-6 bg-red-500 text-white text-xs text-center ml-1 px-2 py-1 rounded-lg">必須</p>
+        <p class="w-6 bg-red-500 text-white text-xs text-center mr-3 px-2 py-1 rounded-lg">必須</p>
       </div>
       <%= f.email_field :email, autocomplete: "email", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
     </div>
 
     <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-      <div class="flex justify-between items-center ml-2 mb-1">
+      <div class="flex items-center ml-2 mb-1">
         <%= f.label :phone_number, "電話番号", class: "text-sm" %>
         <p class="text-xs text-gray-400">(ハイフンなし)</p>
       </div>
@@ -63,7 +63,7 @@
       <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
       <% if @minimum_password_length %>
         <br />
-        <em class="text-xs text-gray-400 -ml-3 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <em class="text-xs text-gray-400 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
       <% end %>
     </div>
     <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">

@@ -1,15 +1,19 @@
 class MainPlan < ApplicationRecord
   belongs_to :shop
-  validates :name, presence: true
+  with_options presence: true do
+    validates :name
+    validates :div_member
+    validates :div_day
+    validates :div_time
+    validates :time_unit
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 0 } do
+      validates :adult_fee
+      validates :student_fee
+      validates :senior_fee
+      validates :child_fee
+    end
+  end
   validates :note, length: { maximum: 250 }
-  validates :div_member, presence: true
-  validates :div_day, presence: true
-  validates :div_time, presence: true
-  validates :time_unit, presence: true
-  validates :adult_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :student_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :senior_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :child_fee, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   enum div_member: {
     other: 0,

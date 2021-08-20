@@ -3,7 +3,7 @@ class MainPlansController < ApplicationController
   before_action :set_main_plan, only: %i[show edit update destroy]
 
   def index
-    @q = MainPlan.ransack(params[:q])
+    @q = MainPlan.includes(:shop).ransack(params[:q])
     @main_plans = @q.result(distinct: true).order(id: "ASC")
   end
 
