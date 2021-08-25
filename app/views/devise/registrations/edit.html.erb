@@ -79,8 +79,8 @@
     </div>
     <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
         <%= f.submit t('.update'), class: "w-1/4 text-center text-white bg-green-500 hover:bg-green-700 py-2 rounded cursor-pointer" %>
-        <%# <%= button_to "削除", registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "w-1/4 text-center text-white bg-red-500 hover:bg-red-700 py-2 rounded cursor-pointer" %>
         <%= link_to t('devise.shared.links.back'), :back, class: "w-1/4 text-center text-white bg-yellow-500 hover:bg-yellow-700 py-2 rounded" %>
     </div>
   <% end %>
+  <%# <%= button_to "削除", registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "w-1/4 text-center text-white bg-red-500 hover:bg-red-700 py-2 rounded cursor-pointer" %>
 </div>

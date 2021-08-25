@@ -7,9 +7,11 @@ import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 import 'channels';
+import 'image.js';
 import 'jquery';
 import 'jquery.jpostal.js';
-import 'test.js';
+import 'navbar.js';
+import 'postcode.js';
 import 'stylesheets/application';
 
 Rails.start();

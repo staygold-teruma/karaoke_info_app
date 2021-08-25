@@ -59,6 +59,28 @@
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
+// ========================
+//         初期設定
+// ========================
+
+// ブレイクポイント
+$breakpoint-down: (
+  'xls': 'screen and (max-width: 377px)',
+  'xxs': 'screen and (max-width: 484px)',
+  'xs': 'screen and (max-width: 586px)',
+  'sm': 'screen and (max-width: 640px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 964px)',
+  'xl': 'screen and (max-width: 1080px)',
+  'xxl': 'screen and (max-width: 1331px)',
+) !default;
+
+@mixin mq-down($breakpoint: sm) {
+  @media #{map-get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -77,10 +99,10 @@ p {
 }
 
 .page_title {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 800;
+  margin-top: 40px;
   text-align: center;
-  margin-top: 100px;
 }
 
 // アプリヘッダー
@@ -128,58 +150,35 @@ p {
 }
 
 // 各プランヘッダー
-#plan_header_box {
-  background: rgb(237, 237, 237);
+#gnav {
   width: 100%;
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
+  height: 90px;
+  background: rgb(237, 237, 237);
   #logo {
     width: 200px;
     height: 70px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
-  #plan_header_nav {
+  #nav_main {
     width: calc(100% - 200px);
-    max-width: 1000px;
-    height: 70px;
-    #plan_nav_list {
-      width: 100%;
-      height: 100%;
-      padding: 0 10px 0 10px;
-      display: flex;
-      justify-content: space-between;
-      #plan_nav_item {
-        display: flex;
-        align-items: center;
-        a {
-          display: flex;
-          height: 40px;
-          text-decoration: none;
-          p {
-            display: flex;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 0;
-            align-items: center;
-            line-height: 40px;
-            i {
-              font-size: 16px;
-              color: rgb(255, 85, 0);
-              margin-right: 5px;
-            }
-            #drop_down_i {
-              margin-left: 5px;
+    height: 100%;
+    #account {
+      height: 40px;
+    }
+    #gnav_contents {
+      height: 50px;
+      .menu {
+        position: relative;
+        .dropdown-menu {
+          width: 120%;
+          position: absolute;
+          top: 41px;
+          left: 0px;
+          li {
+            a {
+              display: block;
+              line-height: 1.5;
             }
           }
-        }
-        a:hover {
-          border-bottom: rgb(255, 85, 0) 4px solid;
-          margin-bottom: -4px;
         }
       }
     }
@@ -435,5 +434,26 @@ p {
       border: gray 1px solid;
       border-radius: 8px;
     }
+  }
+}
+
+#img_field {
+  width: 300px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include mq-down(sm) {
+    width: 240px;
+    height: 160px;
+  }
+  img {
+    width: auto;
+    height: auto;
+    max-width: 98%;
+    max-height: 98%;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 3px gold solid;
   }
 }

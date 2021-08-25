@@ -1,46 +1,62 @@
-<div id="plan_header_box">
-  <div id="logo">
-    <img src="/assets/twitter_header_photo_1.png" alt="">
-  </div>
-  <div id="plan_header_nav">
-    <ul id="plan_nav_list">
-      <li id="plan_nav_item">
-        <a href="/fee_infos/new">
-          <p><i class="fas fa-home"></i>ホーム</p>
-        </a>
-      </li>
-      <li id="plan_nav_item">
-        <a href="/main_plans/">
-          <p><i class="fas fa-list-alt"></i>ルーム料金一覧</p>
-        </a>
-      </li>
-      <li id="plan_nav_item">
-        <a href="/main_plans/new">
-          <p><i class="fas fa-folder-plus"></i>ルーム料金登録</p>
-        </a>
-      </li>
-      <li id="plan_nav_item">
-        <a href="/drink_plans/">
-          <p><i class="fas fa-list-alt"></i>ドリンクコース一覧</p>
-        </a>
-      </li>
-      <li id="plan_nav_item">
-        <a href="/drink_plans/new">
-          <p><i class="fas fa-folder-plus"></i>ドリンクコース登録</p>
-        </a>
-      </li>
-      <li id="plan_nav_item">
-        <a href="/drink_plans/new">
-          <p><i class="fas fa-archive"></i>料金案内履歴</p>
-        </a>
-      </li>
-      <li>
-        <% if shop_signed_in? %>
-          <%= link_to "編集", edit_shop_registration_path %>
-          <%= link_to "ログアウト", destroy_shop_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
-          <%= current_shop.email %>         
+<nav class="flex items-center w-full" id="gnav">
+  <img src="/assets/logo.png" id="logo">
+  <div id="nav_main">
+    <div class="flex items-end border-b border-gray-300 mr-2" id="account">
+      <div class="h-full flex items-end mr-5 ml-5 mb-2">
+        <% if current_shop.name.nil?%>
+          <p class="text-xxs">
+            <span class="text-sm text-blue-500 font-bold"><%= current_shop.email %></span>さんの管理ページ
+          </p>
+        <% else %> 
+          <p class="text-xxs">
+          <span class="text-sm text-blue-500 font-bold"><%= current_shop.name %></span>さんの管理ページ</p>     
         <% end %>
+      </div>
+      <div class="flex">
+        <% if shop_signed_in? %>
+          <div class="flex mb-2">
+            <div class="mr-2">
+              <%= link_to "店舗情報編集", edit_shop_registration_path, class: "btn_edit text-xxs px-2" %>
+            </div>
+            <div>
+              <%= link_to "ログアウト", destroy_shop_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }, class: "btn_delete text-xxs px-4" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <ul class="flex items-end ml-3" id="gnav_contents">
+      <li class="mr-4 px-3 py-3 text-xs">
+        <a href="/fee_infos/new text-yellow-500"><i class="fas fa-home text-yellow-500 mr-1"></i>ホーム</a>
       </li>
+      <li class="menu text-xs mr-3 px-3 py-3">
+        <i class="fas fa-couch mr-1 text-yellow-500"></i>ルーム料金<i class="fas fa-chevron-down ml-2"></i>
+        <ul class="dropdown-menu bg-white">
+          <li class="px-4 py-2 text-xs border border-t-0 border-gray-300"><a href="/main_plans/"><i class="fas fa-list-alt text-yellow-500 mr-1"></i>ルーム料金一覧</a></li>
+          <li class="px-4 pt-2 pb-3 text-xs border border-t-0 border-gray-300 rounded-b-lg"><a href="/main_plans/new"><i class="fas fa-folder-plus text-yellow-500 mr-1"></i>ルーム料金登録</a></li>
+        </ul>
+      </li>
+      <li class="menu mr-3 px-3 py-3 text-xs">
+        <i class="fas fa-coffee mr-1 text-yellow-500"></i>ドリンク料金<i class="fas fa-chevron-down ml-2"></i>
+          <ul class="dropdown-menu bg-white">
+            <li class="px-4 py-2 text-xs border border-t-0 border-gray-300"><a href="/drink_plans/"><i class="fas fa-list-alt text-yellow-500 mr-1"></i>ドリンク料金一覧</a></li>
+            <li class="px-4 pt-2 pb-3 text-xs border border-t-0 border-gray-300 rounded-b-lg"><a href="/drink_plans/new"><i class="fas fa-folder-plus text-yellow-500 mr-1"></i>ドリンク料金登録</a></li>
+          </ul>
+      </li>
+      <li class="menu mr-3 px-3 py-3 text-xs">
+        <i class="fas fa-info-circle text-yellow-500 mr-1"></i>NEWS<i class="fas fa-chevron-down ml-2"></i>
+          <ul class="dropdown-menu bg-white">
+            <li class="px-4 py-2 text-xs border border-t-0 border-gray-300"><a href="/informations/"><i class="fas fa-list-alt text-yellow-500 mr-1"></i>NEWS一覧</a></li>
+            <li class="px-4 pt-2 pb-3 text-xs border border-t-0 border-gray-300 rounded-b-lg"><a href="/informations/new"><i class="fas fa-folder-plus text-yellow-500 mr-1"></i>NEWS投稿</a></li>
+          </ul>
+      </li>
+      <li class="px-3 py-3 text-xs"><a href="/fee_infos/"><i class="fas fa-list-alt text-yellow-500 mr-1"></i>案内履歴</a></li>
     </ul>
   </div>
-</div>
+  <p class="hb_btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </p>
+</nav>
+
