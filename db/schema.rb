@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_192026) do
+ActiveRecord::Schema.define(version: 2021_08_25_120728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,12 +55,14 @@ ActiveRecord::Schema.define(version: 2021_08_20_192026) do
     t.integer "child_total_fee"
   end
 
-  create_table "information", force: :cascade do |t|
+  create_table "informations", force: :cascade do |t|
     t.string "title", null: false
     t.text "content", null: false
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "shop_id"
+    t.index ["shop_id"], name: "index_informations_on_shop_id"
   end
 
   create_table "main_plans", force: :cascade do |t|
@@ -101,5 +103,6 @@ ActiveRecord::Schema.define(version: 2021_08_20_192026) do
   end
 
   add_foreign_key "drink_plans", "shops"
+  add_foreign_key "informations", "shops"
   add_foreign_key "main_plans", "shops"
 end
