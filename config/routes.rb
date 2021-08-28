@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-  root "fee_infos#new"
+  root "fee_guides#new"
   devise_for :shops
   resources :shops, only: [:index, :show]
-  resources :fee_infos
+  resources :fee_guides
   resources :main_plans
   resources :drink_plans
-  resources :informations
 end

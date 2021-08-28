@@ -1,6 +1,6 @@
 require "date"
 
-class FeeInfo < ApplicationRecord
+class FeeGuide < ApplicationRecord
   with_options presence: true do
     validates :div_member
     validates :usage_time
@@ -61,7 +61,7 @@ class FeeInfo < ApplicationRecord
 
   # 料金計算して値をセット
   def set_values
-    @count = FeeInfo.usage_times[usage_time] + 1
+    @count = FeeGuide.usage_times[usage_time] + 1
     set_number_of_customers
     if usage_time == "three_hour" || usage_time == "free_time"
       set_main_fee_free
@@ -243,7 +243,7 @@ class FeeInfo < ApplicationRecord
     end
   end
 
-  # ドリンクコースの�����ウント数を取得
+  # ドリンクコー����の�����ウント数を取得
   def get_drink_count(name, count)
     if ["ワンドリンク", "ドリンクバー料金"].include?(name)
       1

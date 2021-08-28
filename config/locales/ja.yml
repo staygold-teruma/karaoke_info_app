@@ -24,7 +24,7 @@ ja:
         student_fee: 学生料金
         senior_fee: シニア料金
         child_fee: 小学生料金
-      fee_info:
+      fee_guide:
         div_member: 会員区分
         number_of_adults: 一般人数
         number_of_students: 学生人数
