@@ -1,71 +1,76 @@
 <%= render "layouts/header_plans" %>
-<h1 class="page_title">ルーム料金一覧</h1>
-<div id="m_search_box" class="hidden md:flex">
-  <%= search_form_for @q do |f| %>
-    <div>
-      <%= f.label :name_cont, "料金名称:", class: 'first_label'%>
-      <%= f.search_field :name_cont %>
-    </div>
-    <div>
-      <%= f.label :div_member_eq, "区分:" %>
-      <%= f.select :div_member_eq, MainPlan.div_members.map{|k, v| [MainPlan.div_members_i18n[k], v]}, include_blank: true %>
-    </div>
-    <div>
-      <%= f.label :div_day_eq, "曜日:" %>
-      <%= f.select :div_day_eq, MainPlan.div_days.map{|k, v| [MainPlan.div_days_i18n[k], v]}, include_blank: true %>
-    </div>
-    <div>
-      <%= f.label :div_time_eq, "時間帯:" %>
-      <%= f.select :div_time_eq, MainPlan.div_times.map{|k, v| [MainPlan.div_times_i18n[k], v]}, include_blank: true %>
-    </div>
-    <div>
-      <%= f.label :time_unit_eq, "単位:" %>
-      <%= f.select :time_unit_eq, MainPlan.time_units.map{|k, v| [MainPlan.time_units_i18n[k], v]}, include_blank: true %>
-    </div>
-    <div id="index_search_btn">
-      <%= f.submit "検索", class: "btn_search"  %>
-    </div>
-  <% end %>
-</div>
-
-<div class="max-w-screen-lg sm:h-80 border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-5 sm:mx-8 mt-8 sm:mt-6 lg:mx-auto items-center">
-  <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative" id="table_index">
-    <thead>
-      <tr id="table_heading" class="bg-blue-500 sticky top-0">
-        <th class="index_table_head hidden md:table-cell">No.</th>
-        <th class="index_table_head">料金名称</th>
-        <th class="index_table_head">区分</th>
-        <th class="index_table_head">曜日</th>
-        <th class="index_table_head">時間</th>
-        <th class="index_table_head hidden md:table-cell">単位</th>
-        <th class="index_table_head hidden md:table-cell">一般</th>
-        <th class="index_table_head hidden md:table-cell">学生</th>
-        <th class="index_table_head hidden md:table-cell">シニア</th>
-        <th class="index_table_head hidden md:table-cell">小学生</th>
-        <th class="border border-gray-400 px-2 py-3"  colspan="2"><i class="fas fa-edit text-white"></i></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @main_plans.each.with_index(1) do |main_plan, i| %>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="index_table_body hidden md:table-cell"><%= i %></td>
-          <td class="index_table_body text-blue-600"><%= link_to main_plan.name, main_plan %></td>
-          <td class="index_table_body"><%= main_plan.div_member_i18n %></td>
-          <td class="index_table_body"><%= main_plan.div_day_i18n %></td>
-          <td class="index_table_body"><%= main_plan.div_time_i18n %></td>
-          <td class="index_table_body hidden md:table-cell"><%= main_plan.time_unit_i18n %></td>
-          <td class="index_table_body hidden md:table-cell"><%= main_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body hidden md:table-cell"><%= main_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body hidden md:table-cell"><%= main_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body hidden md:table-cell"><%= main_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <% if current_shop.id == main_plan.shop_id %>
-            <td class="index_table_body text-green-600"><%= link_to "編集", edit_main_plan_path(main_plan) %></td>
-            <td class="index_table_body text-red-600"><%= link_to "削除", main_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
-          <% end %>
-        </tr>
+<div class="flex" id="main_wrapper">
+  <div class="h-full hidden md:block" id="side_menu">
+    <%= render "layouts/side_menu" %>
+  </div>
+  <div id="main_contents">
+    <h1 class="page_title">ルーム料金一覧</h1>
+    <div id="m_search_box" class="hidden md:flex">
+      <%= search_form_for @q do |f| %>
+        <div>
+          <%= f.label :name_cont, "料金名称:", class: 'first_label'%>
+          <%= f.search_field :name_cont %>
+        </div>
+        <div>
+          <%= f.label :div_member_eq, "区分:" %>
+          <%= f.select :div_member_eq, MainPlan.div_members.map{|k, v| [MainPlan.div_members_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div>
+          <%= f.label :div_day_eq, "曜日:" %>
+          <%= f.select :div_day_eq, MainPlan.div_days.map{|k, v| [MainPlan.div_days_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div>
+          <%= f.label :div_time_eq, "時間帯:" %>
+          <%= f.select :div_time_eq, MainPlan.div_times.map{|k, v| [MainPlan.div_times_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div>
+          <%= f.label :time_unit_eq, "単位:" %>
+          <%= f.select :time_unit_eq, MainPlan.time_units.map{|k, v| [MainPlan.time_units_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div id="index_search_btn">
+          <%= f.submit "検索", class: "btn_search"  %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+    <div class="max-w-screen-lg sm:h-80 border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-5 sm:mx-8 mt-8 sm:mt-6 lg:mx-auto items-center">
+      <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative" id="table_index">
+        <thead>
+          <tr id="table_heading" class="bg-blue-500 sticky top-0">
+            <th class="index_table_head hidden md:table-cell">No.</th>
+            <th class="index_table_head">料金名称</th>
+            <th class="index_table_head">区分</th>
+            <th class="index_table_head">曜日</th>
+            <th class="index_table_head">時間</th>
+            <th class="index_table_head hidden md:table-cell">単位</th>
+            <th class="index_table_head hidden md:table-cell">一般</th>
+            <th class="index_table_head hidden md:table-cell">学生</th>
+            <th class="index_table_head hidden md:table-cell">シニア</th>
+            <th class="index_table_head hidden md:table-cell">小学生</th>
+            <th class="border border-gray-400 px-2 py-3"  colspan="2"><i class="fas fa-edit text-white"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @main_plans.each.with_index(1) do |main_plan, i| %>
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="index_table_body hidden md:table-cell"><%= i %></td>
+              <td class="index_table_body text-blue-600"><%= link_to main_plan.name, main_plan %></td>
+              <td class="index_table_body"><%= main_plan.div_member_i18n %></td>
+              <td class="index_table_body"><%= main_plan.div_day_i18n %></td>
+              <td class="index_table_body"><%= main_plan.div_time_i18n %></td>
+              <td class="index_table_body hidden md:table-cell"><%= main_plan.time_unit_i18n %></td>
+              <td class="index_table_body hidden md:table-cell"><%= main_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="index_table_body hidden md:table-cell"><%= main_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="index_table_body hidden md:table-cell"><%= main_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="index_table_body hidden md:table-cell"><%= main_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <% if current_shop.id == main_plan.shop_id %>
+                <td class="index_table_body text-green-600"><%= link_to "編集", edit_main_plan_path(main_plan) %></td>
+                <td class="index_table_body text-red-600"><%= link_to "削除", main_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-<%= render "layouts/footer_plans" %>
 

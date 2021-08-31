@@ -1,19 +1,25 @@
 document.addEventListener('turbolinks:load', function () {
   $(function () {
-    // ドロップダウンメニュー
-    //.dropdown-menuを一旦隠す
-    $('.menu').find('.dropdown-menu').hide();
-    //.menuをhoverした場合
-    $('.menu').hover(
-      function () {
-        //.dropdown-menuをslideDown
-        $('.dropdown-menu:not(:animated)', this).slideDown();
-        //hoverが外れた場合
-      },
-      function () {
-        //.dropdown-menuをslideUp
-        $('.dropdown-menu', this).slideUp();
+    $('#dd_menu1').on('click touchend', function () {
+      $(this).next().slideToggle(200);
+    });
+    $('#dd_menu2').on('click touchend', function () {
+      $(this).next().slideToggle(200);
+    });
+    $('#dd_menu3').on('click touchend', function () {
+      $(this).next().slideToggle(200);
+    });
+
+    //別の場所をクリックすると閉じる処理
+    $(document).on('click touchend', function (event) {
+      if (!$(event.target).closest('body').length) {
+        $('#dd_list1,#dd_list2,#dd_list3').hide();
       }
-    );
+    });
+
+    $('#open_btn').on('click', function () {
+      $(this).toggleClass('active');
+      $('#gnav_contents').toggleClass('active');
+    });
   });
 });

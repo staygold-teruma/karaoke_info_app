@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    current_shop.topic.create!(topic_params)
+    current_shop.topics.create!(topic_params)
     redirect_to topics_path
   end
 

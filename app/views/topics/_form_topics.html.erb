@@ -1,12 +1,12 @@
 <%= form_with model: @topic, local: true do |f| %>
-  <div class="w-5/6 sm:w-1/2 mx-auto border-2 border-yellow-500 rounded-lg my-8 p-5">
+  <div class="w-5/6 sm:w-1/2 mx-auto border-2 border-app rounded-lg shadow my-6 p-5">
     <div class="w-full mb-5 ml-1 sm:ml-3">
       <%= f.label :title, "タイトル", class: "mr-2" %>
       <%= f.text_field :title, class: "block border border-gray-400 rounded-lg w-5/6 w-11/12 h-8 text-sm px-3 mt-1" %>
     </div>
     <div class="w-full mb-5 ml-1 sm:ml-3">
       <%= f.label :content, "内容", class: "mr-2" %>
-      <%= f.text_area :content, class: "block border border-gray-400 rounded-lg w-11/12 h-32 text-xs px-3 py-3 mt-1" %>
+      <%= f.text_area :content, class: "block border border-gray-400 rounded-lg w-11/12 h-20 text-xs px-3 py-3 mt-1" %>
     </div>
     <div class="w-full mb-10 ml-1 sm:ml-3">
       <%= f.label :image, "画像をアップロード" %>
@@ -15,9 +15,9 @@
             <%= image_tag(@topic.image.url) %>
           <% else %>
             <div class="w-full h-full block justify-center items-center mt-16 sm:mt-24 py-3">
-                <i class="fas fa-camera text-7xl text-yellow-500"></i>
+                <i class="fas fa-camera text-7xl text-app"></i>
               <div class="w-full flex mt-2 justify-center items-center">
-                <p class="text-xxs flex items-center"><i class="fas fa-chevron-circle-right text-sm text-yellow-500 mr-2"></i>ファイルを選択してください</p>
+                <p class="text-xxs flex items-center"><i class="fas fa-chevron-circle-right text-sm text-app mr-2"></i>ファイルを選択してください</p>
               </div>
             </div>
           <% end %>

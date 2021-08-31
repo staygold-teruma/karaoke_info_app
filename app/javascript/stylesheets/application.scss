@@ -10,10 +10,13 @@
 .btn_delete {
   @apply bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded;
 }
+.btn_home {
+  @apply bg-app hover:bg-yellow-700 text-white py-1 px-5 rounded;
+}
 
 .btn_fee_guide {
-  @apply hover:bg-white hover:border-yellow-500 hover:text-yellow-500
-  bg-yellow-500 text-white border-2 border-yellow-500 mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
+  @apply hover:bg-white hover:border-app-light hover:text-app-light
+  bg-app-light text-white border-2 border-app-light mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
 }
 
 .btn_form_create {
@@ -49,11 +52,21 @@
 }
 
 .fee_guide_table_head {
-  @apply w-12 border-2 border-yellow-500 px-2 py-3 text-xxs sm:text-xs font-black;
+  @apply w-12 border-2 border-app px-2 py-3 text-xxs sm:text-xs font-black;
 }
 
 .fee_guide_table_body {
-  @apply border-2 border-yellow-500 px-1 py-2 text-center text-xxs sm:text-sm;
+  @apply border-2 border-app px-1 py-2 text-center text-xxs sm:text-sm;
+}
+
+.nav_btn_edit {
+  @apply border-2 border-green-500 bg-white hover:bg-green-500 text-green-500 hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
+.nav_btn_sign_out {
+  @apply border-2 border-red-500 bg-white hover:bg-red-500 text-red-500 hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
+.nav_btn_home {
+  @apply border-2 border-app bg-white hover:bg-app text-app hover:text-white py-1 px-3 rounded-full shadow font-bold;
 }
 
 @import 'tailwindcss/utilities';
@@ -71,7 +84,7 @@ $breakpoint-down: (
   'sm': 'screen and (max-width: 640px)',
   'md': 'screen and (max-width: 768px)',
   'lg': 'screen and (max-width: 964px)',
-  'xl': 'screen and (max-width: 1080px)',
+  'xl': 'screen and (max-width: 1280px)',
   'xxl': 'screen and (max-width: 1331px)',
 ) !default;
 
@@ -94,6 +107,31 @@ $breakpoint-down: (
   color: rgb(75, 75, 75);
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#main_wrapper {
+  height: calc(100% - 90px);
+}
+
+#main_contents {
+  width: calc(100% - 200px);
+  @include mq-down(md) {
+    width: 100%;
+  }
+}
+
+// 管理者画面サイドメニュー
+#side_menu_wrapper {
+  width: 200px;
+  height: 100%;
+}
+
 p {
   word-break: break-all;
 }
@@ -101,7 +139,7 @@ p {
 .page_title {
   font-size: 24px;
   font-weight: 800;
-  margin-top: 40px;
+  margin-top: 20px;
   text-align: center;
 }
 
@@ -151,38 +189,146 @@ p {
 
 // 各プランヘッダー
 #gnav {
-  width: 100%;
   height: 90px;
   background: rgb(237, 237, 237);
-  #logo {
+  #logo_md {
     width: 200px;
     height: 70px;
   }
   #nav_main {
     width: calc(100% - 200px);
     height: 100%;
+    @include mq-down(md) {
+      width: calc(100% - 74px);
+    }
+    #logo_sm {
+      width: 100px;
+      height: 35px;
+    }
     #account {
       height: 40px;
     }
+    #nav_btn_box {
+      @include mq-down(md) {
+        height: 39px;
+      }
+    }
     #gnav_contents {
       height: 50px;
-      .menu {
+      z-index: 1;
+      #dd_box {
         position: relative;
-        .dropdown-menu {
-          width: 120%;
-          position: absolute;
-          top: 41px;
-          left: 0px;
-          li {
-            a {
-              display: block;
-              line-height: 1.5;
-            }
+        z-index: 2;
+        height: 50px;
+        #dd_menu,
+        #dd_menu1,
+        #dd_menu2,
+        #dd_menu3 {
+          height: 48px;
+          line-height: 50px;
+          #dd_list {
+            display: none;
+          }
+          #dd_list.is-active {
+            display: block;
           }
         }
       }
+      @include mq-down(md) {
+        position: fixed;
+        top: 90px;
+        left: -1000px;
+        width: 100vw;
+        height: 100vh;
+        background: black;
+        opacity: 80%;
+        #dd_box {
+          width: 100%;
+          height: auto;
+        }
+        #dd_menu,
+        #dd_menu1,
+        #dd_menu2,
+        #dd_menu3 {
+          width: 100%;
+          height: 30px;
+        }
+      }
+    }
+
+    #gnav_contents.active {
+      left: 0;
     }
   }
+}
+
+#open_btn {
+  position: relative; /*ボタン内側の基点となるためrelativeを指定*/
+  background: rgb(255, 85, 0);
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+/*ボタン内側*/
+#open_btn span {
+  display: inline-block;
+  transition: all 0.4s; /*アニメーションの設定*/
+  position: absolute;
+  left: 14px;
+  height: 2px;
+  border-radius: 5px;
+  background: #fff;
+  width: 45%;
+}
+
+#open_btn span:nth-of-type(1) {
+  top: 13px;
+}
+
+#open_btn span:nth-of-type(2) {
+  top: 19px;
+}
+
+#open_btn span:nth-of-type(3) {
+  top: 25px;
+}
+
+#open_btn span:nth-of-type(3)::after {
+  content: 'Menu'; /*3つ目の要素のafterにMenu表示を指定*/
+  position: absolute;
+  top: 5px;
+  left: -2px;
+  color: #fff;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+/*activeクラスが付与されると線が回転して×になり、Menu⇒Closeに変更*/
+#open_btn.active span:nth-of-type(1) {
+  top: 14px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+#open_btn.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#open_btn.active span:nth-of-type(3) {
+  top: 26px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+#open_btn.active span:nth-of-type(3)::after {
+  content: 'Close'; /*3つ目の要素のafterにClose表示を指定*/
+  transform: translateY(0) rotate(-45deg);
+  top: 5px;
+  left: 4px;
 }
 
 // 各プランフッター
@@ -222,10 +368,21 @@ p {
     select {
       border: gray 1px solid;
       border-radius: 5px;
+      background: white;
+      cursor: pointer;
     }
   }
   #index_search_btn {
     margin-left: 20px;
+    .btn_search {
+      background: #007bff;
+      cursor: pointer;
+    }
+    :hover.btn_search {
+      background: white;
+      color: #007bff;
+      border: #007bff 1px solid;
+    }
   }
 }
 
@@ -320,6 +477,7 @@ p {
       border: gray 1px solid;
       border-radius: 5px;
       font-size: 12px;
+      background: white;
     }
   }
   #l_div,
@@ -344,6 +502,7 @@ p {
         border-radius: 5px;
         width: 100px;
         font-size: 12px;
+        background: white;
       }
       select {
         padding-left: 5px;
@@ -395,10 +554,24 @@ p {
     select {
       border: gray 1px solid;
       border-radius: 5px;
+      background: white;
+      font-size: 10px;
+      padding: 4px;
     }
   }
   #index_search_btn {
     margin-left: 20px;
+    .btn_search {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: #007bff;
+      cursor: pointer;
+    }
+    :hover.btn_search {
+      background: white;
+      color: #007bff;
+      border: #007bff 1px solid;
+    }
   }
 }
 
@@ -431,6 +604,7 @@ p {
       height: 30px;
       padding-left: 5px;
       padding-bottom: 2px;
+      background: white;
       border: gray 1px solid;
       border-radius: 8px;
     }
@@ -455,5 +629,58 @@ p {
     object-fit: cover;
     border-radius: 5px;
     border: 3px gold solid;
+  }
+}
+
+#topics_wrapper {
+  max-width: 1000px;
+  @include mq-down(xl) {
+    max-width: 700px;
+  }
+  @include mq-down(sm) {
+    max-width: 400px;
+  }
+  #topics_card {
+    height: 130px;
+    padding: 10px;
+    max-width: 300px;
+    #card_top {
+      width: 100%;
+      height: 20px;
+      #topics_date {
+        width: 100px;
+        line-height: 20px;
+        div {
+          width: 90px;
+        }
+      }
+      #topics_title {
+        width: 184px;
+        line-height: 20px;
+      }
+    }
+    #card_bottom {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      #topics_thumbnail {
+        width: 100px;
+        height: 100px;
+        #topics_img {
+          width: 95px;
+          height: auto;
+        }
+      }
+      #topics_contents {
+        width: 160px;
+        height: 80px;
+        padding: 10px 12px;
+        p {
+          width: 100%;
+          height: 100%;
+          line-height: 15px;
+        }
+      }
+    }
   }
 }
