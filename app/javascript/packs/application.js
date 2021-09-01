@@ -7,7 +7,7 @@ import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 import 'channels';
-import 'image.js';
+import 'img';
 import 'jquery';
 import 'jquery.jpostal.js';
 import 'navbar.js';

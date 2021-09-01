@@ -1,48 +1,71 @@
-<%= render "layouts/header_plans" %>
-<h1 class="page_title">ドリンクコース一覧</h1>
-<div id="d_search_box"  class="hidden md:flex">
-  <%= search_form_for @q do |f| %>
-  <div>
-    <%= f.label :name_cont, "料金名称:", class: 'first_label'%>
-    <%= f.search_field :name_cont %>
+<% content_for :title do %>
+    管理画面：ドリンク料金一覧
+<% end %>
+<% content_for :header do %>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full">
+      <%= render "layouts/header_plans" %>
+    </div> 
+  <% else %>
+    <div class="fixed w-full">
+      <%= render "layouts/header" %>      
+    </div>
+  <% end %>  
+<% end %>
+<% content_for :side do %>
+  <div class="h-full flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu">
+    <%= render "layouts/side_menu" %>
   </div>
-  <div>
-    <%= f.label :time_unit_eq, "単位:" %>
-    <%= f.select :time_unit_eq, DrinkPlan.time_units.map{|k, v| [DrinkPlan.time_units_i18n[k], v]}, include_blank: true %>
+<% end %>
+
+<div id="main_contents">
+  <h1 class="page_title">ドリンク料金一覧</h1>
+  <div id="d_search_box"  class="hidden md:flex">
+    <%= search_form_for @q do |f| %>
+    <div>
+      <%= f.label :name_cont, "料金名称:", class: 'first_label'%>
+      <%= f.search_field :name_cont %>
+    </div>
+    <div>
+      <%= f.label :time_unit_eq, "単位:" %>
+      <%= f.select :time_unit_eq, DrinkPlan.time_units.map{|k, v| [DrinkPlan.time_units_i18n[k], v]}, include_blank: true %>
+    </div>
+    <div id="index_search_btn">
+      <%= f.submit "検索", class: "btn_search"  %>
+    </div>
+    <% end %>
   </div>
-  <div id="index_search_btn">
-    <%= f.submit "検索", class: "btn_search"  %>
-  </div>
-  <% end %>
-</div>
-<div class="max-w-screen-lg border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto mx-5 my-6 lg:mx-auto items-center">
-  <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped">
-      <tr id="table_heading" class="bg-blue-500">
-        <th class="index_table_head  hidden md:table-cell">No.</th>
-        <th class="index_table_head">料金名称</th>
-        <th class="index_table_head">単位</th>
-        <th class="index_table_head hidden md:table-cell">一般</th>
-        <th class="index_table_head hidden md:table-cell">学生</th>
-        <th class="index_table_head hidden md:table-cell">シニア</th>
-        <th class="index_table_head hidden md:table-cell">小学生</th>
-        <th class="index_table_head" colspan="2"><i class="fas fa-edit text-white"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @drink_plans.each.with_index(1) do |drink_plan, i| %>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="index_table_body hidden md:table-cell"><%= i %></td>
-          <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= link_to drink_plan.name, drink_plan %></td>
-          <td class="index_table_body"><%= drink_plan.time_unit_i18n %></td>
-          <td class="index_table_body hidden md:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body hidden md:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body hidden md:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body hidden md:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
-          <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
-          <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
+  <div class="max-w-screen-lg border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto mx-5 my-6 lg:mx-auto items-center">
+    <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped">
+        <tr id="table_heading" class="bg-blue-500">
+          <th class="index_table_head  hidden md:table-cell">No.</th>
+          <th class="index_table_head">料金名称</th>
+          <th class="index_table_head">単位</th>
+          <th class="index_table_head hidden md:table-cell">一般</th>
+          <th class="index_table_head hidden md:table-cell">学生</th>
+          <th class="index_table_head hidden md:table-cell">シニア</th>
+          <th class="index_table_head hidden md:table-cell">小学生</th>
+          <th class="index_table_head" colspan="2"><i class="fas fa-edit text-white"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @drink_plans.each.with_index(1) do |drink_plan, i| %>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="index_table_body hidden md:table-cell"><%= i %></td>
+            <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= link_to drink_plan.name, drink_plan %></td>
+            <td class="index_table_body"><%= drink_plan.time_unit_i18n %></td>
+            <td class="index_table_body hidden md:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="index_table_body hidden md:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="index_table_body hidden md:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="index_table_body hidden md:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
+            <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
-<%= render "layouts/footer_plans" %>
+<div class="md:hidden">
+  <%= render "layouts/footer_plans" %>
+</div>

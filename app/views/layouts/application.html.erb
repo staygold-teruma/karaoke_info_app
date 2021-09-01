@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>カラオケ料金案内アプリ「iko!KARA」</title>
+    <title><%= content_for?(:title) ? yield(:title) : "カラオケ料金案内アプリ「iko!KARA」" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +10,10 @@
     <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
   </head>
   <body>
-    <%= yield %>
+    <header><%= yield(:header) %></header>
+    <div class="flex" id="main_wrapper">
+      <div><%= yield(:side) %></div>
+      <%= yield %>
+    </div>
   </body>
 </html>

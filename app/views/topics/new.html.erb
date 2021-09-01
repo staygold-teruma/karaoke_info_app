@@ -1,4 +1,27 @@
-<%= render "layouts/header_plans" %>
-<h1 class="page_title">店舗ニュース登録</h1>
-<%= render "topics/error_messages_topics" %>
-<%= render "form_topics" %>
+<% content_for :title do %>
+    管理画面：TOPICS登録
+<% end %>
+<% content_for :header do %>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full">
+      <%= render "layouts/header_plans" %>
+    </div> 
+  <% else %>
+    <div class="fixed w-full">
+      <%= render "layouts/header" %>      
+    </div>
+  <% end %>  
+<% end %>
+<% content_for :side do %>
+  <div class="h-full flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu">
+    <%= render "layouts/side_menu" %>
+  </div>
+<% end %>
+
+<div id="main_contents">
+  <h1 class="page_title">店舗TOPICS登録</h1>
+  <%= render "form_topics" %>
+</div>
+<div class="md:hidden">
+  <%= render "layouts/footer_plans" %>
+</div>
