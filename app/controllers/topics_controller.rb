@@ -8,8 +8,19 @@ class TopicsController < ApplicationController
   end
 
   def create
-    current_shop.topics.create!(topic_params)
-    redirect_to topics_path
+    @topic = current_shop.topics.new(topic_params)
+    unless @topic.image.cached?
+      uploader = ImageUploader.new(@topic, "image")
+      my_file = open("/Users/staygoldteruma/Desktop/portfolio/karaoke_info_app/app/assets/images/topic.jpg")
+      uploader.store!(my_file)
+      @topic.image = uploader
+    end
+    @topic.save
+    if @topic.save
+      redirect_to topics_path
+    else
+      render :new
+    end
   end
 
   def show; end
