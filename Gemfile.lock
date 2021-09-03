@@ -289,6 +289,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jp_prefecture
   listen (~> 3.3)
+  mini_magick
   pg (~> 1.1)
   pry-byebug
   puma (~> 5.0)
