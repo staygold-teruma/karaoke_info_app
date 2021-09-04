@@ -15,12 +15,11 @@
 }
 
 .btn_fee_guide {
-  @apply hover:bg-white hover:border-app-light hover:text-app-light
-  bg-app-light text-white border-2 border-app-light mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
+  @apply bg-black border-app hover:bg-app text-white border-2 mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
 }
 
 .btn_form_create {
-  @apply bg-blue-500 hover:bg-blue-700 text-white py-1 rounded w-full;
+  @apply bg-blue-500 hover:bg-blue-700 text-white py-2 rounded w-full;
 }
 
 .btn_link_new {
@@ -28,7 +27,7 @@
 }
 
 .index_table_head {
-  @apply border border-gray-400 px-2 py-3 text-white text-xs lg:text-sm font-bold;
+  @apply border border-gray-400 px-2 py-1 sm:py-3 text-white text-xs lg:text-sm font-bold;
 }
 
 .index_table_body {
@@ -75,6 +74,14 @@
 
 .side_li_menu {
   @apply border border-app rounded-xl text-xs py-2 md:border-0 bg-white md:bg-app_bg shadow md:shadow-none;
+}
+
+.q {
+  @apply text-xs bg-app border border-app rounded-t-lg px-2 py-1;
+}
+
+.a {
+  @apply text-xs border bg-white border-app rounded-b-lg px-2 py-1;
 }
 
 @import 'tailwindcss/utilities';
@@ -127,63 +134,78 @@ p {
   word-break: break-all;
 }
 
-#main_wrapper {
-  height: 100%;
+#header_wrapper_shop {
+  width: 100%;
+  height: 90px;
 }
 
-#main_contents {
+#main_wrapper_shop {
+  @include mq-down(md) {
+    margin-bottom: 60px;
+  }
+}
+
+#footer_wrapper_shop {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+}
+
+#main_contents_shop {
   margin-left: 200px;
+  margin-top: 90px;
+  margin-bottom: 30px;
   width: calc(100% - 200px);
   @include mq-down(md) {
     margin-left: 0;
+    margin-bottom: 90px;
     width: 100%;
   }
 }
 
+#sign_in_wrapper {
+  margin-right: 200px;
+}
+
 // 管理者画面サイドメニュー
-#side_menu {
-  margin-top: 90px;
+#side_menu_shop {
+  width: 200px;
+  height: 100%;
   position: fixed;
-  top: 0;
+  top: 90px;
   left: 0;
+  padding-bottom: 120px;
+  overflow: auto;
   @include mq-down(md) {
-    margin-top: 0;
-    width: 100vw;
+    width: 100%;
     height: calc(100% - 150px);
     position: fixed;
     left: -1000px;
     top: 90px;
     z-index: 2;
   }
-  #side_menu_wrapper {
-    width: 200px;
-    @include mq-down(md) {
-      width: 100%;
-    }
-    a {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
 }
-#side_menu.active {
-  left: 0;
-}
 
-#footer_wrapper {
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  bottom: 0;
+#side_menu.active {
   left: 0;
 }
 
 .page_title {
   font-size: 24px;
   font-weight: 800;
-  margin-top: 120px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   text-align: center;
+  @include mq-down(xl) {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
 }
 
 // アプリヘッダー
@@ -230,6 +252,13 @@ p {
   }
 }
 
+#fee_guide_header {
+  width: 100%;
+  height: 90px;
+  background-image: url(/assets/room_title.jpg);
+  background-position: 61% 70%;
+}
+
 // 各プランヘッダー
 #gnav {
   height: 90px;
@@ -253,52 +282,6 @@ p {
         height: 39px;
       }
     }
-    // #gnav_contents {
-    //   height: 50px;
-    //   z-index: 1;
-    //   #dd_box {
-    //     position: relative;
-    //     z-index: 2;
-    //     height: 50px;
-    //     #dd_menu,
-    //     #dd_menu1,
-    //     #dd_menu2,
-    //     #dd_menu3 {
-    //       height: 48px;
-    //       line-height: 50px;
-    //       #dd_list {
-    //         display: none;
-    //       }
-    //       #dd_list.is-active {
-    //         display: block;
-    //       }
-    //     }
-    //   }
-    //   @include mq-down(md) {
-    //     position: fixed;
-    //     top: 90px;
-    //     left: -1000px;
-    //     width: 100vw;
-    //     height: 100vh;
-    //     background: black;
-    //     opacity: 80%;
-    //     #dd_box {
-    //       width: 100%;
-    //       height: auto;
-    //     }
-    //     #dd_menu,
-    //     #dd_menu1,
-    //     #dd_menu2,
-    //     #dd_menu3 {
-    //       width: 100%;
-    //       height: 30px;
-    //     }
-    //   }
-    // }
-
-    // #gnav_contents.active {
-    //   left: 0;
-    // }
   }
 }
 
@@ -492,7 +475,10 @@ p {
   width: 80%;
   max-width: 600px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 20px;
+  @include mq-down(md) {
+    margin-top: 20px;
+  }
   #l_name,
   #l_note {
     margin-bottom: 20px;
@@ -612,38 +598,67 @@ p {
   }
 }
 
+// 料金案内TOP
+#fee_guide_top {
+  width: 100%;
+  height: 60vh;
+  background-position: 47%;
+  position: relative;
+}
+
+#app_margin {
+  width: 100%;
+  height: 1200px;
+  border-bottom: 6px gray solid;
+}
+
+#modal_btn {
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: 60%;
+  right: 10%;
+}
+
 // 料金案内フォーム
-#fee_guide_wrap {
-  #fee_guide_img {
-    background-image: url(/assets/room_title.jpg);
-    background-position: 61% 70%;
+#fee_guide_form {
+  min-width: 640px;
+  position: relative;
+  @include mq-down(md) {
+    min-width: 320px;
   }
-  #fee_guide_input {
-    label {
-      width: 40px;
-      display: inline-block;
-      text-align: justify;
-      text-align-last: justify;
-    }
-    #num_customers {
-      padding-left: 12px;
-      width: 50px;
-      height: 25px;
-      border: gray 1px solid;
-      border-radius: 8px;
-    }
+  #close_btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
   }
-  #fee_guide_select {
-    select {
-      font-size: 12px;
-      width: 150px;
-      height: 30px;
-      padding-left: 5px;
-      padding-bottom: 2px;
-      background: white;
-      border: gray 1px solid;
-      border-radius: 8px;
-    }
+}
+
+#fee_guide_input {
+  label {
+    width: 40px;
+    display: inline-block;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  #num_customers {
+    padding-left: 6px;
+    width: 45px;
+    height: 25px;
+    border: gray 1px solid;
+    border-radius: 8px;
+  }
+}
+#fee_guide_select {
+  select {
+    font-size: 12px;
+    width: 150px;
+    height: 30px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    background: white;
+    border: gray 1px solid;
+    border-radius: 8px;
   }
 }
 

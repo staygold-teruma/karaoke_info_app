@@ -10,10 +10,14 @@
     <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
   </head>
   <body>
-    <header><%= yield(:header) %></header>
-    <div class="flex" id="main_wrapper">
-      <div><%= yield(:side) %></div>
+    <header id="header_wrapper">
+      <%= yield(:header) %>
+    </header>
+    <main id="main_wrapper">
       <%= yield %>
-    </div>
+    </main>
+    <footer class="md:hidden" id="footer_wrapper">
+      <%= yield(:footer) %>
+    </footer>
   </body>
 </html>

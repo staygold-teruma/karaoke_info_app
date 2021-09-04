@@ -4,14 +4,24 @@
 <% content_for :header do %>
   <% if shop_signed_in? %>
     <div class="fixed w-full">
-      <%= render "layouts/header_plans" %>
+      <%= render "layouts/header_shop" %>
     </div> 
   <% else %>
     <div class="fixed w-full">
-      <%= render "layouts/header" %>      
+      <%= render "layouts/header_user" %>      
     </div>
   <% end %>  
 <% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_shop" %>
+<% end %>
 
-<h1>Topics#show</h1>
-<p>Find me in app/views/topics/show.html.erb</p>
+<div class="flex">
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+  <div id="main_contents_shop">
+    <h1 class="page_title">TOPICS</h1>
+    
+  </div>
+</div>

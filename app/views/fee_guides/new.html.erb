@@ -1,7 +1,90 @@
-<div class="md:h-screen md:flex md:justify-center lg:justify-end md:items-center md:bg-top-image md:bg-cover md:bg-no-repeat md:bg-center" id="fee_guide_wrap">
-  <div class="md:hidden bg-top-image bg-cover bg-no-repeat bg-center h-32" id="fee_guide_wrap">
+<% content_for :header do %>
+  <div class="md:hidden">
+    <%= render "layouts/header_user" %>
   </div>
-  <div class="px-3 py-6 md:px-0 md:py-0 lg:mx-6 bg-white md:bg-opacity-80 rounded-2xl md:w-3/5 lg:w-7/12 ">
-    <%= render "form_fee_guide" %>
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
+<% end %>
+
+<div class="hidden md:flex md:justify-center lg:justify-end md:items-center md:bg-top-image md:bg-cover md:bg-no-repeat md:bg-center" id="fee_guide_top">
+  <!--Open modal button-->
+  <div>
+    <button id="modal_btn" class="focus:outline-none p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">
+      <span class="text-sm text-white">FeeGuide</span>
+      <br>
+      <span class="text-4xl text-white">START!</span>
+      <br>
+      <span class="text-xs text-white">料金案内開始</span>
+    </button>
   </div>
 </div>
+
+<div id="app_guide_wrapper">
+  
+</div>
+
+<div>
+  <div id="modal" class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 p-1 sm:px-4 sm:py-12">
+    <!-- Modal content -->
+      <div class="hidden lg:block">
+        <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
+        <div class="mb-4">
+          <div class="q flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white">会員にはすぐになれますか？</p>
+          </div>
+          <div class="a flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p>店頭にてLINE友達追加で簡単に会員登録ができます。</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="q flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white">子供の料金を教えてください。</p>
+          </div>
+          <div class="a flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p>小学生は大人の方の半額、小学生未満は無料です。</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="q flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white">ワンドリンクのドリンク代はいくらですか？</p>
+          </div>
+          <div class="a flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p>418円からご用意しております。</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="q flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white">ワンドリンクとドリンクバーはどちらが得ですか？</p>
+          </div>
+          <div class="a flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p>2杯以上でドリンクバー(440円)がお得です。</p>
+          </div>
+        </div>
+        <div class="mb-4">
+          <div class="q flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white">何杯以上でアルコール飲み放題コースが得ですか？</p>
+          </div>
+          <div class="a flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p>お一人様平均で2杯以上で飲み放題コースがお得です。</p>
+          </div>
+        </div>
+        <p class="text-xs text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
+      </div>
+      <div>
+        <%= render "form_fee_guide" %>
+      </div>
+  </div>
+</div>
+<div id="app_margin"></div>
+

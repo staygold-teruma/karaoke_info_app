@@ -1,28 +1,30 @@
-<h2 class="mt-12 mb-6 text-center"><%= t('.sign_in') %></h2>
-<div class="border-2 border-app rounded-xl shadow-lg w-3/4 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-      <%= f.label :email, "メールアドレス", class: "text-sm" %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-11/12" %>
-    </div>
-
-    <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-      <%= f.label :password, "パスワード", class: "text-sm" %><br />
-      <%= f.password_field :password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-11/12" %>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
+<div id="sign_in_wrapper">
+  <h1 id="page_title"><%= t('.sign_in') %></h1>
+  <div class="border-2 border-app rounded-xl shadow-lg w-3/4 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <%= f.check_box :remember_me, class: "text-xs" %>
-        <%= f.label :remember_me, "ログイン状態を保存する", class: "text-xs" %>
+        <%= f.label :email, "メールアドレス", class: "text-sm" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-11/12" %>
+      </div>
+
+      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+        <%= f.label :password, "パスワード", class: "text-sm" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-11/12" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+          <%= f.check_box :remember_me, class: "text-xs" %>
+          <%= f.label :remember_me, "ログイン状態を保存する", class: "text-xs" %>
+        </div>
+      <% end %>
+
+      <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
+        <%= f.submit t('.sign_in'), class: "w-full bg-app hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer" %>
       </div>
     <% end %>
-
-    <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
-      <%= f.submit t('.sign_in'), class: "w-full bg-app hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer" %>
+    <div class="mt-5 w-5/6 sm:w-2/3 mx-auto">
+      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
-  <div class="mt-5 w-5/6 sm:w-2/3 mx-auto">
-    <%= render "devise/shared/links" %>
   </div>
 </div>

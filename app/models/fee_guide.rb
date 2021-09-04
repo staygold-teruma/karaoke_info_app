@@ -165,6 +165,10 @@ class FeeGuide < ApplicationRecord
     child_total_fee * number_of_children
   end
 
+  def latest_topic
+    Tpoic.order(created_at: :desc).limit(5)
+  end
+
   private
 
   # 曜日区分を取得
@@ -220,6 +224,7 @@ class FeeGuide < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, time_unit: 0)
   end
 
+  # フォームで取得した内容から該当の「フリー料金を取得」
   def get_free_plan(wday, time, unit)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
