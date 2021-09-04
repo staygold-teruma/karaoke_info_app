@@ -165,10 +165,6 @@ class FeeGuide < ApplicationRecord
     child_total_fee * number_of_children
   end
 
-  def latest_topic
-    Tpoic.order(created_at: :desc).limit(5)
-  end
-
   private
 
   # 曜日区分を取得
@@ -241,7 +237,7 @@ class FeeGuide < ApplicationRecord
 
   # ドリンクコースの時間単位の取得
   def get_drink_unit(name)
-    if ["ワンドリンク", "ドリンクバー料金"].include?(name)
+    if ["ワンドリンク", "ドリンクバー料���"].include?(name)
       1
     else
       0
