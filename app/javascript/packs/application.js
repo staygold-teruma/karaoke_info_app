@@ -14,6 +14,7 @@ import 'modal.js';
 import 'navbar.js';
 import 'postcode.js';
 import 'stylesheets/application';
+import 'topslider.js';
 
 Rails.start();
 Turbolinks.start();
