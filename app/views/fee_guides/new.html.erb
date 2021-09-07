@@ -1,16 +1,17 @@
 <% content_for :header do %>
-  <div class="md:hidden">
+  <div class="hidden">
     <%= render "layouts/header_user" %>
   </div>
 <% end %>
 <% content_for :footer do %>
-  <%= render "layouts/footer_user" %>
+  <div class="hidden">
+    <%= render "layouts/footer_user" %>
+  </div>
 <% end %>
 
-<div class="hidden md:flex md:justify-center lg:justify-end md:items-center md:bg-top-image md:bg-cover md:bg-no-repeat md:bg-center" id="fee_guide_top">
-  <!--Open modal button-->
+<div class="flex sm:justify-center lg:justify-end items-center bg-top-image bg-cover bg-no-repeat bg-center" id="fee_guide_top">
   <div>
-    <button id="modal_btn" class="focus:outline-none p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">
+    <button id="modal_btn" class="focus:outline-none hidden sm:block p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">
       <span class="text-sm text-white">FeeGuide</span>
       <br>
       <span class="text-4xl text-white">START!</span>
@@ -20,93 +21,129 @@
   </div>
 </div>
 
-<div id="app_guide_wrapper">
-  <div>
-    <h2>最新ニュース</h2>
-    <% @topics.each do |topic| %>
-      <div class="flex mb-2">
-        <div class="bg-app text-white text-sm px-4 py-1 mr-1">
-          NEW!
+<div class="flex justify-evenly items-center" id="app_guide_wrapper">
+  <div id="news_wrapper">
+    <h2 class="w-full hidden sm:block text-center mb-2 text-4xl font-black text-black">TOPICS</h2>
+    <div class="hidden sm:block bg-gray-100 rounded-lg shadow-lg mb-3 sm:mb-0 p-3 pt-2">
+      <% @topics_5.each do |topic| %>
+        <div class="sm:flex mt-2 bg-gray-100 mx-auto" id="each_news">
+          <div class="bg-app text-white md:text-sm lg:text-base px-2 mr-1 hidden sm:flex items-center rounded-lg" id="new">
+            NEW!
+          </div>
+          <div class="flex">
+            <div class="md:text-sm lg:text-base sm:mr-2 md:mr-0 lg:mr-2" id="news_day">
+              <%= topic.created_at.strftime('%m月%d日') %>
+            </div>
+            <div class="md:text-sm lg:text-base" id="news_title">
+                <%= topic.title %>
+            </div>
+          </div>
         </div>
-        <div class="text-sm px-2 py-1 mr-2">
-          <%= topic.created_at.strftime('%Y年%m月%d日') %>
-        </div>
-        <div class="text-sm px-2 py-1">
-          <%= topic.title %>
-        </div>
+      <% end %>
+    </div>
+    <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mt-3 mb-3 sm:mb-0 p-3">
+      <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center">
+        NEW!
       </div>
-    <% end %>
+      <% @topics_3.each do |topic| %>
+        <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
+          <div class="flex mx-2">
+            <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+            <div class="text-xs" id="news_day">
+              <%= topic.created_at.strftime('%m月%d日') %>
+            </div>
+            <div class="text-xs" id="news_title">
+                <%= topic.title %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <ul class="slick01">
-      <li><img alt="画像1" src="/assets/logo.png" /></li>
-      <li><img alt="画像1" src="/assets/logo.png" /></li>
-      <li><img alt="画像1" src="/assets/logo.png" /></li>
-    </ul>
+  <div class="hidden md:inline" id="slider_wrapper">
+    <div class="slider_area">
+      <div class="regular slider">
+        <% @topics_5.each do |topic| %>
+        <div><%= image_tag topic.image.url %></div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div>
-  <div id="modal" class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 p-1 sm:px-4 sm:py-12">
-    <!-- Modal content -->
-      <div class="hidden lg:block">
-        <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
-        <div class="mb-4">
-          <div class="q flex items-center">
-            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-            <p class="text-white">会員にはすぐになれますか？</p>
-          </div>
-          <div class="a flex items-center">
-            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-            <p>店頭にてLINE友達追加で簡単に会員登録ができます。</p>
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="q flex items-center">
-            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-            <p class="text-white">子供の料金を教えてください。</p>
-          </div>
-          <div class="a flex items-center">
-            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-            <p>小学生は大人の方の半額、小学生未満は無料です。</p>
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="q flex items-center">
-            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-            <p class="text-white">ワンドリンクのドリンク代はいくらですか？</p>
-          </div>
-          <div class="a flex items-center">
-            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-            <p>418円からご用意しております。</p>
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="q flex items-center">
-            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-            <p class="text-white">ワンドリンクとドリンクバーはどちらが得ですか？</p>
-          </div>
-          <div class="a flex items-center">
-            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-            <p>2杯以上でドリンクバー(440円)がお得です。</p>
-          </div>
-        </div>
-        <div class="mb-4">
-          <div class="q flex items-center">
-            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-            <p class="text-white">何杯以上でアルコール飲み放題コースが得ですか？</p>
-          </div>
-          <div class="a flex items-center">
-            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-            <p>お一人様平均で2杯以上で飲み放題コースがお得です。</p>
-          </div>
-        </div>
-        <p class="text-xs text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
+<div id="modal" class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 p-1 sm:px-4 sm:py-12">
+  <div class="hidden lg:block">
+    <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">会員にはすぐになれますか？</p>
       </div>
-      <div>
-        <%= render "form_fee_guide" %>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>店頭にてLINE友達追加で簡単に会員登録ができます。</p>
       </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">子供の料金を教えてください。</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>小学生は大人の方の半額、小学生未満は無料です。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">ワンドリンクのドリンク代はいくらですか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>418円からご用意しております。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">ワンドリンクとドリンクバーはどちらが得ですか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>2杯以上でドリンクバー(440円)がお得です。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">何杯以上でアルコール飲み放題コースが得ですか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>お一人様平均で2杯以上で飲み放題コースがお得です。</p>
+      </div>
+    </div>
+    <p class="text-xs text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
+  </div>
+  <div>
+    <%= render "form_fee_guide" %>
   </div>
 </div>
-<div id="app_margin"></div>
+<div id="coupon_wrapper">
+  <%= render "layouts/coupon" %>
+</div>
+<div class="sm:hidden" id="guide_footer">
+  <button id="close_btn_footer" type="button" class="focus:outline-none  transform scale-0 transition-transform duration-300">
+    <i class="far fa-times-circle text-app text-3xl"></i>
+    <p class="">閉じる</p>
+  </button>
+</div>
+<button id="modal_btn_footer" class="focus:outline-none p-2 bg-gray-800 rounded-full ring-8 ring-app sm:hidden" type="button">
+  <span class="text-xs text-white">FeeGuide</span>
+  <br>
+  <span class="text-2xl text-white">START!</span>
+  <br>
+  <span class="text-xxs text-white">料金案内開始</span>
+</button>
 

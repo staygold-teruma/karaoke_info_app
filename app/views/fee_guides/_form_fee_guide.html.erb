@@ -1,4 +1,4 @@
-<div class="mx-1 my-1 sm:my-0 sm:mb-0 sm:mx-auto sm:p-4 border-2 border-app text-sm rounded-2xl bg-white" id="fee_guide_form">
+<div class="mx-1 my-4 sm:my-0 sm:mb-0 sm:mx-auto sm:p-4 border-2 border-app text-sm rounded-2xl bg-white" id="fee_guide_form">
   <%= form_with model: @fee_guide, local: true do |f| %>
     <div class="px-3 pt-4 pb-2 sm:px-2 sm:pb-2 rounded hover:bg-yellow-600 hover:bg-opacity-10">
       <div class="sm:flex items-center mb-3">
@@ -17,7 +17,7 @@
       </div>
       <div class="lg:hidden">
         <p class="text-xxs px-2"><i class="far fa-check-circle text-app mr-1"></i>会員の種類 → アプリ/LINE/各種会員カード</p>
-        <p class="text-xxs px-2 mb-2 sm:mb-1"><i class="far fa-check-circle text-app mr-1"></i>フロントにて、LINEの友達追加で簡単に会員登録ができます</p>
+        <p class="text-xxs px-2 mb-2 sm:mb-1"><i class="far fa-check-circle text-app mr-1"></i>フロントにて、LINE友達追加で簡単に会員登録ができます</p>
       </div>
     </div>
     <div class="px-3 sm:pt-4 pb-1 sm:px-2 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
@@ -83,7 +83,7 @@
     </div>
   <% end %>
   <!--Close modal button-->
-  <button id="close_btn" type="button" class="focus:outline-none hidden md:block">
+  <button id="close_btn" type="button" class="focus:outline-none hidden sm:block">
     <i class="far fa-times-circle text-app text-3xl"></i>
     <p class="text-app">閉じる</p>
   </button>

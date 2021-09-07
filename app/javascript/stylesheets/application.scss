@@ -98,7 +98,7 @@ $breakpoint-down: (
   'xs': 'screen and (max-width: 586px)',
   'sm': 'screen and (max-width: 640px)',
   'md': 'screen and (max-width: 768px)',
-  'lg': 'screen and (max-width: 964px)',
+  'lg': 'screen and (max-width: 1024px)',
   'xl': 'screen and (max-width: 1280px)',
   'xxl': 'screen and (max-width: 1331px)',
 ) !default;
@@ -604,25 +604,231 @@ p {
   height: 60vh;
   background-position: 47%;
   position: relative;
+  @include mq-down(sm) {
+    height: 30vh;
+  }
 }
 
 #app_margin {
   width: 100%;
-  height: 1200px;
+  height: 30vh;
   border-bottom: 6px gray solid;
 }
 
 #app_guide_wrapper {
+  background-image: url(/assets/images.png);
   width: 100%;
   height: 40vh;
+  @include mq-down(sm) {
+    height: auto;
+    background-position: bottom;
+  }
+  h2 {
+    text-shadow: 1px 1px 1px orange;
+  }
+}
+
+#news_wrapper {
+  width: calc(100% - 480px);
+  height: calc(100% - 50px);
+  max-width: 600px;
+  max-height: 280px;
+  @include mq-down(lg) {
+    width: calc(100% - 370px);
+  }
+  @include mq-down(md) {
+    width: 80%;
+  }
+  @include mq-down(sm) {
+    width: 95%;
+  }
+  #each_news {
+    width: 100%;
+    height: 24px;
+    @include mq-down(lg) {
+      width: 95%;
+    }
+    @include mq-down(sm) {
+      width: 100%;
+      height: 16px;
+    }
+  }
+
+  #news_day {
+    width: 80px;
+    line-height: 24px;
+    @include mq-down(lg) {
+      width: 70px;
+    }
+    @include mq-down(md) {
+      width: 80px;
+    }
+    @include mq-down(sm) {
+      line-height: 16px;
+    }
+  }
+  #news_title {
+    width: calc(100% - 60px);
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 24px;
+    @include mq-down(sm) {
+      line-height: 16px;
+    }
+  }
+}
+
+#slider_wrapper {
+  width: 450px;
+  max-height: 300px;
+  height: 100%;
+  padding-top: 30px;
+  @include mq-down(lg) {
+    width: 350px;
+  }
+}
+
+.slider_area {
+  max-width: 450px;
+  height: 40vh;
+  margin: 0 auto;
+  padding: 0 5px;
+  @include mq-down(lg) {
+    width: 350px;
+  }
+}
+
+.slick-slide {
+  margin: 0 5px;
+  background: black 40%;
+}
+.slick-slide img {
+  object-fit: contain;
+  height: 30vh;
+  max-height: 250px;
+  min-height: 200px;
+  margin: 0 auto;
+}
+
+.slick-slide {
+  transition: all ease-in-out 0.3s;
+  opacity: 0.2;
+}
+.slick-active {
+  opacity: 1;
+}
+.slick-current {
+  opacity: 1;
+}
+.thumb {
+  margin: 20px 0 0;
+}
+.thumb .slick-slide {
+  cursor: pointer;
+}
+.thumb .slick-slide:hover {
+  opacity: 0.7;
 }
 
 #modal_btn {
   width: 150px;
   height: 150px;
   position: absolute;
-  top: 60%;
+  bottom: 15%;
   right: 10%;
+}
+
+#modal {
+  width: 100%;
+  position: absolute;
+  top: 60vh;
+  @include mq-down(sm) {
+    top: 30vh;
+    padding-bottom: 150px;
+  }
+}
+
+#guide_footer {
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  border-top: 1px #ededed solid;
+  background-image: url(/assets/images.png);
+  border-top-left-radius: 150px 20px;
+  border-top-right-radius: 150px 20px;
+}
+
+#modal_btn_footer {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -20%);
+}
+
+#close_btn_footer {
+  position: fixed;
+  bottom: 10px;
+  left: 75%;
+}
+
+#coupon_wrapper {
+  width: 100%;
+  height: 300px;
+}
+#coupon {
+  background: url(/assets/images.png);
+  background-size: cover;
+  box-shadow: 1px 1px 6px rgba(10, 5, 0, 0.5);
+  color: #433;
+  max-width: 480px;
+  min-width: 320px;
+  border: 1px solid rgba(30, 5, 0, 0.12);
+}
+#coupon_inner {
+  padding: 0.7rem 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid rgba(30, 5, 0, 0.5);
+  border-radius: 2px;
+  text-align: center;
+}
+#coupon_left {
+  width: 65%;
+  border-right: 1px dashed #976;
+  padding: 1.2rem 1rem 1.2rem 0;
+  font-size: 80%;
+}
+#coupon_name {
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+#coupon_alert {
+  border-top: 1px solid #666;
+  padding: 0.4em 0 0 0;
+  line-height: 1.2;
+  font-size: 0.8rem;
+}
+#coupon_right {
+  width: 30%;
+  padding: 1.2rem 0;
+  line-height: 1.2;
+}
+#coupon_limit {
+  font-weight: bold;
+  font-size: 180%;
+}
+#coupon_day {
+  border-bottom: 1px solid #666;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+#coupon_content {
+  max-width: 300px;
 }
 
 // 料金案内フォーム

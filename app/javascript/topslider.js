@@ -4,7 +4,10 @@ import 'slick-carousel/slick/slick-theme.scss';
 
 document.addEventListener('turbolinks:load', function () {
   $(function () {
-    $('.slick01').slick({
+    $('.regular').slick({
+      // autoplay: true,
+      autoplaySpeed: 5000,
+      arrows: false,
       dots: true,
       speed: 500,
     });
