@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
 
   def index
-    @topics = Topic.includes(:shop).order(:created_at)
+    @topics = Topic.includes(:shop).order(created_at: :desc)
   end
 
   def new

@@ -43,11 +43,11 @@
         </div>
       <% end %>
     </div>
-    <div class="max-w-screen-lg sm:h-80 border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-5 sm:mx-8 my-6 lg:mx-auto items-center">
+    <div class="sm:h-80 border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-2 sm:mx-8 my-6 lg:mx-4 items-center">
       <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative" id="table_index">
         <thead>
           <tr id="table_heading" class="bg-blue-500 sticky top-0">
-            <th class="index_table_head hidden lg:table-cell">No.</th>
+            <th class="index_table_head hidden xl:table-cell">No.</th>
             <th class="index_table_head">料金名称</th>
             <th class="index_table_head">区分</th>
             <th class="index_table_head">曜日</th>
@@ -63,7 +63,7 @@
         <tbody>
           <% @main_plans.each.with_index(1) do |main_plan, i| %>
             <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <td class="index_table_body hidden lg:table-cell"><%= i %></td>
+              <td class="index_table_body hidden xl:table-cell"><%= i %></td>
               <td class="index_table_body text-blue-600"><%= link_to main_plan.name, main_plan %></td>
               <td class="index_table_body"><%= main_plan.div_member_i18n %></td>
               <td class="index_table_body"><%= main_plan.div_day_i18n %></td>

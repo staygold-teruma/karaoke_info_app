@@ -27,15 +27,15 @@
 }
 
 .index_table_head {
-  @apply border border-gray-400 px-2 py-1 sm:py-3 text-white text-xs lg:text-sm font-bold;
+  @apply border border-gray-400 px-2 py-1 sm:py-3 text-white text-xs xl:text-sm font-bold;
 }
 
 .index_table_body {
-  @apply border border-gray-400 px-2 py-1 text-center text-xs lg:text-sm;
+  @apply border border-gray-400 px-2 py-1 text-center text-xs xl:text-sm;
 }
 
 .show_div_table_head {
-  @apply border border-gray-400 px-1 py-1 text-white text-sm font-bold w-1/4;
+  @apply border border-gray-400 px-1 text-white text-sm font-bold w-1/4;
 }
 
 .show_div_table_body {
@@ -69,11 +69,11 @@
 }
 
 .side_li_title {
-  @apply md:border-b border-gray-300 text-center md:text-left text-white md:text-gray-600 shadow md:shadow-none;
+  @apply md:border-b border-gray-300 text-center md:text-left text-white md:text-gray-600 shadow md:shadow-none text-xl sm:text-base;
 }
 
 .side_li_menu {
-  @apply border border-app rounded-xl text-xs py-2 md:border-0 bg-white md:bg-app_bg shadow md:shadow-none;
+  @apply border border-app rounded-full text-xs py-2 md:border-0 bg-white md:bg-app_bg shadow md:shadow-none md:text-gray-600 hover:text-app leading-6 md:leading-none mt-1 sm:mt-0;
 }
 
 .q {
@@ -97,7 +97,7 @@ $breakpoint-down: (
   'xxs': 'screen and (max-width: 484px)',
   'xs': 'screen and (max-width: 586px)',
   'sm': 'screen and (max-width: 640px)',
-  'md': 'screen and (max-width: 768px)',
+  'md': 'screen and (max-width: 767px)',
   'lg': 'screen and (max-width: 1024px)',
   'xl': 'screen and (max-width: 1280px)',
   'xxl': 'screen and (max-width: 1331px)',
@@ -175,7 +175,6 @@ p {
   position: fixed;
   top: 90px;
   left: 0;
-  padding-bottom: 120px;
   overflow: auto;
   @include mq-down(md) {
     width: 100%;
@@ -192,15 +191,15 @@ p {
   }
 }
 
-#side_menu.active {
+#side_menu_shop.active {
   left: 0;
 }
 
 .page_title {
   font-size: 24px;
   font-weight: 800;
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 25px;
+  margin-bottom: 25px;
   text-align: center;
   @include mq-down(xl) {
     margin-top: 25px;
@@ -690,7 +689,7 @@ p {
 
 .slider_area {
   max-width: 450px;
-  height: 40vh;
+  max-height: 300px;
   margin: 0 auto;
   padding: 0 5px;
   @include mq-down(lg) {
@@ -744,7 +743,7 @@ p {
   top: 60vh;
   @include mq-down(sm) {
     top: 30vh;
-    padding-bottom: 150px;
+    padding-bottom: 120px;
   }
 }
 
@@ -775,17 +774,41 @@ p {
 }
 
 #coupon_wrapper {
+  position: relative;
   width: 100%;
-  height: 300px;
+  max-width: 700px;
+  background-image: url(/assets/50.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
+
+#coupon_wrapper:before {
+  content: '';
+  display: block;
+  padding-top: 70%;
+}
+#coupon_body {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translate(0, -50%);
+  h2 {
+    font-weight: bold;
+  }
+}
+
 #coupon {
   background: url(/assets/images.png);
   background-size: cover;
   box-shadow: 1px 1px 6px rgba(10, 5, 0, 0.5);
   color: #433;
   max-width: 480px;
-  min-width: 320px;
   border: 1px solid rgba(30, 5, 0, 0.12);
+  @include mq-down(sm) {
+    width: 85%;
+    min-width: 250px;
+  }
 }
 #coupon_inner {
   padding: 0.7rem 0.7rem;
@@ -799,36 +822,50 @@ p {
 #coupon_left {
   width: 65%;
   border-right: 1px dashed #976;
-  padding: 1.2rem 1rem 1.2rem 0;
-  font-size: 80%;
+  padding: 0.8rem 1rem 0.8rem 0;
+  @include mq-down(sm) {
+    padding: 0.4rem 0.5rem 0.4rem 0;
+  }
 }
 #coupon_name {
   font-weight: bold;
-  font-size: 2rem;
   line-height: 1.2;
+  border-bottom: 1px solid #666;
 }
 #coupon_alert {
-  border-top: 1px solid #666;
   padding: 0.4em 0 0 0;
   line-height: 1.2;
-  font-size: 0.8rem;
 }
 #coupon_right {
   width: 30%;
-  padding: 1.2rem 0;
+  padding: 0.8rem 0;
   line-height: 1.2;
+  @include mq-down(sm) {
+    padding: 0.4rem 0;
+  }
 }
 #coupon_limit {
   font-weight: bold;
-  font-size: 180%;
 }
 #coupon_day {
   border-bottom: 1px solid #666;
   padding-bottom: 6px;
   margin-bottom: 6px;
 }
+#coupon_logo {
+  object-fit: contain;
+  width: 95%;
+}
 #coupon_content {
   max-width: 300px;
+}
+
+#coupon_guide {
+  width: calc(100% - 700px);
+  @include mq-down(xl) {
+    width: 100%;
+    max-width: 700px;
+  }
 }
 
 // 料金案内フォーム
@@ -894,52 +931,43 @@ p {
 }
 
 #topics_wrapper {
-  max-width: 1000px;
+  max-width: 1200px;
   @include mq-down(xl) {
-    max-width: 700px;
+    max-width: 800px;
   }
   @include mq-down(sm) {
     max-width: 400px;
   }
   #topics_card {
-    height: 130px;
+    height: 300px;
     padding: 10px;
-    max-width: 300px;
+    max-width: 320px;
+    @include mq-down(md) {
+      min-width: 300px;
+    }
     #card_top {
       width: 100%;
-      height: 20px;
+      height: 60px;
       #topics_date {
-        width: 100px;
         line-height: 20px;
-        div {
-          width: 90px;
-        }
       }
       #topics_title {
-        width: 184px;
+        white-space: nowrap;
         line-height: 20px;
       }
     }
     #card_bottom {
       width: 100%;
-      height: 100px;
-      margin-top: 10px;
+      height: 200px;
+      margin-top: 5px;
       #topics_thumbnail {
-        width: 100px;
-        height: 100px;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
         #topics_img {
-          width: 95px;
-          height: auto;
-        }
-      }
-      #topics_contents {
-        width: 160px;
-        height: 80px;
-        padding: 10px 12px;
-        p {
+          object-fit: contain;
           width: 100%;
           height: 100%;
-          line-height: 15px;
         }
       }
     }

@@ -20,7 +20,7 @@ document.addEventListener('turbolinks:load', function () {
     $('#open_btn').on('click', function () {
       $(this).toggleClass('active');
       // $('#gnav_contents').toggleClass('active');
-      $('#side_menu').toggleClass('active');
+      $('#side_menu_shop').toggleClass('active');
     });
   });
 });
