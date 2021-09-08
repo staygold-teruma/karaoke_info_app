@@ -33,3 +33,10 @@ ja:
         usage_time: ご利用時間
         number_of_customers: 合計人数
         total_fee: ご利用料金
+  views:
+    pagination:
+      first: '&laquo; 最初'
+      last: '最後 &raquo;'
+      previous: '&lsaquo; 前'
+      next: '次 &rsaquo;'
+      truncate: '...'

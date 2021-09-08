@@ -1,8 +1,9 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
+  PER_PAGE = 6
 
   def index
-    @topics = Topic.includes(:shop).order(created_at: :desc)
+    @topics = Topic.includes(:shop).page(params[:page]).per(PER_PAGE).order(created_at: :desc)
   end
 
   def new
