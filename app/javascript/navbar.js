@@ -1,26 +1,25 @@
 document.addEventListener('turbolinks:load', function () {
   $(function () {
-    $('#dd_menu1').on('click touchend', function () {
-      $(this).next().slideToggle(200);
-    });
-    $('#dd_menu2').on('click touchend', function () {
-      $(this).next().slideToggle(200);
-    });
-    $('#dd_menu3').on('click touchend', function () {
-      $(this).next().slideToggle(200);
-    });
-
-    //別の場所をクリックすると閉じる処理
-    $(document).on('click touchend', function (event) {
-      if (!$(event.target).closest('body').length) {
-        $('#dd_list1,#dd_list2,#dd_list3').hide();
+    $('.dd_menu li').hover(
+      function () {
+        //クラス名「open」を付与する
+        $(this).children('.dd_menu_sub').addClass('open');
+        //hoverが外れた場合
+      },
+      function () {
+        //クラス名「open」を取り除く
+        $(this).children('.dd_menu_sub').removeClass('open');
       }
-    });
+    );
 
     $('#open_btn').on('click', function () {
+      if ($('#modal').is('.scale-100')) {
+        $('#modal, #close_btn_footer').removeClass('scale-100');
+        $('#app_guide_wrapper, #coupon_wrapper, #coupon_guide').removeClass('hidden');
+      }
       $(this).toggleClass('active');
-      // $('#gnav_contents').toggleClass('active');
       $('#side_menu_shop').toggleClass('active');
+      $('#side_menu_shop_f').toggleClass('active');
     });
   });
 });

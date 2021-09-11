@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
+  before_action :authenticate_shop!, only: %i[new edit update destroy]
   PER_PAGE = 6
 
   def index

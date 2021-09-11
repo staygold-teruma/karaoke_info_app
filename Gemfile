@@ -11,7 +11,7 @@ gem "enum_help"
 gem "jbuilder", "~> 2.7"
 gem "jp_prefecture"
 gem "kaminari"
-gem 'mini_magick'
+gem "mini_magick"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
 gem "rails", "~> 6.1.4"
