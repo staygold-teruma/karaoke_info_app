@@ -21,7 +21,7 @@ ja:
       time_unit:
         half_hour: '30分'
         free_time: 'フリー'
-    fee_info:
+    fee_guide:
       div_member:
         other: '一般'
         member: '会員'

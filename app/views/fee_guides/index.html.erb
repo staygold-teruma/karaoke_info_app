@@ -1,0 +1,57 @@
+<% content_for :title do %>
+    管理画面：料金案内履歴
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full">
+    <%= render "layouts/header_shop" %>
+  </div>   
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_shop" %>
+<% end %>
+
+<div class="flex">
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+  <div id="main_contents_shop">
+    <h1 class="page_title">料金案内履歴</h1>
+    <div class="flex justify-center my-6 px-3 sm:px-8">
+      <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
+        <thead>
+          <tr id="table_heading" class="bg-blue-500">
+            <th class="index_table_head hidden md:table-cell">No.</th>
+            <th class="index_table_head">利用日</th>
+            <th class="index_table_head">料金合計</th>
+            <th class="index_table_head hidden md:table-cell">会員</th>
+            <th class="index_table_head hidden md:table-cell">一般</th>
+            <th class="index_table_head hidden md:table-cell">学生</th>
+            <th class="index_table_head hidden md:table-cell">シニア</th>
+            <th class="index_table_head hidden md:table-cell">小学生</th>
+            <th class="index_table_head">利用時間</th>
+            <th class="index_table_head">ドリンクプラン</th>
+            <th class="border border-gray-400 px-2 py-3"><i class="fas fa-edit text-white"></i></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @fee_guides.each.with_index(1) do |fee_guide, i| %>
+            <tr class="border-b border-gray-200 hover:bg-gray-100">
+              <td class="index_table_body hidden md:table-cell"><%= i %></td>
+              <td class="border border-gray-400 px-2 py-1 text-center text-xs"><%= fee_guide.created_at.strftime('%Y/%m/%d') %></td>
+              <td class="border border-gray-400 px-2 py-1 text-center text-xs lg:text-sm"><%= fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="index_table_body hidden md:table-cell"><%= fee_guide.div_member_i18n %></td>
+              <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_adults %>名</td>
+              <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_students %>名</td>
+              <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_seniors %>名</td>
+              <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_children %>名</td>
+              <td class="index_table_body"><%= fee_guide.usage_time_i18n %></td>
+              <td class="index_table_body text-xxs sm:text-xs"><%= fee_guide.drink_plan_i18n %></td>
+              <td class="index_table_body text-red-600"><%= link_to "削除", fee_guide, method: :delete, data: { confirm: "この履歴を削除しますか?" } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

@@ -7,10 +7,15 @@ import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
 import 'channels';
+import 'img';
 import 'jquery';
 import 'jquery.jpostal.js';
-import 'test.js';
+import 'modal.js';
+import 'navbar.js';
+import 'postcode.js';
 import 'stylesheets/application';
+import 'tabmenu.js';
+import 'topslider.js';
 
 Rails.start();
 Turbolinks.start();

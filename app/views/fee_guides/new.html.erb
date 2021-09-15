@@ -1,0 +1,177 @@
+<% content_for :title do %>
+    料金案内TOP
+<% end %>
+<% content_for :header do %>
+  <% if shop_signed_in? %>
+    <%= render "guide_top_shop" %>
+  <% else %>
+    <%= render "guide_top_user" %>
+  <% end %>
+<% end %>
+
+<div id="app_guide_wrapper">
+  <div class="flex justify-center lg:justify-evenly items-center py-4 xl:py-0" id="news_wrapper">
+    <div id="news_left">
+      <div class="hidden sm:block bg-gray-100 rounded-lg shadow-lg mb-2 p-3 pt-2" id="news_box">
+        <div class="w-full rounded text-center bg-app text-white my-2 items-center sm:text-xl">
+          NEW!
+        </div>
+        <% @topics_five.each do |topic| %>
+          <%= link_to(topic_path(topic)) do %>
+            <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
+              <div class="flex">
+                <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
+                <div class="text-xs sm:text-base" id="news_day">
+                  <%= topic.created_at.strftime('%m月%d日') %>
+                </div>
+                <div class="text-xs sm:text-base" id="news_title">
+                  <%= topic.title %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mx-auto mt-3 mb-3 sm:mb-0 p-3" id="news_box">
+        <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center">
+          NEW!
+        </div>
+        <% @topics_three.each do |topic| %>
+          <%= link_to(topic_path(topic)) do %>
+            <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
+              <div class="flex">
+                <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+                <div class="text-xs" id="news_day">
+                  <%= topic.created_at.strftime('%m月%d日') %>
+                </div>
+                <div class="text-xs" id="news_title">
+                    <%= topic.title %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="hidden sm:block">
+        <%= link_to "※TOPICS一覧はこちら", topics_path, class: "hover:text-app ml-2" %>
+      </div>      
+    </div>
+    <%= link_to(topic_path(@topics_three.first)) do %>
+      <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
+        <%= image_tag @topics_three.first.image.url, id:"news_img" %>
+      </div>
+    <% end %>
+  </div>
+  <%= render "app_guide_tab" %>
+</div>
+
+<div id="modal" class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 p-1 sm:px-4 sm:py-12">
+  <div class="hidden lg:block">
+    <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">会員にはすぐになれますか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>店頭にてLINE友達追加で簡単に会員登録ができます。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">子供の料金を教えてください。</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>小学生は大人の方の半額、小学生未満は無料です。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">ワンドリンクのドリンク代はいくらですか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>418円からご用意しております。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">ワンドリンクとドリンクバーはどちらが得ですか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>2杯以上でドリンクバー(440円)がお得です。</p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div class="q flex items-center">
+        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white">何杯以上でアルコール飲み放題コースが得ですか？</p>
+      </div>
+      <div class="a flex items-center">
+        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+        <p>お一人様平均で2杯以上で飲み放題コースがお得です。</p>
+      </div>
+    </div>
+    <p class="text-xs text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
+  </div>
+  <div class="py-2 sm:py-6">
+    <%= render "form_fee_guide" %>
+  </div>
+</div>
+
+<div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
+  <div class="flex items-center justify-evenly pt-2" id="footer_btn_left">
+    <%= link_to root_path do %>
+    <div class="text-center" id="btn_box">
+      <i class="fas fa-home text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">ホーム</p>
+    </div>
+    <% end %>
+    <div class="text-center" id="btn_box">
+      <i class="fas fa-ticket-alt text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">クーポン</p>
+    </div>
+  </div>
+  <div class="flex items-center justify-evenly pt-1" id="footer_btn_right">
+    <%= link_to topics_path do %>
+      <div class="text-center pt-1" id="btn_box">
+        <i class="fas fa-info-circle text-2xl text-app"></i>
+        <p class="text-center text-xxs text-white">トピックス</p>
+      </div>
+    <% end %>
+    <div class="" id="btn_box">
+      <% if shop_signed_in? %>
+        <div class="shop_open_btn sm:hidden shadow" id="open_btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      <% else %>
+        <div class="text-center pt-1" id="btn_box">
+          <button class="hidden focus:outline-none" id="close_btn_footer" type="button">
+            <i class="far fa-times-circle text-app text-2xl"></i>
+            <p class="text-xxs text-white">閉じる</p>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<button id="modal_btn_footer" class="focus:outline-none p-2 pb-4 bg-gray-800 rounded-full ring-8 ring-app sm:hidden" type="button">
+  <span class="text-xs text-white">料金案内</span>
+  <br>
+  <span class="text-xl text-white">START!</span>
+</button>
+
+<% if shop_signed_in? %>
+  <div class="flex items-center sm:hidden bg-black bg-opacity-80 md:bg-app_bg pb-32" id="side_menu_shop_f">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+<% end %>
+

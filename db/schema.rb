@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_063437) do
+ActiveRecord::Schema.define(version: 2021_08_28_074335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_08_20_063437) do
     t.index ["shop_id"], name: "index_drink_plans_on_shop_id"
   end
 
-  create_table "fee_infos", force: :cascade do |t|
+  create_table "fee_guides", force: :cascade do |t|
     t.integer "div_member", default: 1, null: false
     t.integer "number_of_adults", default: 0, null: false
     t.integer "number_of_students", default: 0, null: false
@@ -92,6 +92,17 @@ ActiveRecord::Schema.define(version: 2021_08_20_063437) do
     t.index ["reset_password_token"], name: "index_shops_on_reset_password_token", unique: true
   end
 
+  create_table "topics", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.string "image"
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_topics_on_shop_id"
+  end
+
   add_foreign_key "drink_plans", "shops"
   add_foreign_key "main_plans", "shops"
+  add_foreign_key "topics", "shops"
 end

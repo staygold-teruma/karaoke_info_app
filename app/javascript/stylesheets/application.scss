@@ -10,14 +10,16 @@
 .btn_delete {
   @apply bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded;
 }
+.btn_home {
+  @apply bg-app hover:bg-yellow-700 text-white py-1 px-5 rounded;
+}
 
-.btn_fee_info {
-  @apply hover:bg-white hover:border-yellow-500 hover:text-yellow-500
-  bg-yellow-500 text-white border-2 border-yellow-500 mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
+.btn_fee_guide {
+  @apply bg-black border-app hover:bg-app text-white border-2 mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
 }
 
 .btn_form_create {
-  @apply bg-blue-500 hover:bg-blue-700 text-white py-1 rounded w-full;
+  @apply bg-blue-500 hover:bg-blue-700 text-white py-2 rounded w-full;
 }
 
 .btn_link_new {
@@ -25,15 +27,15 @@
 }
 
 .index_table_head {
-  @apply border border-gray-400 px-2 py-3 text-white text-xs lg:text-sm font-bold;
+  @apply border border-gray-400 px-2 py-1 sm:py-3 text-white text-xs xl:text-sm font-bold;
 }
 
 .index_table_body {
-  @apply border border-gray-400 px-2 py-1 text-center text-xs lg:text-sm;
+  @apply border border-gray-400 px-2 py-1 text-center text-xs xl:text-sm;
 }
 
 .show_div_table_head {
-  @apply border border-gray-400 px-1 py-1 text-white text-sm font-bold w-1/4;
+  @apply border border-gray-400 px-1 text-white text-sm font-bold w-1/4;
 }
 
 .show_div_table_body {
@@ -48,21 +50,69 @@
   @apply border border-gray-200 px-1 py-2 text-center text-sm;
 }
 
-.fee_info_table_head {
-  @apply w-12 border-2 border-yellow-500 px-2 py-3 text-xxs sm:text-xs font-black;
+.fee_guide_table_head {
+  @apply w-12 border-2 border-app px-2 py-3 text-xxs sm:text-xs font-black;
 }
 
-.fee_info_table_body {
-  @apply border-2 border-yellow-500 px-1 py-2 text-center text-xxs sm:text-sm;
+.fee_guide_table_body {
+  @apply border-2 border-app px-1 py-2 text-center text-xxs sm:text-sm;
+}
+
+.nav_btn_edit {
+  @apply border-2 border-green-500 bg-white hover:bg-green-500 text-green-500 hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
+.nav_btn_sign_out {
+  @apply border-2 border-red-500 bg-white hover:bg-red-500 text-red-500 hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
+.nav_btn_home {
+  @apply border-2 border-app bg-white hover:bg-app text-app hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
+
+.side_li_title {
+  @apply md:border-b border-gray-300 md:text-left text-white md:text-gray-600 shadow md:shadow-none;
+}
+
+.side_li_menu {
+  @apply border border-app text-sm md:border-0 bg-white md:bg-app_bg shadow md:shadow-none md:text-gray-600 hover:text-app leading-6 md:leading-none mt-1 sm:mt-0 text-center md:text-left;
+}
+
+.q {
+  @apply text-xs bg-app border border-app rounded-t-lg px-2 py-1;
+}
+
+.a {
+  @apply text-xs border bg-white border-app rounded-b-lg px-2 py-1;
 }
 
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
+// ========================
+//         初期設定
+// ========================
+
+// ブレイクポイント
+$breakpoint-down: (
+  'xls': 'screen and (max-width: 350px)',
+  'xxs': 'screen and (max-width: 484px)',
+  'xs': 'screen and (max-width: 586px)',
+  'sm': 'screen and (max-width: 640px)',
+  'md': 'screen and (max-width: 767px)',
+  'lg': 'screen and (max-width: 1024px)',
+  'xl': 'screen and (max-width: 1280px)',
+  'xxl': 'screen and (max-width: 1331px)',
+) !default;
+
+@mixin mq-down($breakpoint: sm) {
+  @media #{map-get($breakpoint-down, $breakpoint)} {
+    @content;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
   list-style: none;
   text-decoration: none;
   user-select: none;
@@ -72,15 +122,240 @@
   color: rgb(75, 75, 75);
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 p {
   word-break: break-all;
 }
 
+// ========================
+//         共通部品
+// ========================
+
+// ヘッダー部品
+#header_user {
+  width: 100%;
+  height: 150px;
+  @include mq-down(md) {
+    height: 120px;
+  }
+  #app_title_user {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    @include mq-down(md) {
+      transform: translate(-10%, -50%);
+    }
+    @include mq-down(xxs) {
+      transform: translate(0, -50%);
+    }
+    h1 {
+      text-shadow: 2px 2px 2px black;
+      @include mq-down(xxs) {
+        font-size: 10px;
+      }
+    }
+    p {
+      text-shadow: 2px 2px 2px black;
+      @include mq-down(xxs) {
+        font-size: 30px;
+      }
+    }
+  }
+  #user_top_nav_user {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    @include mq-down(lg) {
+      top: 5%;
+      right: 0;
+    }
+    li {
+      text-shadow: 2px 2px 2px black;
+    }
+    li:hover {
+      font-weight: bold;
+      text-shadow: none;
+    }
+  }
+}
+
+#header_shop {
+  width: 100%;
+  height: 90px;
+}
+
+#bread_crumbs {
+  width: 100%;
+  height: 50px;
+}
+
+// メインコンテンツ部品
+#main_wrapper_shop {
+  @include mq-down(md) {
+    margin-bottom: 60px;
+  }
+}
+
+#main_contents_shop {
+  margin-left: 200px;
+  padding-top: 90px;
+  padding-bottom: 30px;
+  width: calc(100% - 200px);
+  @include mq-down(md) {
+    margin-left: 0;
+    padding-bottom: 90px;
+    width: 100%;
+  }
+}
+
+#main_contents_user {
+  width: 100%;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  @include mq-down(md) {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 95px;
+  }
+}
+
+// フッター部品
+#footer_wrapper_shop {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+}
+
+// 管理者画面サイドメニュー
+#side_menu_shop {
+  width: 200px;
+  height: 100%;
+  position: fixed;
+  top: 90px;
+  left: 0;
+  overflow: auto;
+  @include mq-down(md) {
+    width: 100%;
+    height: calc(100% - 150px);
+    position: fixed;
+    left: -1000px;
+    top: 90px;
+    z-index: 2;
+  }
+  .side_li_title {
+    font-size: 16px;
+    @include mq-down(md) {
+      font-size: 20px;
+    }
+    @include mq-down(sm) {
+      font-size: 20px;
+    }
+    @include mq-down(xls) {
+      font-size: 16px;
+    }
+  }
+  .side_li_menu {
+    font-size: 12px;
+    @include mq-down(md) {
+      height: 60px;
+      font-size: 16px;
+    }
+    @include mq-down(sm) {
+      height: 50px;
+      font-size: 14px;
+    }
+    @include mq-down(xls) {
+      font-size: 10px;
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      @include mq-down(md) {
+        line-height: 60px;
+      }
+      @include mq-down(sm) {
+        line-height: 50px;
+      }
+    }
+  }
+}
+
+#side_menu_shop.active {
+  left: 0;
+}
+
+#side_menu_shop_f {
+  @include mq-down(md) {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: -1000px;
+    top: 0;
+    z-index: 2;
+  }
+  .side_li_title {
+    font-size: 16px;
+    @include mq-down(md) {
+      font-size: 20px;
+    }
+    @include mq-down(sm) {
+      font-size: 20px;
+    }
+    @include mq-down(xls) {
+      font-size: 16px;
+    }
+  }
+  .side_li_menu {
+    font-size: 12px;
+    @include mq-down(md) {
+      height: 60px;
+      font-size: 16px;
+    }
+    @include mq-down(sm) {
+      height: 50px;
+      font-size: 14px;
+    }
+    @include mq-down(xls) {
+      font-size: 10px;
+    }
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      @include mq-down(md) {
+        line-height: 60px;
+      }
+      @include mq-down(sm) {
+        line-height: 50px;
+      }
+    }
+  }
+}
+#side_menu_shop_f.active {
+  left: 0;
+}
+
+// 各ページタイトル
 .page_title {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: 800;
+  margin-top: 25px;
+  margin-bottom: 25px;
   text-align: center;
-  margin-top: 100px;
+  @include mq-down(xxs) {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
 }
 
 // アプリヘッダー
@@ -128,62 +403,103 @@ p {
 }
 
 // 各プランヘッダー
-#plan_header_box {
+#gnav {
+  height: 90px;
   background: rgb(237, 237, 237);
-  width: 100%;
-  display: flex;
-  position: fixed;
-  top: 0;
-  left: 0;
-  #logo {
+  #logo_md {
     width: 200px;
     height: 70px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
   }
-  #plan_header_nav {
-    width: calc(100% - 200px);
-    max-width: 1000px;
-    height: 70px;
-    #plan_nav_list {
-      width: 100%;
-      height: 100%;
-      padding: 0 10px 0 10px;
-      display: flex;
-      justify-content: space-between;
-      #plan_nav_item {
-        display: flex;
-        align-items: center;
-        a {
-          display: flex;
-          height: 40px;
-          text-decoration: none;
-          p {
-            display: flex;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 0;
-            align-items: center;
-            line-height: 40px;
-            i {
-              font-size: 16px;
-              color: rgb(255, 85, 0);
-              margin-right: 5px;
-            }
-            #drop_down_i {
-              margin-left: 5px;
-            }
-          }
-        }
-        a:hover {
-          border-bottom: rgb(255, 85, 0) 4px solid;
-          margin-bottom: -4px;
-        }
+  #nav_main {
+    width: 100%;
+    height: 100%;
+    #logo_sm {
+      width: 100px;
+      height: 35px;
+    }
+    #account {
+      height: 40px;
+    }
+    #nav_btn_box {
+      @include mq-down(md) {
+        height: 39px;
       }
     }
   }
+}
+
+#open_btn {
+  position: relative; /*ボタン内側の基点となるためrelativeを指定*/
+  background: rgb(255, 85, 0);
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+/*ボタン内側*/
+#open_btn span {
+  display: inline-block;
+  transition: all 0.4s; /*アニメーションの設定*/
+  position: absolute;
+  left: 14px;
+  height: 2px;
+  border-radius: 5px;
+  background: #fff;
+  width: 45%;
+}
+
+#open_btn span:nth-of-type(1) {
+  top: 13px;
+}
+
+#open_btn span:nth-of-type(2) {
+  top: 19px;
+}
+
+#open_btn span:nth-of-type(3) {
+  top: 25px;
+}
+
+#open_btn span:nth-of-type(3)::after {
+  content: 'Menu'; /*3つ目の要素のafterにMenu表示を指定*/
+  position: absolute;
+  top: 5px;
+  left: -2px;
+  color: #fff;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+/*activeクラスが付与されると線が回転して×になり、Menu⇒Closeに変更*/
+#open_btn.active span:nth-of-type(1) {
+  top: 14px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+#open_btn.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+#open_btn.active span:nth-of-type(3) {
+  top: 26px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+#open_btn.active span:nth-of-type(3)::after {
+  content: 'Close'; /*3つ目の要素のafterにClose表示を指定*/
+  transform: translateY(0) rotate(-45deg);
+  top: 5px;
+  left: 4px;
+}
+
+.shop_open_btn {
+  position: fixed;
+  left: 10%;
 }
 
 // 各プランフッター
@@ -223,10 +539,21 @@ p {
     select {
       border: gray 1px solid;
       border-radius: 5px;
+      background: white;
+      cursor: pointer;
     }
   }
   #index_search_btn {
     margin-left: 20px;
+    .btn_search {
+      background: #007bff;
+      cursor: pointer;
+    }
+    :hover.btn_search {
+      background: white;
+      color: #007bff;
+      border: #007bff 1px solid;
+    }
   }
 }
 
@@ -296,7 +623,10 @@ p {
   width: 80%;
   max-width: 600px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 20px;
+  @include mq-down(md) {
+    margin-top: 20px;
+  }
   #l_name,
   #l_note {
     margin-bottom: 20px;
@@ -316,11 +646,12 @@ p {
       font-size: 14px;
     }
     input {
-      width: calc(100% - 120px);
+      width: 100%;
       padding: 5px;
       border: gray 1px solid;
       border-radius: 5px;
       font-size: 12px;
+      background: white;
     }
   }
   #l_div,
@@ -345,12 +676,10 @@ p {
         border-radius: 5px;
         width: 100px;
         font-size: 12px;
+        background: white;
       }
       select {
         padding-left: 5px;
-      }
-      input {
-        width: 95px;
       }
     }
   }
@@ -360,7 +689,7 @@ p {
     div {
       textarea {
         margin-top: 5px;
-        width: calc(100% - 18px);
+        width: 100%;
         min-height: 100px;
         padding: 8px;
         font-size: 10px;
@@ -396,44 +725,649 @@ p {
     select {
       border: gray 1px solid;
       border-radius: 5px;
+      background: white;
+      font-size: 10px;
+      padding: 4px;
     }
   }
   #index_search_btn {
     margin-left: 20px;
+    .btn_search {
+      font-size: 12px;
+      padding: 4px 10px;
+      background: #007bff;
+      cursor: pointer;
+    }
+    :hover.btn_search {
+      background: white;
+      color: #007bff;
+      border: #007bff 1px solid;
+    }
+  }
+}
+
+// 料金案内TOP
+#fee_guide_top {
+  width: 100%;
+  height: 60vh;
+  background-position: 47%;
+  position: relative;
+  @include mq-down(sm) {
+    height: 30vh;
+  }
+  #shop_nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    p {
+      text-shadow: 1px 1px 1px black;
+      line-height: 35px;
+    }
+    .dd_menu {
+      display: flex;
+      justify-content: flex-start;
+      list-style-type: none;
+      color: #fff;
+      padding: 0;
+      li {
+        position: relative;
+        background: rgba(0, 0, 0, 0.7);
+        width: 120px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        @include mq-down(lg) {
+          width: 100px;
+          height: 25px;
+          line-height: 25px;
+        }
+        .dd_menu_sub {
+          position: absolute;
+          display: none;
+          width: 100%;
+        }
+        .dd_menu_sub.open {
+          display: block;
+          li a {
+            display: block;
+            width: 100%;
+            color: #fff;
+            text-align: center;
+          }
+          li a:hover {
+            background: #ff5500;
+          }
+        }
+      }
+      #dd_li_last {
+        display: block;
+        width: 100%;
+      }
+      #dd_li_last:hover {
+        background: #ff5500;
+        i {
+          color: white;
+        }
+      }
+    }
+  }
+  #app_title {
+    position: absolute;
+    top: 60%;
+    left: 0;
+    transform: translate(0, -50%);
+    h1 {
+      text-shadow: 2px 2px 2px black;
+      @include mq-down(xxs) {
+        font-size: 12px;
+      }
+    }
+    p {
+      text-shadow: 2px 2px 2px black;
+      @include mq-down(xxs) {
+        font-size: 36px;
+      }
+    }
+  }
+  #user_top_nav {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    @include mq-down(lg) {
+      top: 5%;
+      right: 0;
+    }
+    li {
+      text-shadow: 2px 2px 2px black;
+    }
+    li:hover {
+      font-weight: bold;
+      text-shadow: none;
+    }
+  }
+  #modal_btn {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+    transform: translate(50%, 0);
+  }
+}
+
+#app_margin {
+  width: 100%;
+  height: 30vh;
+  border-bottom: 6px gray solid;
+}
+
+#tab_menu {
+  .tab_menu1,
+  .tab_menu2 {
+    cursor: pointer;
+    color: #ff5500;
+    background: #fff;
+  }
+  .tab_menu1.current,
+  .tab_menu2.current {
+    display: block;
+    opacity: 1;
+    background: #ff5500;
+    color: #fff;
+  }
+}
+
+.tab_menu1,
+.tab_menu2 {
+  display: inline-block;
+  width: 240px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+  border: solid 2px #ff5500;
+  border-bottom: 0;
+  @include mq-down(lg) {
+    width: 200px;
+  }
+  @include mq-down(sm) {
+    width: 160px;
+  }
+  @include mq-down(xls) {
+    font-size: 10px;
+  }
+}
+
+#tutorial_wrapper {
+  #tutorial_box {
+    p {
+      line-height: 20px;
+    }
+    #tutorial_num {
+      width: 100px;
+      line-height: 40px;
+    }
+    #tutorial_img_box {
+      width: 60%;
+      #tutorial_img {
+        width: 80%;
+      }
+      #tutorial_img_bottom {
+        width: 100%;
+      }
+    }
+  }
+}
+
+#news_wrapper {
+  background-image: url(/assets/images.png);
+  width: 100%;
+  height: 40vh;
+  @include mq-down(lg) {
+    height: auto;
+  }
+  #news_left {
+    width: 60%;
+    max-width: 550px;
+    max-height: 280px;
+    @include mq-down(xl) {
+      max-width: 500px;
+    }
+    @include mq-down(lg) {
+      max-width: 700px;
+      width: 90%;
+    }
+  }
+  #news_box {
+    width: 100%;
+    #each_news {
+      width: 100%;
+      height: 24px;
+      @include mq-down(lg) {
+        width: 95%;
+      }
+      @include mq-down(sm) {
+        width: 100%;
+        height: 16px;
+      }
+      #news_i {
+        line-height: 24px;
+        @include mq-down(sm) {
+          line-height: 16px;
+        }
+      }
+      #news_day {
+        width: 90px;
+        line-height: 24px;
+        @include mq-down(sm) {
+          width: 70px;
+          line-height: 16px;
+        }
+      }
+      #news_title {
+        width: calc(100% - 40px);
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 24px;
+        @include mq-down(sm) {
+          line-height: 16px;
+        }
+      }
+    }
+    #each_news:hover {
+      #news_day,
+      #news_title {
+        color: #ff5500;
+      }
+    }
+  }
+  #news_img_box {
+    height: 230px;
+    max-width: 500px;
+    overflow: hidden;
+    #news_img {
+      object-fit: contain;
+      width: 100%;
+      height: 95%;
+    }
+    #news_img:hover {
+      transform: scale(1.1, 1.1);
+    }
+  }
+}
+
+#slider_wrapper {
+  width: 450px;
+  max-height: 300px;
+  height: 100%;
+  padding-top: 30px;
+  @include mq-down(lg) {
+    width: 350px;
+  }
+}
+
+.slider_area {
+  max-width: 450px;
+  max-height: 300px;
+  margin: 0 auto;
+  padding: 0 5px;
+  @include mq-down(lg) {
+    width: 350px;
+  }
+}
+
+.slick-slide {
+  margin: 0 5px;
+  background: black 40%;
+}
+.slick-slide img {
+  object-fit: contain;
+  height: 30vh;
+  max-height: 250px;
+  min-height: 200px;
+  margin: 0 auto;
+}
+
+.slick-slide {
+  transition: all ease-in-out 0.3s;
+  opacity: 0.2;
+}
+.slick-active {
+  opacity: 1;
+}
+.slick-current {
+  opacity: 1;
+}
+.thumb {
+  margin: 20px 0 0;
+}
+.thumb .slick-slide {
+  cursor: pointer;
+}
+.thumb .slick-slide:hover {
+  opacity: 0.7;
+}
+
+#modal {
+  width: 100%;
+  position: absolute;
+  top: 60vh;
+  @include mq-down(sm) {
+    top: 30vh;
+    padding-bottom: 120px;
+  }
+}
+
+#guide_footer {
+  width: 100%;
+  height: 65px;
+  position: fixed;
+  bottom: 0;
+  border-top: 2px #ededed solid;
+  z-index: 98;
+}
+
+#modal_btn_footer {
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  z-index: 99;
+}
+
+#footer_btn_left {
+  width: 50%;
+  height: 65px;
+  padding-right: 45px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+#footer_btn_right {
+  width: 50%;
+  height: 65px;
+  padding-left: 45px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+#btn_box {
+  width: 60px;
+  height: 48px;
+}
+
+#coupon_wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 700px;
+  background-image: url(/assets/50.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#coupon_wrapper:before {
+  content: '';
+  display: block;
+  padding-top: 70%;
+}
+#coupon_body {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translate(0, -50%);
+  h2 {
+    font-weight: bold;
+  }
+}
+
+#coupon {
+  background: url(/assets/images.png);
+  background-size: cover;
+  box-shadow: 1px 1px 6px rgba(10, 5, 0, 0.5);
+  color: #433;
+  max-width: 480px;
+  border: 1px solid rgba(30, 5, 0, 0.12);
+  @include mq-down(sm) {
+    width: 85%;
+    min-width: 250px;
+  }
+}
+#coupon_inner {
+  padding: 0.7rem 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid rgba(30, 5, 0, 0.5);
+  border-radius: 2px;
+  text-align: center;
+}
+#coupon_left {
+  width: 65%;
+  border-right: 1px dashed #976;
+  padding: 0.8rem 1rem 0.8rem 0;
+  @include mq-down(sm) {
+    padding: 0.4rem 0.5rem 0.4rem 0;
+  }
+}
+#coupon_name {
+  font-weight: bold;
+  line-height: 1.2;
+  border-bottom: 1px solid #666;
+}
+#coupon_alert {
+  padding: 0.4em 0 0 0;
+  line-height: 1.2;
+}
+#coupon_right {
+  width: 30%;
+  padding: 0.8rem 0;
+  line-height: 1.2;
+  @include mq-down(sm) {
+    padding: 0.4rem 0;
+  }
+}
+#coupon_limit {
+  font-weight: bold;
+}
+#coupon_day {
+  border-bottom: 1px solid #666;
+  padding-bottom: 6px;
+  margin-bottom: 6px;
+}
+#coupon_logo {
+  object-fit: contain;
+  width: 95%;
+}
+#coupon_content {
+  max-width: 300px;
+}
+
+#coupon_guide {
+  width: calc(100% - 700px);
+  @include mq-down(xl) {
+    width: 100%;
+    max-width: 700px;
+  }
+  #coupon_p {
+    @include mq-down(xls) {
+      font-size: 12px;
+    }
+  }
+  ul {
+    li {
+      @include mq-down(xls) {
+        font-size: 10px;
+      }
+    }
+  }
+  #coupon_br {
+    @include mq-down(xls) {
+      display: block;
+    }
   }
 }
 
 // 料金案内フォーム
-#fee_info_wrap {
-  #fee_info_img {
-    background-image: url(/assets/room_title.jpg);
-    background-position: 61% 70%;
+#fee_guide_form {
+  min-width: 640px;
+  position: relative;
+  @include mq-down(md) {
+    min-width: 320px;
   }
-  #fee_info_input {
-    label {
-      width: 40px;
-      display: inline-block;
-      text-align: justify;
-      text-align-last: justify;
+  #close_btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+#fee_guide_input {
+  label {
+    width: 40px;
+    display: inline-block;
+    text-align: justify;
+    text-align-last: justify;
+  }
+  #num_customers {
+    padding-left: 6px;
+    width: 45px;
+    height: 25px;
+    border: gray 1px solid;
+    border-radius: 8px;
+  }
+}
+#fee_guide_select {
+  select {
+    font-size: 12px;
+    width: 150px;
+    height: 30px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    background: white;
+    border: gray 1px solid;
+    border-radius: 8px;
+  }
+}
+
+#topics_form_wrapper {
+  max-width: 700px;
+  #img_field {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 5px;
     }
-    #num_customers {
-      padding-left: 10px;
-      padding-bottom: 2px;
-      width: 35px;
-      height: 18px;
-      border: gray 1px solid;
-      border-radius: 8px;
+    i {
+      font-size: 30px;
     }
   }
-  #fee_info_select {
-    select {
-      font-size: 12px;
-      width: 150px;
-      height: 30px;
-      padding-left: 5px;
-      padding-bottom: 2px;
-      border: gray 1px solid;
-      border-radius: 8px;
+}
+
+#topics_wrapper {
+  max-width: 1200px;
+  @include mq-down(lg) {
+    max-width: 800px;
+  }
+  @include mq-down(sm) {
+    max-width: 400px;
+  }
+  #topics_card {
+    height: 300px;
+    padding: 10px;
+    max-width: 320px;
+    @include mq-down(md) {
+      min-width: 300px;
+    }
+    @include mq-down(xls) {
+      min-width: 250px;
+    }
+    #card_top {
+      width: 100%;
+      height: 60px;
+      #topics_date {
+        line-height: 20px;
+      }
+      #topics_title {
+        white-space: nowrap;
+        line-height: 20px;
+      }
+    }
+    #card_bottom {
+      width: 100%;
+      height: 200px;
+      margin-top: 5px;
+      #topics_thumbnail {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        background: #ededed;
+        #topics_img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  #topics_card:hover {
+    #topics_img {
+      transform: scale(1.1, 1.1);
+    }
+  }
+}
+#topic_show {
+  max-width: 700px;
+  #topics_img_box {
+    width: 90%;
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.pagination {
+  .page.current {
+    margin: 0 10px;
+    font-size: 30px;
+    color: black;
+    text-shadow: 1px 1px 1px orange;
+  }
+  .page.current:hover {
+    color: black;
+    text-shadow: 1px 1px 1px orange;
+  }
+  .page {
+    margin: 0 10px;
+    font-size: 30px;
+    color: lightgrey;
+  }
+  .page:hover {
+    color: orange;
+  }
+  .last,
+  .next,
+  .first,
+  .prev {
+    margin-right: 10px;
+    a {
+      font-size: 15px;
+    }
+    a:hover {
+      color: orange;
     }
   }
 }

@@ -1,0 +1,62 @@
+<% content_for :title do %>
+    TOPICS詳細
+<% end %>
+<% content_for :header do %>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full top-0 left-0 z-10">
+      <%= render "layouts/header_shop" %>
+    </div> 
+  <% else %>
+    <div class="fixed w-full top-0 left-0 z-10">
+      <%= render "layouts/header_user" %>      
+    </div>
+  <% end %>  
+<% end %>
+<% content_for :footer do %>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full bottom-0 left-0 md:hidden">
+      <%= render "layouts/footer_shop" %>
+    </div>
+  <% else %>
+    <%= render "layouts/footer_user" %>
+  <% end %>
+<% end %>
+
+<% if shop_signed_in? %>
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+  <div class="mx-auto" id="main_contents_shop">
+    <div class="w-11/12 border border-gray-200 mx-auto rounded-xl mt-6" id="topic_show">
+      <div class="w-1/2 bg-app-light rounded-full text-center font-semibold text-white px-2 py-2 mx-auto my-4" >
+        <%= @topic.created_at.strftime('%Y年%m月%d日') %>
+      </div>
+      <div class="w-full text-center font-bold text-sm md:text-lg overflow-hidden" id="topics_title">
+        【<%= @topic.title %>】
+      </div>
+      <div class="flex justify-center items-center mx-auto mt-6" id="topics_img_box">
+        <%= image_tag @topic.image.url %>
+      </div>
+      <div class="w-11/12 mx-auto my-6 p-3 bg-gray-100 border border-gray-200 rounded-lg text-sm" id="topics_content">
+        <%= simple_format(h(@topic.content))%>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="mx-auto" id="main_contents_user">
+    <div class="w-11/12 border border-gray-200 mx-auto rounded-xl mt-12 mb-6" id="topic_show">
+      <div class="w-1/2 bg-app-light rounded-full text-center font-semibold text-white px-2 py-2 mx-auto my-4" >
+        <%= @topic.created_at.strftime('%Y年%m月%d日') %>
+      </div>
+      <div class="w-full text-center font-bold text-sm md:text-lg overflow-hidden" id="topics_title">
+        【<%= @topic.title %>】
+      </div>
+      <div class="flex justify-center items-center mx-auto mt-6" id="topics_img_box">
+        <%= image_tag @topic.image.url %>
+      </div>
+      <div class="w-11/12 mx-auto my-6 p-3 bg-gray-100 border border-gray-200 rounded-lg text-sm" id="topics_content">
+        <%= simple_format(h(@topic.content))%>
+      </div>
+    </div>
+  </div>
+<% end %>

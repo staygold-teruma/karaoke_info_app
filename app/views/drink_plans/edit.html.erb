@@ -1,3 +1,29 @@
-<%= render "layouts/header_plans" %>
-<h1 class="page_title">ドリンクコース編集</h1>
-<%= render "form_drink_plans" %>
+<% content_for :title do %>
+    管理画面：ドリンク料金編集
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full">
+    <%= render "layouts/header_shop" %>
+  </div> 
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0">
+    <%= render "layouts/header_shop" %>
+  </div>   
+<% end %>
+<% content_for :footer do %>
+  <div class="fixed w-full md:hidden">
+    <%= render "layouts/footer_shop" %>
+  </div>
+<% end %>
+
+<div class="flex">
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+  <div id="main_contents_shop">
+    <h1 class="page_title">ドリンクコース編集</h1>
+    <%= render "form_drink_plans" %>
+  </div>
+</div>
+
