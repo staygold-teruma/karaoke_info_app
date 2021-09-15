@@ -29,16 +29,16 @@
   <div class="mx-auto" id="main_contents_shop">
     <div class="w-11/12 border border-gray-200 mx-auto rounded-xl mt-6" id="topic_show">
       <div class="w-1/2 bg-app-light rounded-full text-center font-semibold text-white px-2 py-2 mx-auto my-4" >
-        <%= @topic.created_at.strftime('%Y年%m月%d日') %>
+        <%= @shops_topic.created_at.strftime('%Y年%m月%d日') %>
       </div>
       <div class="w-full text-center font-bold text-sm md:text-lg overflow-hidden" id="topics_title">
-        【<%= @topic.title %>】
+        【<%= @shops_topic.title %>】
       </div>
       <div class="flex justify-center items-center mx-auto mt-6" id="topics_img_box">
-        <%= image_tag @topic.image.url %>
+        <%= image_tag @shops_topic.image.url %>
       </div>
       <div class="w-11/12 mx-auto my-6 p-3 bg-gray-100 border border-gray-200 rounded-lg text-sm" id="topics_content">
-        <%= simple_format(h(@topic.content))%>
+        <%= simple_format(h(@shops_topic.content))%>
       </div>
     </div>
   </div>
@@ -46,16 +46,16 @@
   <div class="mx-auto" id="main_contents_user">
     <div class="w-11/12 border border-gray-200 mx-auto rounded-xl mt-12 mb-6" id="topic_show">
       <div class="w-1/2 bg-app-light rounded-full text-center font-semibold text-white px-2 py-2 mx-auto my-4" >
-        <%= @topic.created_at.strftime('%Y年%m月%d日') %>
+        <%= @shops_topic.created_at.strftime('%Y年%m月%d日') %>
       </div>
       <div class="w-full text-center font-bold text-sm md:text-lg overflow-hidden" id="topics_title">
-        【<%= @topic.title %>】
+        【<%= @shops_topic.title %>】
       </div>
       <div class="flex justify-center items-center mx-auto mt-6" id="topics_img_box">
-        <%= image_tag @topic.image.url %>
+        <%= image_tag @shops_topic.image.url %>
       </div>
       <div class="w-11/12 mx-auto my-6 p-3 bg-gray-100 border border-gray-200 rounded-lg text-sm" id="topics_content">
-        <%= simple_format(h(@topic.content))%>
+        <%= simple_format(h(@shops_topic.content))%>
       </div>
     </div>
   </div>

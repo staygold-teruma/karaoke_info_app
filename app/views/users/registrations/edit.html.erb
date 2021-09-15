@@ -1,43 +1,57 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<% content_for :title do %>
+    ユーザーアカウント編集
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full">
+    <%= render "layouts/header_shop" %>
+  </div> 
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_shop" %>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div id="main_contents_user">
+  <h1 class="page_title">ユーザーアカウント編集</h1>
+  <div class="sm:border-2 rounded-lg sm:shadow my-4 p-1 sm:p-8" id="form_wrap">
+  <%= form_for(resource, as: resource_name, url: users_registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "users/shared/error_messages", resource: resource %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <div class="field mb-3 mx-auto">
+      <div class="flex justify-between items-center ml-2 mb-1 w-11/12">
+        <%= f.label :email, "メールアドレス", class: "text-sm" %>
+        <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+      </div>
+      <%= f.email_field :email, autocomplete: "email", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
 
-<%= link_to "Back", :back %>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+    <% end %>
+    <div class="field mb-3 mx-auto">
+      <div class="sm:flex items-end">
+        <%= f.label :password, "新しいパスワード", class: "text-sm ml-2" %> 
+        <% if @minimum_password_length %>
+          <em class="text-xs text-gray-400 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+        <% end %>
+        <p class="text-xxs sm:text-xxs text-gray-400 pl-2 sm:pl-0">※空欄のままなら変更しません</p>
+      </div>
+      <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
+    <div class="field mb-3 mx-auto">
+      <%= f.label :password_confirmation, "パスワード確認", class: "text-sm ml-2" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
+    <div class="field mb-3 mx-auto">
+      <div class="sm:flex items-end">
+        <%= f.label :current_password, "現在のパスワード", class: "text-sm ml-2" %>
+        <p class="text-xxs text-gray-400 pl-2 sm:pl-0">(変更を反映するためには現在のパスワードが必要です)</p>
+      </div>
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
+    </div>
+    <div class="actions flex justify-evenly mt-6 mx-auto">
+        <%= f.submit t('.update'), class: "w-1/4 text-center text-white bg-green-500 hover:bg-green-700 py-2 rounded cursor-pointer" %>
+        <%= link_to t('devise.shared.links.back'), :back, class: "w-1/4 text-center text-white bg-app hover:bg-yellow-700 py-2 rounded" %>
+    </div>
+  <% end %>
+  <%# <%= button_to "削除", registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "w-1/4 text-center text-white bg-red-500 hover:bg-red-700 py-2 rounded cursor-pointer" %>
+</div>

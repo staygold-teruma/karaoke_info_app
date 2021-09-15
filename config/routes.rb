@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root "fee_guides#new"
+  namespace :users do
+    resources :topics, only: [:index, :show]
+  end
+  namespace :shops do
+    resources :topics
+  end
   devise_for :users, controllers: {
     sessions: "users/sessions",
     passwords: "users/passwords",
@@ -10,9 +15,9 @@ Rails.application.routes.draw do
     passwords: "shops/passwords",
     registrations: "shops/registrations"
   }
+  root "fee_guides#new"
   resources :shops, only: [:index, :show]
   resources :fee_guides
   resources :main_plans
   resources :drink_plans
-  resources :topics
 end

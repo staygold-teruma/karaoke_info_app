@@ -16,19 +16,37 @@
         <div class="w-full rounded text-center bg-app text-white my-2 items-center sm:text-xl">
           NEW!
         </div>
-        <% @topics_five.each do |topic| %>
-          <%= link_to(topic_path(topic)) do %>
-            <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
-              <div class="flex">
-                <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
-                <div class="text-xs sm:text-base" id="news_day">
-                  <%= topic.created_at.strftime('%m月%d日') %>
-                </div>
-                <div class="text-xs sm:text-base" id="news_title">
-                  <%= topic.title %>
+        <% if shop_signed_in? %>        
+          <% @topics_five.each do |shops_topic| %>
+            <%= link_to(shops_topic_path(shops_topic)) do %>
+              <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
+                <div class="flex">
+                  <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
+                  <div class="text-xs sm:text-base" id="news_day">
+                    <%= shops_topic.created_at.strftime('%m月%d日') %>
+                  </div>
+                  <div class="text-xs sm:text-base" id="news_title">
+                    <%= shops_topic.title %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% @topics_five.each do |users_topic| %>
+            <%= link_to(users_topic_path(users_topic)) do %>
+              <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
+                <div class="flex">
+                  <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
+                  <div class="text-xs sm:text-base" id="news_day">
+                    <%= users_topic.created_at.strftime('%m月%d日') %>
+                  </div>
+                  <div class="text-xs sm:text-base" id="news_title">
+                    <%= users_topic.title %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>
@@ -36,31 +54,62 @@
         <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center">
           NEW!
         </div>
-        <% @topics_three.each do |topic| %>
-          <%= link_to(topic_path(topic)) do %>
-            <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
-              <div class="flex">
-                <i class="fas fa-chevron-circle-right text-app mr-1"></i>
-                <div class="text-xs" id="news_day">
-                  <%= topic.created_at.strftime('%m月%d日') %>
-                </div>
-                <div class="text-xs" id="news_title">
-                    <%= topic.title %>
+        <% if shop_signed_in? %>
+          <% @topics_three.each do |shops_topic| %>
+            <%= link_to(shops_topic_path(shops_topic)) do %>
+              <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
+                <div class="flex">
+                  <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+                  <div class="text-xs" id="news_day">
+                    <%= shops_topic.created_at.strftime('%m月%d日') %>
+                  </div>
+                  <div class="text-xs" id="news_title">
+                      <%= shops_topic.title %>
+                  </div>
                 </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
+        <% else %>
+          <% @topics_three.each do |users_topic| %>
+            <%= link_to(shops_topic_path(users_topic)) do %>
+              <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
+                <div class="flex">
+                  <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+                  <div class="text-xs" id="news_day">
+                    <%= users_topic.created_at.strftime('%m月%d日') %>
+                  </div>
+                  <div class="text-xs" id="news_title">
+                      <%= users_topic.title %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>  
       </div>
       <div class="hidden sm:block">
-        <%= link_to "※TOPICS一覧はこちら", topics_path, class: "hover:text-app ml-2" %>
+        <% if shop_signed_in? %>
+          <%= link_to "※TOPICS一覧はこちら", shops_topics_path, class: "hover:text-app ml-2" %>
+        <% else %>
+          <%= link_to "※TOPICS一覧はこちら", users_topics_path, class: "hover:text-app ml-2" %>
+        <% end %>
       </div>      
     </div>
-    <%= link_to(topic_path(@topics_three.first)) do %>
-      <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
-        <%= image_tag @topics_three.first.image.url, id:"news_img" %>
-      </div>
+    <% if shop_signed_in? %>
+      <%= link_to(shops_topic_path(@topics_three.first)) do %>
+        <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
+          <%= image_tag @topics_three.first.image.url, id:"news_img" %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to(users_topic_path(@topics_three.first)) do %>
+        <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
+          <%= image_tag @topics_three.first.image.url, id:"news_img" %>
+        </div>
+      <% end %>
     <% end %>
+
   </div>
   <%= render "app_guide_tab" %>
 </div>
@@ -139,11 +188,20 @@
     </div>
   </div>
   <div class="flex items-center justify-evenly pt-1" id="footer_btn_right">
-    <%= link_to topics_path do %>
-      <div class="text-center pt-1" id="btn_box">
-        <i class="fas fa-info-circle text-2xl text-app"></i>
-        <p class="text-center text-xxs text-white">トピックス</p>
-      </div>
+    <% if shop_signed_in? %>
+      <%= link_to shops_topics_path do %>
+        <div class="text-center pt-1" id="btn_box">
+          <i class="fas fa-info-circle text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">トピックス</p>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to users_topics_path do %>
+        <div class="text-center pt-1" id="btn_box">
+          <i class="fas fa-info-circle text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">トピックス</p>
+        </div>
+      <% end %>
     <% end %>
     <div class="" id="btn_box">
       <% if shop_signed_in? %>
