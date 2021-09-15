@@ -1,6 +1,5 @@
-<h1 class="page_title mb-6">TOPICS一覧</h1>
-<div class="mx-auto mt-2 px-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4" id="topics_wrapper">
-  <% @topics.each do |topic, i| %>
+<div class="mx-auto mt-2 px-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="topics_wrapper">
+  <% @topics_user.each do |topic, i| %>
     <%= link_to topic_path(topic) do %>
       <div class="rounded overflow-hidden shadow items-center border border-gray-200 mx-auto mb-2" id="topics_card">
         <div class="" id="card_top">
@@ -23,5 +22,5 @@
   <% end %>
 </div>
 <div class="text-center mt-6">
-  <%= paginate @topics %>
+  <%= paginate @topics_user %>
 </div>

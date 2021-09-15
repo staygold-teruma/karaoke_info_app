@@ -2,12 +2,14 @@
     管理画面：ルーム料金編集
 <% end %>
 <% content_for :header do %>
-  <div class="fixed w-full">
+  <div class="fixed w-full top-0 left-0">
     <%= render "layouts/header_shop" %>
   </div>   
 <% end %>
 <% content_for :footer do %>
-  <%= render "layouts/footer_shop" %>
+  <div class="fixed w-full md:hidden">
+    <%= render "layouts/footer_shop" %>
+  </div>
 <% end %>
 
 <div class="flex">

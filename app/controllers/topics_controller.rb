@@ -4,7 +4,8 @@ class TopicsController < ApplicationController
   PER_PAGE = 6
 
   def index
-    @topics = Topic.includes(:shop).page(params[:page]).per(PER_PAGE).order(created_at: :desc)
+    @topics_shop = Topic.includes(:shop).page(params[:page]).per(PER_PAGE).order(created_at: :desc)
+    @topics_user = Topic.page(params[:page]).per(PER_PAGE).order(created_at: :desc)
   end
 
   def new
@@ -44,7 +45,11 @@ class TopicsController < ApplicationController
   private
 
   def set_topic
-    @topic = current_shop.topics.find(params[:id])
+    @topic = if shop_signed_in?
+               current_shop.topics.find(params[:id])
+             else
+               Topic.find(params[:id])
+             end
   end
 
   def topic_params

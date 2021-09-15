@@ -1,176 +1,68 @@
+<% content_for :title do %>
+    料金案内TOP
+<% end %>
 <% content_for :header do %>
-  <div class="hidden">
-    <%= render "layouts/header_user" %>
-  </div>
-<% end %>
-<% content_for :footer do %>
-  <div class="hidden">
-    <%= render "layouts/footer_user" %>
-  </div>
-<% end %>
-
-<div class="flex sm:justify-center lg:justify-end items-center bg-top-image bg-cover bg-no-repeat bg-center" id="fee_guide_top">
   <% if shop_signed_in? %>
-  <div class="hidden sm:block md:w-1/2 xl:w-2/5" id="shop_nav">
-    <div class="flex justify-center items-center mx-auto">
-      <p class="text-app mt-1 text-center text-sm mr-3">【店舗アカウントで閲覧中】</p>
-      <div class="mt-1 sm:mt-0 mr-3 md:mr-2">
-        <%= link_to "店舗情報編集", edit_shop_registration_path, class: "nav_btn_edit text-xxs px-2" %>
-      </div>
-      <div class="mt-1 sm:mt-0 mr-3 md:mr-2">
-        <%= link_to "ログアウト", destroy_shop_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }, class: "nav_btn_sign_out text-xxs px-4" %>
-      </div>
-    </div>
-    <div class="flex justify-center">
-      <ul class="dd_menu flex justify-center mt-1">
-        <li class="text-white text-xxs lg:text-xs">
-          <i class="fas fa-couch text-app mr-1"></i>ルーム料金<i class="fas fa-chevron-down text-white ml-1"></i>
-          <ul class="dd_menu_sub">
-            <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "ルーム料金一覧", main_plans_path %>
-            </li>
-            <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "ルーム料金登録", new_main_plan_path, id: "dd_menu_last" %>
-            </li>
-          </ul>
-        </li>
-        <li class="text-white text-xxs lg:text-xs">
-          <i class="fas fa-coffee text-app mr-1"></i>ドリンク料金<i class="fas fa-chevron-down text-white ml-1"></i>
-          <ul class="dd_menu_sub">
-            <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "ドリンク料金一覧", drink_plans_path %>
-            </li>
-            <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "ドリンク料金登録", new_drink_plan_path, id: "dd_menu_last" %>
-            </li>
-          </ul>
-        </li>
-        <li class="text-white text-xs lg:text-sm">
-          <i class="fas fa-info-circle text-app mr-1"></i>TOPICS<i class="fas fa-chevron-down text-white ml-1"></i>
-          <ul class="dd_menu_sub">
-            <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "TOPICS一覧", topics_path %>
-            </li>
-            <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "TOPICS投稿", new_topic_path, id: "dd_menu_last" %>
-            </li>
-          </ul>
-        </li>
-        <li class="text-white text-xs lg:text-sm">
-          <%= link_to(fee_guides_path, id: "dd_li_last") do %>
-            <i class="fas fa-list-alt text-app mr-1 ml-1"></i>
-            案内履歴
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
+    <%= render "guide_top_shop" %>
+  <% else %>
+    <%= render "guide_top_user" %>
   <% end %>
-  <div class="w-1/2 xl:w-2/5" id="app_concept">
-    <div>
-      <h1 class="text-white text-center sm:text-base md:text-lg lg:text-2xl mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
-      <p class="text-app text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">iko!KARA</p>
-    </div>
-  </div>
-  <div>
-    <button id="modal_btn" class="focus:outline-none hidden sm:block p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">
-      <span class="text-sm text-white">FeeGuide</span>
-      <br>
-      <span class="text-4xl text-white">START!</span>
-      <br>
-      <span class="text-xs text-white">料金案内開始</span>
-    </button>
-  </div>
-</div>
+<% end %>
 
 <div id="app_guide_wrapper">
-  <div class="flex justify-evenly items-center py-4 xl:py-0" id="news_wrapper">
+  <div class="flex justify-center lg:justify-evenly items-center py-4 xl:py-0" id="news_wrapper">
     <div id="news_left">
       <div class="hidden sm:block bg-gray-100 rounded-lg shadow-lg mb-2 p-3 pt-2" id="news_box">
         <div class="w-full rounded text-center bg-app text-white my-2 items-center sm:text-xl">
           NEW!
         </div>
-        <% @topics_5.each do |topic| %>
-          <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
-            <div class="flex">
-              <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
-              <div class="text-xs sm:text-base" id="news_day">
-                <%= topic.created_at.strftime('%m月%d日') %>
-              </div>
-              <div class="text-xs sm:text-base" id="news_title">
+        <% @topics_five.each do |topic| %>
+          <%= link_to(topic_path(topic)) do %>
+            <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
+              <div class="flex">
+                <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
+                <div class="text-xs sm:text-base" id="news_day">
+                  <%= topic.created_at.strftime('%m月%d日') %>
+                </div>
+                <div class="text-xs sm:text-base" id="news_title">
                   <%= topic.title %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
       <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mx-auto mt-3 mb-3 sm:mb-0 p-3" id="news_box">
         <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center">
           NEW!
         </div>
-        <% @topics_3.each do |topic| %>
-          <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
-            <div class="flex">
-              <i class="fas fa-chevron-circle-right text-app mr-1"></i>
-              <div class="text-xs" id="news_day">
-                <%= topic.created_at.strftime('%m月%d日') %>
-              </div>
-              <div class="text-xs" id="news_title">
-                  <%= topic.title %>
+        <% @topics_three.each do |topic| %>
+          <%= link_to(topic_path(topic)) do %>
+            <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
+              <div class="flex">
+                <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+                <div class="text-xs" id="news_day">
+                  <%= topic.created_at.strftime('%m月%d日') %>
+                </div>
+                <div class="text-xs" id="news_title">
+                    <%= topic.title %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
-      <div>
-        <%= link_to "※TOPICS一覧はこちら", topics_path, class: "hover:text-app ml-2 text-sm" %>
+      <div class="hidden sm:block">
+        <%= link_to "※TOPICS一覧はこちら", topics_path, class: "hover:text-app ml-2" %>
       </div>      
     </div>
-    <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
-      <%= image_tag @topics_3.first.image.url, id:"news_img" %>
-    </div>
+    <%= link_to(topic_path(@topics_three.first)) do %>
+      <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
+        <%= image_tag @topics_three.first.image.url, id:"news_img" %>
+      </div>
+    <% end %>
   </div>
-  <div class="w-full mx-auto px-8 pt-2 pb-36 sm:py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="tutorial_wrapper">
-    <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
-      <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">1</p>
-      <p class="text-sm text-center mt-5 sm:text-xs md:text-sm xl:text-base">PC/タブレットはTOP画面、スマホは画面下の</p>
-      <p class="text-sm text-center mb-5 sm:text-xs md:text-sm xl:text-base"><span class="text-app font-black">「START」</span>ボタンから料金案内を開始します</p>
-      <div class="flex">
-        <div class="mx-auto flex justify-end" id="tutorial_img_box">
-          <img src="/assets/guide_sp1.png" alt="" id="tutorial_img">
-        </div>
-        <div class="w-2/5 my-auto text-center">
-          <div class="hidden sm:flex text-center justify-center"><i class="fas fa-caret-right text-9xl"></i></div>
-          <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-9xl"></i></div> 
-          <p class="text-xl">NEXT</p>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
-      <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">2</p>
-      <p class="text-sm xl:text-base text-center mt-5">フォームの4ステップを入力して</p>
-      <p class="text-sm xl:text-base text-center mb-5"><span class="text-app font-black">「RESULT」</span>ボタンを押します</p>
-      <div class="flex">
-        <div class="mx-auto flex justify-end" id="tutorial_img_box">
-          <img src="/assets/guide_sp2.png" alt="" id="tutorial_img">
-        </div>
-        <div class="w-2/5 my-auto text-center">
-          <div class="hidden lg:flex text-center justify-center"><i class="fas fa-caret-right text-9xl"></i></div>
-          <div class="flex lg:hidden justify-center"><i class="fas fa-caret-down text-9xl"></i></div>       
-          <p class="text-xl">NEXT</p>
-        </div>
-      </div>
-    </div>
-    <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
-      <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">3</p>
-      <p class="text-sm xl:text-base text-center mt-5">グループ/1名様あたりの料金が確認できます</p>
-      <p class="text-sm xl:text-base text-center mb-5"><span class="text-app font-black">「クーポン」</span>ボタンから<span class="text-red-500 font-black">限定クーポンをGET!!</span></p>
-      <div class="mx-auto" id="tutorial_img_box">
-        <img src="/assets/coupon.png" alt="" id="tutorial_img">
-        <img src="/assets/coupon.png" alt="" id="tutorial_img_bottom">
-      </div>
-    </div>
-  </div>
+  <%= render "app_guide_tab" %>
 </div>
 
 <div id="modal" class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 p-1 sm:px-4 sm:py-12">
@@ -232,25 +124,49 @@
     <%= render "form_fee_guide" %>
   </div>
 </div>
-<div class="sm:hidden" id="guide_footer">
-  <% if shop_signed_in? %>
-    <div class="shop_open_btn sm:hidden mt-4 shadow" id="open_btn">
-      <span></span>
-      <span></span>
-      <span></span>
+
+<div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
+  <div class="flex items-center justify-evenly pt-2" id="footer_btn_left">
+    <%= link_to root_path do %>
+    <div class="text-center" id="btn_box">
+      <i class="fas fa-home text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">ホーム</p>
     </div>
-  <% end %>
-  <button id="close_btn_footer" type="button" class="focus:outline-none  transform scale-0 transition-transform duration-300">
-    <i class="far fa-times-circle text-app text-3xl"></i>
-    <p class="">閉じる</p>
-  </button>
+    <% end %>
+    <div class="text-center" id="btn_box">
+      <i class="fas fa-ticket-alt text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">クーポン</p>
+    </div>
+  </div>
+  <div class="flex items-center justify-evenly pt-1" id="footer_btn_right">
+    <%= link_to topics_path do %>
+      <div class="text-center pt-1" id="btn_box">
+        <i class="fas fa-info-circle text-2xl text-app"></i>
+        <p class="text-center text-xxs text-white">トピックス</p>
+      </div>
+    <% end %>
+    <div class="" id="btn_box">
+      <% if shop_signed_in? %>
+        <div class="shop_open_btn sm:hidden shadow" id="open_btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      <% else %>
+        <div class="text-center pt-1" id="btn_box">
+          <button class="hidden focus:outline-none" id="close_btn_footer" type="button">
+            <i class="far fa-times-circle text-app text-2xl"></i>
+            <p class="text-xxs text-white">閉じる</p>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<button id="modal_btn_footer" class="focus:outline-none p-2 bg-gray-800 rounded-full ring-8 ring-app sm:hidden" type="button">
-  <span class="text-xs text-white">FeeGuide</span>
+<button id="modal_btn_footer" class="focus:outline-none p-2 pb-4 bg-gray-800 rounded-full ring-8 ring-app sm:hidden" type="button">
+  <span class="text-xs text-white">料金案内</span>
   <br>
-  <span class="text-2xl text-white">START!</span>
-  <br>
-  <span class="text-xxs text-white">料金案内開始</span>
+  <span class="text-xl text-white">START!</span>
 </button>
 
 <% if shop_signed_in? %>

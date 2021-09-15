@@ -139,9 +139,62 @@ p {
 // ========================
 
 // ヘッダー部品
-#header_wrapper_shop {
+#header_user {
+  width: 100%;
+  height: 150px;
+  @include mq-down(md) {
+    height: 120px;
+  }
+  #app_title_user {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    @include mq-down(md) {
+      transform: translate(-10%, -50%);
+    }
+    @include mq-down(xxs) {
+      transform: translate(0, -50%);
+    }
+    h1 {
+      text-shadow: 2px 2px 2px black;
+      @include mq-down(xxs) {
+        font-size: 10px;
+      }
+    }
+    p {
+      text-shadow: 2px 2px 2px black;
+      @include mq-down(xxs) {
+        font-size: 30px;
+      }
+    }
+  }
+  #user_top_nav_user {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    @include mq-down(lg) {
+      top: 5%;
+      right: 0;
+    }
+    li {
+      text-shadow: 2px 2px 2px black;
+    }
+    li:hover {
+      font-weight: bold;
+      text-shadow: none;
+    }
+  }
+}
+
+#header_shop {
   width: 100%;
   height: 90px;
+}
+
+#bread_crumbs {
+  width: 100%;
+  height: 50px;
 }
 
 // メインコンテンツ部品
@@ -153,13 +206,24 @@ p {
 
 #main_contents_shop {
   margin-left: 200px;
-  margin-top: 90px;
-  margin-bottom: 30px;
+  padding-top: 90px;
+  padding-bottom: 30px;
   width: calc(100% - 200px);
   @include mq-down(md) {
     margin-left: 0;
-    margin-bottom: 90px;
+    padding-bottom: 90px;
     width: 100%;
+  }
+}
+
+#main_contents_user {
+  width: 100%;
+  padding-top: 150px;
+  padding-bottom: 30px;
+  @include mq-down(md) {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 95px;
   }
 }
 
@@ -288,9 +352,9 @@ p {
   margin-top: 25px;
   margin-bottom: 25px;
   text-align: center;
-  @include mq-down(xl) {
-    margin-top: 25px;
-    margin-bottom: 25px;
+  @include mq-down(xxs) {
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 
@@ -336,13 +400,6 @@ p {
       }
     }
   }
-}
-
-#fee_guide_header {
-  width: 100%;
-  height: 90px;
-  background-image: url(/assets/room_title.jpg);
-  background-position: 61% 70%;
 }
 
 // 各プランヘッダー
@@ -754,7 +811,7 @@ p {
       }
     }
   }
-  #app_concept {
+  #app_title {
     position: absolute;
     top: 60%;
     left: 0;
@@ -772,12 +829,29 @@ p {
       }
     }
   }
+  #user_top_nav {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    @include mq-down(lg) {
+      top: 5%;
+      right: 0;
+    }
+    li {
+      text-shadow: 2px 2px 2px black;
+    }
+    li:hover {
+      font-weight: bold;
+      text-shadow: none;
+    }
+  }
   #modal_btn {
     width: 150px;
     height: 150px;
     position: absolute;
     bottom: 10%;
-    right: 10%;
+    right: 20%;
+    transform: translate(50%, 0);
   }
 }
 
@@ -787,9 +861,39 @@ p {
   border-bottom: 6px gray solid;
 }
 
-#app_guide_wrapper {
-  h2 {
-    text-shadow: 1px 1px 1px orange;
+#tab_menu {
+  .tab_menu1,
+  .tab_menu2 {
+    cursor: pointer;
+    color: #ff5500;
+    background: #fff;
+  }
+  .tab_menu1.current,
+  .tab_menu2.current {
+    display: block;
+    opacity: 1;
+    background: #ff5500;
+    color: #fff;
+  }
+}
+
+.tab_menu1,
+.tab_menu2 {
+  display: inline-block;
+  width: 240px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 8px 8px 0 0;
+  border: solid 2px #ff5500;
+  border-bottom: 0;
+  @include mq-down(lg) {
+    width: 200px;
+  }
+  @include mq-down(sm) {
+    width: 160px;
+  }
+  @include mq-down(xls) {
+    font-size: 10px;
   }
 }
 
@@ -869,14 +973,24 @@ p {
         }
       }
     }
+    #each_news:hover {
+      #news_day,
+      #news_title {
+        color: #ff5500;
+      }
+    }
   }
   #news_img_box {
     height: 230px;
     max-width: 500px;
+    overflow: hidden;
     #news_img {
       object-fit: contain;
       width: 100%;
       height: 95%;
+    }
+    #news_img:hover {
+      transform: scale(1.1, 1.1);
     }
   }
 }
@@ -945,19 +1059,16 @@ p {
 
 #guide_footer {
   width: 100%;
-  height: 80px;
+  height: 65px;
   position: fixed;
   bottom: 0;
-  border-top: 1px #ededed solid;
-  background-image: url(/assets/images.png);
-  border-top-left-radius: 150px 20px;
-  border-top-right-radius: 150px 20px;
+  border-top: 2px #ededed solid;
   z-index: 98;
 }
 
 #modal_btn_footer {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -965,10 +1076,29 @@ p {
   z-index: 99;
 }
 
-#close_btn_footer {
+#footer_btn_left {
+  width: 50%;
+  height: 65px;
+  padding-right: 45px;
   position: fixed;
-  bottom: 10px;
-  left: 75%;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+#footer_btn_right {
+  width: 50%;
+  height: 65px;
+  padding-left: 45px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+#btn_box {
+  width: 60px;
+  height: 48px;
 }
 
 #coupon_wrapper {
@@ -1083,19 +1213,6 @@ p {
   }
 }
 
-#topic_show {
-  max-width: 700px;
-  #topics_img_box {
-    width: 640px;
-    height: 320px;
-    img {
-      object-fit: contain;
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
-
 // 料金案内フォーム
 #fee_guide_form {
   min-width: 640px;
@@ -1160,7 +1277,7 @@ p {
 
 #topics_wrapper {
   max-width: 1200px;
-  @include mq-down(xl) {
+  @include mq-down(lg) {
     max-width: 800px;
   }
   @include mq-down(sm) {
@@ -1172,6 +1289,9 @@ p {
     max-width: 320px;
     @include mq-down(md) {
       min-width: 300px;
+    }
+    @include mq-down(xls) {
+      min-width: 250px;
     }
     #card_top {
       width: 100%;
@@ -1192,6 +1312,7 @@ p {
         width: 100%;
         height: 100%;
         padding: 10px;
+        background: #ededed;
         #topics_img {
           object-fit: contain;
           width: 100%;
@@ -1200,7 +1321,24 @@ p {
       }
     }
   }
+  #topics_card:hover {
+    #topics_img {
+      transform: scale(1.1, 1.1);
+    }
+  }
 }
+#topic_show {
+  max-width: 700px;
+  #topics_img_box {
+    width: 90%;
+    img {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
 .pagination {
   .page.current {
     margin: 0 10px;
@@ -1232,8 +1370,4 @@ p {
       color: orange;
     }
   }
-}
-
-#sign_in_wrapper {
-  margin-right: 200px;
 }

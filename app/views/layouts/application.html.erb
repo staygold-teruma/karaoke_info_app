@@ -13,14 +13,8 @@
     </script>
   </head>
   <body>
-    <header id="header_wrapper">
-      <%= yield(:header) %>
-    </header>
-    <main id="main_wrapper">
-      <%= yield %>
-    </main>
-    <footer class="md:hidden" id="footer_wrapper">
-      <%= yield(:footer) %>
-    </footer>
+    <%= yield(:header) %>
+    <%= yield %>
+    <%= yield(:footer) %>
   </body>
 </html>
