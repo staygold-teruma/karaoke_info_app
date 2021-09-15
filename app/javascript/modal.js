@@ -5,6 +5,7 @@ document.addEventListener('turbolinks:load', function () {
         $('#modal,#close_btn').removeClass('scale-100');
         $('#app_guide_wrapper').removeClass('hidden');
         $('#close_btn_footer').addClass('hidden');
+        $('#open_btn').removeClass('hidden');
       }
     });
 
@@ -25,10 +26,12 @@ document.addEventListener('turbolinks:load', function () {
         $('#modal,#close_btn').removeClass('scale-100');
         $('#app_guide_wrapper').removeClass('hidden');
         $('#close_btn_footer').addClass('hidden');
+        $('#open_btn').removeClass('hidden');
       } else {
         $('#modal,#close_btn').addClass('scale-100');
         $('#app_guide_wrapper').addClass('hidden');
         $('#close_btn_footer').removeClass('hidden');
+        $('#open_btn').addClass('hidden');
       }
     });
 
@@ -42,6 +45,7 @@ document.addEventListener('turbolinks:load', function () {
       $('#modal,#close_btn').removeClass('scale-100');
       $('#app_guide_wrapper').removeClass('hidden');
       $('#close_btn_footer').addClass('hidden');
+      $('#open_btn').removeClass('hidden');
     });
   });
 });

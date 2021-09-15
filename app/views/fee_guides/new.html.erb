@@ -126,7 +126,7 @@
 </div>
 
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
-  <div class="flex items-center justify-evenly pt-2" id="footer_btn_left">
+  <div class="flex items-center justify-evenly pt-3" id="footer_btn_left">
     <%= link_to root_path do %>
     <div class="text-center" id="btn_box">
       <i class="fas fa-home text-2xl text-app"></i>
@@ -151,6 +151,12 @@
           <span></span>
           <span></span>
           <span></span>
+        </div>
+        <div class="text-center pt-1" id="btn_box">
+          <button class="hidden focus:outline-none" id="close_btn_footer" type="button">
+            <i class="far fa-times-circle text-app text-2xl"></i>
+            <p class="text-xxs text-white">閉じる</p>
+          </button>
         </div>
       <% else %>
         <div class="text-center pt-1" id="btn_box">
