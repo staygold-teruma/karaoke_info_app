@@ -1,18 +1,29 @@
-<nav class="flex justify-center items-center w-full" id="gnav">
-  <img src="/assets/logo.png" id="logo_md">
-</nav>
-<div id="sign_in_wrapper">
+<div class="bg-top-image bg-cover bg-no-repeat bg-center" id="header_user">
+  <div class="w-1/2 xl:w-2/5" id="app_title_user">
+    <div class="md:mr-20 xl:mr-12">
+      <h1 class="text-white text-center text-xs sm:text-sm md:text-base lg:text-lg mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
+      <p class="text-app text-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl">iko!KARA</p>
+    </div>
+  </div>
+  <ul class="hidden sm:flex" id="user_top_nav_user">
+    <li class="text-white px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">
+      <%= link_to "ホーム", root_path %>
+    </li>
+    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">【会員登録】</li>
+  </ul>
+</div>
+<div class="mt-16 sm:mt-12" id="sign_wrapper">
   <h1 class="page_title">ログイン</h1>
-  <div class="border-2 border-app rounded-xl shadow-lg w-3/4 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
+  <div class="border-2 border-app rounded-xl shadow-lg w-11/12 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :email, "メールアドレス", class: "text-sm" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-11/12" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-full" %>
       </div>
 
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :password, "パスワード", class: "text-sm" %><br />
-        <%= f.password_field :password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-11/12" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-full" %>
       </div>
 
       <% if devise_mapping.rememberable? %>

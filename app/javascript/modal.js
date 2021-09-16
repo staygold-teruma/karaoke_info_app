@@ -33,6 +33,10 @@ document.addEventListener('turbolinks:load', function () {
         $('#close_btn_footer').removeClass('hidden');
         $('#open_btn').addClass('hidden');
       }
+      if ($('#side_menu_shop_f').is('.active')) {
+        $('#open_btn').toggleClass('active');
+        $('#side_menu_shop_f').toggleClass('active');
+      }
     });
 
     $('#close_btn').on('click touched', function () {

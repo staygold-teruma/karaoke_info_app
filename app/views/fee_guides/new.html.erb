@@ -72,7 +72,7 @@
           <% end %>
         <% else %>
           <% @topics_three.each do |users_topic| %>
-            <%= link_to(shops_topic_path(users_topic)) do %>
+            <%= link_to(users_topic_path(users_topic)) do %>
               <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
                 <div class="flex">
                   <i class="fas fa-chevron-circle-right text-app mr-1"></i>
@@ -175,35 +175,35 @@
 </div>
 
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
-  <div class="flex items-center justify-evenly pt-3" id="footer_btn_left">
+  <div class="flex items-center justify-evenly" id="footer_btn_left">
     <%= link_to root_path do %>
-    <div class="text-center" id="btn_box">
+    <div class="text-center pt-2" id="btn_box">
       <i class="fas fa-home text-2xl text-app"></i>
       <p class="text-center text-xxs text-white">ホーム</p>
     </div>
     <% end %>
-    <div class="text-center" id="btn_box">
+    <div class="text-center pt-2" id="btn_box">
       <i class="fas fa-ticket-alt text-2xl text-app"></i>
       <p class="text-center text-xxs text-white">クーポン</p>
     </div>
   </div>
-  <div class="flex items-center justify-evenly pt-1" id="footer_btn_right">
+  <div class="flex items-center justify-evenly" id="footer_btn_right">
     <% if shop_signed_in? %>
       <%= link_to shops_topics_path do %>
-        <div class="text-center pt-1" id="btn_box">
+        <div class="text-center pt-2" id="btn_box">
           <i class="fas fa-info-circle text-2xl text-app"></i>
           <p class="text-center text-xxs text-white">トピックス</p>
         </div>
       <% end %>
     <% else %>
       <%= link_to users_topics_path do %>
-        <div class="text-center pt-1" id="btn_box">
+        <div class="text-center pt-2" id="btn_box">
           <i class="fas fa-info-circle text-2xl text-app"></i>
           <p class="text-center text-xxs text-white">トピックス</p>
         </div>
       <% end %>
     <% end %>
-    <div class="" id="btn_box">
+    <div class=" pt-1" id="btn_box">
       <% if shop_signed_in? %>
         <div class="shop_open_btn sm:hidden shadow" id="open_btn">
           <span></span>

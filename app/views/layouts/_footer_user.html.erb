@@ -1,26 +1,24 @@
 <div class="flex justify-evenly items-center sm:hidden bg-gray-600" id="guide_footer">
   <%= link_to root_path do %>
-  <div class="text-center pt-1" id="btn_box">
+  <div class="text-center pt-3" id="btn_box">
     <i class="fas fa-home text-2xl text-app"></i>
     <p class="text-center text-xxs text-white">ホーム</p>
   </div>
   <% end %>
-  <div class="text-center pt-1" id="btn_box">
+  <div class="text-center pt-3" id="btn_box">
     <i class="fas fa-ticket-alt text-2xl text-app"></i>
     <p class="text-center text-xxs text-white">クーポン</p>
   </div>
   <%= link_to users_topics_path do %>
-    <div class="text-center pt-1" id="btn_box">
+    <div class="text-center pt-3" id="btn_box">
       <i class="fas fa-info-circle text-2xl text-app"></i>
       <p class="text-center text-xxs text-white">トピックス</p>
     </div>
   <% end %>
-  <%= link_to :back do %>
-    <div class="text-center pt-1" id="btn_box">
-      <button id="close_btn_footer" type="button">
-        <i class="fas fa-backward text-2xl text-app"></i>
-        <p class="text-xxs text-white">戻る</p>
-      </button>
+    <%= link_to 'javascript:history.back()' do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-backward text-2xl text-app"></i>
+      <p class="text-xxs text-white">戻る</p>
     </div>
   <% end %>
 </div>

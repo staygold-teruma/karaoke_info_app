@@ -1,6 +1,6 @@
 class Shops::TopicsController < Shops::ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
-  before_action :authenticate_shop!, only: %i[new edit update destroy]
+  before_action :authenticate_shop!
   PER_PAGE = 6
 
   def index
@@ -12,12 +12,12 @@ class Shops::TopicsController < Shops::ApplicationController
   end
 
   def create
-    @shops_topic = current_shop.shops_topics.new(shops_topic_params)
+    @shops_topic = current_shop.topics.new(shops_topic_params)
     unless @shops_topic.image.cached?
       uploader = ImageUploader.new(@shops_topic, "image")
       my_file = open("/Users/staygoldteruma/Desktop/portfolio/karaoke_info_app/app/assets/images/topic.jpg")
       uploader.store!(my_file)
-      @topic.image = uploader
+      @shops_topic.image = uploader
     end
     @shops_topic.save
     if @shops_topic.save
@@ -32,26 +32,22 @@ class Shops::TopicsController < Shops::ApplicationController
   def edit; end
 
   def update
-    @topic.update!(topic_params)
-    redirect_to @topic
+    @shops_topic.update!(topic_params)
+    redirect_to @shops_topic
   end
 
   def destroy
-    @topic.destroy!
+    @shops_topic.destroy!
     redirect_to topics_path
   end
 
   private
 
   def set_topic
-    @shops_topic = if shop_signed_in?
-                     current_shop.shops_topics.find(params[:id])
-                   else
-                     Topic.find(params[:id])
-                   end
+    @shops_topic = current_shop.topics.find(params[:id])
   end
 
   def topic_params
-    params.require(:shops_topic).permit(:title, :content, :image)
+    params.require(:topic).permit(:title, :content, :image)
   end
 end
