@@ -39,3 +39,22 @@ ja:
         lite_plan: 'ライト飲み放題'
         variety_plan: 'バラエティ飲み放題'
         deluxe_plan: 'デラックス飲み放題'
+    user:
+      sex:
+        unselected: '未選択'
+        male: '男性'
+        female: '女性'
+        other: 'その他'
+      occupation:
+        unselected: '未選択'
+        elementary_school_student: '小学生'
+        middle_school_student: '中学生'
+        high_school_student: '高校生'
+        junior_college_or_professional_student: '短大生、専門学生'
+        univercity_student: '大学生、大学院生'
+        company_employeeor_civil_servant: ''会社員、公務員
+        executive_or_self_employed: '会社経営、自営業'
+        house_maker: '専業主夫、専業主婦'
+        part_timer: 'パート、アルバイト'
+        unemployed: '無職'
+        other: 'その他'
