@@ -53,14 +53,6 @@
       </ul>
     </div>
   </div>
-  <div class="flex sm:hidden" id="hidden_menu_shop">
-    <div class="mt-1 mr-1">
-      <%= link_to "店舗情報編集", edit_shop_registration_path, class: "nav_btn_edit text-xxs px-2" %>
-    </div>
-    <div class="mt-1 mr-1">
-      <%= link_to "ログアウト", destroy_shop_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }, class: "nav_btn_sign_out text-xxs px-4" %>
-    </div>
-  </div>
   <div class="w-1/2 xl:w-2/5" id="app_concept">
     <div class="w-1/2 xl:w-2/5" id="app_title">
       <div class="md:mr-20 xl:mr-12">
@@ -78,4 +70,11 @@
       <span class="text-xs text-white">料金案内開始</span>
     </button>
   </div>
+  <div class="menu_open_btn sm:hidden shadow" id="open_btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
+
+<div class="sm:hidden" id="hidden_wrapper"></div>

@@ -9,6 +9,8 @@ class FeeGuidesController < ApplicationController
     @fee_guide = FeeGuide.new
     @topics_five = Topic.order(created_at: :desc).limit(5)
     @topics_three = Topic.order(created_at: :desc).limit(3)
+    @user = current_user
+    @shop = current_shop
   end
 
   def create

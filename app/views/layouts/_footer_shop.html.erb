@@ -1,7 +1,32 @@
-<div class="bg-app_bg flex justify-end items-center md:hidden" id="footer_wrapper_shop">
-  <div class="mx-2 shadow" id="open_btn">
-    <span></span>
-    <span></span>
-    <span></span>
+<div class="flex justify-evenly items-center md:hidden bg-app_bg" id="guide_footer">
+  <%= link_to root_path do %>
+  <div class="text-center pt-3" id="btn_box">
+    <i class="fas fa-home text-2xl text-app"></i>
+    <p class="text-center text-xxs">ホーム</p>
   </div>
+  <% end %>
+  <%= link_to shops_topics_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-info-circle text-2xl text-app"></i>
+      <p class="text-center text-xxs">トピックス</p>
+    </div>
+  <% end %>
+  <%= link_to main_plans_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-couch text-2xl text-app"></i>
+      <p class="text-center text-xxs">ルーム料金</p>
+    </div>
+  <% end %>
+  <%= link_to drink_plans_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-coffee text-2xl text-app"></i>
+      <p class="text-center text-xxs">ドリンク料金</p>
+    </div>
+  <% end %>
+  <%= link_to 'javascript:history.back()' do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-backward text-2xl text-app"></i>
+      <p class="text-xxs">戻る</p>
+    </div>
+  <% end %>
 </div>

@@ -4,6 +4,7 @@ ja:
       main_plan: 料金
       drink_plan: 料金
       fee_info: 料金案内
+      user: ユーザー
     attributes:
       main_plan:
         name: 料金名
@@ -33,6 +34,11 @@ ja:
         usage_time: ご利用時間
         number_of_customers: 合計人数
         total_fee: ご利用料金
+      user:
+        name: ユーザーネーム
+        birthday: 誕生日
+        sex: 性別
+        occupation: 職業
   views:
     pagination:
       first: '&laquo; 最初'

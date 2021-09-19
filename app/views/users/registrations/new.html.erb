@@ -1,53 +1,52 @@
-<div class="bg-top-image bg-cover bg-no-repeat bg-center" id="header_user">
-  <div class="w-1/2 xl:w-2/5" id="app_title_user">
-    <div class="md:mr-20 xl:mr-12">
-      <h1 class="text-white text-center text-xs sm:text-sm md:text-base lg:text-lg mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
-      <p class="text-app text-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl">iko!KARA</p>
-    </div>
-  </div>
-  <ul class="hidden sm:flex" id="user_top_nav_user">
-    <li class="text-white px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">
-      <%= link_to "ホーム", root_path %>
-    </li>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">ログイン</li>
-  </ul>
-</div>
-<div class="pb-6 mt-16 sm:mt-12" id="sign_wrapper">
+<% content_for :title do %>
+    ユーザー登録
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0">
+    <%= render "layouts/header_sign_user" %>
+  </div> 
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
+<% end %>
+
+<div id="margin_wrapper"></div>
+<div class="pb-24 mt-6 sm:mt-12" id="sign_wrapper">
   <h2 class="page_title">ユーザー登録</h2>
-  <div class="border-2 border-app rounded-xl shadow-lg w-5/6 mx-auto py-9 max-w-3xl mb-6">
-    <%= form_for(resource, as: resource_name, url: user_registration_path(resource_name)) do |f| %>
+  <div class="border-2 border-app rounded-xl shadow-lg w-11/12 sm:w-5/6 mx-auto py-6 sm:py-9 max-w-3xl sm:mb-6">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
-
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="flex justify-between items-center mb-1 w-11/12">
-          <%= f.label :email, "メールアドレス", class: "text-sm" %>
+      <div class="field mb-3 w-5/6 mx-auto">
+        <%= f.label :name %>
+        <%= f.text_field :name, autocomplete: "name", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
+      </div>
+      <div class="field mb-3 w-5/6 mx-auto">
+        <div class="flex justify-between items-center mb-1 w-full">
+          <%= f.label :email, "メールアドレス" %>
           <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
         </div>
-        <%= f.email_field :email, autocomplete: "email", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-11/12" %>
+        <%= f.email_field :email, autocomplete: "email", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
       </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="flex justify-between items-center mb-1 w-11/12">
+      <div class="field mb-3 w-5/6 mx-auto">
+        <div class="flex justify-between items-center mb-1 w-full">
           <div>
-            <%= f.label :password, "パスワード", class: "text-sm" %>
+            <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
             <em class="text-xs text-gray-400 -ml-3 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
             <% end %>
           </div>
           <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
         </div>
-        <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-11/12" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
       </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="flex justify-between items-center mb-1 w-11/12">
-        <%= f.label :password_confirmation, "パスワード確認", class: "text-sm " %>
-        <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+      <div class="field mb-3 w-5/6 mx-auto">
+        <div class="flex justify-between items-center mb-1 w-full">
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
         </div>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-11/12" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
       </div>
-      <div class="actions mt-6 w-5/6 sm:w-2/3 mx-auto flex justify-center">
+      <div class="actions mt-6 w-2/3 mx-auto flex justify-center">
         <%= f.submit "ユーザー登録", class: "text-sm bg-blue-500 hover:bg-blue-700 text-white px-2 py-2 rounded cursor-pointer" %>
       </div>
     <% end %>

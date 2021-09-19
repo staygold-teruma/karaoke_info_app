@@ -1,0 +1,79 @@
+<div class="bg-black bg-opacity-70 p-6 flex items-center sm:hidden" id="side_menu_user">
+  <div class="w-full mb-20">
+    <div class="w-full flex justify-center">
+      <div class="w-2/5 flex justify-center items-center">
+        <div class="border border-gray-400 rounded-full text-center overflow-hidden" id="img_field user_avatar" >
+          <% if user_signed_in? %>
+            <% if current_user.avatar.blank? %>
+              <%= image_tag "/assets/profile_icon.png", id: "avatar_img" %>
+            <% else %>
+              <%= image_tag current_user.avatar.url %>
+            <% end %>
+          <% else %>
+            <%= image_tag "/assets/profile_icon.png", id: "avatar_img" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="w-3/5 flex justify-center items-center">
+        <div class="">
+          <% if user_signed_in? %>
+            <p class="text-white text-center"><%= @user.name %></p>
+          <% else %>
+            <p class="text-white text-center">ログインしていません</p>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <div>
+            <p class="text-white">最終ログイン</p>
+            <p><%= @user.last_sign_in_at %></p>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <ul class="w-full mx-auto mt-12 px-6 py-6 bg-app_bg rounded-lg">
+      <% if user_signed_in? %>
+        <%= link_to(destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }) do %>
+          <li class="flex justify-between" id="user_side_list">
+              <div>
+                <p id="side_list_title">ログアウト</p>
+              </div>
+              <div>
+                <i class="fas fa-chevron-right" id="side_list_icon"></i>
+              </div>
+          </li>
+        <% end %>
+        <%= link_to(edit_user_registration_path) do %>
+          <li class="flex justify-between" id="user_side_list">
+            <div>
+              <p id="side_list_title">ユーザー編集</p>
+            </div>
+            <div>
+              <i class="fas fa-chevron-right" id="side_list_icon"></i>
+            </div>
+          </li>   
+        <% end %>
+      <% else %>
+        <%= link_to(new_user_session_path) do %>
+          <li class="flex justify-between border-t border-gray-500" id="user_side_list">
+            <div>
+              <p id="side_list_title">ログイン</p>
+            </div>
+            <div>
+              <i class="fas fa-chevron-right" id="side_list_icon"></i>
+            </div>
+          </li>
+        <% end %>
+        <%= link_to(new_user_registration_path) do %>
+          <li class="flex justify-between" id="user_side_list">
+            <div>
+              <p class="text-app font-bold" id="side_list_title">ユーザー登録</p>
+            </div>
+            <div>
+              <i class="fas fa-chevron-right" id="side_list_icon"></i>
+            </div>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+</div>

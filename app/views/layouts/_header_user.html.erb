@@ -6,9 +6,29 @@
     </div>
   </div>
   <ul class="hidden sm:flex" id="user_top_nav_user">
-    <li class="text-white px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">クーポン</li>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">マイページ</li>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">ログイン</li>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">【会員登録】</li>
+    <li class="text-white px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
+      <%= link_to "ホーム", root_path %>
+    </li>
+    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
+      クーポン
+    </li>
+    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
+      <%= link_to "トピックス", users_topics_path %>
+    </li>
+    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
+      マイページ
+    </li>
+    <% if user_signed_in? %>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base hover:underline">
+        <%= link_to "ログアウト", destroy_user_session_path %>
+      </li> 
+    <% else %>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base hover:underline">
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base hover:underline">
+        <%= link_to "【ユーザー登録】", new_user_registration_path %>
+      </li>
+    <% end %>
   </ul>
 </div>

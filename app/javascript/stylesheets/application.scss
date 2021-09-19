@@ -58,6 +58,12 @@
   @apply border-2 border-app px-1 py-2 text-center text-xxs sm:text-sm;
 }
 
+.nav_btn_sign_up {
+  @apply border-2 border-app bg-white hover:bg-app text-app hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
+.nav_btn_sign_in {
+  @apply border-2 border-blue-500 bg-white hover:bg-blue-500 text-blue-500 hover:text-white py-1 px-3 rounded-full shadow font-bold;
+}
 .nav_btn_edit {
   @apply border-2 border-green-500 bg-white hover:bg-green-500 text-green-500 hover:text-white py-1 px-3 rounded-full shadow font-bold;
 }
@@ -76,11 +82,11 @@
   @apply border border-app text-sm md:border-0 bg-white md:bg-app_bg shadow md:shadow-none md:text-gray-600 hover:text-app leading-6 md:leading-none mt-1 sm:mt-0 text-center md:text-left;
 }
 
-.q {
+.question {
   @apply text-xs bg-app border border-app rounded-t-lg px-2 py-1;
 }
 
-.a {
+.answer {
   @apply text-xs border bg-white border-app rounded-b-lg px-2 py-1;
 }
 
@@ -172,11 +178,11 @@ p {
   }
   #user_top_nav_user {
     position: absolute;
-    top: 5%;
+    top: 8%;
     right: 2%;
     @include mq-down(lg) {
-      top: 5%;
-      right: 0;
+      top: 8%;
+      right: 2%;
     }
     li {
       text-shadow: 2px 2px 2px black;
@@ -230,8 +236,17 @@ p {
 
 //ログイン部品
 #sign_wrapper {
-  @include mq-down(xls) {
+  margin-top: 50px;
+  @include mq-down(sm) {
     margin-top: 30px;
+  }
+}
+
+#margin_wrapper {
+  width: 100%;
+  height: 150px;
+  @include mq-down(md) {
+    height: 120px;
   }
 }
 
@@ -305,10 +320,10 @@ p {
 #side_menu_shop_f {
   @include mq-down(md) {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 100px);
     position: fixed;
     left: -1000px;
-    top: 0;
+    bottom: 0;
     z-index: 2;
   }
   .side_li_title {
@@ -317,10 +332,10 @@ p {
       font-size: 20px;
     }
     @include mq-down(sm) {
-      font-size: 20px;
+      font-size: 16px;
     }
     @include mq-down(xls) {
-      font-size: 16px;
+      font-size: 14px;
     }
   }
   .side_li_menu {
@@ -330,7 +345,7 @@ p {
       font-size: 16px;
     }
     @include mq-down(sm) {
-      height: 50px;
+      height: 30px;
       font-size: 14px;
     }
     @include mq-down(xls) {
@@ -344,12 +359,34 @@ p {
         line-height: 60px;
       }
       @include mq-down(sm) {
-        line-height: 50px;
+        line-height: 30px;
       }
     }
   }
 }
 #side_menu_shop_f.active {
+  left: 0;
+}
+
+#side_menu_user {
+  width: 100%;
+  height: calc(100% - 100px);
+  position: fixed;
+  bottom: 0;
+  left: -1000px;
+  z-index: 2;
+  #user_side_list {
+    padding: 0 10px;
+    height: 50px;
+    border-bottom: rgba(107, 114, 128) 1px solid;
+    #side_list_title,
+    #side_list_icon {
+      line-height: 50px;
+    }
+  }
+}
+
+#side_menu_user.active {
   left: 0;
 }
 
@@ -504,11 +541,6 @@ p {
   transform: translateY(0) rotate(-45deg);
   top: 5px;
   left: 4px;
-}
-
-.shop_open_btn {
-  position: fixed;
-  left: 10%;
 }
 
 // 各プランフッター
@@ -762,7 +794,13 @@ p {
   background-position: 47%;
   position: relative;
   @include mq-down(sm) {
-    height: 30vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-position: 50%;
+    z-index: 2;
   }
   #shop_nav {
     position: absolute;
@@ -830,16 +868,25 @@ p {
     top: 60%;
     left: 0;
     transform: translate(0, -50%);
+    @include mq-down(sm) {
+      position: fixed;
+      top: 50px;
+      left: 0;
+      transform: translate(0, -50%);
+    }
+    @include mq-down(xls) {
+      width: 50%;
+    }
     h1 {
       text-shadow: 2px 2px 2px black;
       @include mq-down(xxs) {
-        font-size: 12px;
+        font-size: 10px;
       }
     }
     p {
       text-shadow: 2px 2px 2px black;
       @include mq-down(xxs) {
-        font-size: 36px;
+        font-size: 30px;
       }
     }
   }
@@ -867,6 +914,21 @@ p {
     right: 20%;
     transform: translate(50%, 0);
   }
+  .menu_open_btn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    @include mq-down(sm) {
+      position: fixed;
+      top: 25px;
+      right: 20px;
+    }
+  }
+}
+
+#hidden_wrapper {
+  width: 100%;
+  height: 100px;
 }
 
 #app_margin {
@@ -927,6 +989,11 @@ p {
       }
       #tutorial_img_bottom {
         width: 100%;
+      }
+    }
+    #xls_br {
+      @include mq-down(xls) {
+        display: block;
       }
     }
   }
@@ -1066,8 +1133,21 @@ p {
   position: absolute;
   top: 60vh;
   @include mq-down(sm) {
-    top: 30vh;
+    top: 100px;
     padding-bottom: 120px;
+  }
+}
+
+#close_btn {
+  width: 58px;
+  height: 58px;
+  position: fixed;
+  right: 20px;
+  top: 60vh;
+  @include mq-down(sm) {
+    right: 0;
+    top: auto;
+    bottom: 70px;
   }
 }
 
@@ -1234,10 +1314,20 @@ p {
   @include mq-down(md) {
     min-width: 320px;
   }
-  #close_btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+  #step_num,
+  #step_title {
+    @include mq-down(xls) {
+      font-size: 14px;
+    }
+  }
+  #step_num,
+  #step_title_sm {
+    text-shadow: 1px 1px 1px black;
+  }
+  #radio_title {
+    @include mq-down(xls) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -1247,20 +1337,30 @@ p {
     display: inline-block;
     text-align: justify;
     text-align-last: justify;
+    @include mq-down(sm) {
+      width: 55px;
+    }
   }
   #num_customers {
+    font-size: 16px;
     padding-left: 6px;
     width: 45px;
-    height: 25px;
+    height: 30px;
     border: gray 1px solid;
     border-radius: 8px;
+    @include mq-down(sm) {
+      font-size: 14px;
+      padding-left: 3px;
+      width: 40px;
+      height: 25px;
+    }
   }
 }
 #fee_guide_select {
   select {
-    font-size: 12px;
-    width: 150px;
-    height: 30px;
+    font-size: 16px;
+    width: 200px;
+    height: 40px;
     padding-left: 5px;
     padding-bottom: 2px;
     background: white;
@@ -1270,7 +1370,7 @@ p {
 }
 
 #topics_form_wrapper {
-  max-width: 700px;
+  max-width: 600px;
   #img_field {
     width: 100px;
     height: 100px;
@@ -1302,6 +1402,7 @@ p {
     padding: 10px;
     max-width: 320px;
     @include mq-down(md) {
+      max-width: 350px;
       min-width: 300px;
     }
     @include mq-down(xls) {
@@ -1383,5 +1484,52 @@ p {
     a:hover {
       color: orange;
     }
+  }
+}
+
+#user_birthday_1i,
+#user_birthday_2i {
+  width: 80px;
+  height: 30px;
+  border: rgb(156, 163, 175) 1px solid;
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+#user_birthday_2i {
+  width: 60px;
+  padding-left: 15px;
+}
+
+#user_sex,
+#user_occupation {
+  border: rgb(156, 163, 175) 1px solid;
+  border-radius: 10px;
+  padding-left: 10px;
+  height: 30px;
+}
+
+#user_sex {
+  width: 100px;
+}
+
+#user_occupation {
+  width: 180px;
+  @include mq-down(xxs) {
+    width: 160px;
+  }
+}
+
+.user_avatar {
+  width: 150px;
+  height: 150px;
+  @include mq-down(xxs) {
+    width: 100px;
+    height: 100px;
+  }
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 }
