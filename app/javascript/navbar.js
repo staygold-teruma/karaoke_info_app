@@ -12,14 +12,5 @@ document.addEventListener('turbolinks:load', function () {
         $(this).children('.dd_menu_sub').removeClass('open');
       }
     );
-
-    $('#open_btn').on('click touchend', function () {
-      if ($('#modal').is('.scale-100')) {
-        $('#modal, #close_btn_footer').removeClass('scale-100');
-        $('#app_guide_wrapper').removeClass('hidden');
-      }
-      $(this).toggleClass('active');
-      $('#side_menu_shop, #side_menu_shop_f, #side_menu_user').toggleClass('active');
-    });
   });
 });

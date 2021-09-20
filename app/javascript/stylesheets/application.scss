@@ -150,18 +150,21 @@ p {
   width: 100%;
   height: 150px;
   @include mq-down(md) {
-    height: 120px;
+    height: 100px;
   }
   #app_title_user {
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(0, -50%);
-    @include mq-down(md) {
-      transform: translate(-10%, -50%);
-    }
-    @include mq-down(xxs) {
+    transform: translate(-10%, -50%);
+    @include mq-down(sm) {
+      position: fixed;
+      top: 50px;
+      left: 0;
       transform: translate(0, -50%);
+    }
+    @include mq-down(xls) {
+      width: 50%;
     }
     h1 {
       text-shadow: 2px 2px 2px black;
@@ -190,6 +193,16 @@ p {
     li:hover {
       font-weight: bold;
       text-shadow: none;
+    }
+  }
+  .menu_open_btn {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    @include mq-down(sm) {
+      position: fixed;
+      top: 25px;
+      right: 20px;
     }
   }
 }
@@ -225,11 +238,9 @@ p {
 
 #main_contents_user {
   width: 100%;
-  padding-top: 150px;
   padding-bottom: 30px;
   @include mq-down(md) {
     width: 100%;
-    padding-top: 120px;
     padding-bottom: 95px;
   }
 }
@@ -246,7 +257,7 @@ p {
   width: 100%;
   height: 150px;
   @include mq-down(md) {
-    height: 120px;
+    height: 100px;
   }
 }
 
@@ -293,10 +304,11 @@ p {
       font-size: 16px;
     }
     @include mq-down(sm) {
-      height: 50px;
+      height: 45px;
       font-size: 14px;
     }
     @include mq-down(xls) {
+      height: 40px;
       font-size: 10px;
     }
     a {
@@ -307,7 +319,10 @@ p {
         line-height: 60px;
       }
       @include mq-down(sm) {
-        line-height: 50px;
+        line-height: 45px;
+      }
+      @include mq-down(xls) {
+        line-height: 40px;
       }
     }
   }
@@ -329,7 +344,7 @@ p {
   .side_li_title {
     font-size: 16px;
     @include mq-down(md) {
-      font-size: 20px;
+      font-size: 16px;
     }
     @include mq-down(sm) {
       font-size: 16px;
@@ -459,6 +474,9 @@ p {
   #nav_main {
     width: 100%;
     height: 100%;
+    @include mq-down(md) {
+      width: calc(100% - 80px);
+    }
     #logo_sm {
       width: 100px;
       height: 35px;
@@ -554,6 +572,14 @@ p {
   .btn_link_new {
     width: 160px;
   }
+}
+
+#index_create {
+  width: 70px;
+  height: 70px;
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
 }
 
 // メインプラン一覧表示
@@ -1527,6 +1553,26 @@ p {
     width: 100px;
     height: 100px;
   }
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.user_avatar_side {
+  width: 150px;
+  height: 150px;
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.user_avatar_show {
+  width: 200px;
+  height: 200px;
   img {
     object-fit: cover;
     width: 100%;

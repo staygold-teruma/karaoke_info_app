@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   resources :fee_guides
   resources :main_plans
   resources :drink_plans
+  resources :users, only: :show
 end

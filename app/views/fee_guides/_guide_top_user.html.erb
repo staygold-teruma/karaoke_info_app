@@ -12,7 +12,7 @@
     </li>
     <% if user_signed_in? %>
       <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm  hover:underline">
-        マイページ
+        <%= link_to "マイページ", user_path(current_user.id) %>
       </li>
       <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm hover:underline">
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>

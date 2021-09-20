@@ -15,10 +15,21 @@
       <p class="text-center text-xxs text-white">トピックス</p>
     </div>
   <% end %>
-  <div class="text-center pt-3" id="btn_box">
-    <i class="fas fa-user text-app text-2xl"></i>
-    <p class="text-center text-xxs text-white">マイページ</p>
-  </div>
+  <% if user_signed_in? %>
+    <%= link_to user_path(current_user.id) do %>
+      <div class="text-center pt-3" id="btn_box">
+        <i class="fas fa-user text-app text-2xl"></i>
+        <p class="text-center text-xxs text-white">マイページ</p>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to new_user_session_path do %>
+      <div class="text-center pt-3" id="btn_box">
+        <i class="fas fa-sign-in-alt text-app text-2xl"></i>
+        <p class="text-center text-xxs text-white">ログイン</p>
+      </div>
+    <% end %>
+  <% end %>
   <%= link_to 'javascript:history.back()' do %>
     <div class="text-center pt-3" id="btn_box">
       <i class="fas fa-backward text-2xl text-app"></i>
