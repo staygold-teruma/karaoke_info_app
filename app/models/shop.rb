@@ -8,6 +8,8 @@ class Shop < ApplicationRecord
          :recoverable, :rememberable, :validatable
   mount_uploader :image, ImageUploader
 
+  attr_accessor :current_password
+
   include JpPrefecture
   jp_prefecture :prefecture_code
 

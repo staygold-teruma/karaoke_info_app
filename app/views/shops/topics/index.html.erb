@@ -1,0 +1,30 @@
+<% content_for :title do %>
+    TOPICS一覧
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0 z-10">
+    <%= render "layouts/header_shop" %>
+  </div> 
+<% end %>
+<% content_for :footer do %>
+  <div class="fixed w-full bottom-0 left-0 md:hidden">
+    <%= render "layouts/footer_shop" %>
+  </div>
+<% end %>
+
+<div class="flex">
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+  <div id="main_contents_shop">
+    <h1 class="page_title mb-6">TOPICS一覧</h1>
+    <%= render "topics_index_shop" %>
+  </div>
+</div>
+
+<div class="rounded-full bg-app" id="index_create">
+  <%= link_to new_shops_topic_path do %>
+    <p class="text-center mt-4"><i class="fas fa-plus text-white text-2xl"></i></p>
+    <p class="text-xxs font-black text-white text-center">新規登録</p>
+  <% end %>
+</div>

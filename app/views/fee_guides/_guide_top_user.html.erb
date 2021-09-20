@@ -1,15 +1,33 @@
 <div class="flex sm:justify-center lg:justify-end items-center bg-top-image bg-cover bg-no-repeat bg-center" id="fee_guide_top">
-  <div class="w-1/2 xl:w-2/5" id="app_title">
+  <div class="w-1/2 xl:w-2/5 pr-4 sm:pr-0" id="app_title">
     <div class="md:mr-20 xl:mr-12">
-      <h1 class="text-white text-center sm:text-base md:text-lg lg:text-2xl mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
-      <p class="text-app text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">iko!KARA</p>
+      <h1 class="text-white text-center text-xs sm:text-base md:text-lg lg:text-2xl mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
+      <p class="text-app text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl">iko!KARA</p>
     </div>
   </div>
   <ul class="hidden sm:flex" id="user_top_nav">
-    <li class="text-white px-4 sm:text-sm lg:text-base hover:underline">クーポン</li>
-    <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base hover:underline">マイページ</li>
-    <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base hover:underline">ログイン</li>
-    <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base hover:underline">【会員登録】</li>
+    <li class="text-white px-4 sm:text-xs lg:text-sm hover:underline">クーポン</li>
+    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs lg:text-sm hover:underline">
+      <%= link_to "トピックス", users_topics_path %>
+    </li>
+    <% if user_signed_in? %>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm  hover:underline">
+        <%= link_to "マイページ", user_path(current_user.id) %>
+      </li>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm hover:underline">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
+      </li> 
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm hover:underline">
+        <%= link_to "ユーザー編集", edit_user_registration_path %>
+      </li> 
+    <% else %>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm hover:underline">
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-xs lg:text-sm hover:underline">
+        <%= link_to "【ユーザー登録】", new_user_registration_path %>
+      </li>
+    <% end %>
   </ul>
   <div>
     <button id="modal_btn" class="focus:outline-none hidden sm:block p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">
@@ -20,4 +38,11 @@
       <span class="text-xs text-white">料金案内開始</span>
     </button>
   </div>
+  <div class="menu_open_btn sm:hidden shadow" id="open_btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
+
+<div class="sm:hidden" id="hidden_wrapper"></div>

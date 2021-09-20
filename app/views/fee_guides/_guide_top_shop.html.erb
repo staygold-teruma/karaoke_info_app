@@ -37,10 +37,10 @@
           <i class="fas fa-info-circle text-app mr-1"></i>TOPICS<i class="fas fa-chevron-down text-white ml-1"></i>
           <ul class="dd_menu_sub">
             <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "TOPICS一覧", topics_path %>
+              <%= link_to "TOPICS一覧", shops_topics_path %>
             </li>
             <li class="text-xxs lg:text-xs text-white">
-              <%= link_to "TOPICS投稿", new_topic_path, id: "dd_menu_last" %>
+              <%= link_to "TOPICS投稿", new_shops_topic_path, id: "dd_menu_last" %>
             </li>
           </ul>
         </li>
@@ -54,9 +54,11 @@
     </div>
   </div>
   <div class="w-1/2 xl:w-2/5" id="app_concept">
-    <div>
-      <h1 class="text-white text-center sm:text-base md:text-lg lg:text-2xl mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
-      <p class="text-app text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">iko!KARA</p>
+    <div class="w-1/2 xl:w-2/5" id="app_title">
+      <div class="md:mr-20 xl:mr-12">
+        <h1 class="text-white text-center sm:text-base md:text-lg lg:text-2xl mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
+        <p class="text-app text-center text-5xl sm:text-6xl md:text-7xl lg:text-8xl">iko!KARA</p>
+      </div>
     </div>
   </div>
   <div>
@@ -68,4 +70,11 @@
       <span class="text-xs text-white">料金案内開始</span>
     </button>
   </div>
+  <div class="menu_open_btn sm:hidden shadow" id="open_btn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
+
+<div class="sm:hidden" id="hidden_wrapper"></div>

@@ -1,0 +1,25 @@
+<div class="bg-top-image bg-cover bg-no-repeat bg-center" id="header_user">
+  <div class="w-1/2 xl:w-2/5" id="app_title_user">
+    <div class="md:mr-20 xl:mr-12">
+      <h1 class="text-white text-center text-xs sm:text-sm md:text-base lg:text-lg mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
+      <p class="text-app text-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl">iko!KARA</p>
+    </div>
+  </div>
+  <ul class="hidden sm:flex" id="user_top_nav_user">
+    <li class="text-white px-4 hover:underline sm:text-sm lg:text-base xl:text-lg">
+      <%= link_to "ホーム", root_path %>
+    </li>
+    <% if user_signed_in? %>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base xl:text-lg hover:underline">
+        <%= link_to "ログアウト", destroy_user_session_path %>
+      </li> 
+    <% else %>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base xl:text-lg hover:underline">
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <li class="text-white border-l-2 border-gray-200 px-4 sm:text-sm lg:text-base xl:text-lg hover:underline">
+        <%= link_to "【ユーザー登録】", new_user_registration_path %>
+      </li>
+    <% end %>
+  </ul>
+</div>
