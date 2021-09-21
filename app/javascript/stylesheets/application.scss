@@ -1694,3 +1694,18 @@ p {
 .list_title_lite {
   text-shadow: 1px 1px 1px white;
 }
+
+#page_top {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 100px;
+  right: 10px;
+  #triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid #ff5500;
+  }
+}
