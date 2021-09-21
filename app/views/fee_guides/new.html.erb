@@ -190,10 +190,12 @@
         </div>
       <% end %>
     <% else %>
-      <div class="text-center pt-3" id="btn_box">
-        <i class="fas fa-ticket-alt text-2xl text-app"></i>
-        <p class="text-center text-xxs text-white">クーポン</p>
-      </div>
+      <%= link_to users_topics_path do %>
+        <div class="text-center pt-3" id="btn_box">
+          <i class="fas fa-info-circle text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">トピックス</p>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="flex items-center justify-evenly" id="footer_btn_right">
@@ -205,10 +207,10 @@
         </div>
       <% end %>
     <% else %>
-      <%= link_to users_topics_path do %>
+      <%= link_to static_pages_coupon_path do %>
         <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-info-circle text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">トピックス</p>
+          <i class="fas fa-ticket-alt text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">クーポン</p>
         </div>
       <% end %>
     <% end %>
@@ -221,20 +223,11 @@
           </div>
         <% end %>
       <% else %>
-        <% if user_signed_in? %>
-          <%= link_to user_path(current_user) do %>
-            <div class="text-center pt-2" id="btn_box user_box">
-              <i class="fas fa-user text-app text-2xl"></i>
-              <p class="text-center text-xxs text-white">マイページ</p>
-            </div>
-          <% end %>
-        <% else %>
-          <%= link_to new_user_session_path do %>
-            <div class="text-center pt-2" id="btn_box user_box">
-              <i class="fas fa-sign-in-alt text-app text-2xl"></i>
-              <p class="text-center text-xxs text-white">ログイン</p>
-            </div>
-          <% end %>
+        <%= link_to static_pages_alcohol_plan_path do %>
+          <div class="text-center pt-2" id="btn_box">
+            <i class="fas fa-beer text-app text-2xl"></i>
+            <p class="text-center text-xxs text-white">飲み放題</p>
+          </div>
         <% end %>
       <% end %>
     </div>

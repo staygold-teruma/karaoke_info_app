@@ -1,0 +1,125 @@
+<% content_for :title do %>
+    クーポン
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0 z-10">
+    <%= render "layouts/header_user" %>      
+  </div>
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
+<% end %>
+
+<div id="margin_wrapper"></div>
+<% if user_signed_in? %>
+  <div class="mx-auto mt-6 mb-3" id="coupon_wrapper">
+    <div id="coupon_body">
+      <h2 class="text-center text-lg sm:text-3xl sm:pt-12 mb-3" id="gift"><i class="fas fa-gift text-yellow-300"></i>「ikoKARA!」限定クーポン</h2>
+      <div class="mx-auto my-auto p-2 lg:w-3/4" id="coupon">
+        <div id="coupon_inner">
+          <div id="coupon_left">
+            <div class="text-sm sm:text-xl leading-none">ご利用料金から</div>
+            <div class="text-xl sm:text-4xl sm:pb-2" id="coupon_name">総額10%OFF</div>
+            <div class="mt-1 sm:mt-3 text-xs sm:text-base" id="coupon_alert">受付時にご提示ください</div>
+          </div>
+          <div id="coupon_right">
+            <div class="text-xxs sm:text-xl mb-1" id="coupon_liit">【有効期限】</div>
+            <div class="text-xs sm:text-base">2021年</div>
+            <div class="sm:mb-2 text-xs sm:text-base" id="coupon-day">11月30日</div>
+            <div><img src="/assets/logo.png" class="mx-auto" id="coupon_logo"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex justify-center items-center mx-auto pb-24 sm:pb-0" id="coupon_guide">
+    <div class="w-11/12 bg-gray-100">
+      <div class="mx-auto px-4 py-4">
+        <p class="text-center text-lg sm:text-2xl mb-2">【限定クーポンについて】</p>
+        <p class="text-center sm:text-xl text-red-500 mb-1"><i class="far fa-laugh-squint text-app mr-1"></i>いつでもどなたでも利用可能!</p>
+        <p class="hidden sm:block text-center text-red-500 text-sm sm:text-xl mb-1">PCの方はこの画面の写真画像をご提示ください</p>
+        <ul class="mt-3 text-sm mx-auto">
+          <li class="text-xs sm:text-base ml-6">※本券は１組様１回につき１枚のみ有効です。</li>
+          <li class="text-xs sm:text-base ml-6">※本券は他のクーポンとの併用はできません。</li>
+          <li class="text-xs sm:text-base ml-6">※有効期限なきものは無効です</li>
+          <li class="text-xs sm:text-base ml-6">
+          ※店舗別割引・クーポンにつきましては、
+          <br class="hidden" id="coupon_br">
+          &emsp;各店舗へご確認ください。
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="pb-16">
+    <div class="bg-app_bg py-5">
+      <p class="text-center mb-4">
+        クーポンをご利用いただくには
+        <br>
+        <span class="text-app text-xl">「ユーザー登録」</span>が必要です
+      </p>
+      <div class="w-3/5 bg-app hover:bg-yellow-600 mx-auto py-2 rounded-lg flex justify-center items-center sm:mb-6">
+        <%= link_to "ユーザー登録", new_user_registration_path, class: " text-white text-center", id: "registration_btn" %>
+      </div>
+    </div>
+    <div class="">
+      <div class="w-full mx-auto p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="tutorial_wrapper">
+        <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
+          <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">1</p>
+          <p class="text-sm text-center mb-5 sm:text-xs md:text-sm xl:text-base mt-5">スマホの場合は<br class="hidden" id="xls_br"><span class="text-app font-black">「MENU」</span>ボタンを押します</p>
+          <div class="flex">
+            <div class="mx-auto flex justify-end" id="tutorial_img_box">
+              <img src="/assets/guide3.png" alt="" id="tutorial_img">
+            </div>
+            <div class="w-2/5 my-auto text-center">
+              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-4xl"></i></div>           
+              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-4xl"></i></div> 
+              <p class="text-xl">NEXT</p>
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
+          <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">2</p>
+          <p class="text-sm xl:text-base text-center mt-5">PCはページ右上から、<br class="hidden" id="xls_br">スマホは下記ページの</p>
+          <p class="text-sm xl:text-base text-center mb-5"><span class="text-app font-black">「ユーザー登録」</span>を押します</p>
+          <div class="flex">
+            <div class="mx-auto flex justify-end" id="tutorial_img_box">
+              <img src="/assets/guide4.png" alt="" id="tutorial_img">
+            </div>
+            <div class="w-2/5 my-auto text-center">
+              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-4xl"></i></div>           
+              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-4xl"></i></div>       
+              <p class="text-xl">NEXT</p>
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
+          <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">3</p>
+          <p class="text-sm xl:text-base text-center mt-5">必要事項を入力して</p>
+          <p class="text-sm xl:text-base text-center mb-5"><span class="text-app font-black">「ユーザー登録」</span>ボタンを押します</p>
+          <div class="flex">
+            <div class="mx-auto flex justify-end" id="tutorial_img_box">
+              <img src="/assets/guide5.png" alt="" id="tutorial_img">
+            </div>
+            <div class="w-2/5 my-auto text-center">
+              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-4xl"></i></div>          
+              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-4xl"></i></div>       
+              <p class="text-xl">NEXT</p>
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
+          <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">4</p>
+          <p class="text-sm sm:text-xs md:text-sm xl:text-base text-center mt-5 mb-5"><span class="text-app font-black">「クーポン」</span>ボタンから<br class="hidden" id="xls_br"><span class="text-red-500 font-black">限定クーポンをGET!!</span></p>
+          <div class="mx-auto" id="tutorial_img_box">
+            <img src="/assets/coupon.png" alt="" id="tutorial_img_bottom">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render "layouts/side_menu_user" %>

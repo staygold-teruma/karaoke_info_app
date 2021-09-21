@@ -5,17 +5,19 @@
       <i class="fas fa-home text-app mr-2 text-lg"></i>HOME
     <% end %>
   </li>
-  <li class="side_li_title sm:mx-8 md:mx-3 md:py-3 md:pl-5 mb-3 md:mb-0">
+  <li class="side_li_title md:hidden sm:mx-8 md:mx-3 md:py-3 md:pl-5 mb-3 md:mb-0">
     <i class="fas fa-user-tie text-app mr-2 text-center md:text-left"></i>アカウント<i class="fas fa-chevron-down ml-2 text-white md:text-gray-600"></i>
     <ul class="flex md:block sm:mt-2 md:mt-0 md:pl-2">
       <li class="side_li_menu w-1/2 md:w-full md:pt-4 md:pb-2 border-r-0 rounded-l-lg">
         <%= link_to(destroy_shop_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }) do %>
-          <i class="fas fa-list-alt text-app mr-1 ml-1 hidden md:block"></i>ログアウト
+          <i class="fas fa-sign-out-alt text-app mr-1 ml-1 hidden md:block"></i>
+          ログアウト
         <% end %>
       </li>
       <li class="side_li_menu w-1/2 md:w-full text-center md:text-left md:pt-2 md:pb-2 rounded-r-lg">
         <%= link_to(edit_shop_registration_path) do %>
-          <i class="fas fa-folder-plus text-app mr-1 ml-1 hidden md:block"></i>店舗情報編集
+          <i class="fas fa-user-edit text-app mr-1 ml-1 hidden md:block"></i>
+          店舗情報編集
         <% end %>      
       </li>
     </ul>

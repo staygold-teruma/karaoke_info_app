@@ -35,7 +35,7 @@
         </div>
         <div class="mb-3">
           <p class="pl-3 py-1"><i class="fas fa-chevron-circle-right text-app mr-1"></i>誕生日</p>
-          <p class="pl-5 pb-2 border-b border-gray-500"><%= @user.birthday %></p>
+          <p class="pl-5 pb-2 border-b border-gray-500"><%= @user.birthday.strftime("%Y年%m月") %></p>
         </div>
         <div class="mb-3">
           <p class="pl-3 py-1"><i class="fas fa-chevron-circle-right text-app mr-1"></i>職業</p>
