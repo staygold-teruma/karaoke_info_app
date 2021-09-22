@@ -12,6 +12,7 @@ import 'jquery';
 import 'jquery.jpostal.js';
 import 'modal.js';
 import 'navbar.js';
+import 'pagetop.js';
 import 'postcode.js';
 import 'sidemenu.js';
 import 'stylesheets/application';

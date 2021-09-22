@@ -51,42 +51,44 @@
         <% end %>
       </div>
       <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mx-auto mt-3 mb-3 sm:mb-0 p-3" id="news_box">
-        <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center">
+        <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center text-xl">
           NEW!
         </div>
-        <% if shop_signed_in? %>
-          <% @topics_three.each do |shops_topic| %>
-            <%= link_to(shops_topic_path(shops_topic)) do %>
-              <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
-                <div class="flex">
-                  <i class="fas fa-chevron-circle-right text-app mr-1"></i>
-                  <div class="text-xs" id="news_day">
-                    <%= shops_topic.created_at.strftime('%m月%d日') %>
-                  </div>
-                  <div class="text-xs" id="news_title">
-                      <%= shops_topic.title %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        <% else %>
-          <% @topics_three.each do |users_topic| %>
-            <%= link_to(users_topic_path(users_topic)) do %>
-              <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
-                <div class="flex">
-                  <i class="fas fa-chevron-circle-right text-app mr-1"></i>
-                  <div class="text-xs" id="news_day">
-                    <%= users_topic.created_at.strftime('%m月%d日') %>
-                  </div>
-                  <div class="text-xs" id="news_title">
-                      <%= users_topic.title %>
+        <div class="mx-auto">
+          <% if shop_signed_in? %>
+            <% @topics_three.each do |shops_topic| %>
+              <%= link_to(shops_topic_path(shops_topic)) do %>
+                <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
+                  <div class="flex">
+                    <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+                    <div id="news_day">
+                      <%= shops_topic.created_at.strftime('%m月%d日') %>
+                    </div>
+                    <div id="news_title">
+                        <%= shops_topic.title %>
+                    </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>  
+          <% else %>
+            <% @topics_three.each do |users_topic| %>
+              <%= link_to(users_topic_path(users_topic)) do %>
+                <div class="mb-3 sm:mb-2 bg-gray-100 mx-auto" id="each_news">
+                  <div class="flex">
+                    <i class="fas fa-chevron-circle-right text-app mr-1"></i>
+                    <div class="hidden sm:flex" id="news_day">
+                      <%= users_topic.created_at.strftime('%m月%d日') %>
+                    </div>
+                    <div class="text-sm sm:text-base" id="news_title">
+                        <%= users_topic.title %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>  
+        </div>
       </div>
       <div class="hidden sm:block">
         <% if shop_signed_in? %>
@@ -169,9 +171,9 @@
     </div>
     <p class="text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
   </div>
-  <div class="py-2 sm:py-6">
-    <%= render "form_fee_guide" %>
-  </div>
+  
+  <%= render "form_fee_guide" %>
+
 </div>
 
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
@@ -190,10 +192,12 @@
         </div>
       <% end %>
     <% else %>
-      <div class="text-center pt-3" id="btn_box">
-        <i class="fas fa-ticket-alt text-2xl text-app"></i>
-        <p class="text-center text-xxs text-white">クーポン</p>
-      </div>
+      <%= link_to users_topics_path do %>
+        <div class="text-center pt-3" id="btn_box">
+          <i class="fas fa-info-circle text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">トピックス</p>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="flex items-center justify-evenly" id="footer_btn_right">
@@ -205,10 +209,10 @@
         </div>
       <% end %>
     <% else %>
-      <%= link_to users_topics_path do %>
+      <%= link_to static_pages_coupon_path do %>
         <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-info-circle text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">トピックス</p>
+          <i class="fas fa-ticket-alt text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">クーポン</p>
         </div>
       <% end %>
     <% end %>
@@ -221,20 +225,11 @@
           </div>
         <% end %>
       <% else %>
-        <% if user_signed_in? %>
-          <%= link_to user_path(current_user) do %>
-            <div class="text-center pt-2" id="btn_box user_box">
-              <i class="fas fa-user text-app text-2xl"></i>
-              <p class="text-center text-xxs text-white">マイページ</p>
-            </div>
-          <% end %>
-        <% else %>
-          <%= link_to new_user_session_path do %>
-            <div class="text-center pt-2" id="btn_box user_box">
-              <i class="fas fa-sign-in-alt text-app text-2xl"></i>
-              <p class="text-center text-xxs text-white">ログイン</p>
-            </div>
-          <% end %>
+        <%= link_to static_pages_alcohol_plan_path do %>
+          <div class="text-center pt-2" id="btn_box">
+            <i class="fas fa-beer text-app text-2xl"></i>
+            <p class="text-center text-xxs text-white">飲み放題</p>
+          </div>
         <% end %>
       <% end %>
     </div>

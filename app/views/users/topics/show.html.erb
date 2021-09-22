@@ -2,24 +2,12 @@
     TOPICS詳細
 <% end %>
 <% content_for :header do %>
-  <% if shop_signed_in? %>
-    <div class="fixed w-full top-0 left-0 z-10">
-      <%= render "layouts/header_shop" %>
-    </div> 
-  <% else %>
-    <div class="fixed w-full top-0 left-0 z-10">
-      <%= render "layouts/header_user" %>      
-    </div>
-  <% end %>  
+  <div class="fixed w-full top-0 left-0 z-10">
+    <%= render "layouts/header_user" %>      
+  </div>
 <% end %>
 <% content_for :footer do %>
-  <% if shop_signed_in? %>
-    <div class="fixed w-full bottom-0 left-0 md:hidden">
-      <%= render "layouts/footer_shop" %>
-    </div>
-  <% else %>
-    <%= render "layouts/footer_user" %>
-  <% end %>
+  <%= render "layouts/footer_user" %>
 <% end %>
 
 <div id="margin_wrapper"></div>
