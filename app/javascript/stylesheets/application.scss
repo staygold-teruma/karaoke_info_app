@@ -113,7 +113,7 @@
 }
 
 .list_alcohol {
-  @apply text-xs mx-2 px-2;
+  @apply text-base sm:text-sm mx-2 px-2;
 }
 
 @import 'tailwindcss/utilities';
@@ -932,12 +932,18 @@ p {
     h1 {
       text-shadow: 2px 2px 2px black;
       @include mq-down(xxs) {
-        font-size: 10px;
+        font-size: 14px;
+      }
+      @include mq-down(xls) {
+        font-size: 12px;
       }
     }
     p {
       text-shadow: 2px 2px 2px black;
       @include mq-down(xxs) {
+        font-size: 40px;
+      }
+      @include mq-down(xls) {
         font-size: 30px;
       }
     }
@@ -1018,10 +1024,12 @@ p {
     width: 200px;
   }
   @include mq-down(sm) {
-    width: 160px;
+    font-size: 15px;
+    width: 170px;
   }
   @include mq-down(xls) {
-    font-size: 10px;
+    width: 160px;
+    font-size: 12px;
   }
 }
 
@@ -1043,9 +1051,10 @@ p {
         width: 100%;
       }
     }
-    #xls_br {
-      @include mq-down(xls) {
-        display: block;
+    #tutorial_img_box_coupon {
+      width: 90%;
+      #tutorial_img_bottom {
+        width: 100%;
       }
     }
   }
@@ -1092,7 +1101,7 @@ p {
         width: 90px;
         line-height: 24px;
         @include mq-down(sm) {
-          width: 70px;
+          width: 90px;
           line-height: 16px;
         }
       }
@@ -1366,9 +1375,22 @@ p {
 
 // 料金案内フォーム
 #fee_guide_form {
-  min-width: 640px;
+  max-width: 640px;
   position: relative;
-  @include mq-down(md) {
+  @include mq-down(xl) {
+    width: 80%;
+    max-width: 800px;
+    min-width: 640px;
+  }
+  @include mq-down(sm) {
+    width: 90%;
+    min-width: 320px;
+  }
+  @include mq-down(xxs) {
+    width: 95%;
+    min-width: 320px;
+  }
+  @include mq-down(xls) {
     min-width: 320px;
   }
   #step_num,
@@ -1386,29 +1408,40 @@ p {
       font-size: 16px;
     }
   }
+  #fee_complement {
+    @include mq-down(xls) {
+      font-size: 12px;
+    }
+  }
 }
 
 #fee_guide_input {
   label {
-    width: 40px;
+    width: 60px;
     display: inline-block;
     text-align: justify;
     text-align-last: justify;
-    @include mq-down(sm) {
-      width: 55px;
+    @include mq-down(xls) {
+      width: 50px;
     }
   }
   #num_customers {
     font-size: 16px;
     padding-left: 6px;
-    width: 45px;
+    width: 50px;
     height: 30px;
     border: gray 1px solid;
     border-radius: 8px;
     @include mq-down(sm) {
       font-size: 14px;
       padding-left: 3px;
-      width: 40px;
+      width: 50px;
+      height: 25px;
+    }
+    @include mq-down(xls) {
+      font-size: 14px;
+      padding-left: 3px;
+      width: 45px;
       height: 25px;
     }
   }
@@ -1700,7 +1733,7 @@ p {
   height: 50px;
   position: fixed;
   bottom: 100px;
-  right: 10px;
+  right: 30px;
   #triangle {
     width: 0;
     height: 0;

@@ -10,10 +10,13 @@
       <%= link_to "ホーム", root_path %>
     </li>
     <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
+      <%= link_to "トピックス", users_topics_path %>
+    </li>
+    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
       <%= link_to "クーポン", static_pages_coupon_path %>
     </li>
     <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
-      <%= link_to "トピックス", users_topics_path %>
+      <%= link_to "飲み放題", static_pages_alcohol_plan_path %>
     </li>
     <% if user_signed_in? %>
       <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-sm lg:text-base hover:underline">
