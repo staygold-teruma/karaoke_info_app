@@ -180,7 +180,7 @@ p {
   }
   #app_title_user {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 0;
     transform: translate(-10%, -50%);
     @include mq-down(sm) {
@@ -205,22 +205,6 @@ p {
       }
     }
   }
-  #user_top_nav_user {
-    position: absolute;
-    top: 8%;
-    right: 2%;
-    @include mq-down(lg) {
-      top: 8%;
-      right: 2%;
-    }
-    li {
-      text-shadow: 2px 2px 2px black;
-    }
-    li:hover {
-      font-weight: bold;
-      text-shadow: none;
-    }
-  }
   .menu_open_btn {
     position: absolute;
     top: 5%;
@@ -230,6 +214,14 @@ p {
       top: 25px;
       right: 20px;
     }
+  }
+}
+
+#top_nav_user {
+  width: 100%;
+  height: 50px;
+  li:hover {
+    text-decoration: underline;
   }
 }
 
@@ -281,7 +273,7 @@ p {
 
 #margin_wrapper {
   width: 100%;
-  height: 150px;
+  height: 200px;
   @include mq-down(md) {
     height: 100px;
   }
@@ -857,11 +849,8 @@ p {
   #shop_nav {
     position: absolute;
     top: 0;
-    left: 0;
-    p {
-      text-shadow: 1px 1px 1px black;
-      line-height: 35px;
-    }
+    right: 0;
+    height: 50px;
     .dd_menu {
       display: flex;
       justify-content: flex-start;
@@ -870,15 +859,12 @@ p {
       padding: 0;
       li {
         position: relative;
-        background: rgba(0, 0, 0, 0.7);
-        width: 120px;
-        height: 30px;
-        line-height: 30px;
+        width: 125px;
+        height: 50px;
+        line-height: 50px;
         text-align: center;
         @include mq-down(lg) {
-          width: 100px;
-          height: 25px;
-          line-height: 25px;
+          width: 120px;
         }
         .dd_menu_sub {
           position: absolute;
@@ -887,25 +873,29 @@ p {
         }
         .dd_menu_sub.open {
           display: block;
-          li a {
-            display: block;
-            width: 100%;
-            color: #fff;
-            text-align: center;
-          }
-          li a:hover {
-            background: #ff5500;
+          li {
+            height: 40px;
+            a {
+              display: block;
+              width: 100%;
+              height: 100%;
+              line-height: 40px;
+              text-align: center;
+            }
           }
         }
+        #dd_li_last {
+          display: block;
+          width: 100%;
+        }
       }
-      #dd_li_last {
-        display: block;
-        width: 100%;
-      }
-      #dd_li_last:hover {
-        background: #ff5500;
-        i {
-          color: white;
+      .dd_short_li {
+        width: 95px;
+        li {
+          width: 100%;
+          a {
+            width: 100%;
+          }
         }
       }
     }
@@ -950,19 +940,9 @@ p {
   }
   #user_top_nav {
     position: absolute;
-    top: 5%;
-    right: 2%;
-    @include mq-down(lg) {
-      top: 5%;
-      right: 0;
-    }
-    li {
-      text-shadow: 2px 2px 2px black;
-    }
-    li:hover {
-      font-weight: bold;
-      text-shadow: none;
-    }
+    top: 0%;
+    right: 0%;
+    height: 50px;
   }
   #modal_btn {
     width: 150px;
