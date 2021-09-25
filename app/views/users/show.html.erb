@@ -11,6 +11,8 @@
 <% end %>
 
 <div id="margin_wrapper"></div>
+<% breadcrumb :user_show, @user %>
+<%= breadcrumbs separator: " &rsaquo; " %> 
 <div class="pb-20" id="sign_wrapper">
   <div class="sm:border-2 border-app rounded-xl sm:shadow-lg sm:w-5/6 mx-auto pb-5 sm:py-4 max-w-3xl sm:mb-6">
       <div class="flex justify-center mx-auto">
