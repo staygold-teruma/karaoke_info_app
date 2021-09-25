@@ -141,7 +141,7 @@ class FeeGuide < ApplicationRecord
     self.child_total_fee = child_main_fee + child_drink_fee
   end
 
-  # 全員の合計金額を計算
+  # 全��の合計金額を計算
   def set_total_fee
     self.total_fee = (adult_total_fee * number_of_adults) +
                      (student_total_fee * number_of_students) +
@@ -225,7 +225,7 @@ class FeeGuide < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
 
-  # ルーム料金を計算
+  # ルーム料金��計算
   def calculate_main_fee(fee0, fee1, count)
     fee0 * count[0] + fee1 * count[1]
   end
@@ -237,14 +237,14 @@ class FeeGuide < ApplicationRecord
 
   # ドリンクコースの時間単位の取得
   def get_drink_unit(name)
-    if ["ワンドリンク", "ドリンクバー料���"].include?(name)
+    if ["ワンドリンク", "ドリンクバ���料���"].include?(name)
       1
     else
       0
     end
   end
 
-  # ドリンクコー����の�����ウント数を取得
+  # ドリンクコースのカウント数を取得
   def get_drink_count(name, count)
     if ["ワンドリンク", "ドリンクバー料金"].include?(name)
       1

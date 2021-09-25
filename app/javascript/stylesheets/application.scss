@@ -27,11 +27,11 @@
 }
 
 .index_table_head {
-  @apply border border-gray-400 px-2 py-1 sm:py-3 text-white text-xs xl:text-sm font-bold;
+  @apply border border-gray-400 px-1 py-1 sm:py-3 text-white text-xs xl:text-sm font-bold;
 }
 
 .index_table_body {
-  @apply border border-gray-400 px-2 py-1 text-center text-xs xl:text-sm;
+  @apply border border-gray-400 px-1 py-1 text-center text-xs xl:text-sm;
 }
 
 .show_div_table_head {
@@ -485,12 +485,16 @@ p {
 #gnav {
   height: 90px;
   background: rgb(237, 237, 237);
-  #logo_md {
+  a {
     width: 200px;
     height: 70px;
+    #logo_md {
+      width: 100%;
+      height: auto;
+    }
   }
   #nav_main {
-    width: 100%;
+    width: calc(100% - 200px);
     height: 100%;
     @include mq-down(md) {
       width: calc(100% - 80px);
@@ -508,6 +512,11 @@ p {
       }
     }
   }
+}
+
+#logo_sign {
+  height: 100%;
+  width: auto;
 }
 
 #open_btn {

@@ -14,6 +14,7 @@ import 'modal.js';
 import 'navbar.js';
 import 'pagetop.js';
 import 'postcode.js';
+import 'select.js';
 import 'sidemenu.js';
 import 'stylesheets/application';
 import 'tabmenu.js';

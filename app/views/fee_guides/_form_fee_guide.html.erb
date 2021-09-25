@@ -59,7 +59,7 @@
         <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ご利用時間を選んでください</p>       
       </div>
       <div class="px-2 ml-2 mt-6 sm:mt-0 xl:mb-3" id="fee_guide_select">
-        <%= f.select :usage_time, FeeGuide.usage_times_i18n.invert %>
+        <%= f.select :usage_time, FeeGuide.usage_times_i18n.invert, selected: "two_hour" %>
       </div>
       <div class="mt-4 xl:hidden">
         <p class="text-sm px-2 mt-2 mb-2" id="fee_complement"><i class="far fa-check-circle text-app mr-1"></i>3時間を超える場合はフリータイムがお得です</p>

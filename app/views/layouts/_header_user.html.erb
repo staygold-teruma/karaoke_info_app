@@ -1,28 +1,28 @@
-<ul class="hidden sm:flex justify-end items-center bg-gray-600" id="top_nav_user">
-  <li class="text-white px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+<ul class="hidden sm:flex justify-end items-center bg-app_bg shadow-lg" id="top_nav_user">
+  <li class="px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
     <%= link_to "ホーム", root_path %>
   </li>
-  <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+  <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
     <%= link_to "トピックス", users_topics_path %>
   </li>
-  <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+  <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
     <%= link_to "クーポン", static_pages_coupon_path %>
   </li>
-  <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+  <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
     <%= link_to "飲み放題", static_pages_alcohol_plan_path %>
   </li>
   <% if user_signed_in? %>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
       <%= link_to "マイページ", user_path(current_user.id) %>
     </li>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
       <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
     </li> 
   <% else %>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
       <%= link_to "ログイン", new_user_session_path %>
     </li>
-    <li class="text-white border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
+    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs md:text-sm hover:underline">
       <%= link_to "【ユーザー登録】", new_user_registration_path %>
     </li>
   <% end %>
@@ -32,7 +32,7 @@
   <%= link_to root_path do %>
     <div class="w-1/2 xl:w-2/5 pr-4 md:pr-0" id="app_title_user">
       <div class="md:mr-20 xl:mr-12">
-        <h1 class="text-white text-center text-xs md:text-base lg:text-lg mb-1">カラオケ料金案内アプリ</h1>
+        <h1 class="text-center text-xs md:text-base lg:text-lg mb-1">カラオケ料金案内アプリ</h1>
         <p class="text-app text-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl">iko!KARA</p>
       </div>
     </div>
