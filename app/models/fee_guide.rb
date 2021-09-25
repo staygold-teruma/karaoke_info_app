@@ -225,9 +225,9 @@ class FeeGuide < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
 
-  # ルーム料金��計算
-  def calculate_main_fee(fee0, fee1, count)
-    fee0 * count[0] + fee1 * count[1]
+  # ルーム料金を計算
+  def calculate_main_fee(fee_a, fee_b, count)
+    fee_a * count[0] + fee_b * count[1]
   end
 
   # ドリンクコースの種類を取得
@@ -237,7 +237,7 @@ class FeeGuide < ApplicationRecord
 
   # ドリンクコースの時間単位の取得
   def get_drink_unit(name)
-    if ["ワンドリンク", "ドリンクバ���料���"].include?(name)
+    if ["ワンドリンク", "ドリンクバー料金"].include?(name)
       1
     else
       0

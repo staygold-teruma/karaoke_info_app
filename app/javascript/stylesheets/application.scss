@@ -175,7 +175,7 @@ p {
   position: relative;
   width: 100%;
   height: 150px;
-  @include mq-down(md) {
+  @include mq-down(sm) {
     height: 100px;
   }
   #app_title_user {
@@ -274,7 +274,7 @@ p {
 #margin_wrapper {
   width: 100%;
   height: 200px;
-  @include mq-down(md) {
+  @include mq-down(sm) {
     height: 100px;
   }
 }
