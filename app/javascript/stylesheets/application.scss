@@ -27,11 +27,11 @@
 }
 
 .index_table_head {
-  @apply border border-gray-400 px-2 py-1 sm:py-3 text-white text-xs xl:text-sm font-bold;
+  @apply border border-gray-400 px-1 py-1 sm:py-3 text-white text-xs xl:text-sm font-bold;
 }
 
 .index_table_body {
-  @apply border border-gray-400 px-2 py-1 text-center text-xs xl:text-sm;
+  @apply border border-gray-400 px-1 py-1 text-center text-xs xl:text-sm;
 }
 
 .show_div_table_head {
@@ -175,7 +175,7 @@ p {
   position: relative;
   width: 100%;
   height: 150px;
-  @include mq-down(md) {
+  @include mq-down(sm) {
     height: 100px;
   }
   #app_title_user {
@@ -230,9 +230,26 @@ p {
   height: 90px;
 }
 
-#bread_crumbs {
-  width: 100%;
-  height: 50px;
+.breadcrumbs {
+  height: 30px;
+  padding-left: 40px;
+  @include mq-down(sm) {
+    display: none;
+  }
+  a {
+    width: 100%;
+    height: 100%;
+    line-height: 30px;
+    color: blue;
+    font-size: 14px;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: #ff5500;
+  }
+  span {
+    font-size: 14px;
+  }
 }
 
 // メインコンテンツ部品
@@ -274,7 +291,7 @@ p {
 #margin_wrapper {
   width: 100%;
   height: 200px;
-  @include mq-down(md) {
+  @include mq-down(sm) {
     height: 100px;
   }
 }
@@ -485,12 +502,16 @@ p {
 #gnav {
   height: 90px;
   background: rgb(237, 237, 237);
-  #logo_md {
+  a {
     width: 200px;
     height: 70px;
+    #logo_md {
+      width: 100%;
+      height: auto;
+    }
   }
   #nav_main {
-    width: 100%;
+    width: calc(100% - 200px);
     height: 100%;
     @include mq-down(md) {
       width: calc(100% - 80px);
@@ -508,6 +529,11 @@ p {
       }
     }
   }
+}
+
+#logo_sign {
+  height: 100%;
+  width: auto;
 }
 
 #open_btn {
@@ -1351,6 +1377,7 @@ p {
 #registration_btn {
   width: 100%;
   height: 100%;
+  max-width: 500px;
 }
 
 // 料金案内フォーム

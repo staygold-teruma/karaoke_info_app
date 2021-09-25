@@ -3,7 +3,7 @@
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0">
-    <%= render "layouts/header_sign_user" %>
+    <%= render "layouts/header_user" %>
   </div> 
 <% end %>
 <% content_for :footer do %>
@@ -11,6 +11,8 @@
 <% end %>
 
 <div id="margin_wrapper"></div>
+<% breadcrumb :user_edit, @user %>
+<%= breadcrumbs separator: " &rsaquo; " %> 
 <div class="pb-20 mt-6 sm:mt-12" id="sign_wrapper">
   <h2 class="page_title">ユーザー編集</h2>
   <div class="sm:border-2 border-app rounded-xl sm:shadow-lg sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
@@ -71,8 +73,10 @@
         </div>
       </div>
       <div class="actions mt-6 w-11/12 sm:w-2/3 mx-auto flex justify-center">
-        <%= f.submit "ユーザー編集", class: "text-sm bg-green-500 hover:bg-green-700 text-white px-2 py-2 rounded cursor-pointer w-full" %>
+        <%= f.submit "編集", class: "text-sm bg-green-500 hover:bg-green-700 text-white px-2 py-2 rounded cursor-pointer w-full" %>
       </div>
     <% end %>
   </div>
 </div>
+
+<%= render "layouts/side_menu_user" %>

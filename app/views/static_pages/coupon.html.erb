@@ -11,6 +11,8 @@
 <% end %>
 
 <div id="margin_wrapper"></div>
+<% breadcrumb :coupon %>
+<%= breadcrumbs separator: " &rsaquo; " %> 
 <% if user_signed_in? %>
   <div class="mx-auto mt-6 mb-3" id="coupon_wrapper">
     <div id="coupon_body">
@@ -54,14 +56,14 @@
   </div>
 <% else %>
   <div class="pb-16">
-    <div class="bg-app_bg py-5">
+    <div class="mx-4 py-5 mt-6 sm:mt-0" id="coupon_condition">
       <p class="text-center mb-4">
         クーポンをご利用いただくには
         <br>
         <span class="text-app text-xl">「ユーザー登録」</span>が必要です
       </p>
-      <div class="w-3/5 bg-app hover:bg-yellow-600 mx-auto py-2 rounded-lg flex justify-center items-center sm:mb-6">
-        <%= link_to "ユーザー登録", new_user_registration_path, class: " text-white text-center", id: "registration_btn" %>
+      <div class="w-3/5 max-w-xl bg-app hover:bg-yellow-600 mx-auto py-2 rounded-lg flex justify-center items-center sm:mb-6">
+        <%= link_to "ユーザー登録はこちら", new_user_registration_path, class: " text-white text-center", id: "registration_btn" %>
       </div>
     </div>
     <div class="">
