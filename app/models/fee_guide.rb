@@ -114,17 +114,20 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのドリンク料金を計算(30分単位)
   def set_drink_fee
-    if drink_plan == "one_drink"
+    chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan)
+    case drink_plan
+    when "one_drink"
       self.adult_drink_fee = 0
       self.student_drink_fee = 0
       self.senior_drink_fee = 0
       self.child_drink_fee = 0
+    when "drink_bar"
+      self.adult_drink_fee = chosen_drink_plan.adult_fee
+      self.student_drink_fee = chosen_drink_plan.student_fee
+      self.senior_drink_fee = chosen_drink_plan.senior_fee
+      self.child_drink_fee = chosen_drink_plan.child_fee
     else
-      drink_plan_name = DRINKPLAN[drink_plan]
-      drink_plan_unit = get_drink_unit(drink_plan_name)
-      drink_plan_count = get_drink_count(drink_plan_name, @count)
-      chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: drink_plan_unit)
-      self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, drink_plan_count)
+      self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_adult_fee, @count)
       self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, drink_plan_count)
       self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, drink_plan_count)
       self.child_drink_fee = calculate_drink_fee(chosen_drink_plan.child_fee, drink_plan_count)
@@ -133,8 +136,7 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのドリンク料金を計算(3時間パック・フリータイム)
   def set_drink_fee_free_time
-    drink_plan_name = DRINKPLAN[drink_plan]
-    chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, base_time: 3)
+    chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan, base_time: 3)
     self.adult_drink_fee = chosen_drink_plan.adult_fee
     self.student_drink_fee = chosen_drink_plan.student_fee
     self.senior_drink_fee = chosen_drink_plan.senior_fee
@@ -239,32 +241,14 @@ class FeeGuide < ApplicationRecord
     fee_a * count[0] + fee_b * count[1]
   end
 
-  # ドリンクコースの種類を��得
-  def get_drink_name(drink_plan)
-    DRINKPLAN[drink_plan]
-  end
-
-  # ドリンクコースの時間単位の取得
-  def get_drink_unit(name)
-    if ["ワンドリンク", "ドリンクバー"].include?(name)
-      1
-    else
-      0
-    end
-  end
-
-  # ドリンクコースのカウント数を取得
-  def get_drink_count(name, count)
-    if ["ワンドリンク", "ドリンクバー料金"].include?(name)
-      1
-    else
-      count
-    end
-  end
-
   # ドリンク料金を計算
-  def calculate_drink_fee(drink_fee, count)
-    drink_fee * count
+  def calculate_drink_fee(base_fee, base_time, extension_fee, count)
+    base_time_count = base_time + 1
+    if count <= base_time_count
+      base_fee
+    else
+      base_fee + (extension_fee * (count - base_time_count))
+    end
   end
 
   # 3時間パックの適用が昼か夜かを取得
