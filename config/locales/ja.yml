@@ -25,6 +25,11 @@ ja:
         student_fee: 学生料金
         senior_fee: シニア料金
         child_fee: 小学生料金
+        base_time: 基本時間
+        extension_adult_fee: 一般延長料金
+        extension_student_fee: 学生延長料金
+        extension_senior_fee: シニア延長料金
+        extension_child_fee: 小学生延長料金
       fee_guide:
         div_member: 会員区分
         number_of_adults: 一般人数

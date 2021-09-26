@@ -22,9 +22,9 @@ class DrinkPlan < ApplicationRecord
     free_time: 1
   }
   enum base_time: {
-    half_hour: 0,
-    one_hour: 1,
-    one_half_hour: 2,
-    free_time: 3
+    base_half_hour: 0,
+    base_one_hour: 1,
+    base_one_half_hour: 2,
+    base_free_time: 3
   }
 end
