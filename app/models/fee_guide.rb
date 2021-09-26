@@ -114,20 +114,27 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのドリンク料金を計算(30分単位)
   def set_drink_fee
-    drink_plan_name = DRINKPLAN[drink_plan]
-    drink_plan_unit = get_drink_unit(drink_plan_name)
-    drink_plan_count = get_drink_count(drink_plan_name, @count)
-    chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: drink_plan_unit)
-    self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, drink_plan_count)
-    self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, drink_plan_count)
-    self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, drink_plan_count)
-    self.child_drink_fee = calculate_drink_fee(chosen_drink_plan.child_fee, drink_plan_count)
+    if drink_plan == "one_drink"
+      self.adult_drink_fee = 0
+      self.student_drink_fee = 0
+      self.senior_drink_fee = 0
+      self.child_drink_fee = 0
+    else
+      drink_plan_name = DRINKPLAN[drink_plan]
+      drink_plan_unit = get_drink_unit(drink_plan_name)
+      drink_plan_count = get_drink_count(drink_plan_name, @count)
+      chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: drink_plan_unit)
+      self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, drink_plan_count)
+      self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, drink_plan_count)
+      self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, drink_plan_count)
+      self.child_drink_fee = calculate_drink_fee(chosen_drink_plan.child_fee, drink_plan_count)
+    end
   end
 
   # それぞれのドリンク料金を計算(3時間パック・フリータイム)
   def set_drink_fee_free_time
     drink_plan_name = DRINKPLAN[drink_plan]
-    chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: 1)
+    chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, base_time: 3)
     self.adult_drink_fee = chosen_drink_plan.adult_fee
     self.student_drink_fee = chosen_drink_plan.student_fee
     self.senior_drink_fee = chosen_drink_plan.senior_fee

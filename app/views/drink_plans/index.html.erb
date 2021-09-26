@@ -21,12 +21,12 @@
     <div id="d_search_box"  class="hidden md:flex">
       <%= search_form_for @q do |f| %>
       <div>
-        <%= f.label :name_cont, "料金名称:", class: 'first_label'%>
-        <%= f.search_field :name_cont %>
+        <%= f.label :fee_type_eq, "料金種類:" %>
+        <%= f.select :fee_type_eq, DrinkPlan.fee_types.map{|k, v| [DrinkPlan.fee_types_i18n[k], v]}, include_blank: true %>
       </div>
       <div>
-        <%= f.label :time_unit_eq, "単位:" %>
-        <%= f.select :time_unit_eq, DrinkPlan.time_units.map{|k, v| [DrinkPlan.time_units_i18n[k], v]}, include_blank: true %>
+        <%= f.label :base_time_eq, "単位:" %>
+        <%= f.select :base_time_eq, DrinkPlan.base_times.map{|k, v| [DrinkPlan.base_times_i18n[k], v]}, include_blank: true %>
       </div>
       <div id="index_search_btn">
         <%= f.submit "検索", class: "btn_search"  %>
@@ -37,8 +37,8 @@
       <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped">
           <tr id="table_heading" class="bg-blue-500">
             <th class="index_table_head  hidden md:table-cell">No.</th>
-            <th class="index_table_head">料金名称</th>
-            <th class="index_table_head">単位</th>
+            <th class="index_table_head">料金種類</th>
+            <th class="index_table_head">基本時間</th>
             <th class="index_table_head hidden md:table-cell">一般</th>
             <th class="index_table_head hidden md:table-cell">学生</th>
             <th class="index_table_head hidden md:table-cell">シニア</th>
@@ -50,8 +50,8 @@
           <% @drink_plans.each.with_index(1) do |drink_plan, i| %>
             <tr class="border-b border-gray-200 hover:bg-gray-100">
               <td class="index_table_body hidden md:table-cell"><%= i %></td>
-              <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= link_to drink_plan.name, drink_plan %></td>
-              <td class="index_table_body"><%= drink_plan.time_unit_i18n %></td>
+              <td class="border border-gray-400 px-2 py-1 text-center text-blue-600 text-sm"><%= link_to drink_plan.fee_type_i18n, drink_plan %></td>
+              <td class="index_table_body"><%= drink_plan.base_time_i18n %></td>
               <td class="index_table_body hidden md:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
               <td class="index_table_body hidden md:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
               <td class="index_table_body hidden md:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>

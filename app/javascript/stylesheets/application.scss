@@ -732,7 +732,7 @@ p {
 // 登録フォーム
 #form_wrap {
   width: 80%;
-  max-width: 600px;
+  max-width: 630px;
   margin: 0 auto;
   margin-top: 20px;
   @include mq-down(md) {
@@ -776,7 +776,7 @@ p {
         font-size: 14px;
         margin-right: 10px;
         display: inline-block;
-        width: 80px;
+        width: 100px;
         text-align: justify;
         text-align-last: justify;
       }
@@ -791,6 +791,9 @@ p {
       }
       select {
         padding-left: 5px;
+      }
+      #drink_plan_fee_type {
+        width: 150px;
       }
     }
   }

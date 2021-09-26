@@ -1,15 +1,17 @@
 <div class="sm:border-2 rounded-lg sm:shadow my-4 p-1 sm:p-8" id="form_wrap">
   <%= form_with model: @drink_plan, local: true do |f| %>
-    <div id="l_name">
-      <i class="fas fa-caret-square-right text-blue-600"></i>
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true %>
+    <div id="l_div">
+      <div class="form_box">
+        <i class="fas fa-caret-square-right text-blue-600"></i>
+        <%= f.label :fee_type %>
+        <%= f.select :fee_type, DrinkPlan.fee_types_i18n.invert %>
+      </div>
     </div>
     <div id="l_div">
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
-        <%= f.label :time_unit %>
-        <%= f.select :time_unit, DrinkPlan.time_units_i18n.invert, class: "time_unit_select" %>
+        <%= f.label :base_time %>
+        <%= f.select :base_time, DrinkPlan.base_times_i18n.invert %>
       </div>
     </div>
     <div id="l_fee">
@@ -20,8 +22,18 @@
       </div>
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
+        <%= f.label :extension_adult_fee %>
+        <%= f.text_field :extension_adult_fee, required: true, type: "number", min:"0" %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :student_fee %>
         <%= f.text_field :student_fee, required: true, type: "number", min:"0" %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right text-blue-600"></i>
+        <%= f.label :extension_student_fee %>
+        <%= f.text_field :extension_student_fee, required: true, type: "number", min:"0" %>
       </div>
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
@@ -30,9 +42,20 @@
       </div>
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
+        <%= f.label :extension_senior_fee %>
+        <%= f.text_field :extension_senior_fee, required: true, type: "number", min:"0" %>
+      </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :child_fee %>
         <%= f.text_field :child_fee, required: true, type: "number", min:"0" %>
       </div>
+      <div class="form_box">
+        <i class="fas fa-caret-square-right text-blue-600"></i>
+        <%= f.label :extension_child_fee %>
+        <%= f.text_field :extension_child_fee, required: true, type: "number", min:"0" %>
+      </div>
+
     </div>
     <div id="l_note">
       <div>

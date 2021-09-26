@@ -26,6 +26,11 @@ ja:
         base_one_hour: '60分'
         base_one_half_hour: '90分'
         base_free_time: 'フリー'
+      fee_type:
+        drink_bar: 'ドリンクバー料金'
+        lite_plan: 'ライト飲み放題料金'
+        variety_plan: 'バラエティ飲み放題料金'
+        deluxe_plan: 'デラックス飲み放題料金'
     fee_guide:
       div_member:
         other: '一般'
