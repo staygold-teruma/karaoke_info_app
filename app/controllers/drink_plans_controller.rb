@@ -37,6 +37,7 @@ class DrinkPlansController < ApplicationController
   end
 
   def drink_plan_params
-    params.require(:drink_plan).permit(:name, :note, :time_unit, :adult_fee, :student_fee, :senior_fee, :child_fee)
+    params.require(:drink_plan).permit(:fee_type, :base_time, :note, :adult_fee, :student_fee, :senior_fee, :child_fee, :extension_adult_fee,
+                                       :extension_student_fee, :extension_senior_fee, :extension_child_fee)
   end
 end
