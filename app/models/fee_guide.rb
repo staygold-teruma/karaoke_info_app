@@ -61,11 +61,12 @@ class FeeGuide < ApplicationRecord
 
   # 料金計算して値をセット
   def set_values
+    # 利用時間による料金カウントを取得(@count)
     @count = FeeGuide.usage_times[usage_time] + 1
     set_number_of_customers
     if usage_time == "three_hour" || usage_time == "free_time"
-      set_main_fee_free
-      set_drink_fee_free
+      set_main_fee_free_time
+      set_drink_fee_free_time
     else
       set_main_fee
       set_drink_fee
@@ -94,13 +95,13 @@ class FeeGuide < ApplicationRecord
   end
 
   # それぞれのルーム料金を計算
-  def set_main_fee_free
+  def set_main_fee_free_time
     wday = get_business_wday
     if usage_time == "three_hour"
-      time = get_div_time_three
+      time = get_div_time_three_hour
       unit = 1
     else
-      time = get_div_time_free
+      time = get_div_time_free_time
       unit = 2
     end
     chosen_free_plan = get_free_plan(wday, time, unit)
@@ -124,7 +125,7 @@ class FeeGuide < ApplicationRecord
   end
 
   # それぞれのドリンク料金を計算(3時間パック・フリータイム)
-  def set_drink_fee_free
+  def set_drink_fee_free_time
     drink_plan_name = DRINKPLAN[drink_plan]
     chosen_drink_plan = DrinkPlan.find_by(name: drink_plan_name, time_unit: 1)
     self.adult_drink_fee = chosen_drink_plan.adult_fee
@@ -141,7 +142,7 @@ class FeeGuide < ApplicationRecord
     self.child_total_fee = child_main_fee + child_drink_fee
   end
 
-  # 全��の合計金額を計算
+  # グループ全体の合計金額を計算
   def set_total_fee
     self.total_fee = (adult_total_fee * number_of_adults) +
                      (student_total_fee * number_of_students) +
@@ -149,6 +150,7 @@ class FeeGuide < ApplicationRecord
                      (child_total_fee * number_of_children)
   end
 
+  # 一般/学生/シニア/小学生ごとの合計料金（ビュー表示用）
   def adult_fee_all
     adult_total_fee * number_of_adults
   end
@@ -220,7 +222,7 @@ class FeeGuide < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, time_unit: 0)
   end
 
-  # フォームで取得した内容から該当の「フリー料金を取得」
+  # フォームで取得した内容から該当の「フリータイム料金を取得」
   def get_free_plan(wday, time, unit)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
   end
@@ -230,14 +232,14 @@ class FeeGuide < ApplicationRecord
     fee_a * count[0] + fee_b * count[1]
   end
 
-  # ドリンクコースの種類を取得
+  # ドリンクコースの種類を��得
   def get_drink_name(drink_plan)
     DRINKPLAN[drink_plan]
   end
 
   # ドリンクコースの時間単位の取得
   def get_drink_unit(name)
-    if ["ワンドリンク", "ドリンクバー料金"].include?(name)
+    if ["ワンドリンク", "ドリンクバー"].include?(name)
       1
     else
       0
@@ -259,7 +261,7 @@ class FeeGuide < ApplicationRecord
   end
 
   # 3時間パックの適用が昼か夜かを取得
-  def get_div_time_three
+  def get_div_time_three_hour
     now_time = Time.zone.now
     case now_time.hour
     when 6..19
@@ -270,7 +272,7 @@ class FeeGuide < ApplicationRecord
   end
 
   # フリータイムの適用が昼か夜か夕方かを取得
-  def get_div_time_free
+  def get_div_time_free_time
     now_time = Time.zone.now
     case now_time.hour
     when 6..15
