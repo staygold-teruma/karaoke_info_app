@@ -8,7 +8,7 @@ gem "carrierwave", "~> 2.0"
 gem "devise"
 gem "devise-i18n"
 gem "enum_help"
-gem 'gretel'
+gem "gretel"
 gem "jbuilder", "~> 2.7"
 gem "jp_prefecture"
 gem "kaminari"
