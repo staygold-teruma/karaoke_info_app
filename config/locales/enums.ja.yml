@@ -21,6 +21,11 @@ ja:
       time_unit:
         half_hour: '30分'
         free_time: 'フリー'
+      base_time:
+        half_hour: '30分'
+        one_hour: '60分'
+        one_half_hour: '90分'
+        free_time: 'フリー'
     fee_guide:
       div_member:
         other: '一般'
