@@ -1,7 +1,7 @@
 class MainPlan < ApplicationRecord
   belongs_to :shop
   with_options presence: true do
-    validates :name
+    validates :fee_type
     validates :div_member
     validates :div_day
     validates :div_time

@@ -50,7 +50,7 @@ class MainPlansController < ApplicationController
   end
 
   def main_plan_params
-    params.require(:main_plan).permit(:name, :note, :div_member, :div_day, :div_time, :time_unit, :adult_fee,
+    params.require(:main_plan).permit(:fee_type, :note, :div_member, :div_day, :div_time, :time_unit, :adult_fee,
                                       :student_fee, :senior_fee, :child_fee)
   end
 end
