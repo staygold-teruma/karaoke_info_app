@@ -2,9 +2,9 @@ ja:
   enums:
     main_plan:
       fee_type:
-        half_hour_fee: '30分料金'
-        three_hour_fee: '3時間パック料金'
-        free_time_fee: 'フリータイム料金'
+        half_hour: '30分料金'
+        three_hour: '3時間パック料金'
+        free_time: 'フリータイム料金'
       div_member:
         other: '一般'
         member: '会員'
@@ -16,10 +16,6 @@ ja:
         day: '昼'
         night: '夜'
         evening: '夕方'
-      time_unit:
-        half_hour: '30分'
-        three_hour: '3時間'
-        free_time: 'フリー'
     drink_plan:
       time_unit:
         half_hour: '30分'
@@ -28,7 +24,7 @@ ja:
         base_half_hour: '30分'
         base_one_hour: '60分'
         base_one_half_hour: '90分'
-        base_free_time: 'フリー'
+        base_free_time: 'フリータイム'
       fee_type:
         drink_bar: 'ドリンクバー料金'
         lite_plan: 'ライト飲み放題料金'

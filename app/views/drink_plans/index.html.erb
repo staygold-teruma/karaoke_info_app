@@ -18,13 +18,13 @@
   </div>
   <div id="main_contents_shop">
     <h1 class="page_title">ドリンク料金一覧</h1>
-    <div id="d_search_box"  class="hidden md:flex">
+    <div id="m_search_box"  class="hidden md:flex">
       <%= search_form_for @q do |f| %>
-      <div>
-        <%= f.label :fee_type_eq, "料金種類:" %>
+      <div id="fee_type_search_d">
+        <%= f.label :fee_type_eq, "料金名:" %>
         <%= f.select :fee_type_eq, DrinkPlan.fee_types.map{|k, v| [DrinkPlan.fee_types_i18n[k], v]}, include_blank: true %>
       </div>
-      <div>
+      <div id="other_search_d">
         <%= f.label :base_time_eq, "基本時間:" %>
         <%= f.select :base_time_eq, DrinkPlan.base_times.map{|k, v| [DrinkPlan.base_times_i18n[k], v]}, include_blank: true %>
       </div>
