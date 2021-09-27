@@ -1,6 +1,10 @@
 ja:
   enums:
     main_plan:
+      time_unit:
+        half_hour_fee: '30分料金'
+        three_hour_fee: '3時間パック料金'
+        free_time_fee: 'フリータイム料金'
       div_member:
         other: '一般'
         member: '会員'
@@ -15,7 +19,6 @@ ja:
       time_unit:
         half_hour: '30分'
         three_hour: '3時間'
-        four_hour: '4時間'
         free_time: 'フリー'
     drink_plan:
       time_unit:

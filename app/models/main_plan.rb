@@ -15,6 +15,12 @@ class MainPlan < ApplicationRecord
   end
   validates :note, length: { maximum: 250 }
 
+  enum fee_type: {
+    half_hour_fee: 0,
+    three_hour_fee: 1
+    free_time_fee: 1
+  }
+
   enum div_member: {
     other: 0,
     member: 1
