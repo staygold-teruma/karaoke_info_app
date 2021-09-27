@@ -60,7 +60,7 @@ class FeeGuide < ApplicationRecord
   }.freeze
 
   # 料金計算して値をセット
-  def set_values
+  def set_calculated_result
     # 利用時間による料金カウントを取得(@count)
     @count = FeeGuide.usage_times[usage_time] + 1
     set_number_of_customers
@@ -97,14 +97,13 @@ class FeeGuide < ApplicationRecord
   # それぞれのルーム料金を計算
   def set_main_fee_free_time
     wday = get_business_wday
-    if usage_time == "three_hour"
-      time = get_div_time_three_hour
-      unit = 1
-    else
-      time = get_div_time_free_time
-      unit = 2
-    end
-    chosen_free_plan = get_free_plan(wday, time, unit)
+    time = if usage_time == "three_hour"
+             get_div_time_three_hour
+             chosen_free_plan = get_three_hour_plan(wday, time)
+           else
+             get_div_time_free_time
+             chosen_free_plan = get_free_plan(wday, time)
+           end
     self.adult_main_fee = chosen_free_plan.adult_fee
     self.student_main_fee = chosen_free_plan.student_fee
     self.senior_main_fee = chosen_free_plan.senior_fee
@@ -221,19 +220,24 @@ class FeeGuide < ApplicationRecord
     [day_count, night_count]
   end
 
-  # フォームで取得した内容から該当の「昼料金を取得」
+  # フォームで取得した内容から該当の「昼30分料金を取得」
   def get_day_plan(wday)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 0, time_unit: 0)
+    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 0, fee_type: 0)
   end
 
-  # フォームで取得した内容から該当の「夜料金を取得」
+  # フォームで取得した内容から該当の「夜30分料金を取得」
   def get_night_plan(wday)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, time_unit: 0)
+    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, fee_type: 0)
+  end
+
+  # フォームで取得した内容から該当の「3時間パック料金を取得」
+  def get_free_plan(wday, time)
+    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 1)
   end
 
   # フォームで取得した内容から該当の「フリータイム料金を取得」
-  def get_free_plan(wday, time, unit)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, time_unit: unit)
+  def get_free_plan(wday, time)
+    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 2)
   end
 
   # ルーム料金を計算
