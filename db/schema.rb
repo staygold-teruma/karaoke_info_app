@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_120144) do
+ActiveRecord::Schema.define(version: 2021_09_27_125537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,6 @@ ActiveRecord::Schema.define(version: 2021_09_27_120144) do
     t.integer "div_member", default: 0, null: false
     t.integer "div_day", default: 0, null: false
     t.integer "div_time", default: 0, null: false
-    t.integer "time_unit", default: 0, null: false
     t.integer "adult_fee", null: false
     t.integer "student_fee", null: false
     t.integer "senior_fee", null: false

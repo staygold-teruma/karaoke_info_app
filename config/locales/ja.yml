@@ -7,7 +7,7 @@ ja:
       user: ユーザー
     attributes:
       main_plan:
-        name: 料金名
+        fee_type: 料金名
         note: 備考
         div_member: 会員区分
         div_day: 曜日区分

@@ -1,7 +1,7 @@
 ja:
   enums:
     main_plan:
-      time_unit:
+      fee_type:
         half_hour_fee: '30分料金'
         three_hour_fee: '3時間パック料金'
         free_time_fee: 'フリータイム料金'

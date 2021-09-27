@@ -731,14 +731,16 @@ p {
 
 // 登録フォーム
 #form_wrap {
-  width: 80%;
-  max-width: 680px;
+  width: 95%;
+  max-width: 750px;
   margin: 0 auto;
   margin-top: 20px;
   @include mq-down(md) {
     margin-top: 20px;
   }
-  #l_name,
+  @include mq-down(sm) {
+    width: 90%;
+  }
   #l_note {
     margin-bottom: 20px;
     i {
@@ -767,16 +769,14 @@ p {
   }
   #l_div,
   #l_fee {
-    display: flex;
-    flex-wrap: wrap;
-    .form_box {
-      margin-right: 40px;
+    .form_box,
+    .form_box_fee_type {
       margin-bottom: 20px;
       label {
         font-size: 14px;
         margin-right: 10px;
         display: inline-block;
-        width: 100px;
+        width: 90px;
         text-align: justify;
         text-align-last: justify;
       }
@@ -785,12 +785,17 @@ p {
         padding: 5px 10px 5px 10px;
         border: gray 1px solid;
         border-radius: 5px;
-        width: 100px;
+        width: 80px;
         font-size: 12px;
         background: white;
       }
       select {
         padding-left: 5px;
+      }
+    }
+    .form_box_fee_type {
+      select {
+        width: 140px;
       }
     }
   }
