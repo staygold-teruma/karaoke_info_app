@@ -97,13 +97,13 @@ class FeeGuide < ApplicationRecord
   # それぞれのルーム料金を計算
   def set_main_fee_free_time
     wday = get_business_wday
-    time = if usage_time == "three_hour"
-             get_div_time_three_hour
-             chosen_free_plan = get_three_hour_plan(wday, time)
-           else
-             get_div_time_free_time
-             chosen_free_plan = get_free_plan(wday, time)
-           end
+    if usage_time == "three_hour"
+      time = get_div_time_three_hour
+      chosen_free_plan = get_three_hour_plan(wday, time)
+    else
+      time = get_div_time_free_time
+      chosen_free_plan = get_free_plan(wday, time)
+    end
     self.adult_main_fee = chosen_free_plan.adult_fee
     self.student_main_fee = chosen_free_plan.student_fee
     self.senior_main_fee = chosen_free_plan.senior_fee
@@ -225,13 +225,13 @@ class FeeGuide < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 0, fee_type: 0)
   end
 
-  # フォームで取得した内容から該当の「夜30分料金を取得」
+  # フォームで取得した内容か���該当の「夜30分料金を取得」
   def get_night_plan(wday)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, fee_type: 0)
   end
 
   # フォームで取得した内容から該当の「3時間パック料金を取得」
-  def get_free_plan(wday, time)
+  def get_three_hour_plan(wday, time)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 1)
   end
 
