@@ -1,16 +1,13 @@
 <div class="sm:border-2 rounded-lg sm:shadow my-6 p-1 sm:p-8" id="form_wrap">
   <%= form_with model: @main_plan, local: true do |f| %>
-    <div id="l_name">
-      <i class="fas fa-caret-square-right text-blue-600"></i>
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true %>
-    </div>
-    <div id="l_div">
-      <div class="form_box">
+    <div class="w-full" id="l_div">
+      <div class="form_box_long">
         <i class="fas fa-caret-square-right text-blue-600"></i>
-        <%= f.label :div_member %>
-        <%= f.select :div_member, MainPlan.div_members_i18n.invert %>
+        <%= f.label :fee_type %>
+        <%= f.select :fee_type, MainPlan.fee_types_i18n.invert%>
       </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2" id="l_div">
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :div_day %>
@@ -21,13 +18,15 @@
         <%= f.label :div_time %>
         <%= f.select :div_time, MainPlan.div_times_i18n.invert %>
       </div>
+    </div>
+    <div id="l_div">
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
-        <%= f.label :time_unit %>
-        <%= f.select :time_unit, MainPlan.time_units_i18n.invert, class: "time_unit_select" %>
+        <%= f.label :div_member %>
+        <%= f.select :div_member, MainPlan.div_members_i18n.invert %>
       </div>
     </div>
-    <div id="l_fee">
+    <div class="grid grid-cols-1 sm:grid-cols-2" id="l_fee">
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :adult_fee %>

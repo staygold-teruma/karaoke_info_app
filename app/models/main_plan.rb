@@ -1,11 +1,10 @@
 class MainPlan < ApplicationRecord
   belongs_to :shop
   with_options presence: true do
-    validates :name
+    validates :fee_type
     validates :div_member
     validates :div_day
     validates :div_time
-    validates :time_unit
     with_options numericality: { only_integer: true, greater_than_or_equal_to: 0 } do
       validates :adult_fee
       validates :student_fee
@@ -14,6 +13,12 @@ class MainPlan < ApplicationRecord
     end
   end
   validates :note, length: { maximum: 250 }
+
+  enum fee_type: {
+    half_hour: 0,
+    three_hour: 1,
+    free_time: 2
+  }
 
   enum div_member: {
     other: 0,
@@ -30,11 +35,5 @@ class MainPlan < ApplicationRecord
     day: 0,
     night: 1,
     evening: 2
-  }
-
-  enum time_unit: {
-    half_hour: 0,
-    three_hour: 1,
-    free_time: 2
   }
 end

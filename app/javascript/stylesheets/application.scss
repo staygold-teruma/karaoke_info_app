@@ -633,25 +633,56 @@ p {
   margin-top: 30px;
   width: 100%;
   font-size: 14px;
-  .main_plan_search {
+  .main_plan_search,
+  .drink_plan_search {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     width: 100%;
-    label {
-      margin-left: 15px;
-      margin-right: 5px;
-      margin-bottom: 0;
+    #fee_type_search,
+    #fee_type_search_d {
+      label {
+        margin-right: 5px;
+        margin-bottom: 0;
+      }
+      select {
+        width: 150px;
+        height: 30px;
+        font-size: 14px;
+        border: gray 1px solid;
+        border-radius: 5px;
+        background: white;
+        cursor: pointer;
+        padding-left: 5px;
+      }
     }
-    .first_label {
-      margin-left: 0;
+    #other_search,
+    #other_search_d {
+      label {
+        margin-left: 15px;
+        margin-right: 5px;
+        margin-bottom: 0;
+      }
+      select {
+        width: 80px;
+        height: 30px;
+        font-size: 14px;
+        border: gray 1px solid;
+        border-radius: 5px;
+        background: white;
+        cursor: pointer;
+        padding-left: 5px;
+      }
     }
-    input,
-    select {
-      border: gray 1px solid;
-      border-radius: 5px;
-      background: white;
-      cursor: pointer;
+    #fee_type_search_d {
+      select {
+        width: 200px;
+      }
+    }
+    #other_search_d {
+      select {
+        width: 120px;
+      }
     }
   }
   #index_search_btn {
@@ -731,52 +762,26 @@ p {
 
 // 登録フォーム
 #form_wrap {
-  width: 80%;
-  max-width: 630px;
+  width: 95%;
+  max-width: 650px;
   margin: 0 auto;
   margin-top: 20px;
   @include mq-down(md) {
     margin-top: 20px;
   }
-  #l_name,
-  #l_note {
-    margin-bottom: 20px;
-    i {
-      font-size: 14px;
-      margin-top: 9px;
-      vertical-align: top;
-    }
-    label {
-      margin-top: 5px;
-      margin-right: 10px;
-      display: inline-block;
-      width: 80px;
-      text-align: justify;
-      text-align-last: justify;
-      vertical-align: top;
-      font-size: 14px;
-    }
-    input {
-      width: 100%;
-      padding: 5px;
-      border: gray 1px solid;
-      border-radius: 5px;
-      font-size: 12px;
-      background: white;
-    }
+  @include mq-down(sm) {
+    width: 90%;
   }
   #l_div,
   #l_fee {
-    display: flex;
-    flex-wrap: wrap;
-    .form_box {
-      margin-right: 40px;
+    .form_box,
+    .form_box_long {
       margin-bottom: 20px;
       label {
         font-size: 14px;
         margin-right: 10px;
         display: inline-block;
-        width: 100px;
+        width: 110px;
         text-align: justify;
         text-align-last: justify;
       }
@@ -785,32 +790,48 @@ p {
         padding: 5px 10px 5px 10px;
         border: gray 1px solid;
         border-radius: 5px;
-        width: 100px;
-        font-size: 12px;
+        width: 80px;
+        font-size: 14px;
         background: white;
+        @include mq-down(sm) {
+          width: 150px;
+        }
       }
       select {
         padding-left: 5px;
       }
-      #drink_plan_fee_type {
+    }
+    .form_box_long {
+      select {
         width: 150px;
       }
     }
   }
-
   #l_note {
-    display: block;
-    div {
-      textarea {
-        margin-top: 5px;
-        width: 100%;
-        min-height: 100px;
-        padding: 8px;
-        font-size: 10px;
-        border: gray 1px solid;
-        border-radius: 5px;
-        white-space: normal;
-      }
+    margin-bottom: 20px;
+    i {
+      font-size: 16px;
+      margin-top: 9px;
+      vertical-align: top;
+    }
+    label {
+      margin-top: 5px;
+      margin-right: 10px;
+      display: inline-block;
+      width: 110px;
+      text-align: justify;
+      text-align-last: justify;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      padding: 5px;
+      border: gray 1px solid;
+      border-radius: 5px;
+      font-size: 14px;
+      background: white;
     }
   }
 }
@@ -835,7 +856,6 @@ p {
     .first_label {
       margin-left: 0;
     }
-    input,
     select {
       border: gray 1px solid;
       border-radius: 5px;

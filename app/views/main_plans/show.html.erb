@@ -20,23 +20,21 @@
     <h1 class="page_title">ルーム料金詳細</h1>
     <div id="show_wrapper">
       <div id="plan_title">
-        <p class="bg-yellow-300 px-2 py-2 border-2 border-gray-500 rounded-md"><%= @main_plan.name %></p>
+        <p class="bg-yellow-300 px-2 py-2 border-2 border-gray-500 rounded-md"><%= @main_plan.fee_type_i18n %></p>
       </div>
       <table class="table-auto border-collapse border-2 border-gray-500" id="m_plan_div_table">
         <thead>
           <tr id="table_heading" class="bg-blue-500 text-center text-sm font-bold">
-            <th class="show_div_table_head">区分</th>
             <th class="show_div_table_head">曜日</th>
             <th class="show_div_table_head">時間帯</th>
-            <th class="show_div_table_head">単位</th>
+            <th class="show_div_table_head">区分</th>
           </tr>
         </thead>
         <tbody>
           <tr class="border-b border-gray-200 hover:bg-gray-100  text-center text-sm">
-            <td class="show_div_table_body"><%= @main_plan.div_member_i18n %></td>
             <td class="show_div_table_body"><%= @main_plan.div_day_i18n %></td>
             <td class="show_div_table_body"><%= @main_plan.div_time_i18n %></td>
-            <td class="show_div_table_body"><%= @main_plan.time_unit_i18n %></td>
+            <td class="show_div_table_body"><%= @main_plan.div_member_i18n %></td>
           </tr>
         </tbody>
       </table>

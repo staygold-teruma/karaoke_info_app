@@ -7,7 +7,7 @@ ja:
       user: ユーザー
     attributes:
       main_plan:
-        name: 料金名
+        fee_type: 料金名
         note: 備考
         div_member: 会員区分
         div_day: 曜日区分
@@ -21,15 +21,15 @@ ja:
         name: 料金名
         note: 備考
         time_unit: 時間単位
-        adult_fee: 一般料金/基本
-        student_fee: 学生料金/基本
-        senior_fee: シニア料金/基本
-        child_fee: 小学生料金/基本
+        adult_fee: 一般/基本料金
+        student_fee: 学生/基本料金
+        senior_fee: シニア/基本料金
+        child_fee: 小学生/基本料金
         base_time: 基本時間
-        extension_adult_fee: 一般料金/延長
-        extension_student_fee: 学生料金/延長
-        extension_senior_fee: シニア料金/延長
-        extension_child_fee: 小学生料金/延長
+        extension_adult_fee: 一般/延長料金
+        extension_student_fee: 学生/延長料金
+        extension_senior_fee: シニア/延長料金
+        extension_child_fee: 小学生/延長料金
         fee_type: 料金種類
       fee_guide:
         div_member: 会員区分

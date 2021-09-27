@@ -15,7 +15,7 @@ class FeeGuidesController < ApplicationController
 
   def create
     @fee_guide = FeeGuide.new(fee_guide_params)
-    @fee_guide.set_values
+    @fee_guide.set_calculated_result
     if @fee_guide.save!
       redirect_to edit_fee_guide_url(@fee_guide)
     else
