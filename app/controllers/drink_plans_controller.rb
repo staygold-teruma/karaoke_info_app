@@ -16,9 +16,11 @@ class DrinkPlansController < ApplicationController
     if DrinkPlan.exists?(shop_id: @drink_plan.shop_id, base_time: @drink_plan.base_time, fee_type: @drink_plan.fee_type)
       flash.now[:alert] = "その料金はすでに登録されています。"
       render :new
+    elsif @drink_plan.update
+      redirect_to drink_plans_path, notice: "更新しました"
     else
-      @drink_plan.save
-      redirect_to drink_plans_path, notice: "登録しました"
+      flash.now[:alert] = "更新できませんでした"
+      render :new
     end
   end
 
@@ -30,9 +32,11 @@ class DrinkPlansController < ApplicationController
     if DrinkPlan.exists?(shop_id: @drink_plan.shop_id, base_time: @drink_plan.base_time, fee_type: @drink_plan.fee_type)
       flash.now[:alert] = "その料金はすでに登録されています。"
       render :edit
-    else
-      @drink_plan.update
+    elsif @drink_plan.update
       redirect_to drink_plans_path, notice: "更新しました"
+    else
+      flash.now[:alert] = "更新できませんでした"
+      render :edit
     end
   end
 

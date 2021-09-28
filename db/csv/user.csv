@@ -1,0 +1,4 @@
+■ユーザー
+email, password, name, birthday, sex, occupation, avatar
+"user11@example.com", "password11", "山田太郎", 1990-01-11, 1, 6, ””
+"user12@example.com", "password12", "山田花子", 2002-04-10, 2, 4, ””
