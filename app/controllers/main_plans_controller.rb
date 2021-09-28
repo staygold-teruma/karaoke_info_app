@@ -13,8 +13,15 @@ class MainPlansController < ApplicationController
   end
 
   def create
-    current_shop.main_plans.create!(main_plan_params)
-    redirect_to main_plans_path
+    @main_plan = current_shop.main_plans.new(main_plan_params)
+    if MainPlan.exists?(div_member: @main_plan.div_member, div_day: @main_plan.div_day, div_time: @main_plan.div_time, shop_id: @main_plan.shop_id,
+                        fee_type: @main_plan.fee_type)
+      flash.now[:alert] = "その料金はすでに登録されています。"
+      render :new
+    else
+      @main_plan.save
+      redirect_to main_plans_path
+    end
     # if @main_plan.save
     #   redirect_to @main_plan, notice: "登録しました"
     # else
