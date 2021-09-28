@@ -21,9 +21,9 @@ class Shops::TopicsController < Shops::ApplicationController
     end
     @shops_topic.save
     if @shops_topic.save
-      redirect_to shops_topics_path
+      redirect_to shops_topics_path, notice: "登録しました"
     else
-      render :new
+      render :new, alert: "登録に失敗しました"
     end
   end
 
@@ -33,12 +33,12 @@ class Shops::TopicsController < Shops::ApplicationController
 
   def update
     @shops_topic.update!(topic_params)
-    redirect_to @shops_topic
+    redirect_to @shops_topic, notice: "更新しました"
   end
 
   def destroy
     @shops_topic.destroy!
-    redirect_to topics_path
+    redirect_to topics_path, notice: "削除しました"
   end
 
   private

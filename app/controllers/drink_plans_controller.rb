@@ -12,8 +12,14 @@ class DrinkPlansController < ApplicationController
   end
 
   def create
-    current_shop.drink_plans.create!(drink_plan_params)
-    redirect_to drink_plans_path
+    @drink_plan = current_shop.drink_plans.new(drink_plan_params)
+    if DrinkPlan.exists?(shop_id: @drink_plan.shop_id, base_time: @drink_plan.base_time, fee_type: @drink_plan.fee_type)
+      flash.now[:alert] = "その料金はすでに登録されています。"
+      render :new
+    else
+      @drink_plan.save
+      redirect_to drink_plans_path, notice: "登録しました"
+    end
   end
 
   def show; end
@@ -21,13 +27,18 @@ class DrinkPlansController < ApplicationController
   def edit; end
 
   def update
-    @drink_plan.update!(drink_plan_params)
-    redirect_to drink_plans_path
+    if DrinkPlan.exists?(shop_id: @drink_plan.shop_id, base_time: @drink_plan.base_time, fee_type: @drink_plan.fee_type)
+      flash.now[:alert] = "その料金はすでに登録されています。"
+      render :edit
+    else
+      @drink_plan.update
+      redirect_to drink_plans_path, notice: "更新しました"
+    end
   end
 
   def destroy
     @drink_plan.destroy!
-    redirect_to drink_plans_path
+    redirect_to drink_plans_path, notice: "削除しました"
   end
 
   private

@@ -17,6 +17,9 @@
     <%= render "layouts/side_menu_shop" %>
   </div>
   <div id="main_contents_shop">
+    <div class="md:hidden">
+      <%= render "layouts/flash" %>
+    </div>
     <h1 class="page_title">ドリンク料金一覧</h1>
     <div id="m_search_box"  class="hidden md:flex">
       <%= search_form_for @q do |f| %>

@@ -20,7 +20,7 @@ class MainPlansController < ApplicationController
       render :new
     else
       @main_plan.save
-      redirect_to main_plans_path
+      redirect_to main_plans_path, notice: "登録しました"
     end
     # if @main_plan.save
     #   redirect_to @main_plan, notice: "登録しました"
@@ -35,19 +35,19 @@ class MainPlansController < ApplicationController
   def edit; end
 
   def update
-    @main_plan.update!(main_plan_params)
-    redirect_to @main_plan
-    # if @main_plan.update(main_plan_params)
-    #   redirect_to @main_plan, notice: "更新しました"
-    # else
-    #   flash.now[:alert] = "更新できませんでした"
-    #   render :edit
-    # end
+    if MainPlan.exists?(div_member: @main_plan.div_member, div_day: @main_plan.div_day, div_time: @main_plan.div_time, shop_id: @main_plan.shop_id,
+                        fee_type: @main_plan.fee_type)
+      flash.now[:alert] = "その料金はすでに登録されています。"
+      render :edit
+    else
+      @main_plan.update
+      redirect_to main_plans_path, notice: "更新しました"
+    end
   end
 
   def destroy
     @main_plan.destroy!
-    redirect_to main_plans_path
+    redirect_to main_plans_path, notice: "削除しました"
   end
 
   private

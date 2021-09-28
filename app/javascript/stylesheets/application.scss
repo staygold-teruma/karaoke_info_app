@@ -1772,3 +1772,22 @@ p {
     border-bottom: 15px solid #ff5500;
   }
 }
+
+// エラーメッセージ
+#flash_title,
+#flash_msg {
+  height: 50px;
+  line-height: 50px;
+  @include mq-down(md) {
+    width: 90%;
+    max-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    background: #ededed;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+}
