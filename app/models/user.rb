@@ -24,7 +24,7 @@ class User < ApplicationRecord
     high_school_student: 3,
     junior_college_or_professional_student: 4,
     univercity_student: 5,
-    company_employeeor_civil_servant: 6,
+    company_employee_or_civil_servant: 6,
     executive_or_self_employed: 7,
     house_maker: 8,
     part_timer: 9,

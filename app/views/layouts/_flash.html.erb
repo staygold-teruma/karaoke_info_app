@@ -1,0 +1,5 @@
+<% flash.each do |flash_type, msg| %>
+  <p class="ml-5" id="flash_msg" style="color: <%= flash_type == 'notice' ? 'green' : 'red' %>;">
+    <i class="far fa-check-circle text-app mr-1"></i><%= msg %>
+  </p>
+<% end %>
