@@ -51,11 +51,11 @@
 }
 
 .fee_guide_table_head {
-  @apply w-12 border-2 border-app px-2 py-3 text-xxs sm:text-xs font-black;
+  @apply w-12 border-2 border-app px-1 py-3 font-black text-sm md:text-base;
 }
 
 .fee_guide_table_body {
-  @apply border-2 border-app px-1 py-2 text-center text-xxs sm:text-sm;
+  @apply border-2 border-app px-1 py-2 text-center text-sm md:text-base;
 }
 
 .nav_btn_sign_up {
@@ -91,11 +91,11 @@
 }
 
 .alcohol_head {
-  @apply border border-gray-400 px-1 py-1 sm:py-3 text-center text-xs md:text-base font-bold;
+  @apply border border-gray-400 px-1 py-2 sm:py-3 text-center text-base font-bold;
 }
 
 .alcohol_body {
-  @apply border border-gray-400 px-1 py-1 text-center text-xs md:text-base;
+  @apply border border-gray-400 px-1 py-1 text-center text-sm md:text-base;
 }
 
 .stripe_title_deluxe,
@@ -1637,6 +1637,9 @@ p {
 .alcohol_head,
 .alcohol_body {
   @include mq-down(xxs) {
+    font-size: 12px;
+  }
+  @include mq-down(xls) {
     font-size: 10px;
   }
 }
@@ -1721,7 +1724,7 @@ p {
   height: 50px;
   position: fixed;
   bottom: 100px;
-  right: 30px;
+  right: 15px;
   #triangle {
     width: 0;
     height: 0;
