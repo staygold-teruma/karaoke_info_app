@@ -21,13 +21,17 @@
       <%= render "layouts/flash" %>
     </div>
     <h1 class="page_title">ドリンク料金一覧</h1>
-    <div id="m_search_box"  class="hidden md:flex">
+    <div id="search_box"  class="hidden md:flex">
       <%= search_form_for @q do |f| %>
-      <div id="fee_type_search_d">
+      <div class="hidden lg:block" id="fee_type_search">
         <%= f.label :fee_type_eq, "料金名:" %>
         <%= f.select :fee_type_eq, DrinkPlan.fee_types.map{|k, v| [DrinkPlan.fee_types_i18n[k], v]}, include_blank: true %>
       </div>
-      <div id="other_search_d">
+      <div id="other_search">
+        <%= f.label :div_time_eq, "時間区分:" %>
+        <%= f.select :div_time_eq, DrinkPlan.div_times.map{|k, v| [DrinkPlan.div_times_i18n[k], v]}, include_blank: true %>
+      </div>
+      <div id="other_search">
         <%= f.label :base_time_eq, "基本時間:" %>
         <%= f.select :base_time_eq, DrinkPlan.base_times.map{|k, v| [DrinkPlan.base_times_i18n[k], v]}, include_blank: true %>
       </div>
@@ -36,17 +40,19 @@
       </div>
       <% end %>
     </div>
-    <div class="w-11/12 max-w-screen-lg border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto mx-5 my-6 lg:mx-auto items-center">
-      <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped">
-          <tr id="table_heading" class="bg-blue-500">
-            <th class="index_table_head  hidden lg:table-cell">No.</th>
-            <th class="index_table_head">料金種類</th>
-            <th class="index_table_head">基本時間</th>
+    <div class="sm:h-80 border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-2 sm:mx-8 my-6 lg:mx-4 items-center">
+      <table class="border-collapse table-auto w-full whitespace-no-wrap bg-white table-striped relative" id="table_index">
+        <thead>
+          <tr id="table_heading" class="bg-blue-500 sticky top-0">
+            <th class="index_table_head hidden lg:table-cell">No.</th>
+            <th class="index_table_head">料金名</th>
+            <th class="index_table_head">時間</th>
+            <th class="index_table_head">基本</th>
             <th class="index_table_head hidden lg:table-cell">一般</th>
             <th class="index_table_head hidden lg:table-cell">学生</th>
             <th class="index_table_head hidden lg:table-cell">シニア</th>
             <th class="index_table_head hidden lg:table-cell">小学生</th>
-            <th class="index_table_head" colspan="2"><i class="fas fa-edit text-white"></th>
+            <th class="index_table_head border-gray-400 py-1" colspan="2"><i class="fas fa-edit text-white text-base"></th>
           </tr>
         </thead>
         <tbody>
@@ -54,6 +60,7 @@
             <tr class="border-b border-gray-200 hover:bg-gray-100">
               <td class="index_table_body hidden lg:table-cell"><%= i %></td>
               <td class="border border-gray-400 px-1 py-1 text-center text-blue-600 text-xs xl:text-sm"><%= link_to drink_plan.fee_type_i18n, drink_plan %></td>
+              <td class="index_table_body"><%= drink_plan.div_time_i18n %></td>
               <td class="index_table_body"><%= drink_plan.base_time_i18n %></td>
               <td class="index_table_body hidden lg:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
               <td class="index_table_body hidden lg:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>

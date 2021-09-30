@@ -47,7 +47,7 @@ class Shops::TopicsController < Shops::ApplicationController
     @shops_topic = current_shop.topics.find(params[:id])
   end
 
-  def topic_params
+  def shops_topic_params
     params.require(:topic).permit(:title, :content, :image)
   end
 end

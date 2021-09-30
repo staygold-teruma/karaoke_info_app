@@ -1,18 +1,20 @@
 <div class="sm:border-2 rounded-lg sm:shadow my-6 p-1 sm:p-8" id="form_wrap">
   <%= form_with model: @main_plan, local: true do |f| %>
     <div class="w-full" id="l_div">
-      <div class="form_box_long">
+      <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :fee_type %>
         <%= f.select :fee_type, MainPlan.fee_types_i18n.invert%>
       </div>
     </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2" id="l_div">
+    <div id="l_div">
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :div_day %>
         <%= f.select :div_day, MainPlan.div_days_i18n.invert %>
       </div>
+    </div>
+    <div id="l_div">
       <div class="form_box">
         <i class="fas fa-caret-square-right text-blue-600"></i>
         <%= f.label :div_time %>

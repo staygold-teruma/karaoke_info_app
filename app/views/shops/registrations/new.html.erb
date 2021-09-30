@@ -1,9 +1,11 @@
 <% content_for :title do %>
-    管理画面：店舗情報編集
+    管理画面：店舗情報登録
 <% end %>
 
 <nav class="flex justify-center items-center w-full" id="gnav">
-  <img src="/assets/logo.png" id="logo_md">
+  <%= link_to root_path, class: "hidden md:block" do %>
+    <img src="/assets/logo.png" class="hidden md:block" id="logo_md">
+  <% end %>
 </nav>
 <div class="pb-6">
   <h1 class="page_title">店舗アカウント登録</h1>
@@ -79,7 +81,7 @@
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
           <%= f.label :address_building, "建物", class: "text-sm " %><br />
           <%= f.text_field :address_building, autocomplete: "address_building", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-11/12" %>
-        </div>
+      </div>
 
       <div class="actions mt-6 w-5/6 sm:w-2/3 mx-auto flex justify-center">
         <%= f.submit "アカウント登録", class: "text-sm bg-blue-500 hover:bg-blue-700 text-white px-2 py-2 rounded cursor-pointer" %>

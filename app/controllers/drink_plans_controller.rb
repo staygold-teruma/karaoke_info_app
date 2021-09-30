@@ -13,13 +13,10 @@ class DrinkPlansController < ApplicationController
 
   def create
     @drink_plan = current_shop.drink_plans.new(drink_plan_params)
-    if DrinkPlan.exists?(shop_id: @drink_plan.shop_id, base_time: @drink_plan.base_time, fee_type: @drink_plan.fee_type)
-      flash.now[:alert] = "その料金はすでに登録されています。"
-      render :new
-    elsif @drink_plan.update
-      redirect_to drink_plans_path, notice: "更新しました"
+    if @drink_plan.save
+      redirect_to drink_plans_path, notice: "登録しました"
     else
-      flash.now[:alert] = "更新できませんでした"
+      flash.now[:alert] = "登録できませんでした"
       render :new
     end
   end
@@ -29,10 +26,7 @@ class DrinkPlansController < ApplicationController
   def edit; end
 
   def update
-    if DrinkPlan.exists?(shop_id: @drink_plan.shop_id, base_time: @drink_plan.base_time, fee_type: @drink_plan.fee_type)
-      flash.now[:alert] = "その料金はすでに登録されています。"
-      render :edit
-    elsif @drink_plan.update
+    if @drink_plan.update(drink_plan_params)
       redirect_to drink_plans_path, notice: "更新しました"
     else
       flash.now[:alert] = "更新できませんでした"
@@ -52,7 +46,7 @@ class DrinkPlansController < ApplicationController
   end
 
   def drink_plan_params
-    params.require(:drink_plan).permit(:fee_type, :base_time, :note, :adult_fee, :student_fee, :senior_fee, :child_fee, :extension_adult_fee,
-                                       :extension_student_fee, :extension_senior_fee, :extension_child_fee)
+    params.require(:drink_plan).permit(:fee_type, :div_time, :base_time, :adult_fee, :student_fee, :senior_fee, :child_fee, :extension_adult_fee,
+                                       :extension_student_fee, :extension_senior_fee, :extension_child_fee, :note)
   end
 end

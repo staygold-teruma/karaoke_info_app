@@ -1,6 +1,7 @@
 document.addEventListener('turbolinks:load', function () {
   $(function () {
     $('#fee_guide_usage_time').on('change', function () {
+      $('select option').attr('selected', false);
       $('#fee_guide_drink_plan').val('one_hour');
       let selected_time = $(this).val();
       if (selected_time == 'half_hour' || selected_time == 'one_hour') {

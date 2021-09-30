@@ -14,11 +14,7 @@ class MainPlansController < ApplicationController
 
   def create
     @main_plan = current_shop.main_plans.new(main_plan_params)
-    if MainPlan.exists?(div_member: @main_plan.div_member, div_day: @main_plan.div_day, div_time: @main_plan.div_time, shop_id: @main_plan.shop_id,
-                        fee_type: @main_plan.fee_type)
-      flash.now[:alert] = "その料金はすでに登録されています。"
-      render :new
-    elsif @main_plan.save
+    if @main_plan.save
       redirect_to main_plans_path, notice: "登録が完了しました"
     else
       flash.now[:alert] = "登録できませんでした"
@@ -31,11 +27,7 @@ class MainPlansController < ApplicationController
   def edit; end
 
   def update
-    if MainPlan.exists?(div_member: @main_plan.div_member, div_day: @main_plan.div_day, div_time: @main_plan.div_time, shop_id: @main_plan.shop_id,
-                        fee_type: @main_plan.fee_type)
-      flash.now[:alert] = "その料金はすでに登録されています。"
-      render :edit
-    elsif @main_plan.update
+    if @main_plan.update(main_plan_params)
       redirect_to main_plans_path, notice: "更新しました"
     else
       flash.now[:alert] = "更新できませんでした"

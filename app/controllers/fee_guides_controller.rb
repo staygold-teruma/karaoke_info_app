@@ -15,7 +15,7 @@ class FeeGuidesController < ApplicationController
 
   def create
     @fee_guide = FeeGuide.new(fee_guide_params)
-    @fee_guide.set_calculated_result
+    @fee_guide.store_calculated_result
     if @fee_guide.save!
       redirect_to edit_fee_guide_url(@fee_guide)
     else
@@ -28,8 +28,9 @@ class FeeGuidesController < ApplicationController
   def edit; end
 
   def update
-    @fee_guide.set_values
-    @fee_guide.update!(fee_guide_update_params)
+    @fee_guide.reset_params(fee_guide_update_params)
+    @fee_guide.store_calculated_result
+    @fee_guide.save!
     redirect_to edit_fee_guide_url(@fee_guide)
   end
 
@@ -41,7 +42,8 @@ class FeeGuidesController < ApplicationController
   private
 
   def fee_guide_params
-    params.require(:fee_guide).permit(:div_member, :number_of_adults, :number_of_students, :number_of_seniors, :number_of_children, :usage_time, :drink_plan)
+    params.require(:fee_guide).permit(:div_member, :number_of_adults, :number_of_students, :number_of_seniors, :number_of_children, :usage_time,
+                                      :drink_plan)
   end
 
   def fee_guide_update_params
