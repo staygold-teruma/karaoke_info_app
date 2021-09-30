@@ -1,6 +1,6 @@
-class CreateFeeInfos < ActiveRecord::Migration[6.1]
+class CreateFeeGuides < ActiveRecord::Migration[6.1]
   def change
-    create_table :fee_infos do |t|
+    create_table :fee_guides do |t|
       t.integer :div_member, null: false, default: 1
       t.integer :number_of_adults, null: false, default: 0
       t.integer :number_of_students, null: false, default: 0

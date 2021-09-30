@@ -1,7 +1,7 @@
 class AddColumnsToShops < ActiveRecord::Migration[6.1]
   def change
     change_table :shops, bulk: true do |t|
-      t.string :name
+      t.string :name, null: false
       t.string :phone_number
       t.integer :postcode
       t.integer :prefecture_code

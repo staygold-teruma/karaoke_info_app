@@ -8,29 +8,27 @@ ja:
     attributes:
       main_plan:
         fee_type: 料金名
-        note: 備考
-        div_member: 会員区分
         div_day: 曜日区分
         div_time: 時間帯区分
-        time_unit: 時間単位
+        div_member: 会員区分
         adult_fee: 一般料金
         student_fee: 学生料金
         senior_fee: シニア料金
         child_fee: 小学生料金
-      drink_plan:
-        name: 料金名
         note: 備考
-        time_unit: 時間単位
+      drink_plan:
+        fee_type: 料金種類
+        div_time: 時間帯区分
+        base_time: 基本時間
         adult_fee: 一般/基本料金
         student_fee: 学生/基本料金
         senior_fee: シニア/基本料金
         child_fee: 小学生/基本料金
-        base_time: 基本時間
         extension_adult_fee: 一般/延長料金
         extension_student_fee: 学生/延長料金
         extension_senior_fee: シニア/延長料金
         extension_child_fee: 小学生/延長料金
-        fee_type: 料金種類
+        note: 備考
       fee_guide:
         div_member: 会員区分
         number_of_adults: 一般人数

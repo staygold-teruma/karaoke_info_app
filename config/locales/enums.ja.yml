@@ -5,9 +5,6 @@ ja:
         half_hour: '30分料金'
         three_hour: '3時間パック料金'
         free_time: 'フリータイム料金'
-      div_member:
-        other: '一般'
-        member: '会員'
       div_day:
         weekday: '平日'
         friday: '金曜日'
@@ -16,20 +13,24 @@ ja:
         day: '昼'
         night: '夜'
         evening: '夕方'
+      div_member:
+        other: '一般'
+        member: '会員'
     drink_plan:
-      time_unit:
-        half_hour: '30分'
-        free_time: 'フリー'
-      base_time:
-        base_half_hour: '30分'
-        base_one_hour: '60分'
-        base_one_half_hour: '90分'
-        base_free_time: 'フリータイム'
       fee_type:
         drink_bar: 'ドリンクバー料金'
         lite_plan: 'ライト飲み放題料金'
         variety_plan: 'バラエティ飲み放題料金'
         deluxe_plan: 'デラックス飲み放題料金'
+      div_time:
+        day: '昼'
+        night: '夜'
+        all_day: '終日'
+      base_time:
+        half_hour: '30分'
+        one_hour: '60分'
+        one_half_hour: '90分'
+        free_time: 'フリータイム'
     fee_guide:
       div_member:
         other: '一般'
