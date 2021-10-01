@@ -83,11 +83,11 @@
 }
 
 .question {
-  @apply text-xs bg-app border border-app rounded-t-lg px-2 py-1;
+  @apply text-xs bg-app border border-app rounded-t-lg px-1 sm:px-2 py-1;
 }
 
 .answer {
-  @apply text-xs border bg-white border-app rounded-b-lg px-2 py-1;
+  @apply text-xs border bg-white border-app rounded-b-lg px-1 sm:px-2 py-1;
 }
 
 .alcohol_head {
@@ -1383,7 +1383,7 @@ p {
   }
   #step_num,
   #step_title {
-    @include mq-down(xls) {
+    @include mq-down(xxs) {
       font-size: 14px;
     }
   }
@@ -1444,6 +1444,33 @@ p {
     background: white;
     border: gray 1px solid;
     border-radius: 8px;
+  }
+}
+
+// 料金案内結果
+#total_result {
+  tr {
+    td {
+      @include mq-down(xls) {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.fee_guide_table_head {
+  @include mq-down(xls) {
+    font-size: 12px;
+  }
+}
+
+#result_table_body {
+  tr {
+    td {
+      @include mq-down(xls) {
+        font-size: 12px;
+      }
+    }
   }
 }
 

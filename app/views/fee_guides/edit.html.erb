@@ -14,9 +14,9 @@
 <div class="mt-6 px-3 sm:px-7" id="fee_guide_edit">
   <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
     <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">料金のご案内</h1>
-    <table class="mx-auto lg:text-2xl">
-      <tbody>
-        <tr>
+    <table class="mx-auto lg:text-xl">
+      <tbody id="total_result">
+        <tr class="border-b">
           <td class="pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用プラン
           </td>
@@ -32,8 +32,8 @@
           <% end %>
         </tr>
       </tbody>
-      <tbody>
-        <tr>
+      <tbody id="total_result">
+        <tr class="border-b mt-2">
           <td class="pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用時間
           </td>
@@ -43,8 +43,8 @@
           <td class="pl-5"><%= @fee_guide.usage_time_i18n %></td>
         </tr>
       </tbody>
-      <tbody>
-        <tr>
+      <tbody id="total_result">
+        <tr class="border-b">
           <td class="pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>会員区分
           </td>
@@ -58,8 +58,8 @@
           <% end %>
         </tr>
       </tbody>
-      <tbody>
-        <tr>
+      <tbody id="total_result">
+        <tr class="border-b">
           <td class="pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用人数
           </td>
@@ -69,8 +69,8 @@
           <td class="pl-5"><%= @fee_guide.number_of_customers %>名様</td>
         </tr>
       </tbody>
-      <tbody>
-        <tr>
+      <tbody id="total_result">
+        <tr class="border-b">
           <td class="pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ドリンクプラン
           </td>
@@ -81,14 +81,14 @@
         </tr>
       </tbody>
     </table>
-    <div class="flex justify-center items-center mt-5">
-      <p class="text-xl text-white px-3 py-2 mr-5 sm:mr-12 rounded-xl shadow bg-app">料金合計</p>
-      <p class="text-3xl mr-2 py-1"><%= @fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+    <div class="flex justify-center items-center mt-8">
+      <p class="text-2xl text-white px-3 py-2 mr-5 sm:mr-12 rounded-xl shadow bg-app">料金合計</p>
+      <p class="text-4xl mr-2 py-1"><%= @fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
     </div>
     <div>
       <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
-          <p class="mt-3 text-center text-xs text-red-500">お一人様1杯、ドリンク(418円〜)のご注文が必要です</p>
-          <p class="text-center text-xs text-red-500">上記料金にご注文のドリンク代金が加算されます</p>
+          <p class="mt-3 text-center text-xs md:text-base text-red-500">お一人様1杯、ドリンク(418円〜)のご注文が必要です</p>
+          <p class="text-center text-xs md:text-base text-red-500">上記料金にご注文のドリンク代金が加算されます</p>
       <% end %>
     </div>
   </div>
@@ -96,7 +96,7 @@
     <h3 class="mb-2 text-lg font-black"><i class="fas fa-play-circle text-app"></i> 料金内訳</h3>
     <table class="w-full border-collapse border-2 border-app overflow-y-scroll sm:max-w-screen-md mx-auto">
       <thead>
-        <tr id="table_heading" class="">
+        <tr id="table_heading">
           <th class="fee_guide_table_head bg-yellow-400">
             税&emsp;込</th>
           <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
@@ -114,7 +114,7 @@
           <th class="fee_guide_table_head hidden md:table-cell bg-yellow-600 bg-opacity-20">合計</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="result_table_body">
         <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-20">
           <% if @fee_guide.number_of_adults > 0 %>
             <td class="border-2 border-app px-1 py-1 text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
@@ -185,74 +185,75 @@
         </tr>
       </tbody>
     </table>
-    <div class="text-sm mt-2">
+    <div class="text-sm md:text-base mt-2">
       <p class="text-red-500"><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>学生/シニア料金はドリンクバー無料です。</p>
-      <p><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>昼料金/夜料金は19時を超えたご利用分から切り替わります。</p>
-      <p><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>実際のチェックイン時間によって、誤差が発生する場合がございます。</p>
+      <p><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>昼料金/夜料金は19時を超えたご利用分から<br class="sm:hidden"><span class="sm:hidden">&emsp;&nbsp;</span>切り替わります。</p>
+      <p><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>実際のチェックイン時間によって、<br class="sm:hidden"><span class="sm:hidden">&emsp;&nbsp;</span>誤差が発生する場合がございます。</p>
     </div>
   </div>
 </div>
-
-<div class="sm:max-w-screen-md sm:mx-auto px-1 sm:px-7" id="fee_guide_wrap">
-  <h3 class="text-lg mt-8 mb-2 ml-0 font-black"><i class="fas fa-play-circle text-app mr-1"></i>条件を変えて計算する</h3>
-</div>
-<div class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform py-2 px-2 sm:px-4">
-  <div class="hidden xl:block">
-    <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
-    <div class="mb-6">
-      <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">会員にはすぐになれますか？</p>
-      </div>
-      <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">子供の料金を教えてください。</p>
-      </div>
-      <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">ワンドリンクのドリンク代はいくらですか？</p>
-      </div>
-      <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">418円からご用意しております。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
-      </div>
-      <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
-      </div>
-      <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
-      </div>
-    </div>
-    <p class="text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
+<div class="mt-6 mx-1">
+  <div class="sm:max-w-screen-md sm:mx-auto sm:px-0" id="fee_guide_wrap">
+    <h3 class="text-lg mt-8 -mb-4 sm:mb-2 ml-2 sm:ml-0 font-black"><i class="fas fa-play-circle text-app mr-1"></i>条件を変えてやり直す</h3>
   </div>
-  
-  <%= render "form_fee_guide" %>
+  <div class="mx-auto flex items-center justify-evenly py-2 pb-24 sm:pb-0">
+    <div class="hidden xl:block">
+      <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
+      <div class="mb-6">
+        <div class="question flex items-center">
+          <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+          <p class="text-white text-lg">会員にはすぐになれますか？</p>
+        </div>
+        <div class="answer flex items-center">
+          <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+          <p class="text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
+        </div>
+      </div>
+      <div class="mb-6">
+        <div class="question flex items-center">
+          <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+          <p class="text-white text-lg">子供の料金を教えてください。</p>
+        </div>
+        <div class="answer flex items-center">
+          <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+          <p class="text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
+        </div>
+      </div>
+      <div class="mb-6">
+        <div class="question flex items-center">
+          <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+          <p class="text-white text-lg">ワンドリンクのドリンク代はいくらですか？</p>
+        </div>
+        <div class="answer flex items-center">
+          <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+          <p class="text-lg">418円からご用意しております。</p>
+        </div>
+      </div>
+      <div class="mb-6">
+        <div class="question flex items-center">
+          <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+          <p class="text-white text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
+        </div>
+        <div class="answer flex items-center">
+          <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+          <p class="text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
+        </div>
+      </div>
+      <div class="mb-6">
+        <div class="question flex items-center">
+          <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+          <p class="text-white text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
+        </div>
+        <div class="answer flex items-center">
+          <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+          <p class="text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
+        </div>
+      </div>
+      <p class="text-white text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan" class="text-app underline font-black">こちら</a></p>
+    </div>
+    
+    <%= render "form_fee_guide" %>
+</div>
 
 </div>
 

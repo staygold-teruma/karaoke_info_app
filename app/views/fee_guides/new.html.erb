@@ -12,7 +12,7 @@
 <div id="app_guide_wrapper">
   <div class="flex justify-center lg:justify-evenly items-center py-4 md:py-6 xl:py-0" id="news_wrapper">
     <div id="news_left">
-      <div class="hidden sm:block bg-gray-100 rounded-lg shadow-lg mb-2 p-3 pt-2" id="news_box">
+      <div class="hidden sm:block mt-1 bg-gray-100 rounded-lg shadow-lg mb-2 p-3 pt-2" id="news_box">
         <div class="w-full rounded text-center bg-app text-white my-2 items-center sm:text-xl">
           NEW!
         </div>
@@ -48,7 +48,7 @@
               </div>
             <% end %>
           <% end %>
-        <% end %>
+        <% end %> 
       </div>
       <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mx-auto mt-3 mb-3 sm:mb-0 p-3" id="news_box">
         <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center text-xl">
@@ -88,15 +88,15 @@
               <% end %>
             <% end %>
           <% end %>  
-        </div>
+        </div>  
       </div>
-      <div class="hidden sm:block">
+      <div class="hidden sm:block mt-2">
         <% if shop_signed_in? %>
           <%= link_to "※TOPICS一覧はこちら", shops_topics_path, class: "hover:text-app ml-2" %>
         <% else %>
           <%= link_to "※TOPICS一覧はこちら", users_topics_path, class: "hover:text-app ml-2" %>
         <% end %>
-      </div>      
+      </div>   
     </div>
     <% if shop_signed_in? %>
       <%= link_to(shops_topic_path(@topics_three.first)) do %>
@@ -116,64 +116,64 @@
   <%= render "app_guide_tab" %>
 </div>
 
-<div id="modal" class="mx-auto flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 py-2 px-2 sm:px-4 sm:py-12">
-  <div class="hidden xl:block">
+<div id="modal" class="mx-auto xl:flex items-center justify-evenly bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 py-2 px-2 sm:px-4 sm:py-12">
+  <div class="flex justify-center">
+    <%= render "form_fee_guide" %>
+  </div>
+  <div class="w-11/12 mt-8 xl:mt-0 sm:max-w-screen-md mx-auto">
     <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
     <div class="mb-6">
       <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">会員にはすぐになれますか？</p>
+        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white sm:text-lg">会員にはすぐになれますか？</p>
       </div>
       <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
+        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
+        <p class="sm:text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
       </div>
     </div>
     <div class="mb-6">
       <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">子供の料金を教えてください。</p>
+        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white sm:text-lg">子供の料金を教えてください。</p>
       </div>
       <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
+        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
+        <p class="sm:text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
       </div>
     </div>
     <div class="mb-6">
       <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">ワンドリンクのドリンク代はいくらですか？</p>
+        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white sm:text-lg">ワンドリンクのドリンク代はいくらですか？</p>
       </div>
       <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">418円からご用意しております。</p>
+        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
+        <p class="sm:text-lg">418円からご用意しております。</p>
       </div>
     </div>
     <div class="mb-6">
       <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
+        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white sm:text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
       </div>
       <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
+        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
+        <p class="sm:text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
       </div>
     </div>
     <div class="mb-6">
       <div class="question flex items-center">
-        <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
+        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
+        <p class="text-white sm:text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
       </div>
       <div class="answer flex items-center">
-        <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
-        <p class="text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
+        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
+        <p class="sm:text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
       </div>
     </div>
     <p class="text-white text-center">アルコール飲み放題コースの詳細は<a href="" class="text-app underline font-black">こちら</a></p>
   </div>
-  
-  <%= render "form_fee_guide" %>
-
 </div>
 
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
