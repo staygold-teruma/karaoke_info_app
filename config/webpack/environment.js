@@ -9,4 +9,12 @@ environment.plugins.prepend(
   })
 );
 
+environment.toWebpackConfig().merge({
+  resolve: {
+    alias: {
+      jquery: 'jquery/src/jquery',
+    },
+  },
+});
+
 module.exports = environment;

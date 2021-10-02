@@ -7,6 +7,11 @@ crumb :topic_index do
   parent :root
 end
 
+crumb :fee_guide_result do
+  link "料金案内結果", edit_fee_guide_path
+  parent :root
+end
+
 crumb :topic_show do
   link "トピックス詳細", users_topics_path
   parent :topic_index

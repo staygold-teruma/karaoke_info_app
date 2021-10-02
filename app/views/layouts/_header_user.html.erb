@@ -1,32 +1,39 @@
-<ul class="hidden sm:flex justify-end items-center bg-app_bg shadow-lg" id="top_nav_user">
-  <li class="px-2 md:px-4 sm:text-xs hover:underline">
-    <%= link_to "ホーム", root_path %>
-  </li>
-  <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-    <%= link_to "トピックス", users_topics_path %>
-  </li>
-  <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-    <%= link_to "クーポン", static_pages_coupon_path %>
-  </li>
-  <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-    <%= link_to "飲み放題", static_pages_alcohol_plan_path %>
-  </li>
-  <% if user_signed_in? %>
-    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "マイページ", user_path(current_user.id) %>
+<div class="hidden sm:flex justify-between items-center bg-app_bg shadow-lg" id="top_nav_user">
+  <div>
+    <%= link_to root_path do %>
+      <img src="/assets/logo.png" alt="">
+    <% end %>
+  </div>
+  <ul class="flex">
+    <li class="px-2 md:px-4 sm:text-xs hover:underline">
+      <%= link_to "ホーム", root_path %>
     </li>
     <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
-    </li> 
-  <% else %>
-    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "ログイン", new_user_session_path %>
+      <%= link_to "トピックス", users_topics_path %>
     </li>
     <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "【ユーザー登録】", new_user_registration_path %>
+      <%= link_to "クーポン", static_pages_coupon_path %>
     </li>
-  <% end %>
-</ul>
+    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+      <%= link_to "飲み放題", static_pages_alcohol_plan_path %>
+    </li>
+    <% if user_signed_in? %>
+      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "マイページ", user_path(current_user.id) %>
+      </li>
+      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
+      </li> 
+    <% else %>
+      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "【ユーザー登録】", new_user_registration_path %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="bg-top-image bg-cover bg-no-repeat bg-center" id="header_user">
   <%= link_to root_path do %>
