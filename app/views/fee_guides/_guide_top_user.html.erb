@@ -2,37 +2,42 @@
   <%= link_to root_path do %>
     <div class="w-1/2 xl:w-2/5 pr-4 sm:pr-0" id="app_title">
       <div class="md:mr-20 xl:mr-12">
-        <h1 class="text-white text-center text-xs md:text-base lg:text-2xl mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
-        <p class="text-app text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl">iko!KARA</p>
+        <h1 class="text-white text-center text-xs sm:text-base mb-1 sm:mb-3">カラオケ料金案内アプリ</h1>
+        <p class="text-app text-center text-4xl sm:text-6xl md:text-7xl">iko!KARA</p>
       </div>
     </div>
   <% end %>
-  <ul class="w-full bg-app_bg hidden sm:flex justify-end items-center" id="user_top_nav">
-    <li class="px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "トピックス", users_topics_path %>
-    </li>
-    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "クーポン", static_pages_coupon_path %>
-    </li>
-    <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-      <%= link_to "飲み放題", static_pages_alcohol_plan_path %>
-    </li>
-    <% if user_signed_in? %>
-      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-        <%= link_to "マイページ", user_path(current_user.id) %>
-      </li>
-      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
-      </li> 
-    <% else %>
-      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
-        <%= link_to "【ユーザー登録】", new_user_registration_path %>
-      </li>
+  <div class="w-full bg-app_bg  hidden sm:flex justify-between items-center" id="user_top_nav">
+    <%= link_to root_path do %>
+      <img src="/assets/logo.png" alt="">
     <% end %>
-  </ul>
+    <ul class="flex">
+      <li class="px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "トピックス", users_topics_path %>
+      </li>
+      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "クーポン", static_pages_coupon_path %>
+      </li>
+      <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+        <%= link_to "飲み放題", static_pages_alcohol_plan_path %>
+      </li>
+      <% if user_signed_in? %>
+        <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+          <%= link_to "マイページ", user_path(current_user.id) %>
+        </li>
+        <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" } %>
+        </li> 
+      <% else %>
+        <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+        <li class="border-l-2 border-gray-200 px-2 md:px-4 sm:text-xs hover:underline">
+          <%= link_to "【ユーザー登録】", new_user_registration_path %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
   <div>
     <button id="modal_btn" class="focus:outline-none hidden sm:block p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">
       <span class="text-sm text-white">FeeGuide</span>
