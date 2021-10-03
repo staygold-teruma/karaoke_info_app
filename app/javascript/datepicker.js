@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', function () {
   $(function () {
     $('#datepicker').datepicker({
-      dateFormat: 'yy-mm-dd',
+      dateFormat: 'yy年mm月dd日',
     });
   });
 });

@@ -1,6 +1,7 @@
 require "date"
 
 class FeeGuide < ApplicationRecord
+  belongs_to :shop
   with_options presence: true do
     validates :div_member
     validates :usage_time

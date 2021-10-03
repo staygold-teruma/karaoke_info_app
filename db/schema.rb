@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_054057) do
+ActiveRecord::Schema.define(version: 2021_10_03_091212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,9 @@ ActiveRecord::Schema.define(version: 2021_09_29_054057) do
     t.integer "student_total_fee", null: false
     t.integer "senior_total_fee", null: false
     t.integer "child_total_fee", null: false
+    t.bigint "shop_id"
+    t.datetime "start_time"
+    t.index ["shop_id"], name: "index_fee_guides_on_shop_id"
   end
 
   create_table "main_plans", force: :cascade do |t|
@@ -136,6 +139,7 @@ ActiveRecord::Schema.define(version: 2021_09_29_054057) do
   end
 
   add_foreign_key "drink_plans", "shops"
+  add_foreign_key "fee_guides", "shops"
   add_foreign_key "main_plans", "shops"
   add_foreign_key "topics", "shops"
 end

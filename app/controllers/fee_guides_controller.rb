@@ -6,7 +6,7 @@ class FeeGuidesController < ApplicationController
   end
 
   def new
-    @fee_guide = FeeGuide.new
+    @fee_guide = Form::FeeGuide.new
     @topics_five = Topic.order(created_at: :desc).limit(5)
     @topics_three = Topic.order(created_at: :desc).limit(3)
     @user = current_user
@@ -14,7 +14,9 @@ class FeeGuidesController < ApplicationController
   end
 
   def create
-    @fee_guide = FeeGuide.new(fee_guide_params)
+    binding.pry
+    @fee_guide = Form::FeeGuide.new(fee_guide_params)
+    binding.pry
     @fee_guide.store_calculated_result
     if @fee_guide.save!
       redirect_to edit_fee_guide_url(@fee_guide)
@@ -42,13 +44,11 @@ class FeeGuidesController < ApplicationController
   private
 
   def fee_guide_params
-    params.require(:fee_guide).permit(:div_member, :number_of_adults, :number_of_students, :number_of_seniors, :number_of_children, :usage_time,
-                                      :drink_plan)
+    params.require(:form_fee_guide).permit(Form::FeeGuide::REGISTRABLE_ATTRIBUTES)
   end
 
   def fee_guide_update_params
-    params.require(:fee_guide).permit(:div_member, :number_of_adults, :number_of_students, :number_of_seniors, :number_of_children, :usage_time, :drink_plan,
-                                      :number_of_customers, :total_fee, :adult_main_fee, :student_main_fee, :senior_main_fee, :child_main_fee, :adult_drink_fee, :student_drink_fee, :senior_drink_fee, :child_drink_fee, :adult_total_fee, :student_total_fee, :senior_total_fee, :child_total_fee)
+    params.require(:form_fee_guide).permit(Form::FeeGuide::REGISTRABLE_ATTRIBUTES)
   end
 
   def set_fee_guide
