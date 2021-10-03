@@ -14,6 +14,7 @@ class FeeGuidesController < ApplicationController
   end
 
   def create
+    binding.pry
     @fee_guide = FeeGuide.new(fee_guide_params)
     @fee_guide.store_calculated_result
     if @fee_guide.save!
@@ -42,8 +43,7 @@ class FeeGuidesController < ApplicationController
   private
 
   def fee_guide_params
-    params.require(:fee_guide).permit(:div_member, :number_of_adults, :number_of_students, :number_of_seniors, :number_of_children, :usage_time,
-                                      :drink_plan)
+    params.require(:fee_guide).permit(Form::FeeGuide::REGISTRABLE_ATTRIBUTES)
   end
 
   def fee_guide_update_params
