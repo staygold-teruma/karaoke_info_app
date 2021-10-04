@@ -1,5 +1,5 @@
 class FeeGuidesController < ApplicationController
-  before_action :set_fee_guide, only: %i[show edit update destroy]
+  before_action :set_fee_guide, only: %i[show destroy]
 
   def index
     @fee_guides = FeeGuide.all
@@ -14,9 +14,7 @@ class FeeGuidesController < ApplicationController
   end
 
   def create
-    binding.pry
     @fee_guide = Form::FeeGuide.new(fee_guide_params)
-    binding.pry
     @fee_guide.store_calculated_result
     if @fee_guide.save!
       redirect_to edit_fee_guide_url(@fee_guide)
@@ -27,9 +25,12 @@ class FeeGuidesController < ApplicationController
 
   def show; end
 
-  def edit; end
+  def edit
+    @fee_guide = Form::FeeGuide.find(params[:id])
+  end
 
   def update
+    @fee_guide = Form::FeeGuide.find(params[:id])
     @fee_guide.reset_params(fee_guide_update_params)
     @fee_guide.store_calculated_result
     @fee_guide.save!
