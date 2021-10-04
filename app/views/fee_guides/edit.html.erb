@@ -2,17 +2,33 @@
     料金案内結果
 <% end %>
 <% content_for :header do %>
-  <div class="fixed w-full top-0 left-0 z-10">
-    <%= render "layouts/header_user" %>    
-  </div>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full top-0 left-0 z-10">
+      <%= render "layouts/header_shop" %>
+    </div>   
+  <% else %>
+    <div class="fixed w-full top-0 left-0 z-10">
+      <%= render "layouts/header_user" %>    
+    </div>
+  <% end %>
 <% end %>
 <% content_for :footer do %>
-  <%= render "layouts/footer_user" %>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full md:hidden">
+      <%= render "layouts/footer_shop" %>
+    </div>
+  <% else %>
+    <%= render "layouts/footer_user" %>
+  <% end %>
 <% end %>
 
-<div id="margin_wrapper"></div>
-<% breadcrumb :fee_guide_result %>
-<%= breadcrumbs separator: " &rsaquo; " %> 
+<% if user_signed_in? %>
+  <div id="margin_wrapper"></div>
+  <% breadcrumb :fee_guide_result %>
+  <%= breadcrumbs separator: " &rsaquo; " %>   
+<% else %>
+  <div id="margin_wrapper_shop"></div>
+<% end %>
 <div class="mt-6 sm:mt-12 px-3 sm:px-7" id="fee_guide_edit">
   <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
     <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">料金のご案内</h1>
@@ -253,11 +269,17 @@
       </div>
       <p class="text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan" class="text-app underline font-black">こちら</a></p>
     </div>    
-    <%= render "form_fee_guide" %>
+    <%= render "form_fee_guide", path: fee_guides_path, method: :post %>
   </div>
 </div>
 
-<%= render "layouts/side_menu_user" %>
+<% if shop_signed_in? %>
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+<% else %>
+  <%= render "layouts/side_menu_user" %>
+<% end %>
 
 <div class="">
   <div class="bg-gray-600 flex justify-center items-center rounded-lg" id="page_top">
