@@ -10,11 +10,38 @@
   <%= render "layouts/footer_shop" %>
 <% end %>
 
+<div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+  <%= render "layouts/side_menu_shop" %>
+</div>
 <div class="" id="main_contents_shop">
   <div class="mt-6 sm:mt-12 px-3 sm:px-7" id="fee_guide_edit">
     <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
-      <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">料金案内結果</h1>
+      <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">案内履歴詳細</h1>
       <table class="mx-auto lg:text-xl">
+        <tbody id="total_result">
+          <tr class="border-b">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>入室予定日時
+            </td>
+            <td class="">
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <td class="pl-5">
+              <%= @fee_guide.start_time.strftime("%Y年%m月%d日(#{%w(日 月 火 水 木 金 土)[@fee_guide.start_time.wday]})%H時%M分") %>
+            </td>
+          </tr>
+        </tbody>
+        <tbody id="total_result">
+          <tr class="border-b">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>適用料金
+            </td>
+            <td class="">
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <td class="pl-5"></td>
+          </tr>
+        </tbody>
         <tbody id="total_result">
           <tr class="border-b">
             <td class="pr-3 py-1">

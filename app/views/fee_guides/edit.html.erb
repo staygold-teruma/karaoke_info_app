@@ -2,12 +2,24 @@
     料金案内結果
 <% end %>
 <% content_for :header do %>
-  <div class="fixed w-full top-0 left-0 z-10">
-    <%= render "layouts/header_user" %>    
-  </div>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full top-0 left-0">
+      <%= render "layouts/header_shop" %>
+    </div>   
+  <% else %>
+    <div class="fixed w-full top-0 left-0 z-10">
+      <%= render "layouts/header_user" %>    
+    </div>
+  <% end %>
 <% end %>
 <% content_for :footer do %>
-  <%= render "layouts/footer_user" %>
+  <% if shop_signed_in? %>
+    <div class="fixed w-full md:hidden">
+      <%= render "layouts/footer_shop" %>
+    </div>
+  <% else %>
+    <%= render "layouts/footer_user" %>
+  <% end %>
 <% end %>
 
 <div id="margin_wrapper"></div>
@@ -257,7 +269,13 @@
   </div>
 </div>
 
-<%= render "layouts/side_menu_user" %>
+<% if shop_signed_in? %>
+  <div class="flex items-center sm:hidden bg-black bg-opacity-80 md:bg-app_bg pb-24" id="side_menu_shop_f">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+<% else %>
+  <%= render "layouts/side_menu_user" %>
+<% end %>
 
 <div class="">
   <div class="bg-gray-600 flex justify-center items-center rounded-lg" id="page_top">

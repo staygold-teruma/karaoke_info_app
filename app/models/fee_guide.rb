@@ -165,7 +165,7 @@ class FeeGuide < ApplicationRecord
                      (child_total_fee * number_of_children)
   end
 
-  # 一般/学生/��ニア/小学生ごとの合計料金（ビュー表示用）
+  # 一般/学生/シニア/小学生ごとの合計料金（ビュー表示用）
   def adult_fee_all
     adult_total_fee * number_of_adults
   end
@@ -202,7 +202,7 @@ class FeeGuide < ApplicationRecord
     end
   end
 
-  # 昼料金と夜���金のカウント数を取得
+  # 昼料金と夜料金のカウント数を取得
   def retrieve_unit_count(count)
     now_time = Time.zone.now
     business_day = case now_time.hour
@@ -242,7 +242,7 @@ class FeeGuide < ApplicationRecord
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 1)
   end
 
-  # フォームで取得した内容から該当の「フリータイム料��を取得」
+  # フォームで取得した内容から該当の「フリータイム料金を取得」
   def retrieve_free_plan(wday, time)
     MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 2)
   end
