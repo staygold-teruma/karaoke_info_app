@@ -57,6 +57,7 @@ class FeeGuide < ApplicationRecord
   def store_calculated_result
     # 利用時間による料金カウントを取得(@count)
     @count = FeeGuide.usage_times[usage_time] + 1
+    @datetime = Time.zone.parse("#{start_time_date} #{start_time_hour}:#{start_time_minute}:00")
     calculate_number_of_customers
     if ["three_hour", "free_time"].include?(usage_time)
       store_main_fee_free_time
@@ -88,10 +89,10 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのルーム料金を計算
   def store_main_fee
-    wday = retrieve_business_wday
+    wday = retrieve_business_wday(@datetime)
     chosen_day_plan = retrieve_day_plan(wday)
     chosen_night_plan = retrieve_night_plan(wday)
-    unit_count = retrieve_unit_count(@count)
+    unit_count = retrieve_unit_count(@datetime, @count)
     self.adult_main_fee = calculate_main_fee(chosen_day_plan.adult_fee, chosen_night_plan.adult_fee, unit_count)
     self.student_main_fee = calculate_main_fee(chosen_day_plan.student_fee, chosen_night_plan.student_fee, unit_count)
     self.senior_main_fee = calculate_main_fee(chosen_day_plan.senior_fee, chosen_night_plan.senior_fee, unit_count)
@@ -101,7 +102,7 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのフリータイム料金を計算
   def store_main_fee_free_time
-    wday = retrieve_business_wday
+    wday = retrieve_business_wday(@datetime)
     if usage_time == "three_hour"
       time = retrieve_div_time_three_hour
       chosen_free_plan = retrieve_three_hour_plan(wday, time)
@@ -185,10 +186,9 @@ class FeeGuide < ApplicationRecord
   private
 
   # 曜日区分を取得
-  def retrieve_business_wday
-    wday = Time.zone.today.wday
-    now_time = Time.zone.now
-    case now_time.hour
+  def retrieve_business_wday(datetime)
+    wday = datetime.wday
+    case datetime.hour
     when 0..6
       wday -= 1
     end
@@ -203,25 +203,25 @@ class FeeGuide < ApplicationRecord
   end
 
   # 昼料金と夜料金のカウント数を取得
-  def retrieve_unit_count(count)
-    now_time = Time.zone.now
-    business_day = case now_time.hour
+  def retrieve_unit_count(datetime, count)
+    business_day = case datetime.hour
                    when 0..6
-                     now_time.day - 1
+                     datetime.day - 1
                    else
-                     now_time.day
+                     datetime.day
                    end
-    change_point = Time.zone.local(now_time.year, now_time.month, business_day, 19)
+    # 料金が切り替わる19時を取得
+    change_point = Time.zone.local(datetime.year, datetime.month, business_day, 19)
     usage_seconds = HALFHOUR_TO_SECONDS * count
-    end_time = now_time + usage_seconds
-    if now_time > change_point
+    end_time = datetime + usage_seconds
+    if datetime > change_point
       day_count = 0
       night_count = count
-    elsif now_time < change_point && end_time < change_point + (HALFHOUR_TO_SECONDS - 1)
+    elsif datetime < change_point && end_time < change_point + (HALFHOUR_TO_SECONDS - 1)
       day_count = count
       night_count = 0
     else
-      day_count = (((change_point - 1) - now_time) / HALFHOUR_TO_SECONDS).ceil
+      day_count = (((change_point - 1) - datetime) / HALFHOUR_TO_SECONDS).ceil
       night_count = count - day_count
     end
     [day_count, night_count]
