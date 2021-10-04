@@ -1,8 +1,9 @@
 class FeeGuidesController < ApplicationController
   before_action :set_fee_guide, only: %i[show destroy]
+  before_action :authenticate_shop!
 
   def index
-    @fee_guides = FeeGuide.all
+    @fee_guides = FeeGuide.includes(:shop).all
   end
 
   def new
@@ -53,6 +54,6 @@ class FeeGuidesController < ApplicationController
   end
 
   def set_fee_guide
-    @fee_guide = FeeGuide.find(params[:id])
+    @fee_guide = current_shop.fee_guides.find(params[:id])
   end
 end

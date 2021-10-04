@@ -1,53 +1,184 @@
-<div class="" id="fee_dguide_wrap">
-  <div>
-    <p>料金合計</p>
-    <p><%= @fee_dguide.total_fee %></p>
+<% content_for :title do %>
+    管理画面：料金案内履歴詳細
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full">
+    <%= render "layouts/header_shop" %>
+  </div>   
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_shop" %>
+<% end %>
+
+<div class="" id="main_contents_shop">
+  <div class="mt-6 sm:mt-12 px-3 sm:px-7" id="fee_guide_edit">
+    <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
+      <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">料金案内結果</h1>
+      <table class="mx-auto lg:text-xl">
+        <tbody id="total_result">
+          <tr class="border-b">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>ご利用プラン
+            </td>
+            <td class="">
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <% if @fee_guide.usage_time_i18n == "フリー" %>
+              <td class="pl-5">フリータイム</td>
+            <% elsif @fee_guide.usage_time_i18n == "3時間" %>
+              <td class="pl-5">3時間パック</td>
+            <% else %>
+              <td class="pl-5">30分単位</td>
+            <% end %>
+          </tr>
+        </tbody>
+        <tbody id="total_result">
+          <tr class="border-b mt-2">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>ご利用時間
+            </td>
+            <td class="">
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <td class="pl-5"><%= @fee_guide.usage_time_i18n %></td>
+          </tr>
+        </tbody>
+        <tbody id="total_result">
+          <tr class="border-b">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>会員区分
+            </td>
+            <td>
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <% if @fee_guide.div_member_i18n == "一般" %>
+              <td class="pl-5">一般</td>
+            <% else %>
+              <td class="pl-5">会員</td>
+            <% end %>
+          </tr>
+        </tbody>
+        <tbody id="total_result">
+          <tr class="border-b">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>ご利用人数
+            </td>
+            <td class="">
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <td class="pl-5"><%= @fee_guide.number_of_customers %>名様</td>
+          </tr>
+        </tbody>
+        <tbody id="total_result">
+          <tr class="border-b">
+            <td class="pr-3 py-1">
+              <i class="far fa-check-circle mr-1 text-app"></i>ドリンクプラン
+            </td>
+            <td class="">
+              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            </td>
+            <td class="pl-5"><%= @fee_guide.drink_plan_i18n %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="flex justify-center items-center mt-8">
+        <p class="text-2xl text-white px-3 py-2 mr-5 sm:mr-12 rounded-xl shadow bg-app">料金合計</p>
+        <p class="text-4xl mr-2 py-1"><%= @fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+      </div>
+    </div>
+    <div class="sm:max-w-screen-md mx-auto">
+      <h3 class="mb-2 sm:mt-12 text-lg font-black"><i class="fas fa-play-circle text-app"></i> 料金内訳</h3>
+      <table class="w-full border-collapse border-2 border-app overflow-y-scroll sm:max-w-screen-md mx-auto">
+        <thead>
+          <tr id="table_heading">
+            <th class="fee_guide_table_head bg-yellow-400">
+              税&emsp;込</th>
+            <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+              ルーム<br class="sm:hidden">料金
+            </th>
+            <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+              ドリンク<br class="sm:hidden">料金       
+            </th>
+            <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+              1名様<br class="sm:hidden">あたり 
+            </th>
+            <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+              ご利用<br class="sm:hidden">人数
+            </th>
+            <th class="fee_guide_table_head hidden md:table-cell bg-yellow-600 bg-opacity-20">合計</th>
+          </tr>
+        </thead>
+        <tbody id="result_table_body">
+          <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-20">
+            <% if @fee_guide.number_of_adults > 0 %>
+              <td class="border-2 border-app px-1 py-1 text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
+              <td class="fee_guide_table_body text-green-500"><%= @fee_guide.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body  text-green-500"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-green-500"><%= @fee_guide.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-green-500"><%= @fee_guide.number_of_adults %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-green-500"><%= @fee_guide.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% else %>
+              <td class="border-2 border-app px-1 py-1  text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
+              <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-green-100"><%= @fee_guide.number_of_adults %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell  text-green-100"><%= @fee_guide.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+          </tr>
+          <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-10">
+            <% if @fee_guide.number_of_students > 0 %>
+              <td class="border-2 border-app px-1 py-1 text-blue-500 text-center text-sm sm:text-base font-black">学&emsp;生</td>
+              <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.number_of_students %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-blue-500"><%= @fee_guide.student_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% else %>
+              <td class="border-2 border-app px-1 py-1 text-blue-500 text-center text-sm sm:text-base font-black">学&emsp;生</td>
+              <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.number_of_students %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-blue-100"><%= @fee_guide.student_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+          </tr>
+          <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-10">
+            <% if @fee_guide.number_of_seniors > 0 %>
+              <td class="border-2 border-app px-1 py-1 text-yellow-900 text-center text-sm sm:text-base font-black">シニア</td>
+              <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.number_of_seniors %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-yellow-900"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% else %>
+              <td class="border-2 border-app px-1 py-1 text-yellow-900 text-center text-sm sm:text-base font-black">シニア</td>
+              <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.number_of_seniors %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-yellow-100"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>        
+          </tr>
+          <tr class="border-b border-app hover:bg-yellow-600 hover:bg-opacity-10">
+            <% if @fee_guide.number_of_children > 0 %>
+              <td class="border-2 border-app px-1 py-1 text-red-500 text-center text-sm sm:text-base font-black">小学生</td>
+              <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-red-500"><%= @fee_guide.number_of_children %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-red-500"><%= @fee_guide.child_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% else %>
+              <td class="border-2 border-app px-1 py-1 text-red-500 text-center text-sm sm:text-base font-black">小学生</td>
+              <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+              <td class="fee_guide_table_body text-red-100"><%= @fee_guide.number_of_children %>名</td>
+              <td class="fee_guide_table_body hidden md:table-cell text-red-100"><%= @fee_guide.child_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="flex justify-center" id="table_wrap">
-  <table class="table-auto border-collapse border-2 border-gray-500 overflow-y-scroll w-full">
-    <thead>
-      <tr id="table_heading" class="bg-blue-500">
-        <th class="index_table_head"></th>
-        <th class="index_table_head">ルーム料金</th>
-        <th class="index_table_head">ドリンク料金</th>
-        <th class="index_table_head">お一人様あたり</th>
-        <th class="index_table_head">ご利用人数</th>
-        <th class="index_table_head">合計</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="border border-gray-400 px-2 py-1 text-center text-sm">一般</td>
-          <td class="index_table_body"><%= @fee_dguide.adult_main_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.adult_dorink_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.adult_total_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.number_of_adults %>名</td>
-          <td class="index_table_body"><%= @fee_dguide.adult_fee_all %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="border border-gray-400 px-2 py-1 text-center text-sm">学生</td>
-          <td class="index_table_body"><%= @fee_dguide.student_main_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.student_dorink_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.student_total_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.number_of_students %>名</td>
-          <td class="index_table_body"><%= @fee_dguide.student_fee_all %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="border border-gray-400 px-2 py-1 text-center text-sm">シニア</td>
-          <td class="index_table_body"><%= @fee_dguide.senior_main_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.senior_dorink_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.senior_total_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.number_of_seniors %>名</td>
-          <td class="index_table_body"><%= @fee_dguide.senior_fee_all %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="border border-gray-400 px-2 py-1 text-center text-sm">小学生</td>
-          <td class="index_table_body"><%= @fee_dguide.child_main_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.child_dorink_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.child_total_fee %>円</td>
-          <td class="index_table_body"><%= @fee_dguide.number_of_children %>名</td>
-          <td class="index_table_body"><%= @fee_dguide.child_fee_all %>円</td>
-        </tr>
-    </tbody>
-  </table>
 </div>
