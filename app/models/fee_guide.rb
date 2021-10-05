@@ -134,10 +134,15 @@ class FeeGuide < ApplicationRecord
       self.child_drink_fee = chosen_drink_plan.child_fee
     else
       chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan)
-      self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_adult_fee, @count)
-      self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_student_fee, @count)
-      self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_senior_fee, @count)
-      self.child_drink_fee = calculate_drink_fee(chosen_drink_plan.child_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_child_fee, @count)
+      maximum_plan = DrinkPlan.find_by(fee_type: drink_plan, base_time: 3)
+      self.adult_drink_fee = calculate_drink_fee(chosen_drink_plan.adult_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_adult_fee,
+                                                 maximum_plan.adult_fee, @count)
+      self.student_drink_fee = calculate_drink_fee(chosen_drink_plan.student_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_student_fee,
+                                                   maximum_plan.student_fee, @count)
+      self.senior_drink_fee = calculate_drink_fee(chosen_drink_plan.senior_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_senior_fee,
+                                                  maximum_plan.senior_fee, @count)
+      self.child_drink_fee = calculate_drink_fee(chosen_drink_plan.child_fee, chosen_drink_plan.base_time, chosen_drink_plan.extension_child_fee,
+                                                 maximum_plan.child_fee, @count)
     end
   end
 
@@ -253,12 +258,15 @@ class FeeGuide < ApplicationRecord
   end
 
   # ドリンク料金を計算
-  def calculate_drink_fee(base_fee, base_time, extension_fee, count)
+  def calculate_drink_fee(base_fee, base_time, extension_fee, max_fee, count)
     base_time_count = DrinkPlan.base_times[base_time] + 1
+    total_alcohol_fee = base_fee + (extension_fee * (count - base_time_count))
     if count <= base_time_count
       base_fee
+    elsif max_fee >= total_alcohol_fee
+      total_alcohol_fee
     else
-      base_fee + (extension_fee * (count - base_time_count))
+      max_fee
     end
   end
 
