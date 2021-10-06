@@ -5,12 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-%w[users shops main_plans drink_plans topics].each do |table_name|
+require "import_csv"
+
+%w[main_plans drink_plans topics].each do |table_name|
   ActiveRecord::Base.connection.execute("TRUNCATE TABLE #{table_name} RESTART IDENTITY CASCADE")
 end
 
-ImportCsv.user_data
-ImportCsv.shop_data
 ImportCsv.main_plan_data
 ImportCsv.drink_plan_data
 ImportCsv.topic_data

@@ -48,8 +48,8 @@ class ImportCsv
   def self.topic_data
     list = import("db/csv/topic.csv")
 
-    puts "トピックスのインポート処理を開始"
+    puts "インポート処理を開始"
     Topic.create!(list)
-    puts "トピックスのインポート完了!"
+    puts "インポート完了!"
   end
 end
