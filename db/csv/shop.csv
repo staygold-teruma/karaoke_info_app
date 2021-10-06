@@ -1,3 +1,3 @@
 email, password, name,  phone_number, postcode, prefecture_code, address_city, address_street, address_building, image
-"shop1@example.com", "password1", "サンプルカラオケ梅田店", 0612345678, 5300001, 27, ”大阪市北区”, ”梅田1-1”, "サンプル梅田ビル1F", ""
-"shop2@example.com", "password2", "サンプルカラオケ神戸店", 0781234567, 6500012, 28, ”神戸市中央区”, "北長狭通1-1", "サンプル神戸ビル1F", ""
+shop1@example.com, password1, サンプルカラオケ梅田店, 0612345678, 5300001, 27, 大阪市北区, 梅田1-1, サンプル梅田ビル1F, ""
+shop2@example.com, password2, サンプルカラオケ神戸店, 0781234567, 6500012, 28, ”神戸市中央区”, 北長狭通1-1, サンプル神戸ビル1F, ""
