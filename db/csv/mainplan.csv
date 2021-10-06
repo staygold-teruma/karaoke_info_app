@@ -1,4 +1,3 @@
-■ルーム料金
 fee_type, div_day, div_time, div_member, adult_fee, student_fee, senior_fee, child_fee, note, shop_id
 0, 0, 0, 0, 240, 140, 190, 120, "", 1
 0, 0, 0, 1, 150, 140, 190, 75, "", 1
