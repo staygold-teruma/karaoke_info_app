@@ -14,47 +14,42 @@ class ImportCsv
   end
 
   def self.user_data
-    # importクラスメソッドを呼び出し，ユーザーデータの配列を生成
     list = import("db/csv/user.csv")
 
-    puts "インポート処理を開始"
+    puts "ユーザーデータのインポート処理を開始"
     User.create!(list)
-    puts "インポート完了!"
+    puts "ユーザーデータのインポート完了!"
   end
 
   def self.shop_data
-    # importクラスメソッドを呼び出し，ユーザーデータの配列を生成
     list = import("db/csv/shop.csv")
 
-    puts "インポート処理を開始"
+    puts "店舗データのインポート処理を開始"
     Shop.create!(list)
-    puts "インポート完了!"
+    puts "店舗データのインポート完了!"
   end
 
   def self.main_plan_data
-    # importクラスメソッドを呼び出し，ユーザーデータの配列を生成
     list = import("db/csv/mainplan.csv")
 
-    puts "インポート処理を開始"
+    puts "ルーム料金のインポート処理を開始"
     MainPlan.create!(list)
-    puts "インポート完了!"
+    puts "ルーム料金のインポート完了!"
   end
 
   def self.drink_plan_data
-    # importクラスメソッドを呼び出し，ユーザーデータの配列を生成
     list = import("db/csv/drinkplan.csv")
 
-    puts "インポート処理を開始"
+    puts "ドリンク料金のインポート処理を開始"
     DrinkPlan.create!(list)
-    puts "インポート完了!"
+    puts "ドリンク料金のインポート完了!"
   end
 
   def self.topic_data
-    # importクラスメソッドを呼び出し，ユーザーデータの配列を生成
     list = import("db/csv/topic.csv")
 
-    puts "インポート処理を開始"
+    puts "トピックスデータのインポート処理を開始"
     Topic.create!(list)
-    puts "インポート完了!"
+    puts "トピックスデータのインポート完了!"
   end
 end
