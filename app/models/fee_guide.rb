@@ -272,8 +272,7 @@ class FeeGuide < ApplicationRecord
 
   # 3時間パックの適用が昼か夜かを取得
   def retrieve_div_time_three_hour
-    now_time = Time.zone.now
-    case now_time.hour
+    case @datetime.hour
     when 6..19
       0
     else
@@ -283,8 +282,7 @@ class FeeGuide < ApplicationRecord
 
   # フリータイムの適用が昼か夜か夕方かを取得
   def retrieve_div_time_free_time
-    now_time = Time.zone.now
-    case now_time.hour
+    case @datetime.hour
     when 6..15
       0
     when 15..19
@@ -296,8 +294,7 @@ class FeeGuide < ApplicationRecord
 
   # ドリンクバー料金が昼か夜かを取得
   def retrieve_div_time_drink_bar
-    now_time = Time.zone.now
-    case now_time.hour
+    case @datetime.hour
     when 6..19
       0
     else
