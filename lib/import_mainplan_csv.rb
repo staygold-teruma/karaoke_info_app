@@ -1,55 +1,23 @@
 require "csv"
 
-class ImportCsv
+class ImportMainPlanCsv
   # CSVデータのパスを引数として受け取り、インポート処理を実行
   def self.import(path)
-    # インポートするデータを格納するための空配列
-    list = []
+    puts "ルーム料金の初期データインポート処理を開始"
     # CSVファイルからインポートしたデータを格納
     CSV.foreach(path, headers: true) do |row|
-      list << row.to_h
+      shop = Shop.find_by(id: row["shop_id"])
+      MainPlan.create!(fee_type: row["fee_type"].to_i,
+                       div_day: row["div_day"].to_i,
+                       div_time: row["div_time"].to_i,
+                       div_member: row["div_member"].to_i,
+                       adult_fee: row["adult_fee"].to_i,
+                       student_fee: row["student_fee"].to_i,
+                       senior_fee: row["senior_fee"].to_i,
+                       child_fee: row["child_fee"].to_i,
+                       note: row["note"],
+                       shop_id: shop.id)
     end
-    # メソッドの戻り値をインポートしたデータの配列とする
-    list
-  end
-
-  def self.user_data
-    list = import("db/csv/user.csv")
-
-    puts "ユーザーデータのインポート処理を開始"
-    User.create!(list)
-    puts "ユーザーデータのインポート完了!"
-  end
-
-  def self.shop_data
-    list = import("db/csv/shop.csv")
-
-    puts "店舗データのインポート処理を開始"
-    Shop.create!(list)
-    puts "店舗データのインポート完了!"
-  end
-
-  def self.main_plan_data
-    list = import("db/csv/mainplan.csv")
-
-    puts "ルーム料金のインポート処理を開始"
-    MainPlan.create!(list)
     puts "ルーム料金のインポート完了!"
-  end
-
-  def self.drink_plan_data
-    list = import("db/csv/drinkplan.csv")
-
-    puts "ドリンク料金のインポート処理を開始"
-    DrinkPlan.create!(list)
-    puts "インポート完了!"
-  end
-
-  def self.topic_data
-    list = import("db/csv/topic.csv")
-
-    puts "インポート処理を開始"
-    Topic.create!(list)
-    puts "インポート完了!"
   end
 end

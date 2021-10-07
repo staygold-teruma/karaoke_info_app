@@ -22,17 +22,28 @@
   <% end %>
 <% end %>
 
-<% if user_signed_in? %>
+<% if shop_signed_in? %>
+  <div id="margin_wrapper_shop"></div>
+<% else %>
   <div id="margin_wrapper"></div>
   <% breadcrumb :fee_guide_result %>
   <%= breadcrumbs separator: " &rsaquo; " %>   
-<% else %>
-  <div id="margin_wrapper_shop"></div>
 <% end %>
 <div class="mt-6 sm:mt-12 px-3 sm:px-7" id="fee_guide_edit">
   <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
     <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">料金のご案内</h1>
     <table class="mx-auto lg:text-xl">
+      <tbody id="total_result">
+        <tr class="border-b">
+          <td class="pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>ご利用店舗
+          </td>
+          <td class="">
+            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+          </td>
+            <td class="pl-5"><%= @fee_guide.shop.name %></td>
+        </tr>
+      </tbody>
       <tbody id="total_result">
         <tr class="border-b">
           <td class="pr-3 py-1">
