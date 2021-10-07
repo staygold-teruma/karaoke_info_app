@@ -148,11 +148,19 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのドリンク料金を計算(3時間パック・フリータイム)
   def store_drink_fee_free_time
-    chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan, base_time: 3)
-    self.adult_drink_fee = chosen_drink_plan.adult_fee
-    self.student_drink_fee = chosen_drink_plan.student_fee
-    self.senior_drink_fee = chosen_drink_plan.senior_fee
-    self.child_drink_fee = chosen_drink_plan.child_fee
+    case drink_plan
+    when "one_drink"
+      self.adult_drink_fee = 0
+      self.student_drink_fee = 0
+      self.senior_drink_fee = 0
+      self.child_drink_fee = 0
+    else
+      chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan, base_time: 3)
+      self.adult_drink_fee = chosen_drink_plan.adult_fee
+      self.student_drink_fee = chosen_drink_plan.student_fee
+      self.senior_drink_fee = chosen_drink_plan.senior_fee
+      self.child_drink_fee = chosen_drink_plan.child_fee
+    end
   end
 
   # それぞれの1名あたりの料金を計算
