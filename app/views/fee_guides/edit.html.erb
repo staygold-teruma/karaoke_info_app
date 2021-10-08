@@ -35,78 +35,78 @@
     <table class="mx-auto lg:text-xl">
       <tbody id="total_result">
         <tr class="border-b">
-          <td class="pr-3 py-1">
+          <td class="pr-1 sm:pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用店舗
           </td>
           <td class="">
-            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            <i class="fas fa-angle-double-right text-center"></i>
           </td>
-            <td class="pl-5"><%= @fee_guide.shop.name %></td>
+            <td class="pl-3 sm:pl-5"><%= @fee_guide.shop.name %></td>
         </tr>
       </tbody>
       <tbody id="total_result">
         <tr class="border-b">
-          <td class="pr-3 py-1">
+          <td class="pr-1 sm:pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用プラン
           </td>
           <td class="">
-            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            <i class="fas fa-angle-double-right text-center"></i>
           </td>
           <% if @fee_guide.usage_time_i18n == "フリー" %>
-            <td class="pl-5">フリータイム</td>
+            <td class="pl-3 sm:pl-5">フリータイム</td>
           <% elsif @fee_guide.usage_time_i18n == "3時間" %>
-            <td class="pl-5">3時間パック</td>
+            <td class="pl-3 sm:pl-5">3時間パック</td>
           <% else %>
-            <td class="pl-5">30分単位</td>
+            <td class="pl-3 sm:pl-5">30分単位</td>
           <% end %>
         </tr>
       </tbody>
       <tbody id="total_result">
         <tr class="border-b mt-2">
-          <td class="pr-3 py-1">
+          <td class="pr-1 sm:pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用時間
           </td>
           <td class="">
-            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            <i class="fas fa-angle-double-right text-center"></i>
           </td>
-          <td class="pl-5"><%= @fee_guide.usage_time_i18n %></td>
+          <td class="pl-3 sm:pl-5"><%= @fee_guide.usage_time_i18n %></td>
         </tr>
       </tbody>
       <tbody id="total_result">
         <tr class="border-b">
-          <td class="pr-3 py-1">
+          <td class="pr-1 sm:pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>会員区分
           </td>
           <td>
-            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            <i class="fas fa-angle-double-right text-center"></i>
           </td>
           <% if @fee_guide.div_member_i18n == "一般" %>
-            <td class="pl-5">一般</td>
+            <td class="pl-3 sm:pl-5">一般</td>
           <% else %>
-            <td class="pl-5">会員</td>
+            <td class="pl-3 sm:pl-5">会員</td>
           <% end %>
         </tr>
       </tbody>
       <tbody id="total_result">
         <tr class="border-b">
-          <td class="pr-3 py-1">
+          <td class="pr-1 sm:pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ご利用人数
           </td>
           <td class="">
-            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            <i class="fas fa-angle-double-right text-center"></i>
           </td>
-          <td class="pl-5"><%= @fee_guide.number_of_customers %>名様</td>
+          <td class="pl-3 sm:pl-5"><%= @fee_guide.number_of_customers %>名様</td>
         </tr>
       </tbody>
       <tbody id="total_result">
         <tr class="border-b">
-          <td class="pr-3 py-1">
+          <td class="pr-1 sm:pr-3 py-1">
             <i class="far fa-check-circle mr-1 text-app"></i>ドリンクプラン
           </td>
           <td class="">
-            <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
+            <i class="fas fa-angle-double-right text-center"></i>
           </td>
-          <td class="pl-5"><%= @fee_guide.drink_plan_i18n %></td>
+          <td class="pl-3 sm:pl-5"><%= @fee_guide.drink_plan_i18n %></td>
         </tr>
       </tbody>
     </table>
@@ -266,6 +266,16 @@
         <div class="answer flex items-center">
           <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
           <p class="text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
+        </div>
+      </div>
+      <div class="mb-6">
+        <div class="question flex items-center">
+          <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+          <p class="text-white text-lg">1時間で飲み放題コースはできますか？</p>
+        </div>
+        <div class="answer flex items-center">
+          <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+          <p class="text-lg">1.5時間からのご案内となります。</p>
         </div>
       </div>
       <div class="mb-6">

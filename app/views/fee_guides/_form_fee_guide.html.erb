@@ -8,7 +8,7 @@
         </p>
         <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ご利用店舗を選んでください</p>       
       </div>
-      <div class="px-2 ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_select_shop">
+      <div class="px-2 sm:ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_select_shop">
         <%= f.collection_select :shop_id, Shop.all, :id, :name %>
       </div>
     </div>

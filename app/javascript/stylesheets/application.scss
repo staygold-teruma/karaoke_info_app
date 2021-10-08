@@ -125,7 +125,7 @@
 
 // ブレイクポイント
 $breakpoint-down: (
-  'xls': 'screen and (max-width: 350px)',
+  'xls': 'screen and (max-width: 400px)',
   'xxs': 'screen and (max-width: 484px)',
   'xs': 'screen and (max-width: 586px)',
   'sm': 'screen and (max-width: 640px)',
@@ -1484,18 +1484,26 @@ p {
 #fee_guide_select_shop {
   select {
     width: 300px;
+    @include mq-down(xls) {
+      font-size: 14px;
+      width: 250px;
+    }
   }
 }
 #fee_guide_datetime {
   input {
     font-size: 16px;
-    width: 150px;
+    width: 120px;
     height: 40px;
     padding-left: 5px;
     padding-bottom: 2px;
     background: white;
     border: gray 1px solid;
     border-radius: 8px;
+    @include mq-down(xxs) {
+      font-size: 14px;
+      width: 100px;
+    }
   }
   select {
     font-size: 16px;
@@ -1508,6 +1516,10 @@ p {
     background: white;
     border: gray 1px solid;
     border-radius: 8px;
+    @include mq-down(xxs) {
+      font-size: 14px;
+      width: 50px;
+    }
   }
 }
 
@@ -1515,8 +1527,27 @@ p {
 #total_result {
   tr {
     td {
+      @include mq-down(xxs) {
+        font-size: 15px;
+      }
       @include mq-down(xls) {
         font-size: 12px;
+      }
+    }
+    td:first-child {
+      @include mq-down(xxs) {
+        width: 140px;
+      }
+      @include mq-down(xls) {
+        width: 110px;
+      }
+    }
+    td:last-child {
+      @include mq-down(xxs) {
+        width: 170px;
+      }
+      @include mq-down(xls) {
+        width: 130px;
       }
     }
   }
