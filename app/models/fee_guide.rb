@@ -196,6 +196,11 @@ class FeeGuide < ApplicationRecord
     child_total_fee * number_of_children
   end
 
+  # ワンドリンク時の最低料金（ビュー表示用)
+  def include_one_drink_fee
+    total_fee + 418 * number_of_customers
+  end
+
   private
 
   # 曜日区分を取得

@@ -112,12 +112,16 @@
     </table>
     <div class="flex justify-center items-center mt-8">
       <p class="text-2xl text-white px-3 py-2 mr-5 sm:mr-12 rounded-xl shadow bg-app">料金合計</p>
-      <p class="text-4xl mr-2 py-1"><%= @fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+      <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+        <p class="text-4xl mr-2 py-1" id="result_total_fee"><%= @fee_guide.include_one_drink_fee.to_s(:delimited, delimiter: ',') %>円~</p>
+      <% else %>
+        <p class="text-4xl mr-2 py-1" id="result_total_fee"><%= @fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+      <% end %>
     </div>
     <div>
       <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
-          <p class="mt-3 text-center text-xs md:text-base text-red-500">お一人様1杯、ドリンク(418円〜)のご注文が必要です</p>
-          <p class="text-center text-xs md:text-base text-red-500">上記料金にご注文のドリンク代金が加算されます</p>
+          <p class="mt-3 text-center text-xs md:text-base text-red-500">上記はワンドリンクの最低料金となります</p>
+          <p class="text-center text-xs md:text-base text-red-500">ご注文のドリンクによって料金が変動します</p>
       <% end %>
     </div>
   </div>
@@ -131,9 +135,11 @@
           <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
             ルーム<br class="sm:hidden">料金
           </th>
-          <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
-            ドリンク<br class="sm:hidden">料金       
-          </th>
+          <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+            <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+              ドリンク<br class="sm:hidden">料金       
+            </th>
+          <% end %>
           <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
             1名様<br class="sm:hidden">あたり 
           </th>
@@ -148,14 +154,18 @@
           <% if @fee_guide.number_of_adults > 0 %>
             <td class="border-2 border-app px-1 py-1 text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
             <td class="fee_guide_table_body text-green-500"><%= @fee_guide.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body  text-green-500"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body  text-green-500"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-green-500"><%= @fee_guide.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-green-500"><%= @fee_guide.number_of_adults %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-green-500"><%= @fee_guide.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% else %>
             <td class="border-2 border-app px-1 py-1  text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
             <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-green-100"><%= @fee_guide.number_of_adults %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell  text-green-100"><%= @fee_guide.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
@@ -165,14 +175,18 @@
           <% if @fee_guide.number_of_students > 0 %>
             <td class="border-2 border-app px-1 py-1 text-blue-500 text-center text-sm sm:text-base font-black">学&emsp;生</td>
             <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.number_of_students %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-blue-500"><%= @fee_guide.student_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% else %>
             <td class="border-2 border-app px-1 py-1 text-blue-500 text-center text-sm sm:text-base font-black">学&emsp;生</td>
             <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.number_of_students %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-blue-100"><%= @fee_guide.student_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
@@ -182,14 +196,18 @@
           <% if @fee_guide.number_of_seniors > 0 %>
             <td class="border-2 border-app px-1 py-1 text-yellow-900 text-center text-sm sm:text-base font-black">シニア</td>
             <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.number_of_seniors %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-yellow-900"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% else %>
             <td class="border-2 border-app px-1 py-1 text-yellow-900 text-center text-sm sm:text-base font-black">シニア</td>
             <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.number_of_seniors %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-yellow-100"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
@@ -199,19 +217,28 @@
           <% if @fee_guide.number_of_children > 0 %>
             <td class="border-2 border-app px-1 py-1 text-red-500 text-center text-sm sm:text-base font-black">小学生</td>
             <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-red-500"><%= @fee_guide.number_of_children %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-red-500"><%= @fee_guide.child_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% else %>
             <td class="border-2 border-app px-1 py-1 text-red-500 text-center text-sm sm:text-base font-black">小学生</td>
             <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
-            <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
             <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
             <td class="fee_guide_table_body text-red-100"><%= @fee_guide.number_of_children %>名</td>
             <td class="fee_guide_table_body hidden md:table-cell text-red-100"><%= @fee_guide.child_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
           <% end %>
         </tr>
+        <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+          <tr class="border-b border-app hover:bg-yellow-600 hover:bg-opacity-10">
+            <td class="border-2 border-app px-1 py-1 text-center text-sm sm:text-base font-black" colspan="4">上記にワンドリンク(418円~)のご注文が必要です</td></td>
+          </tr>
+        <% end %>
       </tbody>
     </table>
     <div class="text-sm md:text-base mt-2">

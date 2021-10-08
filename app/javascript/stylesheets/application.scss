@@ -1552,6 +1552,11 @@ p {
     }
   }
 }
+#result_total_fee {
+  @include mq-down(xls) {
+    font-size: 30px;
+  }
+}
 
 .fee_guide_table_head {
   @include mq-down(xls) {
