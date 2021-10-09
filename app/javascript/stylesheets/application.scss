@@ -1523,6 +1523,21 @@ p {
   }
 }
 
+#guide_form {
+  @include mq-down(xls) {
+    font-size: 12px;
+  }
+}
+
+.question,
+.answer {
+  p {
+    @include mq-down(xls) {
+      font-size: 12px;
+    }
+  }
+}
+
 // 料金案内結果
 #total_result {
   tr {
@@ -1536,7 +1551,7 @@ p {
     }
     td:first-child {
       @include mq-down(xxs) {
-        width: 140px;
+        width: 135px;
       }
       @include mq-down(xls) {
         width: 110px;
