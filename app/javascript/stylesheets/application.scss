@@ -15,7 +15,7 @@
 }
 
 .btn_fee_guide {
-  @apply bg-black border-app hover:bg-app text-white border-2 mt-6 mb-3 px-2 py-2 rounded-xl w-52 text-base font-black sm:mt-3 shadow transition duration-300 ease-in;
+  @apply bg-black border-app hover:bg-app text-white border-4 mt-6 mb-3 px-2 py-2 rounded-3xl w-52 text-2xl font-black sm:mt-3 shadow-lg transition duration-300 ease-in;
 }
 
 .btn_form_create {
@@ -125,7 +125,7 @@
 
 // ブレイクポイント
 $breakpoint-down: (
-  'xls': 'screen and (max-width: 350px)',
+  'xls': 'screen and (max-width: 400px)',
   'xxs': 'screen and (max-width: 484px)',
   'xs': 'screen and (max-width: 586px)',
   'sm': 'screen and (max-width: 640px)',
@@ -1484,18 +1484,26 @@ p {
 #fee_guide_select_shop {
   select {
     width: 300px;
+    @include mq-down(xls) {
+      font-size: 14px;
+      width: 250px;
+    }
   }
 }
 #fee_guide_datetime {
   input {
     font-size: 16px;
-    width: 150px;
+    width: 120px;
     height: 40px;
     padding-left: 5px;
     padding-bottom: 2px;
     background: white;
     border: gray 1px solid;
     border-radius: 8px;
+    @include mq-down(xxs) {
+      font-size: 14px;
+      width: 100px;
+    }
   }
   select {
     font-size: 16px;
@@ -1508,6 +1516,25 @@ p {
     background: white;
     border: gray 1px solid;
     border-radius: 8px;
+    @include mq-down(xxs) {
+      font-size: 14px;
+      width: 50px;
+    }
+  }
+}
+
+#guide_form {
+  @include mq-down(xls) {
+    font-size: 12px;
+  }
+}
+
+.question,
+.answer {
+  p {
+    @include mq-down(xls) {
+      font-size: 12px;
+    }
   }
 }
 
@@ -1515,10 +1542,34 @@ p {
 #total_result {
   tr {
     td {
+      @include mq-down(xxs) {
+        font-size: 15px;
+      }
       @include mq-down(xls) {
         font-size: 12px;
       }
     }
+    td:first-child {
+      @include mq-down(xxs) {
+        max-width: 135px;
+      }
+      @include mq-down(xls) {
+        max-width: 110px;
+      }
+    }
+    td:last-child {
+      @include mq-down(xxs) {
+        max-width: 170px;
+      }
+      @include mq-down(xls) {
+        max-width: 130px;
+      }
+    }
+  }
+}
+#result_total_fee {
+  @include mq-down(xls) {
+    font-size: 30px;
   }
 }
 

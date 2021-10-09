@@ -148,11 +148,19 @@ class FeeGuide < ApplicationRecord
 
   # それぞれのドリンク料金を計算(3時間パック・フリータイム)
   def store_drink_fee_free_time
-    chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan, base_time: 3)
-    self.adult_drink_fee = chosen_drink_plan.adult_fee
-    self.student_drink_fee = chosen_drink_plan.student_fee
-    self.senior_drink_fee = chosen_drink_plan.senior_fee
-    self.child_drink_fee = chosen_drink_plan.child_fee
+    case drink_plan
+    when "one_drink"
+      self.adult_drink_fee = 0
+      self.student_drink_fee = 0
+      self.senior_drink_fee = 0
+      self.child_drink_fee = 0
+    else
+      chosen_drink_plan = DrinkPlan.find_by(fee_type: drink_plan, base_time: 3)
+      self.adult_drink_fee = chosen_drink_plan.adult_fee
+      self.student_drink_fee = chosen_drink_plan.student_fee
+      self.senior_drink_fee = chosen_drink_plan.senior_fee
+      self.child_drink_fee = chosen_drink_plan.child_fee
+    end
   end
 
   # それぞれの1名あたりの料金を計算
@@ -186,6 +194,11 @@ class FeeGuide < ApplicationRecord
 
   def child_fee_all
     child_total_fee * number_of_children
+  end
+
+  # ワンドリンク時の最低料金（ビュー表示用)
+  def include_one_drink_fee
+    total_fee + 418 * number_of_customers
   end
 
   private
@@ -272,8 +285,7 @@ class FeeGuide < ApplicationRecord
 
   # 3時間パックの適用が昼か夜かを取得
   def retrieve_div_time_three_hour
-    now_time = Time.zone.now
-    case now_time.hour
+    case @datetime.hour
     when 6..19
       0
     else
@@ -283,8 +295,7 @@ class FeeGuide < ApplicationRecord
 
   # フリータイムの適用が昼か夜か夕方かを取得
   def retrieve_div_time_free_time
-    now_time = Time.zone.now
-    case now_time.hour
+    case @datetime.hour
     when 6..15
       0
     when 15..19
@@ -296,8 +307,7 @@ class FeeGuide < ApplicationRecord
 
   # ドリンクバー料金が昼か夜かを取得
   def retrieve_div_time_drink_bar
-    now_time = Time.zone.now
-    case now_time.hour
+    case @datetime.hour
     when 6..19
       0
     else

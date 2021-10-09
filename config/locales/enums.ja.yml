@@ -41,8 +41,8 @@ ja:
         one_half_hour: '1時間30分'
         two_hour: '2時間'
         two_half_hour: '2時間30分'
-        three_hour: '3時間'
-        free_time: 'フリー'
+        three_hour: '3時間パック'
+        free_time: 'フリータイム'
       drink_plan:
         one_drink: 'ワンドリンク'
         drink_bar: 'ドリンクバー'
