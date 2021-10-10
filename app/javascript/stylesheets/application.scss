@@ -15,7 +15,7 @@
 }
 
 .btn_fee_guide {
-  @apply bg-black border-app hover:bg-app text-white border-4 mt-6 mb-3 px-2 py-2 rounded-3xl w-52 text-2xl font-black sm:mt-3 shadow-lg transition duration-300 ease-in;
+  @apply bg-black border-app hover:bg-app text-white border-4 mt-6 mb-3 px-2 py-2 rounded-3xl w-52 text-xl font-black mt-3 shadow-lg transition duration-300 ease-in;
 }
 
 .btn_form_create {
@@ -164,6 +164,10 @@ body {
 
 p {
   word-break: break-all;
+}
+
+div.field_with_errors {
+  display: contents;
 }
 
 // ========================
@@ -315,6 +319,17 @@ p {
   height: 90px;
   @include mq-down(sm) {
     height: 100px;
+  }
+}
+
+#result_fee_guide_shop {
+  margin-left: 200px;
+  padding-bottom: 30px;
+  width: calc(100% - 200px);
+  @include mq-down(md) {
+    margin-left: 0;
+    padding-bottom: 90px;
+    width: 100%;
   }
 }
 
@@ -1070,6 +1085,18 @@ p {
         width: 100%;
       }
     }
+    #tutorial_img_box_detail {
+      width: 90%;
+      height: 354px;
+      #tutorial_img {
+        width: 100%;
+        height: auto;
+      }
+      #tutorial_img_bottom {
+        width: 100%;
+      }
+    }
+
     #tutorial_img_box_coupon {
       width: 90%;
       #tutorial_img_bottom {
