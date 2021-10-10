@@ -1,0 +1,293 @@
+<div class="mt-6 sm:mt-12 px-3 sm:px-7" id="fee_guide_edit">
+  <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
+    <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">料金のご案内</h1>
+    <table class="mx-auto lg:text-xl">
+      <tbody id="total_result">
+        <tr class="border-b">
+          <td class="pr-1 sm:pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>ご利用店舗
+          </td>
+          <td class="">
+            <i class="fas fa-angle-double-right text-center"></i>
+          </td>
+            <td class="pl-3 sm:pl-5"><%= @fee_guide.shop.name %></td>
+        </tr>
+      </tbody>
+      <tbody id="total_result">
+        <tr class="border-b">
+          <td class="pr-1 sm:pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>ご利用プラン
+          </td>
+          <td class="">
+            <i class="fas fa-angle-double-right text-center"></i>
+          </td>
+          <% if @fee_guide.usage_time_i18n == "フリー" %>
+            <td class="pl-3 sm:pl-5">フリータイム</td>
+          <% elsif @fee_guide.usage_time_i18n == "3時間" %>
+            <td class="pl-3 sm:pl-5">3時間パック</td>
+          <% else %>
+            <td class="pl-3 sm:pl-5">30分単位</td>
+          <% end %>
+        </tr>
+      </tbody>
+      <tbody id="total_result">
+        <tr class="border-b mt-2">
+          <td class="pr-1 sm:pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>ご利用時間
+          </td>
+          <td class="">
+            <i class="fas fa-angle-double-right text-center"></i>
+          </td>
+          <td class="pl-3 sm:pl-5"><%= @fee_guide.usage_time_i18n %></td>
+        </tr>
+      </tbody>
+      <tbody id="total_result">
+        <tr class="border-b">
+          <td class="pr-1 sm:pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>会員区分
+          </td>
+          <td>
+            <i class="fas fa-angle-double-right text-center"></i>
+          </td>
+          <% if @fee_guide.div_member_i18n == "一般" %>
+            <td class="pl-3 sm:pl-5">一般</td>
+          <% else %>
+            <td class="pl-3 sm:pl-5">会員</td>
+          <% end %>
+        </tr>
+      </tbody>
+      <tbody id="total_result">
+        <tr class="border-b">
+          <td class="pr-1 sm:pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>ご利用人数
+          </td>
+          <td class="">
+            <i class="fas fa-angle-double-right text-center"></i>
+          </td>
+          <td class="pl-3 sm:pl-5"><%= @fee_guide.number_of_customers %>名様</td>
+        </tr>
+      </tbody>
+      <tbody id="total_result">
+        <tr class="border-b">
+          <td class="pr-1 sm:pr-3 py-1">
+            <i class="far fa-check-circle mr-1 text-app"></i>ドリンクプラン
+          </td>
+          <td class="">
+            <i class="fas fa-angle-double-right text-center"></i>
+          </td>
+          <td class="pl-3 sm:pl-5"><%= @fee_guide.drink_plan_i18n %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="flex justify-center items-center mt-8">
+      <p class="text-2xl text-white px-3 py-2 mr-5 sm:mr-12 rounded-xl shadow bg-app">料金合計</p>
+      <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+        <p class="text-4xl mr-2 py-1" id="result_total_fee"><%= @fee_guide.include_one_drink_fee.to_s(:delimited, delimiter: ',') %>円~</p>
+      <% else %>
+        <p class="text-4xl mr-2 py-1" id="result_total_fee"><%= @fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</p>
+      <% end %>
+    </div>
+    <div>
+      <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+          <p class="mt-3 text-center text-xs md:text-base text-red-500">上記はワンドリンクプランの最低料金となります</p>
+          <p class="text-center text-xs md:text-base text-red-500">ご注文のドリンクによって料金が変動します</p>
+      <% end %>
+    </div>
+  </div>
+  <div class="sm:max-w-screen-md mx-auto">
+    <h3 class="mb-2 sm:mt-12 text-lg font-black"><i class="fas fa-play-circle text-app"></i> 料金内訳</h3>
+    <table class="w-full border-collapse border-2 border-app overflow-y-scroll sm:max-w-screen-md mx-auto">
+      <thead>
+        <tr id="table_heading">
+          <th class="fee_guide_table_head bg-yellow-400">
+            税&emsp;込</th>
+          <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+            ルーム<br class="sm:hidden">料金
+          </th>
+          <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+            <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+              ドリンク<br class="sm:hidden">料金       
+            </th>
+          <% end %>
+          <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+            1名様<br class="sm:hidden">あたり 
+          </th>
+          <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
+            ご利用<br class="sm:hidden">人数
+          </th>
+          <th class="fee_guide_table_head hidden md:table-cell bg-yellow-600 bg-opacity-20">合計</th>
+        </tr>
+      </thead>
+      <tbody id="result_table_body">
+        <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-20">
+          <% if @fee_guide.number_of_adults > 0 %>
+            <td class="border-2 border-app px-1 py-1 text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
+            <td class="fee_guide_table_body text-green-500"><%= @fee_guide.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body  text-green-500"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-green-500"><%= @fee_guide.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-green-500"><%= @fee_guide.number_of_adults %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-green-500"><%= @fee_guide.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% else %>
+            <td class="border-2 border-app px-1 py-1  text-green-500 text-center text-sm sm:text-base font-black">一&emsp;般</td>
+            <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-green-100"><%= @fee_guide.adult_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-green-100"><%= @fee_guide.number_of_adults %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell  text-green-100"><%= @fee_guide.adult_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% end %>
+        </tr>
+        <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-10">
+          <% if @fee_guide.number_of_students > 0 %>
+            <td class="border-2 border-app px-1 py-1 text-blue-500 text-center text-sm sm:text-base font-black">学&emsp;生</td>
+            <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.student_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-blue-500"><%= @fee_guide.number_of_students %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-blue-500"><%= @fee_guide.student_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% else %>
+            <td class="border-2 border-app px-1 py-1 text-blue-500 text-center text-sm sm:text-base font-black">学&emsp;生</td>
+            <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.student_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-blue-100"><%= @fee_guide.number_of_students %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-blue-100"><%= @fee_guide.student_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% end %>
+        </tr>
+        <tr class="border-b border-app  hover:bg-yellow-600 hover:bg-opacity-10">
+          <% if @fee_guide.number_of_seniors > 0 %>
+            <td class="border-2 border-app px-1 py-1 text-yellow-900 text-center text-sm sm:text-base font-black">シニア</td>
+            <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-yellow-900"><%= @fee_guide.number_of_seniors %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-yellow-900"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% else %>
+            <td class="border-2 border-app px-1 py-1 text-yellow-900 text-center text-sm sm:text-base font-black">シニア</td>
+            <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.number_of_seniors %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-yellow-100"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% end %>        
+        </tr>
+        <tr class="border-b border-app hover:bg-yellow-600 hover:bg-opacity-10">
+          <% if @fee_guide.number_of_children > 0 %>
+            <td class="border-2 border-app px-1 py-1 text-red-500 text-center text-sm sm:text-base font-black">小学生</td>
+            <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-red-500"><%= @fee_guide.child_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-red-500"><%= @fee_guide.number_of_children %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-red-500"><%= @fee_guide.child_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% else %>
+            <td class="border-2 border-app px-1 py-1 text-red-500 text-center text-sm sm:text-base font-black">小学生</td>
+            <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_main_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% unless @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+              <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_drink_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <% end %>
+            <td class="fee_guide_table_body text-red-100"><%= @fee_guide.child_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
+            <td class="fee_guide_table_body text-red-100"><%= @fee_guide.number_of_children %>名</td>
+            <td class="fee_guide_table_body hidden md:table-cell text-red-100"><%= @fee_guide.child_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
+          <% end %>
+        </tr>
+        <% if @fee_guide.drink_plan_i18n == "ワンドリンク" %>
+          <tr class="border-b border-app hover:bg-yellow-600 hover:bg-opacity-10">
+            <td class="border-2 border-app px-1 py-1 text-center text-sm sm:text-base font-black" colspan="5">※上記にワンドリンク(418円~)のご注文が必要です</td></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="text-sm md:text-base mt-2">
+      <p class="text-red-500"><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>学生/シニア料金はドリンクバー無料です。</p>
+      <p><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>昼料金/夜料金は19時を超えたご利用分から<br class="sm:hidden"><span class="sm:hidden">&emsp;&nbsp;</span>切り替わります。</p>
+      <p><i class="far fa-check-circle text-app mr-1 sm:mr-2"></i>実際のチェックイン時間によって、<br class="sm:hidden"><span class="sm:hidden">&emsp;&nbsp;</span>誤差が発生する場合がございます。</p>
+    </div>
+  </div>
+</div>
+<div class="mt-6 mx-1 sm:mx-0 px-0 sm:px-7 sm:pb-12">
+  <div class="sm:max-w-screen-md xl:max-w-none sm:mx-auto sm:px-0 sm:mt-12">
+    <h3 class="text-lg mt-8 -mb-4 sm:mb-2 xl:my-12 ml-2 sm:ml-0 font-black xl:text-center xl:bg-app xl:text-white xl:py-4 xl:rounded-lg xl:text-2xl"><i class="fas fa-play-circle text-app xl:text-white mr-1"></i>条件を変えてやり直す</h3>
+  </div>
+  <div class="mx-auto flex items-start justify-evenly py-2 pb-24 sm:pb-0">
+    <% unless shop_signed_in? %>     
+      <div class="hidden xl:block">
+        <h3 class="text-2xl text-center mb-3">よくあるご質問</h3>
+        <div class="mb-6">
+          <div class="question flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white text-lg">会員にはすぐになれますか？</p>
+          </div>
+          <div class="answer flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p class="text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="question flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white text-lg">子供の料金を教えてください。</p>
+          </div>
+          <div class="answer flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p class="text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="question flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white text-lg">ワンドリンクのドリンク代はいくらですか？</p>
+          </div>
+          <div class="answer flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p class="text-lg">418円からご用意しております。</p>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="question flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
+          </div>
+          <div class="answer flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p class="text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="question flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white text-lg">1時間で飲み放題コースはできますか？</p>
+          </div>
+          <div class="answer flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p class="text-lg">1.5時間からのご案内となります。</p>
+          </div>
+        </div>
+        <div class="mb-6">
+          <div class="question flex items-center">
+            <p class="text-white text-lg mr-3 text-right" style="width:19px">Q.</p>
+            <p class="text-white text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
+          </div>
+          <div class="answer flex items-center">
+            <p class="text-app text-lg mr-3 text-right" style="width:19px">A.</p>
+            <p class="text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
+          </div>
+        </div>
+        <p class="text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan" class="text-app underline font-black">こちら</a></p>
+      </div>    
+    <% end %>
+    <%= render "form_fee_guide", path: fee_guides_path, method: :post %>
+  </div>
+</div>
