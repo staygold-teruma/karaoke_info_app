@@ -245,24 +245,24 @@ p {
 }
 
 .breadcrumbs {
-  height: 30px;
-  padding-left: 40px;
+  height: 40px;
+  padding-left: 35px;
   @include mq-down(sm) {
     display: none;
   }
   a {
     width: 100%;
     height: 100%;
-    line-height: 30px;
+    line-height: 40px;
     color: blue;
-    font-size: 14px;
+    font-size: 16px;
     text-decoration: underline;
   }
   a:hover {
     color: #ff5500;
   }
   span {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
@@ -298,7 +298,7 @@ p {
 #sign_wrapper {
   margin-top: 50px;
   @include mq-down(sm) {
-    margin-top: 30px;
+    margin-top: 40px;
   }
 }
 
@@ -1041,9 +1041,7 @@ p {
   border-radius: 8px 8px 0 0;
   border: solid 2px #ff5500;
   border-bottom: 0;
-  @include mq-down(lg) {
-    width: 200px;
-  }
+  width: 240px;
   @include mq-down(sm) {
     font-size: 15px;
     width: 170px;
@@ -1089,13 +1087,17 @@ p {
     height: auto;
   }
   #news_left {
-    width: 60%;
+    width: 50%;
     max-width: 550px;
     max-height: 280px;
     @include mq-down(xl) {
       max-width: 500px;
     }
     @include mq-down(lg) {
+      max-width: 500px;
+      width: 90%;
+    }
+    @include mq-down(md) {
       max-width: 700px;
       width: 90%;
     }
