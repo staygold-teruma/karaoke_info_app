@@ -16,6 +16,7 @@ import 'modal.js';
 import 'navbar.js';
 import 'pagetop.js';
 import 'postcode.js';
+import 'select_date.js';
 import 'select_shop.js';
 import 'select_time.js';
 import 'sidemenu.js';
