@@ -1,18 +1,10 @@
 document.addEventListener('turbolinks:load', function () {
   $(function () {
-    $('#form_fee_guide_shop_id').on('change', function () {
-      $('.business_hour_box').hide();
-      $('.business_hour_box').hide();
-      let selected_num = $(this).val();
+    $('#datepicker').on('change', function () {
+      let selected_num = $('#form_fee_guide_shop_id').val();
       let date_value = $('#datepicker').val();
       let selected_date = new Date(date_value);
       let selected_wday = selected_date.getDay();
-      if (selected_num == '1') {
-        $('#business_hours1').show();
-      } else {
-        $('#business_hours2').show();
-      }
-
       if (selected_num == '2') {
         if (selected_wday == 0 || selected_wday == 6) {
           $('.start_time2').hide();
