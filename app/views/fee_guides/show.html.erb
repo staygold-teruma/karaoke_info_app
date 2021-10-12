@@ -14,7 +14,7 @@
   <%= render "layouts/side_menu_shop" %>
 </div>
 <div class="" id="main_contents_shop">
-  <div class="mt-6 sm:mt-12 px-3 sm:px-7" id="fee_guide_edit">
+  <div class="mt-6 sm:mt-8 px-3 sm:px-7" id="fee_guide_edit">
     <div class="mx-auto mb-8 pb-6 block justify-center border-2 border-app rounded-xl shadow-xl sm:max-w-screen-md">
       <h1 class="w-full h-30 py-4 border border-app rounded-tl-lg  rounded-tr-lg bg-app text-2xl md:text-3xl text-white text-center mb-5 font-black">案内履歴詳細</h1>
       <table class="mx-auto lg:text-xl">
@@ -206,6 +206,9 @@
           </tr>
         </tbody>
       </table>
+      <div class="mt-10 flex justify-end">
+        <%= link_to "削除", fee_guide_path(@fee_guide), method: :delete, data: { confirm: "この履歴を削除しますか?" }, class: "btn_delete" %>
+      </div>
     </div>
   </div>
 </div>
