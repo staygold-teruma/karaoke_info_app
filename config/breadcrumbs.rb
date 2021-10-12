@@ -37,6 +37,11 @@ crumb :user_sign_up do
   parent :root
 end
 
+crumb :user_password_reset do
+  link "パスワード再設定"
+  parent :user_sign_in
+end
+
 crumb :user_show do |user|
   link "マイページ", user_path(user)
   parent :root

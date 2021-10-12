@@ -1,16 +1,39 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+<% content_for :title do %>
+    パスワード再設定
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0">
+    <%= render "layouts/header_user" %>
+  </div> 
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
 <% end %>
 
-<%= render "users/shared/links" %>
+<div id="margin_wrapper"></div>
+<% breadcrumb :user_password_reset %>
+<%= breadcrumbs separator: " &rsaquo; " %> 
+<div class="pb-24 sm:pb-12" id="sign_wrapper_user">
+  <h2 class="page_title">パスワード再設定</h2>
+  <div class="sm:border-2 border-app rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+        <%= render "users/shared/error_messages", resource: resource %>
+      </div>
+
+      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
+      </div>
+
+      <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
+        <%= f.submit "パスワード再設定メールを送信", class: "w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded cursor-pointer" %>
+      </div>
+    <% end %>
+    <div class="mt-5 w-5/6 sm:w-2/3 mx-auto">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>
+
+<%= render "layouts/side_menu_user" %>

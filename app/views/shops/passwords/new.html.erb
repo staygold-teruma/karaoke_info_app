@@ -1,16 +1,32 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "shops/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
+<% content_for :title do %>
+    管理画面：パスワード再設定
 <% end %>
 
-<%= render "shops/shared/links" %>
+<nav class="flex justify-center items-center w-full" id="gnav">
+  <%= link_to root_path do %>
+    <img src="/assets/logo.png" id="logo_sign">
+  <% end %>
+</nav>
+<div id="sign_wrapper">
+  <h1 class="page_title">パスワード再設定</h1>
+  <div class="border-2 border-app rounded-xl shadow-lg w-11/12 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+
+      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+        <%= render "shops/shared/error_messages", resource: resource %>
+      </div>
+
+      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
+      </div>
+
+      <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
+        <%= f.submit "パスワード再設定メールを送信", class: "w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded cursor-pointer" %>
+      </div>
+    <% end %>
+    <div class="mt-5 w-5/6 sm:w-2/3 mx-auto">
+      <%= render "shops/shared/links" %>
+    </div>
+  </div>
+</div>

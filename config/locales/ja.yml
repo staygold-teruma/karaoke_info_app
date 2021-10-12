@@ -17,7 +17,7 @@ ja:
         child_fee: 小学生料金
         note: 備考
       drink_plan:
-        fee_type: 料金種類
+        fee_type: 料金名
         div_time: 時間帯区分
         base_time: 基本時間
         adult_fee: 一般/基本料金

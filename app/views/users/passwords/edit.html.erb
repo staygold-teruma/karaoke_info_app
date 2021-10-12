@@ -1,25 +1,50 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "users/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
+<% content_for :title do %>
+  パスワード再設定
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0">
+    <%= render "layouts/header_user" %>
+  </div> 
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
 <% end %>
 
-<%= render "users/shared/links" %>
+<div id="margin_wrapper"></div>
+<div class="pb-24 sm:pb-12" id="sign_wrapper_user">
+  <h2 class="page_title">パスワード再設定</h2>
+  <div class="sm:border-2 border-app rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="field mb-3 w-5/6 mx-auto">
+        <div class="flex justify-between items-center mb-1 w-full">
+          <div>
+            <%= f.label :password, "パスワード" %>
+            <% if @minimum_password_length %>
+            <em class="text-xs text-gray-400 -ml-3 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+            <% end %>
+          </div>
+          <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+        </div>
+        <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
+      </div>
+
+      <div class="field mb-3 w-5/6 mx-auto">
+        <div class="flex justify-between items-center mb-1 w-full">
+          <%= f.label :password_confirmation, "パスワード確認" %>
+          <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+        </div>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-gray-400 rounded-lg  px-2 py-2 text-sm w-full" %>
+      </div>
+
+      <div class="actions mt-6 w-5/6 mx-auto flex justify-center">
+        <%= f.submit "変更", class: "text-sm bg-green-500 hover:bg-green-700 text-white px-2 py-2 rounded cursor-pointer w-full" %>
+      </div>
+
+    <% end %>
+  </div>
+</div>
+
+<%= render "layouts/side_menu_user" %>

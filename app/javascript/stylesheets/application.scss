@@ -291,9 +291,11 @@ div.field_with_errors {
 
 #main_contents_user {
   width: 100%;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 50px;
   @include mq-down(md) {
     width: 100%;
+    padding-top: 15px;
     padding-bottom: 95px;
   }
 }
@@ -301,6 +303,13 @@ div.field_with_errors {
 //ログイン部品
 #sign_wrapper {
   margin-top: 50px;
+  @include mq-down(sm) {
+    margin-top: 40px;
+  }
+}
+
+#sign_wrapper_user {
+  margin-top: 10px;
   @include mq-down(sm) {
     margin-top: 40px;
   }
@@ -486,7 +495,7 @@ div.field_with_errors {
   text-align: center;
   @include mq-down(xxs) {
     font-size: 20px;
-    margin-top: 15px;
+    margin-top: 20px;
     margin-bottom: 15px;
   }
 }
@@ -553,9 +562,13 @@ div.field_with_errors {
     @include mq-down(md) {
       width: calc(100% - 80px);
     }
-    #logo_sm {
+    a {
       width: 100px;
       height: 35px;
+      #logo_sm {
+        width: 100%;
+        height: auto;
+      }
     }
     #account {
       height: 40px;
@@ -1908,4 +1921,12 @@ div.field_with_errors {
 // datepicker
 ui-datepicker-header {
   background: chocolate;
+}
+
+// フラッシュメッセージ
+#flash_msg {
+  line-height: 50px;
+  @include mq-down(sm) {
+    line-height: 40px;
+  }
 }
