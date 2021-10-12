@@ -553,9 +553,13 @@ div.field_with_errors {
     @include mq-down(md) {
       width: calc(100% - 80px);
     }
-    #logo_sm {
+    a {
       width: 100px;
       height: 35px;
+      #logo_sm {
+        width: 100%;
+        height: auto;
+      }
     }
     #account {
       height: 40px;
@@ -1913,4 +1917,7 @@ ui-datepicker-header {
 // フラッシュメッセージ
 #flash_msg {
   line-height: 50px;
+  @include mq-down(sm) {
+    line-height: 40px;
+  }
 }

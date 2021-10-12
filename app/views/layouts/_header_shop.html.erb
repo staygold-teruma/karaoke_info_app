@@ -5,10 +5,14 @@
   <div class="" id="nav_main">
     <div class="md:flex items-center border-b border-gray-300 mr-2" id="account">
       <div class="h-full flex items-center md:mx-5">
-        <img src="/assets/logo.png" class="mr-2 md:hidden" id="logo_sm">
+        <%= link_to root_path, class: "md:hidden" do %>
+          <img src="/assets/logo.png" class="mr-2" id="logo_sm">
+        <% end %>
         <% if current_shop.name.present?%>
           <p class="text-xxs">
-            <span class="text-xxs md:text-sm text-blue-500 font-bold"><%= current_shop.name %></span>さんの管理ページ
+            <span class="text-xxs md:text-sm text-blue-500 font-bold"><%= current_shop.name %></span>
+            <br class="md:hidden">
+            さんの管理ページ
           </p> 
         <% else %> 
           <p class="text-xxs">
