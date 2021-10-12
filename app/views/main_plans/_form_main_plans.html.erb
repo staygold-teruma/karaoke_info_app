@@ -1,4 +1,13 @@
 <div class="sm:border-2 rounded-lg sm:shadow my-6 p-1 sm:p-8" id="form_wrap">
+  <% if @main_plan.errors.any? %>
+    <div>
+      <ul class="mb-3">
+        <% @main_plan.errors.full_messages.each do |msg| %>
+          <li><span style="color: red;"><%= msg %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form_with model: @main_plan, local: true do |f| %>
     <div class="w-full" id="l_div">
       <div class="form_box">
