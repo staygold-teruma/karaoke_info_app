@@ -291,9 +291,11 @@ div.field_with_errors {
 
 #main_contents_user {
   width: 100%;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 50px;
   @include mq-down(md) {
     width: 100%;
+    padding-top: 15px;
     padding-bottom: 95px;
   }
 }
