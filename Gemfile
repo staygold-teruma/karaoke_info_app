@@ -5,6 +5,7 @@ ruby "2.7.3"
 
 gem "bootsnap", ">= 1.4.4", require: false
 gem "carrierwave", "~> 2.0"
+gem "chartkick"
 gem "devise"
 gem "devise-i18n"
 gem "enum_help"
