@@ -30,7 +30,7 @@ class FeeGuide < ApplicationRecord
 
   enum div_member: {
     other: 0,
-    expectation_member: 1,
+    new_member: 1,
     member: 2
   }
 
@@ -56,6 +56,11 @@ class FeeGuide < ApplicationRecord
 
   # 料金計算して値をセット
   def store_calculated_result
+    @judgement_member = if div_member == "other"
+                          0
+                        else
+                          1
+                        end
     # 利用時間による料金カウントを取得(@count)
     @count = FeeGuide.usage_times[usage_time] + 1
     @datetime = Time.zone.parse("#{start_time_date} #{start_time_hour}:#{start_time_minute}:00")
@@ -91,8 +96,8 @@ class FeeGuide < ApplicationRecord
   # それぞれのルーム料金を計算
   def store_main_fee
     wday = retrieve_business_wday(@datetime)
-    chosen_day_plan = retrieve_day_plan(wday)
-    chosen_night_plan = retrieve_night_plan(wday)
+    chosen_day_plan = retrieve_day_plan(wday, @judgement_member)
+    chosen_night_plan = retrieve_night_plan(wday, @judgement_member)
     unit_count = retrieve_unit_count(@datetime, @count)
     self.adult_main_fee = calculate_main_fee(chosen_day_plan.adult_fee, chosen_night_plan.adult_fee, unit_count)
     self.student_main_fee = calculate_main_fee(chosen_day_plan.student_fee, chosen_night_plan.student_fee, unit_count)
@@ -106,10 +111,10 @@ class FeeGuide < ApplicationRecord
     wday = retrieve_business_wday(@datetime)
     if usage_time == "three_hour"
       time = retrieve_div_time_three_hour
-      chosen_free_plan = retrieve_three_hour_plan(wday, time)
+      chosen_free_plan = retrieve_three_hour_plan(wday, time, @judgement_member)
     else
       time = retrieve_div_time_free_time
-      chosen_free_plan = retrieve_free_plan(wday, time)
+      chosen_free_plan = retrieve_free_plan(wday, time, @judgement_member)
     end
     self.adult_main_fee = chosen_free_plan.adult_fee
     self.student_main_fee = chosen_free_plan.student_fee
@@ -197,7 +202,7 @@ class FeeGuide < ApplicationRecord
     child_total_fee * number_of_children
   end
 
-  # ワンドリンク時の最低料金��ビュー表示用)
+  # ワンドリンク時の最低料金（ビュー表示用）
   def include_one_drink_fee
     total_fee + 418 * number_of_customers
   end
@@ -247,23 +252,23 @@ class FeeGuide < ApplicationRecord
   end
 
   # フォームで取得した内容から該当の「昼30分料金を取得」
-  def retrieve_day_plan(wday)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 0, fee_type: 0)
+  def retrieve_day_plan(wday, member)
+    MainPlan.find_by(div_member: member, div_day: wday, div_time: 0, fee_type: 0)
   end
 
   # フォームで取得した内容から該当の「夜30分料金を取得」
-  def retrieve_night_plan(wday)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: 1, fee_type: 0)
+  def retrieve_night_plan(wday, member)
+    MainPlan.find_by(div_member: member, div_day: wday, div_time: 1, fee_type: 0)
   end
 
   # フォームで取得した内容から該当の「3時間パック料金を取得」
-  def retrieve_three_hour_plan(wday, time)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 1)
+  def retrieve_three_hour_plan(wday, time, member)
+    MainPlan.find_by(div_member: member, div_day: wday, div_time: time, fee_type: 1)
   end
 
   # フォームで取得した内容から該当の「フリータイム料金を取得」
-  def retrieve_free_plan(wday, time)
-    MainPlan.find_by(div_member: div_member, div_day: wday, div_time: time, fee_type: 2)
+  def retrieve_free_plan(wday, time, member)
+    MainPlan.find_by(div_member: member, div_day: wday, div_time: time, fee_type: 2)
   end
 
   # ルーム料金を計算

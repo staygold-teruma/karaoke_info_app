@@ -34,6 +34,7 @@ ja:
     fee_guide:
       div_member:
         other: '一般'
+        new_member: '新規会員'
         member: '会員'
       usage_time:
         half_hour: '30分'
