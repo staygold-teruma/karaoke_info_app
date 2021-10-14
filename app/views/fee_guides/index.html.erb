@@ -2,7 +2,7 @@
     管理画面：料金案内履歴
 <% end %>
 <% content_for :header do %>
-  <div class="fixed w-full">
+  <div class="fixed w-full z-50">
     <%= render "layouts/header_shop" %>
   </div>   
 <% end %>
@@ -24,6 +24,7 @@
             <th class="index_table_head">利用日</th>
             <th class="index_table_head">料金合計</th>
             <th class="index_table_head hidden md:table-cell">会員</th>
+            <th class="index_table_head">利用人数</th>
             <th class="index_table_head hidden md:table-cell">一般</th>
             <th class="index_table_head hidden md:table-cell">学生</th>
             <th class="index_table_head hidden md:table-cell">シニア</th>
@@ -41,6 +42,7 @@
               <td class="sm:hidden border border-gray-400 px-2 py-1 text-center text-xs text-blue-600"><%= link_to fee_guide.created_at.strftime('%m/%d'), fee_guide_path(fee_guide) %></td>
               <td class="border border-gray-400 px-2 py-1 text-center text-xs lg:text-sm"><%= fee_guide.total_fee.to_s(:delimited, delimiter: ',') %>円</td>
               <td class="index_table_body hidden md:table-cell"><%= fee_guide.div_member_i18n %></td>
+              <td class="index_table_body"><%= fee_guide.number_of_customers %>名</td>
               <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_adults %>名</td>
               <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_students %>名</td>
               <td class="index_table_body hidden md:table-cell"><%= fee_guide.number_of_seniors %>名</td>
