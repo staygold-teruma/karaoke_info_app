@@ -30,7 +30,8 @@ class FeeGuide < ApplicationRecord
 
   enum div_member: {
     other: 0,
-    member: 1
+    expectation_member: 1,
+    member: 2
   }
 
   enum usage_time: {
@@ -196,7 +197,7 @@ class FeeGuide < ApplicationRecord
     child_total_fee * number_of_children
   end
 
-  # ワンドリンク時の最低料金（ビュー表示用)
+  # ワンドリンク時の最低料金��ビュー表示用)
   def include_one_drink_fee
     total_fee + 418 * number_of_customers
   end
