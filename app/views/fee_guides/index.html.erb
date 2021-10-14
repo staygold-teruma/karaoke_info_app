@@ -21,7 +21,7 @@
         <thead>
           <tr id="table_heading" class="bg-blue-500 sticky top-0">
             <th class="index_table_head hidden md:table-cell">No.</th>
-            <th class="index_table_head">利用日</th>
+            <th class="index_table_head">案内日</th>
             <th class="index_table_head">料金合計</th>
             <th class="index_table_head hidden md:table-cell">会員</th>
             <th class="index_table_head">利用人数</th>
@@ -72,11 +72,30 @@
         </thead>
         <tbody>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
-            <th class="alcohol_head w-1/5">累計</th>
-            <th class="alcohol_head w-1/5 bg-indigo-100"></th>
-            <th class="alcohol_head w-1/5 bg-red-100"></th>
-            <th class="alcohol_head w-1/5 bg-green-100"></th>
-            <th class="alcohol_head w-1/5 bg-green-100"></th>
+            <th class="alcohol_head w-1/5">当日</th>
+            <th class="alcohol_head w-1/5 bg-indigo-100">
+              <%= @fee_guide_today %>
+            </th>
+            <th class="alcohol_head w-1/5 bg-red-100">
+              <%= @member_today %>
+            </th>
+            <th class="alcohol_head w-1/5 bg-green-100">
+              <%= @new_member_today %>
+            </th>
+            <th class="alcohol_head w-1/5 bg-green-100">
+              <%= @other_today %>
+            </th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="alcohol_head w-1/5">比率</th>
+            <th class="alcohol_head w-2/5 bg-red-100" colspan="2">
+              総会員利用率：<%= @total_member_ratio.round(2) %>％
+            </th>
+            <th class="alcohol_head w-2/5 bg-red-100" colspan="2">
+              新規獲得率：<%= @new_member_ratio.round(2) %>％
+            </th>
           </tr>
         </tbody>
       </table>
