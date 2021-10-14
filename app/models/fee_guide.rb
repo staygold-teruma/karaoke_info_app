@@ -52,7 +52,9 @@ class FeeGuide < ApplicationRecord
     deluxe_plan: 4
   }
 
-  scope :customer_breakdown, ->(member) { includes(:shop).where(div_member: member, created_at: Date.today.all_day).count }
+  scope :today_data, -> { includes(:shop).where(created_at: Date.today.all_day) }
+  scope :month_data, -> { includes(:shop).where(created_at: Date.today.in_time_zone.all_month) }
+  scope :customer_breakdown, ->(member) { where(div_member: member).count }
 
   HALFHOUR_TO_SECONDS = 1800
 
@@ -171,7 +173,7 @@ class FeeGuide < ApplicationRecord
     end
   end
 
-  # それぞれの1名あたりの料金を計算
+  # それぞれの1名あたりの料金を計���
   def store_each_total_fee
     self.adult_total_fee = adult_main_fee + adult_drink_fee
     self.student_total_fee = student_main_fee + student_drink_fee

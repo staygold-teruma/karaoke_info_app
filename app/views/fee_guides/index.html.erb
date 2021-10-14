@@ -91,10 +91,38 @@
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <th class="alcohol_head w-1/5">比率</th>
             <th class="alcohol_head w-2/5 bg-red-100" colspan="2">
-              総会員利用率：<%= @total_member_ratio.round(2) %>％
+              総会員利用率：<%= @total_member_ratio_today.round(2) %>％
             </th>
             <th class="alcohol_head w-2/5 bg-red-100" colspan="2">
-              新規獲得率：<%= @new_member_ratio.round(2) %>％
+              新規獲得率：<%= @new_member_ratio_today.round(2) %>％
+            </th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="alcohol_head w-1/5">月間</th>
+            <th class="alcohol_head w-1/5 bg-indigo-100">
+              <%= @fee_guide_month %>
+            </th>
+            <th class="alcohol_head w-1/5 bg-red-100">
+              <%= @member_month %>
+            </th>
+            <th class="alcohol_head w-1/5 bg-green-100">
+              <%= @new_member_month %>
+            </th>
+            <th class="alcohol_head w-1/5 bg-green-100">
+              <%= @other_month %>
+            </th>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="alcohol_head w-1/5">比率</th>
+            <th class="alcohol_head w-2/5 bg-red-100" colspan="2">
+              総会員利用率：<%= @total_member_ratio_month.round(2) %>％
+            </th>
+            <th class="alcohol_head w-2/5 bg-red-100" colspan="2">
+              新規獲得率：<%= @new_member_ratio_month.round(2) %>％
             </th>
           </tr>
         </tbody>
