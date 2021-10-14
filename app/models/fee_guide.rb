@@ -30,8 +30,8 @@ class FeeGuide < ApplicationRecord
 
   enum div_member: {
     other: 0,
-    new_member: 1,
-    member: 2
+    member: 1,
+    new_member: 2
   }
 
   enum usage_time: {
