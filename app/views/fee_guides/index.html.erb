@@ -55,7 +55,32 @@
         </tbody>
       </table>
     </div>
-    <%= pie_chart FeeGuide.group(:div_member).count %>
+    <div>
+      <h3 class="text-center mb-3">会員比率(リピート/新規/未入会)</h3>
+      <%= pie_chart FeeGuide.group(:div_member).count %>
+    </div>
+    <div>
+      <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl" id="table_index">
+        <thead>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="alcohol_head w-1/5"></th>
+            <th class="alcohol_head w-1/5 bg-indigo-100">利用総数</th>
+            <th class="alcohol_head w-1/5 bg-red-100">リピート</th>
+            <th class="alcohol_head w-1/5 bg-green-100">新規入会</th>
+            <th class="alcohol_head w-1/5 bg-green-100">未入会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="alcohol_head w-1/5">累計</th>
+            <th class="alcohol_head w-1/5 bg-indigo-100"></th>
+            <th class="alcohol_head w-1/5 bg-red-100"></th>
+            <th class="alcohol_head w-1/5 bg-green-100"></th>
+            <th class="alcohol_head w-1/5 bg-green-100"></th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 
