@@ -3,6 +3,7 @@ class FeeGuidesController < ApplicationController
 
   def index
     @fee_guides = FeeGuide.includes(:shop).all
+
     @fee_guide_today = FeeGuide.today_data.count
     @member_today = FeeGuide.today_data.customer_breakdown(1)
     @new_member_today = FeeGuide.today_data.customer_breakdown(2)
