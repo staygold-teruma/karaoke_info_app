@@ -21,7 +21,7 @@
         <thead>
           <tr id="table_heading" class="bg-blue-500 sticky top-0">
             <th class="index_table_head hidden md:table-cell">No.</th>
-            <th class="index_table_head">利用日</th>
+            <th class="index_table_head">案内日</th>
             <th class="index_table_head">料金合計</th>
             <th class="index_table_head hidden md:table-cell">会員</th>
             <th class="index_table_head">利用人数</th>
@@ -55,7 +55,75 @@
         </tbody>
       </table>
     </div>
-    <%= pie_chart FeeGuide.group(:div_member).count %>
+    <div class="px-6 mt-12">
+      <h3 class="text-center mb-3">利用数の推移</h3>
+      <%= line_chart @fee_guides.group_by_day(:created_at).count %>
+    </div>
+    <div class="px-2 mt-12">
+      <h3 class="text-center mb-5">会員比率(リピート/新規/未入会)</h3>
+      <%= pie_chart @fee_guides.group(:div_member).count %>
+    </div>
+    <div class="px-2">
+      <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl mt-6" id="table_index">
+        <thead>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head w-1/5"></th>
+            <th class="guide_head text-sm sm:text-base w-1/5 py-6 sm:py-3">利用総数</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-red-100">リピート</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-green-100">新規入会</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-blue-100">未入会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5">
+              利用<br class="sm:hidden">(当日)</th>
+            <th class="guide_head w-1/5">
+              <%= @fee_guide_today %>
+            </th>
+            <th class="guide_head w-1/5 bg-red-100">
+              <%= @member_today %>
+            </th>
+            <th class="guide_head w-1/5 bg-green-100">
+              <%= @new_member_today %>
+            </th>
+            <th class="guide_head w-1/5 bg-blue-100">
+              <%= @other_today %>
+            </th>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5">
+              利用<br class="sm:hidden">(月間)
+            </th>
+            <td class="guide_head w-1/5">
+              <%= @fee_guide_month %>
+            </td>
+            <td class="guide_head w-1/5 bg-red-100">
+              <%= @member_month %>
+            </td>
+            <td class="guide_head w-1/5 bg-green-100">
+              <%= @new_member_month %>
+            </td>
+            <td class="guide_head w-1/5 bg-blue-100">
+              <%= @other_month %>
+            </td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5" rowspan="2">月間</th>
+            <td class="guide_head w-2/5" colspan="2">会員利用率</td>
+            <td class="guide_head w-2/5" colspan="2">
+              <%= @total_member_ratio_month.round(2) %>％
+            </td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="guide_head w-2/5 text-red-500" colspan="2">新規獲得率</td>
+            <td class="guide_head w-2/5 text-red-500" colspan="2">
+              <%= @new_member_ratio_month.round(2) %>％
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 

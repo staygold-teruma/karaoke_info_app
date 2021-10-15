@@ -3,6 +3,24 @@ class FeeGuidesController < ApplicationController
 
   def index
     @fee_guides = FeeGuide.includes(:shop).all
+
+    @fee_guide_today = FeeGuide.today_data.count
+    @member_today = FeeGuide.today_data.customer_breakdown(1)
+    @new_member_today = FeeGuide.today_data.customer_breakdown(2)
+    @other_today = FeeGuide.today_data.customer_breakdown(0)
+    @total_member = @member_today + @new_member_today
+    @not_member = @new_member_today + @other_today
+    @total_member_ratio_today = @total_member.to_f / @fee_guide_today * 100
+    @new_member_ratio_today = @new_member_today.to_f / @not_member * 100
+
+    @fee_guide_month = FeeGuide.month_data.count
+    @member_month = FeeGuide.month_data.customer_breakdown(1)
+    @new_member_month = FeeGuide.month_data.customer_breakdown(2)
+    @other_month = FeeGuide.month_data.customer_breakdown(0)
+    @total_member = @member_month + @new_member_month
+    @not_member = @new_member_month + @other_month
+    @total_member_ratio_month = @total_member.to_f / @fee_guide_month * 100
+    @new_member_ratio_month = @new_member_month.to_f / @not_member * 100
   end
 
   def new
