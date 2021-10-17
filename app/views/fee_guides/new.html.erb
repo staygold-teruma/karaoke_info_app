@@ -188,11 +188,20 @@
 
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
   <div class="flex items-center justify-evenly" id="footer_btn_left">
-    <%= link_to root_path do %>
-    <div class="text-center pt-3" id="btn_box">
-      <i class="fas fa-home text-2xl text-app"></i>
-      <p class="text-center text-xxs text-white">ホーム</p>
-    </div>
+    <% if shop_signed_in? %>
+      <%= link_to fee_guides_path do %>
+        <div class="text-center pt-3" id="btn_box">
+          <i class="fas fa-chart-pie text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">利用分析</p>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to root_path do %>
+        <div class="text-center pt-3" id="btn_box">
+          <i class="fas fa-home text-2xl text-app"></i>
+          <p class="text-center text-xxs text-white">ホーム</p>
+        </div>
+      <% end %>
     <% end %>
     <% if shop_signed_in? %>
       <%= link_to shops_topics_path do %>
