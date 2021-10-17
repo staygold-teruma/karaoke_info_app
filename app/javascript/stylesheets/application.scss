@@ -388,11 +388,11 @@ div.field_with_errors {
     }
     @include mq-down(sm) {
       height: 45px;
-      font-size: 14px;
+      font-size: 16px;
     }
     @include mq-down(xls) {
       height: 40px;
-      font-size: 10px;
+      font-size: 12px;
     }
     a {
       display: block;
