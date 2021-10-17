@@ -1,9 +1,15 @@
 <div class="flex justify-evenly items-center md:hidden bg-app_bg" id="guide_footer">
-  <%= link_to fee_guides_path do %>
+  <%= link_to root_path do %>
   <div class="text-center pt-3" id="btn_box">
-    <i class="fas fa-chart-pie text-2xl text-app"></i>
-    <p class="text-center text-xxs">利用分析</p>
+    <i class="fas fa-home text-2xl text-app"></i>
+    <p class="text-center text-xxs">ホーム</p>
   </div>
+  <% end %>
+  <%= link_to fee_guides_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-chart-pie text-2xl text-app"></i>
+      <p class="text-center text-xxs">利用分析</p>
+    </div>
   <% end %>
   <%= link_to shops_topics_path do %>
     <div class="text-center pt-3" id="btn_box">
@@ -21,12 +27,6 @@
     <div class="text-center pt-3" id="btn_box">
       <i class="fas fa-coffee text-2xl text-app"></i>
       <p class="text-center text-xxs">ドリンク料金</p>
-    </div>
-  <% end %>
-  <%= link_to 'javascript:history.back()' do %>
-    <div class="text-center pt-3" id="btn_box">
-      <i class="fas fa-backward text-2xl text-app"></i>
-      <p class="text-xxs">戻る</p>
     </div>
   <% end %>
 </div>
