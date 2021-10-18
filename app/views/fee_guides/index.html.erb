@@ -56,76 +56,134 @@
         </tbody>
       </table>
     </div>
-    <div  class="px-8 lg:px-6 mt-12 lg:grid lg:grid-cols-2 gap-6">
-      <div class="p-6 border-2">
+    <div class="px-2 lg:px-6 mt-12">
+      <div class="py-6 lg:p-6 border-2 shadow-lg lg:col-span-2">
         <h3 class="text-center mb-5"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>利用数の推移</h3>
         <%= line_chart @fee_guides.group_by_day(:created_at).count %>
       </div>
-      <div class="p-6 mt-12 lg:mt-0 border-2">
-        <h3 class="text-center mb-5"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>利用内訳</h3>
-        <%= pie_chart @fee_guides.group(:div_member).count %>
+      <div class="py-6 lg:p-6 mt-12 border-2 shadow-lg">
+        <h3 class="text-center mb-5"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>会員データ</h3>
+        <div class="lg:grid lg:grid-cols-3 gap-3">
+          <%= pie_chart @member_ratio_data, colors: ["#ff5500", "#10b981", "#3b82f6" ] %>
+          <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl  lg:col-span-2 mt-6 lg:mt-0" id="table_index">
+            <thead>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head w-1/5 bg-white"></th>
+                <th class="guide_head text-sm sm:text-base w-1/5 py-6 sm:py-3 bg-white">総数</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-red-100">会員</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-green-100">新規入会</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-blue-100">未入会</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+                  利用<br class="sm:hidden">(当日)</th>
+                <th class="guide_head w-1/5 bg-white">
+                  <%= @fee_guide_today %>
+                </th>
+                <th class="guide_head w-1/5 bg-red-100">
+                  <%= @member_today %>
+                </th>
+                <th class="guide_head w-1/5 bg-green-100">
+                  <%= @new_member_today %>
+                </th>
+                <th class="guide_head w-1/5 bg-blue-100">
+                  <%= @other_today %>
+                </th>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+                  利用<br class="sm:hidden">(月間)
+                </th>
+                <td class="guide_head w-1/5 bg-white">
+                  <%= @fee_guide_month %>
+                </td>
+                <td class="guide_head w-1/5 bg-red-100">
+                  <%= @member_month %>
+                </td>
+                <td class="guide_head w-1/5 bg-green-100">
+                  <%= @new_member_month %>
+                </td>
+                <td class="guide_head w-1/5 bg-blue-100">
+                  <%= @other_month %>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white" rowspan="2">月間</th>
+                <td class="guide_head w-2/5 bg-white" colspan="2">リピート率</td>
+                <td class="guide_head w-2/5 bg-white" colspan="2">
+                  <%= @repeat_member_ratio_month.round(1) %>％
+                </td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">新規獲得率</td>
+                <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">
+                  <%= @new_member_ratio_month.round(1) %>％
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="p-6 mt-12 lg:mt-0 border-2 lg:col-span-2">
-        <h3 class="text-center mb-5"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>会員比率(リピート/新規/未入会)</h3>
-        <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl mt-6" id="table_index">
-          <thead>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <th class="guide_head w-1/5 bg-white"></th>
-              <th class="guide_head text-sm sm:text-base w-1/5 py-6 sm:py-3 bg-white">総数</th>
-              <th class="guide_head text-sm sm:text-base w-1/5 bg-red-100">リピート</th>
-              <th class="guide_head text-sm sm:text-base w-1/5 bg-green-100">新規入会</th>
-              <th class="guide_head text-sm sm:text-base w-1/5 bg-blue-100">未入会</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
-                利用<br class="sm:hidden">(当日)</th>
-              <th class="guide_head w-1/5 bg-white">
-                <%= @fee_guide_today %>
-              </th>
-              <th class="guide_head w-1/5 bg-red-100">
-                <%= @member_today %>
-              </th>
-              <th class="guide_head w-1/5 bg-green-100">
-                <%= @new_member_today %>
-              </th>
-              <th class="guide_head w-1/5 bg-blue-100">
-                <%= @other_today %>
-              </th>
-            </tr>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
-                利用<br class="sm:hidden">(月間)
-              </th>
-              <td class="guide_head w-1/5 bg-white">
-                <%= @fee_guide_month %>
-              </td>
-              <td class="guide_head w-1/5 bg-red-100">
-                <%= @member_month %>
-              </td>
-              <td class="guide_head w-1/5 bg-green-100">
-                <%= @new_member_month %>
-              </td>
-              <td class="guide_head w-1/5 bg-blue-100">
-                <%= @other_month %>
-              </td>
-            </tr>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <th class="guide_head text-sm sm:text-base w-1/5 bg-white" rowspan="2">月間</th>
-              <td class="guide_head w-2/5 bg-white" colspan="2">リピート率</td>
-              <td class="guide_head w-2/5 bg-white" colspan="2">
-                <%= @repeat_member_ratio_month.round(2) %>％
-              </td>
-            </tr>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">新規獲得率</td>
-              <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">
-                <%= @new_member_ratio_month.round(2) %>％
-              </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="py-6 lg:p-6 mt-12 lg:mt-0 border-2 lg:col-span-2 shadow-lg">
+        <h3 class="text-center mb-5"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>年齢層データ</h3>
+        <div class="lg:grid lg:grid-cols-3 gap-3">
+          <%= pie_chart @generation_ratio_data, colors: ["#10b981", "#3b82f6", "#b45309", "#ef4444" ] %>
+          <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl mt-6" id="table_index">
+            <thead>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head w-1/5 bg-white"></th>
+                <th class="guide_head text-sm sm:text-base w-1/5 py-6 sm:py-3 bg-white hidden sm:table-cell">総数</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-green-500">一般</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-blue-500">学生</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-yellow-700">シニア</th>
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-red-500">小学生</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+                  利用数</th>
+                <th class="guide_head bg-white w-1/5 hidden sm:table-cell">
+                  <%= @total_customers %>
+                </th>
+                <th class="guide_head w-1/5 bg-white text-green-500">
+                  <%= @total_adults %>
+                </th>
+                <th class="guide_head w-1/5 bg-white text-blue-500">
+                  <%= @total_students %>
+                </th>
+                <th class="guide_head w-1/5 bg-white text-yellow-700">
+                  <%= @total_seniors %>
+                </th>
+                <th class="guide_head w-1/5 bg-white text-red-500">
+                  <%= @total_children %>
+                </th>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+                  割合
+                </th>
+                <td class="guide_head w-1/5 bg-white hidden sm:table-cell">
+                  100％
+                </td>
+                <td class="guide_head w-1/5 bg-white text-green-500">
+                  <%= @adults_ratio.round(1) %>％
+                </td>
+                <td class="guide_head w-1/5 bg-white text-blue-500">
+                  <%= @students_ratio.round(1) %>％
+                </td>
+                <td class="guide_head w-1/5 bg-white text-yellow-700">
+                  <%= @seniors_ratio.round(1) %>％
+                </td>
+                <td class="guide_head w-1/5 bg-white text-red-500">
+                  <%= @children_ratio.round(1) %>％
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
