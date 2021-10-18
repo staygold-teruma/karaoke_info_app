@@ -17,9 +17,8 @@ class FeeGuidesController < ApplicationController
     @member_month = FeeGuide.month_data.customer_breakdown(1)
     @new_member_month = FeeGuide.month_data.customer_breakdown(2)
     @other_month = FeeGuide.month_data.customer_breakdown(0)
-    @total_member = @member_month + @new_member_month
     @not_member = @new_member_month + @other_month
-    @total_member_ratio_month = @total_member.to_f / @fee_guide_month * 100
+    @repeat_member_ratio_month = @member_month.to_f / @fee_guide_month * 100
     @new_member_ratio_month = @new_member_month.to_f / @not_member * 100
   end
 
