@@ -52,8 +52,8 @@ class FeeGuide < ApplicationRecord
     deluxe_plan: 4
   }
 
-  scope :today_data, -> { includes(:shop).where(created_at: Date.today.all_day) }
-  scope :month_data, -> { includes(:shop).where(created_at: Date.today.in_time_zone.all_month) }
+  scope :today_data, -> { where(created_at: Date.today.all_day) }
+  scope :month_data, -> { where(created_at: Date.today.in_time_zone.all_month) }
   scope :customer_breakdown, ->(member) { where(div_member: member).count }
 
   HALFHOUR_TO_SECONDS = 1800
