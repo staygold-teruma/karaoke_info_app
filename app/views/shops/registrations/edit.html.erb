@@ -99,7 +99,7 @@
         </div>
         <%= f.password_field :current_password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
       </div>
-      <div class="actions flex justify-evenly mt-6 mx-auto">
+      <div class="actions w-5/6 sm:w-2/3 flex justify-evenly mt-6 mx-auto">
           <%= f.submit "編集", class: "w-1/4 text-center text-white bg-green-500 hover:bg-green-700 py-2 rounded cursor-pointer" %>
           <%= link_to t('devise.shared.links.back'), :back, class: "w-1/4 text-center text-white bg-app hover:bg-yellow-700 py-2 rounded" %>
       </div>
