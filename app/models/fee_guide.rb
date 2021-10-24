@@ -173,7 +173,7 @@ class FeeGuide < ApplicationRecord
     end
   end
 
-  # それぞれの1名あたりの料金を計���
+  # それぞれの1名あたりの料金を計算
   def store_each_total_fee
     self.adult_total_fee = adult_main_fee + adult_drink_fee
     self.student_total_fee = student_main_fee + student_drink_fee
@@ -181,7 +181,7 @@ class FeeGuide < ApplicationRecord
     self.child_total_fee = child_main_fee + child_drink_fee
   end
 
-  # グループ全体���合計金額を計算
+  # グループ全体の合計金額を計算
   def store_total_fee
     self.total_fee = (adult_total_fee * number_of_adults) +
                      (student_total_fee * number_of_students) +
@@ -210,6 +210,19 @@ class FeeGuide < ApplicationRecord
   def include_one_drink_fee
     total_fee + 418 * number_of_customers
   end
+
+  # def today
+  #   total_t = where(created_at: Date.today.all_day).count
+  #   member_t = total_t.where(div_member: 1).count
+  #   new_member_t = total_t.where(div_member: 2).count
+  #   other_t = total_t.where(div_member: 0).count
+  #   total_member_t = member_t + new_member_t
+  #   not_member_t = new_member_t + other_t
+  #   total_member_ratio_t = total_member_t.to_f / total_t * 100
+  #   new_member_ratio_t = new_member_t.to_f / not_member_t * 100
+  #   { total_today: total_t, member: member_t, new_member: member_t, other: other_t, total_member_ratio_today: total_member_ratio_t,
+  #     new_member_ratio_today: new_member_ratio_t }
+  # end
 
   private
 

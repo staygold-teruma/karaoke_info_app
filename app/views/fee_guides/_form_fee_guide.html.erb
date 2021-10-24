@@ -56,15 +56,15 @@
       </div>
       <div class="mb-2 sm:mb-1 sm:flex flex-wrap px-2 mt-6">
         <div class="flex items-center mr-5 mb-1 text-lg sm:text:base">
-          <%= f.radio_button :div_member, :member, name: "optionsRadios" %>
+          <%= f.radio_button :div_member, :member %>
           <%= f.label :会員登録済み, class: "ml-1 text-app", id: "radio_title" %>
         </div>
         <div class="flex items-center mr-5 mb-1 text-lg sm:text:base">
-          <%= f.radio_button :div_member, :new_member, name: "optionsRadios" %>
+          <%= f.radio_button :div_member, :new_member %>
           <%= f.label :会員登録したい！, class: "ml-1 text-green-500", id: "radio_title" %>
         </div>
         <div class="flex items-center mb-3 sm:mb-1 text-lg sm:text:base">
-          <%= f.radio_button :div_member, :other, name: "optionsRadios" %>
+          <%= f.radio_button :div_member, :other %>
           <%= f.label :会員登録の予定なし, class: "ml-1 text-blue-500", id: "radio_title" %>
         </div>
       </div>

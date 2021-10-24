@@ -2,8 +2,7 @@ class FeeGuidesController < ApplicationController
   before_action :set_fee_guide, only: %i[show destroy]
 
   def index
-    @fee_guides = FeeGuide.includes(:shop)
-
+    @fee_guides = FeeGuide.includes(:shop).where(shop_id: current_shop.id)
     @fee_guide_today = @fee_guides.today_data.count
     @member_today = @fee_guides.today_data.customer_breakdown(1)
     @new_member_today = @fee_guides.today_data.customer_breakdown(2)
