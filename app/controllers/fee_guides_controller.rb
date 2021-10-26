@@ -2,39 +2,24 @@ class FeeGuidesController < ApplicationController
   before_action :set_fee_guide, only: %i[show destroy]
 
   def index
-    @fee_guides = FeeGuide.includes(:shop)
+    @fee_guides = FeeGuide.includes(:shop).where(shop_id: current_shop.id)
 
-    @fee_guide_today = @fee_guides.today_data.count
-    @member_today = @fee_guides.today_data.customer_breakdown(1)
-    @new_member_today = @fee_guides.today_data.customer_breakdown(2)
-    @other_today = @fee_guides.today_data.customer_breakdown(0)
-    @total_member = @member_today + @new_member_today
-    @not_member = @new_member_today + @other_today
-    @total_member_ratio_today = @total_member.to_f / @fee_guide_today * 100
-    @new_member_ratio_today = @new_member_today.to_f / @not_member * 100
+    # グラフ・表のデータ
+    # 会員データ用
+    @not_member_month = @fee_guides.month_data.customer_breakdown(2) + @fee_guides.month_data.customer_breakdown(0)
+    @member_ratio_data = [
+      ["会員", @fee_guides.month_data.customer_breakdown(1)],
+      ["新規会員", @fee_guides.month_data.customer_breakdown(2)],
+      ["未入会", @fee_guides.month_data.customer_breakdown(0)]
+    ]
 
-    @fee_guide_month = @fee_guides.month_data.count
-    @member_month = @fee_guides.month_data.customer_breakdown(1)
-    @new_member_month = @fee_guides.month_data.customer_breakdown(2)
-    @other_month = @fee_guides.month_data.customer_breakdown(0)
-    @not_member = @new_member_month + @other_month
-    @repeat_member_ratio_month = @member_month.to_f / @fee_guide_month * 100
-    @new_member_ratio_month = @new_member_month.to_f / @not_member * 100
-    @member_ratio_data = [["会員", @member_month], ["新規会員", @new_member_month], ["未入会", @other_month]]
-
-    @total_customers = @fee_guides.sum(:number_of_customers)
-    @total_adults = @fee_guides.sum(:number_of_adults)
-    @total_students = @fee_guides.sum(:number_of_students)
-    @total_seniors = @fee_guides.sum(:number_of_seniors)
-    @total_children = @fee_guides.sum(:number_of_children)
-    @total_young_people = @total_students + @total_children
-    @adults_ratio = @total_adults.to_f / @total_customers * 100
-    @students_ratio = @total_students.to_f / @total_customers * 100
-    @seniors_ratio = @total_seniors.to_f / @total_customers * 100
-    @children_ratio = @total_children.to_f / @total_customers * 100
-    @young_ratio = @total_young_people.to_f / @total_customers * 100
-    @generation_ratio_data = [["\u4E00\u822C", @total_adults], ["\u5B66\u751F", @total_students], ["\u30B7\u30CB\u30A2", @total_seniors],
-                              ["\u5C0F\u5B66\u751F", @total_children]]
+    # 客層グラフ用
+    @customer_base_data = [
+      ["\u4E00\u822C", @fee_guides.sum(:number_of_adults)],
+      ["\u5B66\u751F", @fee_guides.sum(:number_of_students)],
+      ["\u30B7\u30CB\u30A2", @fee_guides.sum(:number_of_seniors)],
+      ["\u5C0F\u5B66\u751F", @fee_guides.sum(:number_of_children)]
+    ]
   end
 
   def new
