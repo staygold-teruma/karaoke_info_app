@@ -1,5 +1,10 @@
 module FeeGuidesHelper
   def ratio(numerator, denominator)
-    numerator.to_f / denominator * 100
+    if numerator == 0 || denominator == 0
+      0
+    else
+      percentage = numerator.to_f / denominator * 100
+      percentage.round(1)
+    end
   end
 end

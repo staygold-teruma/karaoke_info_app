@@ -113,13 +113,13 @@
                 <th class="guide_head text-sm sm:text-base w-1/5 bg-white" rowspan="2">月間</th>
                 <td class="guide_head w-2/5 bg-white" colspan="2">リピート率</td>
                 <td class="guide_head w-2/5 bg-white" colspan="2">
-                  <%= @repeat_member_ratio_month.round(1) %>％
+                  <%= ratio(@member_month, @fee_guide_month) %>％
                 </td>
               </tr>
               <tr class="border-b border-gray-200 hover:bg-gray-100">
                 <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">新規獲得率</td>
                 <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">
-                  <%= @new_member_ratio_month.round(1) %>％
+                  <%= ratio(@new_member_month, @not_member_month) %>％
                 </td>
               </tr>
             </tbody>
@@ -127,7 +127,7 @@
         </div>
       </div>
       <div class="py-6 lg:px-6 lg:py-12 mt-8 border-2 lg:col-span-2 shadow-lg">
-        <h3 class="text-center mb-6 lg:mb-12 text-lg"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>年齢層データ</h3>
+        <h3 class="text-center mb-6 lg:mb-12 text-lg"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>顧客層データ</h3>
         <div class="lg:grid lg:grid-cols-3 gap-3">
           <%= pie_chart @generation_ratio_data, colors: ["#10b981", "#3b82f6", "#b45309", "#ef4444" ] %>
           <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl lg:col-span-2 mt-6" id="table_index">
@@ -169,16 +169,16 @@
                   100％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-green-500">
-                  <%= @adults_ratio.round(1) %>％
+                  <%= ratio(@total_adults, @total_customers) %>％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-blue-500">
-                  <%= @students_ratio.round(1) %>％
+                  <%= ratio(@total_students, @total_customers) %>％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-yellow-700">
-                  <%= @seniors_ratio.round(1) %>％
+                  <%= ratio(@total_seniors, @total_customers) %>％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-red-500">
-                  <%= @children_ratio.round(1) %>％
+                  <%= ratio(@total_children, @total_customers) %>％
                 </td>
               </tr>
             </tbody>
