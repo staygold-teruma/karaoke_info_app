@@ -9,17 +9,17 @@
         <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ご利用店舗を選んでください</p>       
       </div>
       <div class="px-2 sm:ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_select_shop">
-        <%= f.collection_select :shop_id, Shop.all, :id, :name %>
+        <%= f.collection_select :shop_id, Shop.all.order(:id), :id, :name, {selected: 1} %>
       </div>
       <p class="ml-2 text-lg mb-1">【営業時間のご案内】</p>
       <div class="business_hour_box px-2 ml-2 mb-3" id="business_hours_ikuta">
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌6:00</p>
+        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
       </div>
-      <div class="business_hour_box hidden px-2 ml-2" id="business_hours_ekimae">
+      <div class="business_hour_box hidden px-2 ml-2 mb-3" id="business_hours_ekimae">
         <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
         <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
         <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
