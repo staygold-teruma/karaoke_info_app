@@ -80,16 +80,16 @@
                 <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
                   利用<br class="sm:hidden">(当日)</th>
                 <th class="guide_head w-1/5 bg-white">
-                  <%= @fee_guide_today %>
+                  <%= @fee_guides.today_data.count %>
                 </th>
                 <th class="guide_head w-1/5 bg-red-100">
-                  <%= @member_today %>
+                  <%= @fee_guides.today_data.customer_breakdown(1) %>
                 </th>
                 <th class="guide_head w-1/5 bg-green-100">
-                  <%= @new_member_today %>
+                  <%= @fee_guides.today_data.customer_breakdown(2) %>
                 </th>
                 <th class="guide_head w-1/5 bg-blue-100">
-                  <%= @other_today %>
+                  <%= @fee_guides.today_data.customer_breakdown(0) %>
                 </th>
               </tr>
               <tr class="border-b border-gray-200 hover:bg-gray-100">
@@ -97,29 +97,29 @@
                   利用<br class="sm:hidden">(月間)
                 </th>
                 <td class="guide_head w-1/5 bg-white">
-                  <%= @fee_guide_month %>
+                  <%= @fee_guides.month_data.count %>
                 </td>
                 <td class="guide_head w-1/5 bg-red-100">
-                  <%= @member_month %>
+                  <%= @fee_guides.month_data.customer_breakdown(1) %>
                 </td>
                 <td class="guide_head w-1/5 bg-green-100">
-                  <%= @new_member_month %>
+                  <%= @fee_guides.month_data.customer_breakdown(2) %>
                 </td>
                 <td class="guide_head w-1/5 bg-blue-100">
-                  <%= @other_month %>
+                  <%= @fee_guides.month_data.customer_breakdown(0) %>
                 </td>
               </tr>
               <tr class="border-b border-gray-200 hover:bg-gray-100">
                 <th class="guide_head text-sm sm:text-base w-1/5 bg-white" rowspan="2">月間</th>
                 <td class="guide_head w-2/5 bg-white" colspan="2">リピート率</td>
                 <td class="guide_head w-2/5 bg-white" colspan="2">
-                  <%= ratio(@member_month, @fee_guide_month) %>％
+                  <%= ratio(@fee_guides.month_data.customer_breakdown(1), @fee_guides.month_data.count) %>％
                 </td>
               </tr>
               <tr class="border-b border-gray-200 hover:bg-gray-100">
                 <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">新規獲得率</td>
                 <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">
-                  <%= ratio(@new_member_month, @not_member_month) %>％
+                  <%= ratio(@fee_guides.month_data.customer_breakdown(0), @not_member_month) %>％
                 </td>
               </tr>
             </tbody>
@@ -129,7 +129,7 @@
       <div class="py-6 lg:px-6 lg:py-12 mt-8 border-2 lg:col-span-2 shadow-lg">
         <h3 class="text-center mb-6 lg:mb-12 text-lg"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>顧客層データ</h3>
         <div class="lg:grid lg:grid-cols-3 gap-3">
-          <%= pie_chart @generation_ratio_data, colors: ["#10b981", "#3b82f6", "#b45309", "#ef4444" ] %>
+          <%= pie_chart @customer_base_data, colors: ["#10b981", "#3b82f6", "#b45309", "#ef4444" ] %>
           <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl lg:col-span-2 mt-6" id="table_index">
             <thead>
               <tr class="border-b border-gray-200 hover:bg-gray-100">
@@ -146,19 +146,19 @@
                 <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
                   利用数</th>
                 <th class="guide_head bg-white w-1/5 hidden sm:table-cell">
-                  <%= @total_customers %>
+                  <%= @fee_guides.sum(:number_of_customers) %>
                 </th>
                 <th class="guide_head w-1/5 bg-white text-green-500">
-                  <%= @total_adults %>
+                  <%= @fee_guides.sum(:number_of_adults) %>
                 </th>
                 <th class="guide_head w-1/5 bg-white text-blue-500">
-                  <%= @total_students %>
+                  <%= @fee_guides.sum(:number_of_students) %>
                 </th>
                 <th class="guide_head w-1/5 bg-white text-yellow-700">
-                  <%= @total_seniors %>
+                  <%= @fee_guides.sum(:number_of_seniors) %>
                 </th>
                 <th class="guide_head w-1/5 bg-white text-red-500">
-                  <%= @total_children %>
+                  <%= @fee_guides.sum(:number_of_children) %>
                 </th>
               </tr>
               <tr class="border-b border-gray-200 hover:bg-gray-100">
@@ -169,16 +169,16 @@
                   100％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-green-500">
-                  <%= ratio(@total_adults, @total_customers) %>％
+                  <%= ratio(@fee_guides.sum(:number_of_adults), @fee_guides.sum(:number_of_customers)) %>％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-blue-500">
-                  <%= ratio(@total_students, @total_customers) %>％
+                  <%= ratio(@fee_guides.sum(:number_of_students), @fee_guides.sum(:number_of_customers)) %>％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-yellow-700">
-                  <%= ratio(@total_seniors, @total_customers) %>％
+                  <%= ratio(@fee_guides.sum(:number_of_seniors), @fee_guides.sum(:number_of_customers)) %>％
                 </td>
                 <td class="guide_head w-1/5 bg-white text-red-500">
-                  <%= ratio(@total_children, @total_customers) %>％
+                  <%= ratio(@fee_guides.sum(:number_of_children), @fee_guides.sum(:number_of_customers)) %>％
                 </td>
               </tr>
             </tbody>

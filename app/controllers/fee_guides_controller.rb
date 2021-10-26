@@ -4,37 +4,22 @@ class FeeGuidesController < ApplicationController
   def index
     @fee_guides = FeeGuide.includes(:shop).where(shop_id: current_shop.id)
 
-    # 日次データ
-    # 総利用数
-    @fee_guide_today = @fee_guides.today_data.count
-    # 会員利用数
-    @member_today = @fee_guides.today_data.customer_breakdown(1)
-    # 新規会員利用数
-    @new_member_today = @fee_guides.today_data.customer_breakdown(2)
-    # 非会員利用数
-    @other_today = @fee_guides.today_data.customer_breakdown(0)
-    # 会員利用総数
-    @total_member = @member_today + @new_member_today
-    # 非会員利用総数
-    @not_member = @new_member_today + @other_today
+    # グラフ・表のデータ
+    # 会員データ用
+    @not_member_month = @fee_guides.month_data.customer_breakdown(2) + @fee_guides.month_data.customer_breakdown(0)
+    @member_ratio_data = [
+      ["会員", @fee_guides.month_data.customer_breakdown(1)],
+      ["新規会員", @fee_guides.month_data.customer_breakdown(2)],
+      ["未入会", @fee_guides.month_data.customer_breakdown(0)]
+    ]
 
-    # 月次データ
-    @fee_guide_month = @fee_guides.month_data.count
-    @member_month = @fee_guides.month_data.customer_breakdown(1)
-    @new_member_month = @fee_guides.month_data.customer_breakdown(2)
-    @other_month = @fee_guides.month_data.customer_breakdown(0)
-    @not_member_month = @new_member_month + @other_month
-    @member_ratio_data = [["会員", @member_month], ["新規会員", @new_member_month], ["未入会", @other_month]]
-
-    # 客層データ
-    @total_customers = @fee_guides.sum(:number_of_customers)
-    @total_adults = @fee_guides.sum(:number_of_adults)
-    @total_students = @fee_guides.sum(:number_of_students)
-    @total_seniors = @fee_guides.sum(:number_of_seniors)
-    @total_children = @fee_guides.sum(:number_of_children)
-    @total_young_people = @total_students + @total_children
-    @generation_ratio_data = [["\u4E00\u822C", @total_adults], ["\u5B66\u751F", @total_students], ["\u30B7\u30CB\u30A2", @total_seniors],
-                              ["\u5C0F\u5B66\u751F", @total_children]]
+    # 客層グラフ用
+    @customer_base_data = [
+      ["\u4E00\u822C", @fee_guides.sum(:number_of_adults)],
+      ["\u5B66\u751F", @fee_guides.sum(:number_of_students)],
+      ["\u30B7\u30CB\u30A2", @fee_guides.sum(:number_of_seniors)],
+      ["\u5C0F\u5B66\u751F", @fee_guides.sum(:number_of_children)]
+    ]
   end
 
   def new

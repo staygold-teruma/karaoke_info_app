@@ -1,4 +1,8 @@
 module FeeGuidesHelper
+  def sum_count(count_a, count_b)
+    count_a + count_b
+  end
+
   def ratio(numerator, denominator)
     if numerator == 0 || denominator == 0
       0
