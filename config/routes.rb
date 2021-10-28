@@ -24,4 +24,5 @@ Rails.application.routes.draw do
 
   get "static_pages/coupon"
   get "static_pages/alcohol_plan"
+  get "static_pages/fee_table"
 end
