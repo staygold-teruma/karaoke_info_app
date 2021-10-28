@@ -5,7 +5,7 @@ class FeeGuidesController < ApplicationController
     @fee_guides = FeeGuide.includes(:shop).where(shop_id: current_shop.id)
 
     # グラフ・表のデータ
-    # 会員データ用
+    # 会員データ
     @not_member_month = @fee_guides.month_data.customer_breakdown(2) + @fee_guides.month_data.customer_breakdown(0)
     @member_ratio_data = [
       ["会員", @fee_guides.month_data.customer_breakdown(1)],
@@ -13,7 +13,7 @@ class FeeGuidesController < ApplicationController
       ["未入会", @fee_guides.month_data.customer_breakdown(0)]
     ]
 
-    # 客層グラフ用
+    # 客層データ
     @customer_base_data = [
       ["\u4E00\u822C", @fee_guides.sum(:number_of_adults)],
       ["\u5B66\u751F", @fee_guides.sum(:number_of_students)],

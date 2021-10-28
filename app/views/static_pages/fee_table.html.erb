@@ -1,0 +1,78 @@
+<% content_for :title do %>
+    料金表
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0 z-10">
+    <%= render "layouts/header_user" %>    
+  </div>
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
+<% end %>
+
+<div id="margin_wrapper"></div>
+<% breadcrumb :alcohol %>
+<%= breadcrumbs separator: " &rsaquo; " %> 
+<div class="mt-6 md:mt-3 px-3">
+  <h2 class="text-center mt-2 sm:mt-6 p-2 bg-app text-white mx-auto text-xl md:text-2xl">
+    <i class="fas fa-sun text-white"></i>【平日/昼】料金表
+  </h2>
+  <table class="w-full border-collapse table-fixed whitespace-no-wrap bg-white mx-auto" id="table_index">
+    <thead>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <th class="fee_table_head w-1/5" colspan="2"></th>
+        <th class="fee_table_head w-1/5 text-green-500">一般</th>
+        <th class="fee_table_head w-1/5 text-red-500">会員</th>
+        <th class="fee_table_head w-1/5 text-blue-500">学生</th>
+        <th class="fee_table_head w-1/5 text-yellow-700">シニア</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="fee_table_body w-1/3" rowspan="2">30分料金</td>
+        <td class="fee_table_body w-1/6">平日</td>
+        <td class="fee_table_body w-1/8 text-green-500"><%= MainPlan.search_main_fee(1, 0, 0, 0, 0).adult_fee %>円</td>
+        <td class="fee_table_body w-1/8 text-red-500"><%= MainPlan.search_main_fee(1, 0, 0, 0, 1).adult_fee %>円</td>
+        <td class="fee_table_body w-1/8 text-blue-500"><%= MainPlan.search_main_fee(1, 0, 0, 0, 1).student_fee  %>円</td>
+        <td class="fee_table_body w-1/8 text-yellow-700"><%= MainPlan.search_main_fee(1, 0, 0, 0, 1).senior_fee %>円</td>
+      </tr>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="fee_table_body">週末</td>
+        <td class="fee_table_body text-green-500"><%= MainPlan.search_main_fee(1, 0, 2, 0, 0).adult_fee %>円</td>
+        <td class="fee_table_body text-red-500"><%= MainPlan.search_main_fee(1, 0, 2, 0, 1).adult_fee %>円</td>
+        <td class="fee_table_body text-blue-500"><%= MainPlan.search_main_fee(1, 0, 2, 0, 1).student_fee  %>円</td>
+        <td class="fee_table_body text-yellow-700"><%= MainPlan.search_main_fee(1, 0, 2, 0, 1).senior_fee %>円</td>
+      </tr>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="fee_table_body" rowspan="2">3時間パック</td>
+        <td class="fee_table_body">平日</td>
+        <td class="fee_table_body text-green-500"><%= MainPlan.search_main_fee(1, 1, 0, 0, 0).adult_fee %>円</td>
+        <td class="fee_table_body text-red-500"><%= MainPlan.search_main_fee(1, 1, 0, 0, 1).adult_fee %>円</td>
+        <td class="fee_table_body text-blue-500"><%= MainPlan.search_main_fee(1, 1, 0, 0, 1).student_fee  %>円</td>
+        <td class="fee_table_body text-yellow-700"><%= MainPlan.search_main_fee(1, 1, 0, 0, 1).senior_fee %>円</td>
+      </tr>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="fee_table_body">週末</td>
+        <td class="fee_table_body text-green-500"><%= MainPlan.search_main_fee(1, 1, 2, 0, 0).adult_fee %>円</td>
+        <td class="fee_table_body text-red-500"><%= MainPlan.search_main_fee(1, 1, 2, 0, 1).adult_fee %>円</td>
+        <td class="fee_table_body text-blue-500"><%= MainPlan.search_main_fee(1, 1, 2, 0, 1).student_fee  %>円</td>
+        <td class="fee_table_body text-yellow-700"><%= MainPlan.search_main_fee(1, 1, 2, 0, 1).senior_fee %>円</td>
+      </tr>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="fee_table_body" rowspan="2">昼フリー</td>
+        <td class="fee_table_body">平日</td>
+        <td class="fee_table_body text-green-500"><%= MainPlan.search_main_fee(1, 2, 0, 0, 0).adult_fee %>円</td>
+        <td class="fee_table_body text-red-500"><%= MainPlan.search_main_fee(1, 2, 0, 0, 1).adult_fee %>円</td>
+        <td class="fee_table_body text-blue-500"><%= MainPlan.search_main_fee(1, 2, 0, 0, 1).student_fee  %>円</td>
+        <td class="fee_table_body text-yellow-700"><%= MainPlan.search_main_fee(1, 2, 0, 0, 1).senior_fee %>円</td>
+      </tr>
+      <tr class="border-b border-gray-200 hover:bg-gray-100">
+        <td class="fee_table_body">週末</td>
+        <td class="fee_table_body text-green-500"><%= MainPlan.search_main_fee(1, 2, 0, 2, 0).adult_fee %>円</td>
+        <td class="fee_table_body text-red-500"><%= MainPlan.search_main_fee(1, 2, 0, 2, 1).adult_fee %>円</td>
+        <td class="fee_table_body text-blue-500"><%= MainPlan.search_main_fee(1, 2, 0, 2, 1).student_fee  %>円</td>
+        <td class="fee_table_body text-yellow-700"><%= MainPlan.search_main_fee(1, 2, 0, 2, 1).senior_fee %>円</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

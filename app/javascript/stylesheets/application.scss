@@ -90,11 +90,13 @@
   @apply text-xs border bg-white border-app rounded-b-lg px-1 sm:px-2 py-1;
 }
 
-.alcohol_head {
+.alcohol_head,
+.fee_table_head {
   @apply border border-gray-400 px-1 py-2 sm:py-3 text-center text-base font-bold;
 }
 
-.alcohol_body {
+.alcohol_body,
+.fee_table_body {
   @apply border border-gray-400 px-1 py-1 text-center text-sm md:text-base;
 }
 
