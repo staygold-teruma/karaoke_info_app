@@ -1,129 +1,145 @@
-<div class="fee_table<%= shop.id %> hidden" id="fee_table">
-  <div class="mt-6 md:mt-3 px-3">
-    <h2><%= shop.name %>の料金表</h2>
-    <h3 class="text-center mt-2 sm:mt-6 p-2 bg-app text-white mx-auto text-xl md:text-2xl">
-      <i class="fas fa-sun text-white"></i>【昼】料金表
-    </h3>
-    <table class="w-full border-collapse table-fixed whitespace-no-wrap bg-white mx-auto" id="table_index">
-      <thead>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <th class="fee_table_head" colspan="3"></th>
-          <th class="fee_table_head text-green-500">一般</th>
-          <th class="fee_table_head text-red-500">会員</th>
-          <th class="fee_table_head text-blue-500">学生</th>
-          <th class="fee_table_head text-yellow-700">シニア</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body" colspan="2" rowspan="2">30分料金</td>
-          <td class="fee_table_body">平日</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body">週末</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body" colspan="2" rowspan="2">3時間パック</td>
-          <td class="fee_table_body">平日</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body">週末</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body" colspan="2" rowspan="2">昼フリー</td>
-          <td class="fee_table_body">平日</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body">週末</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).senior_fee %>円</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="mt-6 md:mt-3 px-3">
-    <h3 class="text-center mt-2 sm:mt-6 p-2 bg-app text-white mx-auto text-xl md:text-2xl">
-      <i class="fas fa-moon text-white"></i>【夜】料金表
-    </h3>
-    <table class="w-full border-collapse table-fixed whitespace-no-wrap bg-white mx-auto" id="table_index">
-      <thead>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <th class="fee_table_head" colspan="3"></th>
-          <th class="fee_table_head text-green-500">一般</th>
-          <th class="fee_table_head text-red-500">会員</th>
-          <th class="fee_table_head text-blue-500">学生</th>
-          <th class="fee_table_head text-yellow-700">シニア</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body" colspan="2" rowspan="2">30分料金</td>
-          <td class="fee_table_body">平日</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body">週末</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body" colspan="2" rowspan="2">3時間パック</td>
-          <td class="fee_table_body">平日</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body">週末</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body" colspan="2" rowspan="2">夜フリー</td>
-          <td class="fee_table_body">平日</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 1).senior_fee %>円</td>
-        </tr>
-        <tr class="border-b border-gray-200 hover:bg-gray-100">
-          <td class="fee_table_body">週末</td>
-          <td class="fee_table_body text-green-500"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 0).adult_fee %>円</td>
-          <td class="fee_table_body text-red-500"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).adult_fee %>円</td>
-          <td class="fee_table_body text-blue-500"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).student_fee  %>円</td>
-          <td class="fee_table_body text-yellow-700"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).senior_fee %>円</td>
-        </tr>
-      </tbody>
-    </table>
+<div class="fee_table<%= shop.id %> hidden mt-6" id="fee_table">
+  <h2 class="px-3"><%= shop.name %>の料金表</h2>
+  <div class="lg:grid lg:grid-cols-2">
+    <div class="px-3">
+      <h3 class="text-center p-2 bg-red-500 text-white mx-auto text-xl md:text-2xl">
+        <i class="fas fa-sun text-white"></i>
+        昼の料金<span class="text-base text-white ml-3">(OPEN〜19時)</span>
+      </h3>
+      <table class="w-full border-collapse table-fixed whitespace-no-wrap bg-white mx-auto" id="table_index">
+        <thead>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="fee_table_head bg-yellow-100" colspan="3">税&emsp;込</th>
+            <th class="fee_table_head text-green-500" colspan="2">一般</th>
+            <th class="fee_table_head text-red-500" colspan="2">会員</th>
+            <th class="fee_table_head text-blue-500" colspan="2">学生</th>
+            <th class="fee_table_head text-yellow-700" colspan="2">シニア</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body" colspan="2" rowspan="2">
+              30分<br class="sm:hidden lg:block">料金
+            </td>
+            <td class="fee_table_body">平日</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body">週末</td>
+            <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 0, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body" colspan="2" rowspan="2">
+              3時間<br class="sm:hidden lg:block">パック
+            </td>
+            <td class="fee_table_body">平日</td>
+            <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body">週末</td>
+            <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 0, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body" colspan="2" rowspan="2">
+              昼<br class="sm:hidden lg:block">フリー
+            </td>
+            <td class="fee_table_body">平日</td>
+            <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body">週末</td>
+            <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).senior_fee %>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-6 lg:mt-0 px-3">
+      <h3 class="text-center p-2 bg-blue-600 text-white mx-auto text-xl md:text-2xl">
+        <i class="fas fa-moon text-white"></i>
+        夜の料金<span class="text-base text-white ml-3">(19時〜CLOSE)</span>       
+      </h3>
+      <table class="w-full border-collapse table-fixed whitespace-no-wrap bg-white mx-auto" id="table_index">
+        <thead>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="fee_table_head bg-yellow-100" colspan="3">税&emsp;込</th>
+            <th class="fee_table_head text-green-500" colspan="2">一般</th>
+            <th class="fee_table_head text-red-500" colspan="2">会員</th>
+            <th class="fee_table_head text-blue-500" colspan="2">学生</th>
+            <th class="fee_table_head text-yellow-700" colspan="2">シニア</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body" colspan="2" rowspan="2">
+              30分<br class="sm:hidden lg:block">料金
+            </td>
+            <td class="fee_table_body">平日</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body">週末</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 2, 1, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body" colspan="2" rowspan="2">
+              3時間<br class="sm:hidden lg:block">パック
+            </td>
+            <td class="fee_table_body">平日</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body">週末</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 2, 1, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body" colspan="2" rowspan="2">
+              夜<br class="sm:hidden lg:block">フリー
+            </td>
+            <td class="fee_table_body">平日</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 1).senior_fee %>円</td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="fee_table_body">週末</td>
+            <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 0).adult_fee %>円</td>
+            <td class="fee_table_body text-red-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).adult_fee %>円</td>
+            <td class="fee_table_body text-blue-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).student_fee  %>円</td>
+            <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).senior_fee %>円</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

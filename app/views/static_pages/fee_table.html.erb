@@ -16,10 +16,12 @@
 
 <p class="my-3 text-center">店舗を選んでください</p>
 <div class="flex items-center">
-  <select name="example" class="mx-auto" id="fee_table_select">
+  <select name="example" class="mx-auto border border-gray-500 px-2 py-1 rounded-md" id="fee_table_select">
     <option value="1">三宮生田ロード本店</option>
     <option value="2">三宮駅前店</option>
   </select>
 </div>
 
-<%= render partial: 'shop', collection: @shops %>
+<div class="px-1 md:px-5 pb-24 sm:pb-12 md:pb-0">
+  <%= render partial: 'shop', collection: @shops %>
+</div>
