@@ -27,6 +27,11 @@ crumb :alcohol do
   parent :root
 end
 
+crumb :fee_table do
+  link "料金表", static_pages_fee_table_path
+  parent :root
+end
+
 crumb :user_sign_in do
   link "ログイン", new_user_session_path
   parent :root
