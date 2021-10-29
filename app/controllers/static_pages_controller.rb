@@ -6,9 +6,8 @@ class StaticPagesController < ApplicationController
   def alcohol_plan; end
 
   def fee_table
-    @main_ikuta = MainPlan.includes(:shop).find_by(shop_id: 1)
-    @main_ekimae = MainPlan.includes(:shop).find_by(shop_id: 2)
-    @drink_ikuta = DrinkPlan.includes(:shop).find_by(shop_id: 1)
-    @drink_ekimae = DrinkPlan.includes(:shop).find_by(shop_id: 2)
+    @main_plans = MainPlan.includes(:shop)
+    @drink_plans = DrinkPlan.includes(:shop)
+    @shops = Shop.all
   end
 end

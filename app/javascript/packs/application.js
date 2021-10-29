@@ -9,6 +9,7 @@ import * as ActiveStorage from '@rails/activestorage';
 import 'channels';
 import 'chartkick/chart.js';
 import 'datepicker.js';
+import 'fee_table.js';
 import 'img';
 import 'jquery';
 import 'jquery-ui/ui/widgets/datepicker';

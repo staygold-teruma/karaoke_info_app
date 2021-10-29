@@ -34,5 +34,7 @@ class MainPlan < ApplicationRecord
     member: 1
   }
 
-  scope :search_main_fee, ->(shop, type, day, time, member) { find_by(shop_id: shop, fee_type: type, div_day: day, div_time: time, div_member: member) }
+  scope :search_main_fee, lambda { |shop, type, day, time, member|
+                            find_by(shop_id: shop, fee_type: type, div_day: day, div_time: time, div_member: member)
+                          }
 end

@@ -100,6 +100,14 @@
   @apply border border-gray-400 px-1 py-1 text-center text-sm md:text-base;
 }
 
+.fee_table_head {
+  @apply border border-gray-400 px-1 py-2 sm:py-3 text-center text-sm md:text-base font-bold;
+}
+
+.fee_table_body {
+  @apply border border-gray-400 px-1 py-1 text-center text-sm md:text-base;
+}
+
 .guide_head {
   @apply border border-gray-400 px-1 py-2 sm:py-3 text-center text-base;
 }
@@ -241,7 +249,7 @@ div.field_with_errors {
       align-items: center;
       height: 100%;
       img {
-        margin-left: 20px;
+        margin-left: 10px;
         height: 90%;
       }
     }
