@@ -53,7 +53,9 @@
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <td class="fee_table_body" colspan="2" rowspan="2">
-              昼<br class="sm:hidden lg:block">フリー
+              昼フリー
+              <br class="sm:hidden lg:block">
+              <span class="text-xxs sm:text-xs">OPEN〜19時</span>              
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 0).adult_fee %>円</td>
@@ -123,7 +125,9 @@
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <td class="fee_table_body" colspan="2" rowspan="2">
-              夜<br class="sm:hidden lg:block">フリー
+              夜フリー
+              <br class="sm:hidden lg:block">
+              <span class="text-xxs sm:text-xs">22時〜翌5時</span> 
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 0).adult_fee %>円</td>
