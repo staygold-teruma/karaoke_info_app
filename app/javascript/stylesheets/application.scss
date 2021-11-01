@@ -101,11 +101,11 @@
 }
 
 .fee_table_head {
-  @apply border border-gray-400 px-1 py-2 sm:py-3 text-center text-sm md:text-base font-bold;
+  @apply border border-gray-400 px-1 py-2 sm:py-3 text-center text-sm md:text-base font-bold bg-white;
 }
 
 .fee_table_body {
-  @apply border border-gray-400 px-1 py-1 text-center text-sm md:text-base;
+  @apply border border-gray-400 px-1 py-1 text-center text-sm md:text-base bg-white;
 }
 
 .guide_head {
@@ -1946,5 +1946,18 @@ ui-datepicker-header {
   line-height: 50px;
   @include mq-down(sm) {
     line-height: 40px;
+  }
+}
+
+// 料金表
+#free_time_title {
+  @include mq-down(xls) {
+    font-size: 12px;
+  }
+  #free_time_br {
+    display: none;
+    @include mq-down(xls) {
+      display: block;
+    }
   }
 }
