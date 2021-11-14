@@ -1,6 +1,8 @@
 # カラオケ料金案内アプリ「iko!KARA」
 
-![アプリトップ画面](https://user-images.githubusercontent.com/66634187/141078418-616b2f3e-eddc-4c18-8c3e-5224df09d1e8.png)
+<img src="https://user-images.githubusercontent.com/66634187/141084040-cb669b0d-4311-4a61-aefe-fa4885584209.png" width="200px">
+
+<img src="https://user-images.githubusercontent.com/66634187/141700009-7388ef04-feda-4d33-8b71-042ae9876e9a.gif" width="200">
 
 ## 1. アプリ概要
 
