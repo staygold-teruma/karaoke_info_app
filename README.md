@@ -93,8 +93,8 @@
 
 ## 7. 使用技術
 
-- 言語：Ruby (3.0.0)
-- フレームワーク：Ruby on Rails (6.1.3)
+- 言語：Ruby (2.7.3)
+- フレームワーク：Ruby on Rails (6.1.4)
 - フロントエンド：HTML/Scss/JavaScript/TailWindCSS
 - DB：PostgreSQL
 - インフラ：HEROKU
