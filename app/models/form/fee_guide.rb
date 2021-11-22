@@ -24,7 +24,9 @@ class Form::FeeGuide < FeeGuide
     senior_total_fee
     child_total_fee
     shop_id
-    start_time_date start_time_hour start_time_minute
+    start_time_date
+    start_time_hour
+    start_time_minute
   ]
 
   integrate_datetime_fields :start_time
