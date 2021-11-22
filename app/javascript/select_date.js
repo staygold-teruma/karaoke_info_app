@@ -7,15 +7,13 @@ document.addEventListener('turbolinks:load', function () {
       let selected_wday = selected_date.getDay();
       if (selected_num == '2') {
         if (selected_wday == 0 || selected_wday == 6) {
-          $('.start_time2').hide();
-          $('.start_time1').show();
+          $('#form_fee_guide_start_time_hour').prepend($('<option>').html('10').val('10'));
+          $('#form_fee_guide_start_time_hour option[value=10]').prop('selected', true);
         } else {
-          $('.start_time1').hide();
-          $('.start_time2').show();
+          $('#form_fee_guide_start_time_hour option[value=10]').remove();
         }
       } else {
-        $('.start_time2').hide();
-        $('.start_time1').show();
+        $('#form_fee_guide_start_time_hour option[value=10]').remove();
       }
     });
   });
