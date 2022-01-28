@@ -4,8 +4,8 @@ class MainPlansController < ApplicationController
   before_action :authenticate_shop!
 
   def index
-    @q = MainPlan.where(shop_id: current_shop.id).includes(:shop).ransack(params[:q])
-    @main_plans = @q.result(distinct: true).order(id: "ASC")
+    @main_search = MainPlan.where(shop_id: current_shop.id).includes(:shop).ransack(params[:q])
+    @main_plans = @main_search.result(distinct: true).order(id: "ASC")
   end
 
   def new

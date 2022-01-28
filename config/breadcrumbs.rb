@@ -57,6 +57,11 @@ crumb :user_edit do |user|
   parent :user_show, user
 end
 
+crumb :shop_index do |_user|
+  link "店舗検索", shops_path
+  parent :root
+end
+
 # crumb :project_issues do |project|
 #   link "Issues", project_issues_path(project)
 #   parent :project, project
