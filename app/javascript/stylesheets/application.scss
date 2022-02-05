@@ -134,6 +134,10 @@
   @apply text-base sm:text-sm mx-2 px-2;
 }
 
+.btn_search_shop {
+  @apply bg-app hover:bg-yellow-700 text-white sm:text-xl py-1 sm:py-2 px-4 rounded w-full sm:w-auto;
+}
+
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
@@ -1958,6 +1962,81 @@ ui-datepicker-header {
     display: none;
     @include mq-down(xls) {
       display: block;
+    }
+  }
+}
+
+// 店舗検索ページ
+#shop_search_box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  #shop_search {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    #shop_address_search {
+      width: 510px;
+      label {
+        width: 175px;
+        height: 44px;
+        font-size: 24px;
+        line-height: 32px;
+        margin-right: 10px;
+      }
+      #q_address_city_cont {
+        width: 300px;
+        height: 44px;
+        border: #666 1px solid;
+        border-radius: 5px;
+        margin-right: 10px;
+        padding-left: 5px;
+        font-size: 20px;
+      }
+      #shop_search_btn {
+        height: 42px;
+        .btn_search_shop {
+          height: 42px;
+        }
+      }
+    }
+  }
+  @include mq-down(sm) {
+    margin-bottom: 30px;
+    #shop_search {
+      display: block;
+      #shop_address_search {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        label {
+          width: 120px;
+          height: 32px;
+          font-size: 16px;
+          line-height: 32px;
+          margin-right: 10px;
+        }
+        #q_address_city_cont {
+          width: 150px;
+          height: 32px;
+          border: #666 1px solid;
+          border-radius: 5px;
+          margin-right: 0px;
+          padding-left: 5px;
+          font-size: 14px;
+        }
+        #shop_search_btn {
+          display: flex;
+          justify-content: center;
+          height: 32px;
+          .btn_search_shop {
+            height: 32px;
+          }
+        }
+      }
     }
   }
 }
