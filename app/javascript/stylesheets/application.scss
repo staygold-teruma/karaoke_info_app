@@ -255,10 +255,19 @@ div.field_with_errors {
       img {
         margin-left: 10px;
         height: 90%;
+        @include mq-down(md) {
+          display: none;
+        }
       }
     }
   }
   ul {
+    li {
+      height: 28px;
+      div {
+        height: 28px;
+      }
+    }
     li:hover {
       text-decoration: underline;
     }
@@ -1995,7 +2004,7 @@ ui-datepicker-header {
         border: #666 1px solid;
         border-radius: 5px;
         margin-right: 10px;
-        padding-left: 5px;
+        padding-left: 15px;
         font-size: 20px;
       }
       #shop_search_btn {
@@ -2006,9 +2015,15 @@ ui-datepicker-header {
       }
     }
   }
+  @include mq-down(md) {
+    #shop_search {
+      width: 100%;
+    }
+  }
   @include mq-down(sm) {
     margin-bottom: 30px;
     #shop_search {
+      width: 80%;
       display: block;
       #shop_address_search {
         width: 100%;
@@ -2028,7 +2043,6 @@ ui-datepicker-header {
           border: #666 1px solid;
           border-radius: 5px;
           margin-right: 0px;
-          padding-left: 5px;
           font-size: 14px;
         }
         #shop_search_btn {
