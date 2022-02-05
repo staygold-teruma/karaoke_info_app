@@ -313,7 +313,7 @@ div.field_with_errors {
 
 #main_contents_user {
   width: 100%;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 50px;
   @include mq-down(md) {
     width: 100%;
@@ -512,12 +512,12 @@ div.field_with_errors {
 .page_title {
   font-size: 24px;
   font-weight: 800;
-  margin-top: 25px;
+  margin-top: 10px;
   margin-bottom: 25px;
   text-align: center;
   @include mq-down(xxs) {
     font-size: 20px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 15px;
   }
 }
@@ -1031,6 +1031,9 @@ div.field_with_errors {
       img {
         margin-left: 20px;
         height: 90%;
+        @include mq-down(md) {
+          display: none;
+        }
       }
     }
   }
