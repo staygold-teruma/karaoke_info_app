@@ -1,27 +1,25 @@
 <% content_for :title do %>
-    料金表
+  料金表
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0 z-10">
-    <%= render "layouts/header_user" %>    
+    <%= render "layouts/header_user" %>
   </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_user" %>
 <% end %>
-
 <div id="margin_wrapper"></div>
 <% breadcrumb :fee_table %>
-<%= breadcrumbs separator: " &rsaquo; " %> 
-
-<p class="mt-8 sm:mt-3 mb-1 text-center text-gray-500">店舗を選んでください</p>
+<%= breadcrumbs separator: " &rsaquo; " %>
+<p class="mt-6 sm:mt-3 mb-1 text-center text-gray-500">店舗を選んでください</p>
 <div class="flex items-center">
-  <select name="example" class="mx-auto border border-gray-500 bg-white px-4 py-2 rounded-md mb-3 text-xl" id="fee_table_select">
+  <select name="example" class="mx-auto border border-gray-500 bg-white px-4 py-1 rounded-md" id="fee_table_select">
     <option value="1">三宮生田ロード本店</option>
     <option value="2">三宮駅前店</option>
   </select>
 </div>
-
 <div class="px-1 md:px-5 pb-24 sm:pb-12">
   <%= render partial: 'shop', collection: @shops %>
 </div>
+<%= render "layouts/side_menu_user" %>

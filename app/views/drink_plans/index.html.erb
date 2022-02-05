@@ -1,17 +1,16 @@
 <% content_for :title do %>
-    管理画面：ドリンク料金一覧
+  管理画面：ドリンク料金一覧
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0">
     <%= render "layouts/header_shop" %>
-  </div>   
+  </div>
 <% end %>
 <% content_for :footer do %>
   <div class="fixed w-full md:hidden">
     <%= render "layouts/footer_shop" %>
   </div>
 <% end %>
-
 <div class="flex">
   <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
     <%= render "layouts/side_menu_shop" %>
@@ -22,22 +21,22 @@
     </div>
     <h1 class="page_title">【ドリンク料金一覧】</h1>
     <div id="search_box"  class="hidden md:flex">
-      <%= search_form_for @q do |f| %>
-      <div class="hidden lg:block" id="fee_type_search">
-        <%= f.label :fee_type_eq, "料金名:" %>
-        <%= f.select :fee_type_eq, DrinkPlan.fee_types.map{|k, v| [DrinkPlan.fee_types_i18n[k], v]}, include_blank: true %>
-      </div>
-      <div id="other_search">
-        <%= f.label :div_time_eq, "時間区分:" %>
-        <%= f.select :div_time_eq, DrinkPlan.div_times.map{|k, v| [DrinkPlan.div_times_i18n[k], v]}, include_blank: true %>
-      </div>
-      <div id="other_search">
-        <%= f.label :base_time_eq, "基本時間:" %>
-        <%= f.select :base_time_eq, DrinkPlan.base_times.map{|k, v| [DrinkPlan.base_times_i18n[k], v]}, include_blank: true %>
-      </div>
-      <div id="index_search_btn">
-        <%= f.submit "検索", class: "btn_search"  %>
-      </div>
+      <%= search_form_for @drink_search do |f| %>
+        <div class="hidden lg:block" id="fee_type_search">
+          <%= f.label :fee_type_eq, "料金名:" %>
+          <%= f.select :fee_type_eq, DrinkPlan.fee_types.map{|k, v| [DrinkPlan.fee_types_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div id="other_search">
+          <%= f.label :div_time_eq, "時間区分:" %>
+          <%= f.select :div_time_eq, DrinkPlan.div_times.map{|k, v| [DrinkPlan.div_times_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div id="other_search">
+          <%= f.label :base_time_eq, "基本時間:" %>
+          <%= f.select :base_time_eq, DrinkPlan.base_times.map{|k, v| [DrinkPlan.base_times_i18n[k], v]}, include_blank: true %>
+        </div>
+        <div id="index_search_btn">
+          <%= f.submit "検索", class: "btn_search"  %>
+        </div>
       <% end %>
     </div>
     <div class="h-96 sm:h-80 border border-gray-400 bg-white rounded-lg shadow overflow-x-auto overflow-y-auto relative mx-2 sm:mx-8 my-6 lg:mx-4 items-center">
@@ -53,32 +52,31 @@
             <th class="index_table_head hidden lg:table-cell">シニア</th>
             <th class="index_table_head hidden lg:table-cell">小学生</th>
             <th class="index_table_head border-gray-400 py-1" colspan="2"><i class="fas fa-edit text-white text-base"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @drink_plans.each.with_index(1) do |drink_plan, i| %>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <td class="index_table_body hidden lg:table-cell"><%= i %></td>
-              <td class="border border-gray-400 px-1 py-1 text-center text-blue-600 text-xs xl:text-sm"><%= link_to drink_plan.fee_type_i18n, drink_plan %></td>
-              <td class="index_table_body"><%= drink_plan.div_time_i18n %></td>
-              <td class="index_table_body"><%= drink_plan.base_time_i18n %></td>
-              <td class="index_table_body hidden lg:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body hidden lg:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body hidden lg:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body hidden lg:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
-              <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @drink_plans.each.with_index(1) do |drink_plan, i| %>
+              <tr class="border-b border-gray-200 hover:bg-gray-100">
+                <td class="index_table_body hidden lg:table-cell"><%= i %></td>
+                <td class="border border-gray-400 px-1 py-1 text-center text-blue-600 text-xs xl:text-sm"><%= link_to drink_plan.fee_type_i18n, drink_plan %></td>
+                <td class="index_table_body"><%= drink_plan.div_time_i18n %></td>
+                <td class="index_table_body"><%= drink_plan.base_time_i18n %></td>
+                <td class="index_table_body hidden lg:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
+                <td class="index_table_body hidden lg:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
+                <td class="index_table_body hidden lg:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
+                <td class="index_table_body hidden lg:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
+                <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
+                <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div> 
-</div>
-
-<div class="rounded-full bg-app md:hidden" id="index_create">
-  <%= link_to new_drink_plan_path do %>
-    <p class="text-center mt-4"><i class="fas fa-plus text-white text-2xl"></i></p>
-    <p class="text-xxs font-black text-white text-center">新規登録</p>
-  <% end %>
-</div>
+  </div>
+  <div class="rounded-full bg-app md:hidden" id="index_create">
+    <%= link_to new_drink_plan_path do %>
+      <p class="text-center mt-4"><i class="fas fa-plus text-white text-2xl"></i></p>
+      <p class="text-xxs font-black text-white text-center">新規登録</p>
+    <% end %>
+  </div>

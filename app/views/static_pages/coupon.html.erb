@@ -1,20 +1,19 @@
 <% content_for :title do %>
-    クーポン
+  クーポン
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0 z-10">
-    <%= render "layouts/header_user" %>      
+    <%= render "layouts/header_user" %>
   </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_user" %>
 <% end %>
-
 <div id="margin_wrapper"></div>
 <% breadcrumb :coupon %>
-<%= breadcrumbs separator: " &rsaquo; " %> 
+<%= breadcrumbs separator: " &rsaquo; " %>
 <% if user_signed_in? %>
-  <div class="mx-auto mt-6 mb-3" id="coupon_wrapper">
+  <div class="mx-auto mt-4 mb-3" id="coupon_wrapper">
     <div id="coupon_body">
       <h2 class="text-center text-lg sm:text-3xl sm:pt-12 mb-3" id="gift"><i class="fas fa-gift text-yellow-300"></i>「ikoKARA!」限定クーポン</h2>
       <div class="mx-auto my-auto p-2 lg:w-3/4" id="coupon">
@@ -34,7 +33,6 @@
       </div>
     </div>
   </div>
-
   <div class="flex justify-center items-center mx-auto pb-24 sm:pb-12" id="coupon_guide">
     <div class="w-11/12 bg-gray-100">
       <div class="mx-auto px-4 py-4">
@@ -46,9 +44,9 @@
           <li class="text-xs sm:text-base ml-6">※本券は他のクーポンとの併用はできません。</li>
           <li class="text-xs sm:text-base ml-6">※有効期限なきものは無効です</li>
           <li class="text-xs sm:text-base ml-6">
-          ※店舗別割引・クーポンにつきましては、
-          <br class="hidden" id="coupon_br">
-          &emsp;各店舗へご確認ください。
+            ※店舗別割引・クーポンにつきましては、
+            <br class="hidden" id="coupon_br">
+            &emsp;各店舗へご確認ください。
           </li>
         </ul>
       </div>
@@ -56,7 +54,7 @@
   </div>
 <% else %>
   <div class="pb-20">
-    <div class="mx-4 py-5 mt-6 sm:mt-0" id="coupon_condition">
+    <div class="mx-4 py-5 mt-4 sm:mt-0" id="coupon_condition">
       <p class="text-center mb-4">
         クーポンをご利用いただくには
         <br>
@@ -70,14 +68,15 @@
       <div class="w-full mx-auto p-4 sm:p-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" id="tutorial_wrapper">
         <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
           <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">1</p>
-          <p class="text-base text-center mt-5 mb-5">このページの<span class="text-app font-black">「ユーザー登録はこちら」</span><br>もしくは「MENU」から登録できます。</p>
+          <p class="text-base text-center mt-5 mb-5">このページの<span class="text-app font-black">「ユーザー登録はこちら」</span><br>
+            もしくは「MENU」から登録できます。</p>
           <div class="flex">
             <div class="mx-auto flex justify-end" id="tutorial_img_box">
               <img src="/assets/guide4.png" alt="" id="tutorial_img">
             </div>
             <div class="w-2/5 my-auto text-center">
-              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-5xl"></i></div>           
-              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-5xl"></i></div>       
+              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-5xl"></i></div>
+              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-5xl"></i></div>
               <p class="text-xl">NEXT</p>
             </div>
           </div>
@@ -91,15 +90,16 @@
               <img src="/assets/guide5.png" alt="" id="tutorial_img">
             </div>
             <div class="w-2/5 my-auto text-center">
-              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-5xl"></i></div>          
-              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-5xl"></i></div>       
+              <div class="flex sm:hidden justify-center"><i class="fas fa-caret-down text-5xl"></i></div>
+              <div class="hidden sm:flex justify-center"><i class="fas fa-caret-right text-5xl"></i></div>
               <p class="text-xl">NEXT</p>
             </div>
           </div>
         </div>
         <div class="mx-auto px-2 py-4 border border-gray-300 shadow rounded-lg" id="tutorial_box">
           <p class="mx-auto px-1 text-3xl text-white bg-app text-center rounded-3xl" id="tutorial_num">3</p>
-          <p class="text-base text-center mt-5 mb-5"><span class="text-app font-black">「クーポン」</span>から<br><span class="text-red-500 font-black">限定クーポンをGET!!</span></p>
+          <p class="text-base text-center mt-5 mb-5"><span class="text-app font-black">「クーポン」</span>から<br>
+            <span class="text-red-500 font-black">限定クーポンをGET!!</span></p>
           <div class="mx-auto mt-6 sm:mt-12" id="tutorial_img_box_coupon">
             <img src="/assets/coupon.png" alt="" id="tutorial_img_bottom">
           </div>
@@ -108,5 +108,4 @@
     </div>
   </div>
 <% end %>
-
 <%= render "layouts/side_menu_user" %>

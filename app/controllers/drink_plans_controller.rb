@@ -3,8 +3,8 @@ class DrinkPlansController < ApplicationController
   before_action :authenticate_shop!
 
   def index
-    @q = DrinkPlan.includes(:shop).ransack(params[:q])
-    @drink_plans = @q.result(distinct: true).order(id: "ASC")
+    @drink_search = DrinkPlan.includes(:shop).ransack(params[:q])
+    @drink_plans = @drink_search.result(distinct: true).order(id: "ASC")
   end
 
   def new

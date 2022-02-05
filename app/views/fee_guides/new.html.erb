@@ -1,5 +1,5 @@
 <% content_for :title do %>
-    料金案内TOP
+  料金案内TOP
 <% end %>
 <% content_for :header do %>
   <% if shop_signed_in? %>
@@ -8,7 +8,6 @@
     <%= render "guide_top_user" %>
   <% end %>
 <% end %>
-
 <div id="app_guide_wrapper">
   <div class="flex justify-center lg:justify-evenly items-center py-4 md:py-6 xl:py-0" id="news_wrapper">
     <div id="news_left">
@@ -16,7 +15,7 @@
         <div class="w-full rounded text-center bg-app text-white my-2 items-center sm:text-xl">
           NEW!
         </div>
-        <% if shop_signed_in? %>        
+        <% if shop_signed_in? %>
           <% @topics_five.each do |shops_topic| %>
             <%= link_to(shops_topic_path(shops_topic)) do %>
               <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
@@ -48,8 +47,15 @@
               </div>
             <% end %>
           <% end %>
-        <% end %> 
+        <% end %>
       </div>
+      <%= link_to shops_path do %>
+        <div class="w-full flex justify-center mb-3 sm:hidden">
+          <button class="bg-black bg-opacity-70 rounded-full text-lg text-white border-2 border-app px-12 py-1 mt-2 mb-2">
+            <i class="fas fa-search mr-2 text-white"></i>店舗検索
+          </button>
+        </div>
+      <% end %>
       <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mx-auto mt-3 mb-3 sm:mb-0 p-3" id="news_box">
         <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center text-xl">
           NEW!
@@ -65,7 +71,7 @@
                       <%= shops_topic.created_at.strftime('%m月%d日') %>
                     </div>
                     <div id="news_title">
-                        <%= shops_topic.title %>
+                      <%= shops_topic.title %>
                     </div>
                   </div>
                 </div>
@@ -81,14 +87,14 @@
                       <%= users_topic.created_at.strftime('%m月%d日') %>
                     </div>
                     <div class="text-sm sm:text-base" id="news_title">
-                        <%= users_topic.title %>
+                      <%= users_topic.title %>
                     </div>
                   </div>
                 </div>
               <% end %>
             <% end %>
-          <% end %>  
-        </div>  
+          <% end %>
+        </div>
       </div>
       <div class="hidden sm:block mt-2">
         <% if shop_signed_in? %>
@@ -96,7 +102,7 @@
         <% else %>
           <%= link_to "※TOPICS一覧はこちら", users_topics_path, class: "hover:text-app ml-2" %>
         <% end %>
-      </div>   
+      </div>
     </div>
     <% if shop_signed_in? %>
       <%= link_to(shops_topic_path(@topics_three.first)) do %>
@@ -111,11 +117,9 @@
         </div>
       <% end %>
     <% end %>
-
   </div>
   <%= render "app_guide_tab" %>
 </div>
-
 <div id="modal" class="mx-auto xl:flex items-start justify-evenly flex-row-reverse bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 py-2 px-2 sm:px-4 sm:py-12">
   <div class="flex justify-center">
     <%= render 'form_fee_guide', path: fee_guides_path, method: :post %>
@@ -185,7 +189,6 @@
     <p class="text-white text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan"  class="text-app underline font-black">こちら</a></p>
   </div>
 </div>
-
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
   <div class="flex items-center justify-evenly" id="footer_btn_left">
     <% if shop_signed_in? %>
@@ -229,11 +232,11 @@
       <% end %>
     <% else %>
       <%= link_to static_pages_fee_table_path do %>
-          <div class="text-center pt-3" id="btn_box">
-            <i class="fas fa-book-open text-app text-2xl"></i>
-            <p class="text-center text-xxs text-white">料金表</p>
-          </div>
-        <% end %>
+        <div class="text-center pt-3" id="btn_box">
+          <i class="fas fa-book-open text-app text-2xl"></i>
+          <p class="text-center text-xxs text-white">料金表</p>
+        </div>
+      <% end %>
     <% end %>
     <div class="pt-1" id="btn_box">
       <% if shop_signed_in? %>
@@ -259,7 +262,6 @@
   <br>
   <span class="text-xl text-white">START!</span>
 </button>
-
 <% if shop_signed_in? %>
   <div class="flex items-center sm:hidden bg-black bg-opacity-80 md:bg-app_bg pb-24" id="side_menu_shop_f">
     <%= render "layouts/side_menu_shop" %>
@@ -267,9 +269,7 @@
 <% else %>
   <%= render "layouts/side_menu_user" %>
 <% end %>
-
 <button id="close_btn" type="button" class="focus:outline-none hidden bg-gray-600 rounded text-center">
   <i class="far fa-times-circle text-app text-2xl"></i>
   <p class="text-white text-xs">閉じる</p>
 </button>
-
