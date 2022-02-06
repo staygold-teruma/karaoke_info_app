@@ -12,7 +12,7 @@
 <div id="margin_wrapper"></div>
 <% breadcrumb :shop_index %>
 <%= breadcrumbs separator: " &rsaquo; " %>
-<div class="w-full">
+<div class="w-full pb-24">
   <div id="shop_search_box" class="w-full">
     <%= search_form_for @shop_search do |f| %>
       <div class="" id="shop_address_search">
@@ -25,41 +25,13 @@
     <% end %>
   </div>
   <% if @shops.present? %>
-    <div class="mx-auto mt-2 px-5 grid grid-cols-1 sm:grid-cols-2 gap-4" id="shops_wrapper">
-      <% @shops.each do |shop| %>
-        <div>
-          <%= link_to shop_path(shop) do %>
-            <div class="rounded overflow-hidden shadow items-center border border-gray-200 mx-auto mb-2 p-3" id="shops_card">
-              <div class="" id="card_top">
-                <div class="w-full text-center font-bold text-sm overflow-hidden" id="topics_title">
-                  【<%= shop.name %>】
-                </div>
-                <div class="w-full text-center font-bold text-sm overflow-hidden" id="topics_title">
-                  <p class="text-blue-500">
-                    TEL:
-                    <%= link_to shop.phone_number, "tel:" + shop.phone_number %>
-                  </p>
-                </div>
-                <div class="w-full text-center font-bold text-sm overflow-hidden" id="topics_title">
-                  <p>
-                    〒<%= shop.postcode %>
-                    <br>
-                    <%= shop.prefecture_name %>
-                    <%= shop.address_city %>
-                    <%= shop.address_street %>
-                    <br>
-                    <%= shop.address_building %>
-                  </p>
-                </div>
-              </div>
-              <div class="flex justify-between" id="card_bottom">
-                <div class="flex justify-center items-center" id="topics_thumbnail">
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+    <p class="text-center mb-4">
+      検索結果：
+      <span class="text-app text-xl"><%= @count %>件</span>
+      見つかりました!
+    </p>
+    <div class="w-full mx-auto mt-2 px-5 md:px-8 grid grid-cols-1 xl:grid-cols-2 gap-4" id="shops_wrapper">
+      <%= render partial: "shop", collection: @shops  %>
     </div>
   <% else %>
     <div class="w-full flex justify-center">
