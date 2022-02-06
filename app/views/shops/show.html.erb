@@ -1,12 +1,37 @@
-<div class="mt-6">
-  <h3>店舗名</h3>
-  <p><%= @shop.name %></p>
-  <h3>電話番号</h3>
-  <p><%= @shop.phone_number %></p>
-  <h3>住所</h3>
-  <p><%= @shop.postcode %></p>
-  <p><%= @shop.prefecture_name %></p>
-  <p><%= @shop.address_city %></p>
-  <p><%= @shop.address_street %></p>
-  <p><%= @shop.address_building %></p>
+<% content_for :title do %>
+  店舗詳細
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0 z-10">
+    <%= render "layouts/header_user" %>
+  </div>
+<% end %>
+<% content_for :footer do %>
+  <%= render "layouts/footer_user" %>
+<% end %>
+<div id="margin_wrapper"></div>
+<% breadcrumb :shop_show %>
+<%= breadcrumbs separator: " &rsaquo; " %>
+<div class="pb-24 sm:pb-6">
+  <div class="w-11/12 md:h-80 mx-auto max-w-lg md:max-w-3xl mt-3 md:mt-6 p-6 border-2 md:grid md:grid-cols-2 gap-3 shadow-md rounded-lg">
+    <div class="flex items-center">
+      <%# 運用においては登録した店舗画像を使用 %>
+      <img src="/assets/room01.jpg" alt="" class="h-75 mx-auto">
+    </div>
+    <div class="flex justify-center items-center">
+      <div class="px-2 md:px-3">
+        <h3 class="text-lg md:text-2xl mt-3 md:mt-0 md:mb-2 text-center md:text-left"><%= @shop.name %></h3>
+        <p class="mb-4 md:mb-2 text-2xl text-center md:text-left">
+          <i class="fas fa-phone-square-alt text-app"></i>
+          <span class="text-blue-500"><%= link_to @shop.phone_number, "tel:" + @shop.phone_number %></span>
+        </p>
+        <p class="text-sm">〒<%= postcode_format(@shop.postcode) %></p>
+        <p class="text-sm md:text-base"><%= @shop.prefecture_name %><%= @shop.address_city %><%= @shop.address_street %><br class="md:hidden">
+          <%= @shop.address_building %></p>
+      </div>
+    </div>
+  </div>
+  <%= link_to shops_path do %>
+    <p class="w-60 mx-auto mt-4 md:mt-6 border border-app py-3 text-center text-lg text-app hover:text-white hover:bg-app rounded-full">店舗検索に戻る</p>
+  <% end %>
 </div>
