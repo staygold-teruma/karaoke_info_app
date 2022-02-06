@@ -1052,9 +1052,22 @@ div.field_with_errors {
     height: 150px;
     position: absolute;
     bottom: 10%;
-    right: 20%;
+    right: 10%;
     transform: translate(50%, 0);
   }
+
+  #modal_btn {
+    animation: move-y 1s infinite alternate ease-in-out;
+  }
+  @keyframes move-y {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(10px);
+    }
+  }
+
   .menu_open_btn {
     position: absolute;
     top: 5%;

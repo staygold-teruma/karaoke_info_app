@@ -1,20 +1,19 @@
 <% content_for :title do %>
-    飲み放題プラン
+  飲み放題プラン
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0 z-10">
-    <%= render "layouts/header_user" %>    
+    <%= render "layouts/header_user" %>
   </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_user" %>
 <% end %>
-
 <div id="margin_wrapper"></div>
 <% breadcrumb :alcohol %>
-<%= breadcrumbs separator: " &rsaquo; " %> 
+<%= breadcrumbs separator: " &rsaquo; " %>
 <div class="mt-6 md:mt-3">
-  <h2 class="w-11/12 max-w-3xl text-center mt-2 sm:mt-6 p-2 bg-app text-white mx-auto text-xl md:text-2xl">飲み放題プラン早見表</h2>
+  <h2 class="w-11/12 max-w-3xl text-center mt-2 sm:mt-8 p-2 bg-app text-white mx-auto text-xl md:text-2xl">飲み放題プラン早見表</h2>
   <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl" id="table_index">
     <thead>
       <tr class="border-b border-gray-200 hover:bg-gray-100">
@@ -129,9 +128,8 @@
       </tr>
     </tbody>
   </table>
-    <p class="text-sm md:text-base text-center mt-3">※ルーム料金に上記料金が加算されます</p>
+  <p class="text-sm md:text-base text-center mt-3">※ルーム料金に上記料金が加算されます</p>
 </div>
-
 <div class="p-4 mt-3 pb-24 md:pb-6">
   <div class="w-full p-2 sm:p-4 bg-indigo-100">
     <h3 class="stripe_title_deluxe text-base md:text-2xl py-2">
@@ -177,7 +175,7 @@
         <p class="list_alcohol">●いちごクリームソーダ</p>
         <p class="list_alcohol">●ブルーハワイクリームソーダ</p>
         <p class="list_alcohol">●カルピスクリームソーダ</p>
-        <p class="list_alcohol">●コーヒーフロート</p>
+        <p class="list_alcohol">●コーヒー�������ロート</p>
         <p class="list_alcohol">●ミルクティークリームソーダ</p>
         <p class="list_alcohol">●コーラフロート</p>
       </div>
@@ -230,8 +228,8 @@
                 <p class="list_alcohol">●加賀ほうじ茶ハイ</p>
                 <p class="list_alcohol">●黒烏龍ハイ</p>
               </div>
-            </div>   
-          </div>    
+            </div>
+          </div>
           <div>
             <h4 class="list_title_variety bg-red-200">カクテル</h4>
             <div class="grid md:grid-cols-2 xl:grid-cols-4">
@@ -264,16 +262,16 @@
                 <p class="list_alcohol">●バナナカルーアミルク</p>
                 <p class="list_alcohol">●カルーアココア</p>
               </div>
-            </div> 
-          </div>       
+            </div>
+          </div>
         </div>
       </div>
       <div class="mt-3 sm:mx-2 p-2 sm:p-4 bg-green-100">
         <h3 class="stripe_title_lite  text-base md:text-2xl py-2">Lite Plan<span class="text-sm md:text-base text-white">【ライトプラン】</span></h3>
         <p class="mx-2 py-2 text-sm md:text-base">
-        ハイボール・サワー・カクテルなどのスタンダードなプランです。
-        <br>
-        ワインや焼酎もご利用いただけます!!
+          ハイボール・サワー・カクテルなどのスタンダードなプランです。
+          <br>
+          ワインや焼酎もご利用いただけます!!
         </p>
         <p class="text-green-600 ml-2"><i class="fas fa-chevron-down text-green-600 mr-1"></i>ここから下のドリンクがご注文可能</p>
         <div class="grid md:grid-cols-2 xl:grid-cols-4">
@@ -315,11 +313,10 @@
             ドリンクバーをご利用ください
           </p>
         </div>
-      </div> 
+      </div>
     </div>
   </div>
 </div>
-
 <%= render "layouts/side_menu_user" %>
 <div class="">
   <div class="bg-gray-600 flex justify-center items-center rounded-lg" id="page_top">

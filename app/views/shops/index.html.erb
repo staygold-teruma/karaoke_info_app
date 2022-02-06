@@ -12,7 +12,7 @@
 <div id="margin_wrapper"></div>
 <% breadcrumb :shop_index %>
 <%= breadcrumbs separator: " &rsaquo; " %>
-<div class="w-full">
+<div class="w-full pb-24">
   <div id="shop_search_box" class="w-full">
     <%= search_form_for @shop_search do |f| %>
       <div class="" id="shop_address_search">
@@ -25,7 +25,12 @@
     <% end %>
   </div>
   <% if @shops.present? %>
-    <div class="w-full mx-auto mt-2 px-5 grid grid-cols-1 md:grid-cols-2 gap-4" id="shops_wrapper">
+    <p class="text-center mb-4">
+      検索結果：
+      <span class="text-app text-xl"><%= @count %>件</span>
+      見つかりました!
+    </p>
+    <div class="w-full mx-auto mt-2 px-5 md:px-8 grid grid-cols-1 xl:grid-cols-2 gap-4" id="shops_wrapper">
       <%= render partial: "shop", collection: @shops  %>
     </div>
   <% else %>
