@@ -1,0 +1,26 @@
+<div class="w-full rounded overflow-hidden shadow items-center border border-gray-200 mx-auto mb-2" id="shops_card">
+  <div class="w-full text-center font-bold text-sm overflow-hidden" id="shop_info">
+    <div id="shop_name">
+      <%= link_to shop_path(shop) do %>
+        【<%= shop.name %>】
+      <% end %>
+    </div>
+    <div class="w-full text-center font-bold text-sm overflow-hidden" id="shop_another_info">
+      <div id="shop_tel">
+        TEL:
+        <p class="text-blue-500 ">
+          <%= link_to shop.phone_number, "tel:" + shop.phone_number %>
+        </p>
+      </div>
+      <p>
+        〒<%= shop.postcode %>
+        <br>
+        <%= shop.prefecture_name %>
+        <%= shop.address_city %>
+        <%= shop.address_street %>
+        <br>
+        <%= shop.address_building %>
+      </p>
+    </div>
+  </div>
+</div>
