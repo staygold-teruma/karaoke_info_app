@@ -24,10 +24,10 @@ class FeeGuidesController < ApplicationController
 
   def new
     @fee_guide = Form::FeeGuide.new
-    @topics_five = Topic.order(created_at: :desc).limit(5)
-    @topics_three = Topic.order(created_at: :desc).limit(3)
     @user = current_user
     @shop = current_shop
+    @topics_five = Topic.where(shop_id: current_shop.id).includes(:shop).order(created_at: :desc).limit(5)
+    @topics_three = Topic.includes(:shop).order(created_at: :desc).limit(3)
   end
 
   def create
