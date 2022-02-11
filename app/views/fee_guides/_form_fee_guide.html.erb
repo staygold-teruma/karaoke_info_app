@@ -1,162 +1,132 @@
-<div class="mx-1 mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 sm:p-4 border-2 border-app text-sm rounded-2xl bg-white" id="fee_guide_form">
-  <%= form_for(@fee_guide, url: path, method: method) do |f| %>
-    <div class="px-3 pt-4 pb-3 sm:px-2 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
-      <div class="sm:flex items-center mb-3">
-        <p class="text-base  bg-app px-2 py-1 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 text-white" id="step_num">
-          STEP 1
-          <span class="ml-2 text-white sm:hidden" id="step_title_sm">ご利用店舗を選んでください</span>
-        </p>
-        <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ご利用店舗を選んでください</p>       
+<%= form_for(@fee_guide, url: path, method: method) do |f| %>
+  <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 p-4 pt-8 sm:p-6">
+    <div class="mb-3">
+      <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
+        STEP 1
+        <span class="ml-2 text-white" id="step_title">ご利用店舗を選んでください</span>
+      </p>
+    </div>
+    <div class="px-2 sm:ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select_shop">
+      <%= f.collection_select :shop_id, Shop.all.order(:id), :id, :name, {selected: 1} %>
+    </div>
+    <p class="ml-2 mb-1 sm:text-lg">【営業時間のご案内】</p>
+    <div class="business_hour_box px-2 ml-2 mb-3" id="business_hours_ikuta">
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
+    </div>
+    <div class="business_hour_box hidden px-2 ml-2 mb-3" id="business_hours_ekimae">
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
+      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
+    </div>
+  </div>
+  <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
+    <div class="mb-3">
+      <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
+        STEP 2
+        <span class="ml-2 text-white" id="step_title">入室予定時刻を選んでください</span>
+      </p>
+    </div>
+    <div class="px-2 ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_datetime">
+      <%= f.text_field :start_time_date, id:"datepicker" %>
+      <%= f.select :start_time_hour,[["11", 11], ["12", 12], ["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20],["21", 21],["22", 22],["23", 23],["00", 24],["01", 25],["02", 26],["03", 27]], {required: true} %>
+      <span class="">時</span>
+      <%= f.select :start_time_minute, [["00", 0],["15", 15], ["30", 30], ["45", 45]], {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">分</span>
+    </div>
+    <p class="ml-2 text-sm sm:text-lg mb-1">【ご利用時間のご案内】</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>16歳未満<i class="fas fa-angle-double-right text-center mx-2"></i>18時まで</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>18歳未満<i class="fas fa-angle-double-right text-center mx-2"></i>22時まで</p>
+    <p class="px-2 ml-2 text-xs sm:text-base mb-3" id="guide_form">※保護者同伴時は23時までご利用可能</p>
+  </div>
+  <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
+    <div class="mb-3">
+      <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
+        STEP 3
+        <span class="ml-2 text-white" id="step_title">会員登録はされていますか？</span>
+      </p>
+    </div>
+    <div class="mb-2 sm:mb-1 sm:flex flex-wrap px-2 mt-6 sm:pl-5">
+      <div class="flex items-center mr-5 mb-2">
+        <%= f.radio_button :div_member, :member %>
+        <%= f.label :会員登録済み, class: "ml-1 sm:text-lg", id: "radio_title" %>
       </div>
-      <div class="px-2 sm:ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_select_shop">
-        <%= f.collection_select :shop_id, Shop.all.order(:id), :id, :name, {selected: 1} %>
+      <div class="flex items-center mr-5 mb-2">
+        <%= f.radio_button :div_member, :new_member %>
+        <%= f.label :会員登録したい, class: "ml-1 sm:text-lg", id: "radio_title" %>
       </div>
-      <p class="ml-2 text-lg mb-1">【営業時間のご案内】</p>
-      <div class="business_hour_box px-2 ml-2 mb-3" id="business_hours_ikuta">
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-      </div>
-      <div class="business_hour_box hidden px-2 ml-2 mb-3" id="business_hours_ekimae">
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
-        <p><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
+      <div class="flex items-center mb-3 sm:mb-1">
+        <%= f.radio_button :div_member, :other %>
+        <%= f.label :会員登録の予定なし, class: "ml-1 sm:text-lg", id: "radio_title" %>
       </div>
     </div>
-    <div class="px-3 pt-4 pb-3 sm:px-2 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
-      <div class="sm:flex items-center mb-3">
-        <p class="text-base  bg-app px-2 py-1 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 text-white" id="step_num">
-          STEP 2
-          <span class="ml-2 text-white sm:hidden" id="step_title_sm">入室予定時刻を選んでください</span>
-        </p>
-        <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">入室予定時刻を選んでください</p>       
-      </div>
-      <div class="px-2 ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_datetime">
-          <%= f.text_field :start_time_date, id:"datepicker" %>
-          <%= f.select :start_time_hour,[["11", 11], ["12", 12], ["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20],["21", 21],["22", 22],["23", 23],["00", 24],["01", 25],["02", 26],["03", 27]], {required: true} %>
-          <span>時</span>
-          <%= f.select :start_time_minute, [["00", 0],["15", 15], ["30", 30], ["45", 45]], {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>分</span>
-      </div>
-      <p class="ml-2 text-lg mb-1">【ご利用時間のご案内】</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>16歳未満<i class="fas fa-angle-double-right text-center mx-2"></i>18時まで</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>18歳未満<i class="fas fa-angle-double-right text-center mx-2"></i>22時まで</p>
-      <p class="px-2 ml-2 mb-3" id="guide_form">※保護者同伴時は23時までご利用可能</p>
+    <div class="hidden">
+      <p>こちらからLINEの友達追加をするだけで、簡単に会員登録!!</p>
+      <p><i class="fab fa-line mr-1"></i>ビッグエコー三宮生田ロード本店</p>
+      <p><i class="fab fa-line mr-1"></i>ビッグエコー三宮駅前店</p>
     </div>
-    <div class="px-3 pt-4 pb-2 sm:px-2 sm:pb-2 rounded hover:bg-yellow-600 hover:bg-opacity-10">
-      <div class="sm:flex items-center mb-3">
-        <p class="text-base bg-app px-2 py-1 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 text-white" id="step_num">
-          STEP 3
-          <span class="ml-2 text-white sm:hidden" id="step_title_sm">会員登録はされていますか？</span>
-        </p>
-        <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">会員登録はされていますか？</p>
+  </div>
+  <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
+    <div class="mb-3">
+      <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
+        STEP 4
+        <span class="ml-2 text-white" id="step_title">ご利用人数を入力してください</span>
+      </p>
+    </div>
+    <div class="w-full sm:mb-1">
+      <div class="mt-8 mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
+        <%= f.label :一般, class: "font-black mr-3" %>
+        <%= f.select :number_of_adults, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
       </div>
-      <div class="mb-2 sm:mb-1 sm:flex flex-wrap px-2 mt-6">
-        <div class="flex items-center mr-5 mb-1 text-lg sm:text:base">
-          <%= f.radio_button :div_member, :member %>
-          <%= f.label :会員登録済み, class: "ml-1 text-app", id: "radio_title" %>
-        </div>
-        <div class="flex items-center mr-5 mb-1 text-lg sm:text:base">
-          <%= f.radio_button :div_member, :new_member %>
-          <%= f.label :会員登録したい！, class: "ml-1 text-green-500", id: "radio_title" %>
-        </div>
-        <div class="flex items-center mb-3 sm:mb-1 text-lg sm:text:base">
-          <%= f.radio_button :div_member, :other %>
-          <%= f.label :会員登録の予定なし, class: "ml-1 text-blue-500", id: "radio_title" %>
-        </div>
+      <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
+        <%= f.label :学生, class: "font-black mr-3" %>
+        <%= f.select :number_of_students, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
       </div>
-      <div class="hidden">
-        <p>こちらからLINEの友達追加をするだけで、簡単に会員登録!!</p>
-        <p><i class="fab fa-line mr-1"></i>ビッグエコー三宮生田ロード本店</p>
-        <p><i class="fab fa-line mr-1"></i>ビッグエコー三宮駅前店</p>
+      <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
+        <%= f.label :シニア, class: "font-black mr-3"  %>
+        <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
+      </div>
+      <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
+        <%= f.label :小学生, class: "font-black mr-3"  %>
+        <%= f.select :number_of_children, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
       </div>
     </div>
-    <div class="px-3 pt-4 pb-1 sm:px-2 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
-      <div class="sm:flex items-center mb-3">
-        <p class="text-base bg-app px-2 py-1 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 text-white" id="step_num">
-          STEP 4
-          <span class="ml-2 text-white sm:hidden" id="step_title_sm">ご利用人数を入力してください</span>
-        </p>
-        <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ご利用人数を入力してください</p>
-      </div>
-      <% if shop_signed_in? %>
-        <div class="grid grid-cols-2 sm:grid-cols-4 w-full sm:mb-1">
-          <div class="flex justify-center items-end mt-2 mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :一般, class: "text-green-500 font-black" %><span class="text-green-500">:</span>
-            <%= f.select :number_of_adults, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>
-          </div>
-          <div class="flex justify-center items-end mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :学生, class: "text-blue-500 font-black" %><span class="text-blue-500">:</span>
-            <%= f.select :number_of_students, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>            
-          </div>
-          <div class="flex justify-center items-end mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :シニア, class: "text-yellow-900 font-black"  %><span class="text-yellow-900">:</span>
-            <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>
-          </div>
-          <div class="flex justify-center items-end mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :小学生, class: "text-red-500 font-black"  %><span class="text-red-500">:</span>
-            <%= f.select :number_of_children, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>
-          </div>
-        </div>
-      <% else %>  
-        <div class="grid grid-cols-2 sm:grid-cols-4 w-full sm:mb-1">
-          <div class="flex justify-center items-end mt-2 mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :一般, class: "text-green-500 font-black" %><span class="text-green-500">:</span>
-            <%= f.select :number_of_adults, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>
-          </div>
-          <div class="flex justify-center items-end mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :学生, class: "text-blue-500 font-black" %><span class="text-blue-500">:</span>
-            <%= f.select :number_of_students, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>            
-          </div>
-          <div class="flex justify-center items-end mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :シニア, class: "text-yellow-900 font-black"  %><span class="text-yellow-900">:</span>
-            <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>
-          </div>
-          <div class="flex justify-center items-end mb-4 sm:mr-3" id="fee_guide_input">
-            <%= f.label :小学生, class: "text-red-500 font-black"  %><span class="text-red-500">:</span>
-            <%= f.select :number_of_children, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span>名</span>
-          </div>
-        </div>
-      <% end %>
+  </div>
+  <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
+    <div class="mb-3">
+      <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
+        STEP 5
+        <span class="ml-2 text-white" id="step_title">ご利用時間を選んでください</span>
+      </p>
     </div>
-    <div class="px-3 pt-4 pb-3 sm:px-2 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
-      <div class="sm:flex items-center mb-3">
-        <p class="text-base  bg-app px-2 py-1 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 text-white" id="step_num">
-          STEP 5
-          <span class="ml-2 text-white sm:hidden" id="step_title_sm">ご利用時間を選んでください</span>
-        </p>
-        <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ご利用時間を選んでください</p>       
-      </div>
-      <div class="px-2 ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_select">
-        <%= f.select :usage_time, FeeGuide.usage_times_i18n.invert, selected: "two_hour" %>
-      </div>
-      <p class="ml-2 text-lg mb-1">【フリータイムのご案内】</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>昼フリータイム&emsp;<i class="fas fa-angle-double-right text-center mx-2"></i>OPEN~19時</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>夕方フリータイム<i class="fas fa-angle-double-right text-center mx-2"></i>15時~21時</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>夜フリータイム&emsp;<i class="fas fa-angle-double-right text-center mx-2"></i>22時~翌5時</p>
+    <div class="px-2 ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select">
+      <%= f.select :usage_time, FeeGuide.usage_times_i18n.invert, selected: "two_hour" %>
     </div>
-    <div class="px-3 pt-4 pb-3 sm:px-2 sm:pb-2 rounded-md hover:bg-yellow-600 hover:bg-opacity-10 ">
-      <div class="sm:flex items-center mb-3">
-        <p class="text-base bg-app px-2 py-1 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 text-white" id="step_num">
-          STEP 6
-          <span class="ml-2 text-white sm:hidden" id="step_title_sm">ドリンクコースを選んでください</span>
-        </p>
-        <p class="hidden sm:block text-base md:text-lg px-2 sm:mb-1" id="step_title">ドリンクコースを選んでください</p> 
-      </div>
-      <div class="px-2 ml-2 mt-6 sm:mt-0 mb-4 xl:mb-3" id="fee_guide_select">
-        <%= f.select :drink_plan, FeeGuide.drink_plans_i18n.invert, class: "bg-white" %>
-      </div>
-      <p class="ml-2 text-lg mb-1">【飲み放題コースのご案内】</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>未成年混合グループはご利用いただけません</p>
-      <p class="px-2 ml-2" id="guide_form">※保護者同伴時は成人の方のみご利用可能</p>
-      <p class="px-2 ml-2" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>年齢確認が必要な場合がございます</p> 
+    <p class="ml-2 mb-1 sm:text-lg">【フリータイムのご案内】</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>昼フリータイム&emsp;<i class="fas fa-angle-double-right text-center mx-2"></i>OPEN~19:00</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>夕方フリータイム<i class="fas fa-angle-double-right text-center mx-2"></i>15:00~21:00</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>夜フリータイム&emsp;<i class="fas fa-angle-double-right text-center mx-2"></i>22:00~翌5:00</p>
+  </div>
+  <div class="mt-4 sm:my-0 sm:mb-6 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
+    <div class="mb-3">
+      <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
+        STEP 6
+        <span class="ml-2 text-white" id="step_title">ドリンクコースを選んでください</span>
+      </p>
     </div>
-    <div class="text-center mb-3 sm:mb-0">
-      <%= f.submit "結果を表示", class: "btn_fee_guide cursor-pointer" %>
+    <div class="px-2 ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select">
+      <%= f.select :drink_plan, FeeGuide.drink_plans_i18n.invert, class: "bg-white" %>
     </div>
-  <% end %>
-</div>
-
+    <p class="ml-2 mb-1">【飲み放題コースのご案内】</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>未成年混合グループはご利用いただけません</p>
+    <p class="px-2 ml-6 text-xs sm:text-base" id="guide_form">※保護者同伴時は成人の方のみご利用可能</p>
+    <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>年齢確認が必要な場合がございます</p>
+  </div>
+  <div class="text-center mb-3 sm:mb-0 w-11/12 mx-auto">
+    <%= f.submit "結果を表示する", class: "btn_fee_guide" %>
+  </div>
+<% end %>
