@@ -9,184 +9,79 @@
   <% end %>
 <% end %>
 <div id="app_guide_wrapper">
-  <div class="flex justify-center lg:justify-evenly items-center py-4 md:py-6 xl:py-0" id="news_wrapper">
-    <div id="news_left">
-      <div class="hidden sm:block mt-1 bg-gray-100 rounded-lg shadow-lg mb-2 p-3 pt-2" id="news_box">
-        <div class="w-full rounded text-center bg-app text-white my-2 items-center sm:text-xl">
-          NEW!
-        </div>
-        <% if shop_signed_in? %>
-          <% @topics_five.each do |shops_topic| %>
-            <%= link_to(shops_topic_path(shops_topic)) do %>
-              <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
-                <div class="flex">
-                  <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
-                  <div class="text-xs sm:text-base" id="news_day">
-                    <%= shops_topic.created_at.strftime('%m月%d日') %>
-                  </div>
-                  <div class="text-xs sm:text-base" id="news_title">
-                    <%= shops_topic.title %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        <% else %>
-          <% @topics_five.each do |users_topic| %>
-            <%= link_to(users_topic_path(users_topic)) do %>
-              <div class="mb-1 bg-gray-100 mx-auto" id="each_news">
-                <div class="flex">
-                  <i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>
-                  <div class="text-xs sm:text-base" id="news_day">
-                    <%= users_topic.created_at.strftime('%m月%d日') %>
-                  </div>
-                  <div class="text-xs sm:text-base" id="news_title">
-                    <%= users_topic.title %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-      <%= link_to shops_path do %>
-        <div class="w-full flex justify-center mb-3 sm:hidden">
-          <button class="bg-black bg-opacity-70 rounded-full text-lg text-white border-2 border-app px-12 py-1 mt-2 mb-2">
-            <i class="fas fa-search mr-2 text-white"></i>店舗検索
-          </button>
-        </div>
-      <% end %>
-      <div class="sm:hidden bg-gray-100 rounded-lg shadow-lg mx-auto mt-3 mb-3 sm:mb-0 p-3" id="news_box">
-        <div class="w-full rounded text-center bg-app text-white px-1 mb-4 items-center text-xl">
-          NEW!
-        </div>
-        <div class="mx-auto">
-          <% if shop_signed_in? %>
-            <% @topics_three.each do |shops_topic| %>
-              <%= link_to(shops_topic_path(shops_topic)) do %>
-                <div class="mb-2 bg-gray-100 mx-auto" id="each_news">
-                  <div class="flex">
-                    <i class="fas fa-chevron-circle-right text-app mr-1"></i>
-                    <div id="news_day">
-                      <%= shops_topic.created_at.strftime('%m月%d日') %>
-                    </div>
-                    <div id="news_title">
-                      <%= shops_topic.title %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          <% else %>
-            <% @topics_three.each do |users_topic| %>
-              <%= link_to(users_topic_path(users_topic)) do %>
-                <div class="mb-3 sm:mb-2 bg-gray-100 mx-auto" id="each_news">
-                  <div class="flex">
-                    <i class="fas fa-chevron-circle-right text-app mr-1"></i>
-                    <div class="hidden sm:flex" id="news_day">
-                      <%= users_topic.created_at.strftime('%m月%d日') %>
-                    </div>
-                    <div class="text-sm sm:text-base" id="news_title">
-                      <%= users_topic.title %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
-      <div class="hidden sm:block mt-2">
-        <% if shop_signed_in? %>
-          <%= link_to "※TOPICS一覧はこちら", shops_topics_path, class: "hover:text-app ml-2" %>
-        <% else %>
-          <%= link_to "※TOPICS一覧はこちら", users_topics_path, class: "hover:text-app ml-2" %>
-        <% end %>
-      </div>
-    </div>
-    <% if shop_signed_in? %>
-      <%= link_to(shops_topic_path(@topics_three.first)) do %>
-        <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
-          <%= image_tag @topics_three.first.image.url, id:"news_img" %>
-        </div>
-      <% end %>
-    <% else %>
-      <%= link_to(users_topic_path(@topics_three.first)) do %>
-        <div class="hidden lg:flex items-center bg-black bg-opacity-70" id="news_img_box">
-          <%= image_tag @topics_three.first.image.url, id:"news_img" %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <%= render "app_guide_tab" %>
+  <% if shop_signed_in? %>
+    <%= render "contents_top_shop" %>
+  <% else %>
+    <%= render "contents_top_user" %>
+  <% end %>
 </div>
-<div id="modal" class="mx-auto xl:flex items-start justify-evenly flex-row-reverse bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 py-2 px-2 sm:px-4 sm:py-12">
-  <div class="flex justify-center">
+<div id="modal" class="mx-auto bg-black bg-opacity-80 transform scale-0 transition-transform duration-300 py-2 sm:py-12">
+  <div class="w-11/12 lg:w-2/3 bg-white mx-auto rounded shadow sm:py-12 sm:pt-6">
     <%= render 'form_fee_guide', path: fee_guides_path, method: :post %>
   </div>
-  <div class="w-11/12 xl:w-auto mt-8 xl:mt-0 sm:max-w-screen-sm mx-auto xl:mx-0">
-    <h3 class="text-2xl text-center text-white mb-3">よくあるご質問</h3>
+  <div class="w-11/12 lg:w-2/3 mt-8 px-2 py-6 mx-auto bg-white rounded">
+    <h3 class="text-2xl text-center mb-3">よくあるご質問</h3>
     <div class="mb-6">
-      <div class="question flex items-center">
+      <div class="question mx-auto sm:w-11/12 flex items-center">
         <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
         <p class="text-white sm:text-lg">会員にはすぐになれますか？</p>
       </div>
-      <div class="answer flex items-center">
+      <div class="answer mx-auto sm:w-11/12 flex items-center">
         <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
         <p class="sm:text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
       </div>
     </div>
     <div class="mb-6">
-      <div class="question flex items-center">
+      <div class="question mx-auto sm:w-11/12 flex items-center">
         <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
         <p class="text-white sm:text-lg">子供の料金を教えてください。</p>
       </div>
-      <div class="answer flex items-center">
+      <div class="answer mx-auto sm:w-11/12 flex items-center">
         <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
         <p class="sm:text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
       </div>
     </div>
     <div class="mb-6">
-      <div class="question flex items-center">
+      <div class="question mx-auto sm:w-11/12 flex items-center">
         <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
         <p class="text-white sm:text-lg">ワンドリンクのドリンク代はいくらですか？</p>
       </div>
-      <div class="answer flex items-center">
+      <div class="answer mx-auto sm:w-11/12 flex items-center">
         <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
         <p class="sm:text-lg">418円からご用意しております。</p>
       </div>
     </div>
     <div class="mb-6">
-      <div class="question flex items-center">
+      <div class="question mx-auto sm:w-11/12 flex items-center">
         <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
         <p class="text-white sm:text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
       </div>
-      <div class="answer flex items-center">
+      <div class="answer mx-auto sm:w-11/12 flex items-center">
         <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
         <p class="sm:text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
       </div>
     </div>
     <div class="mb-6">
-      <div class="question flex items-center">
+      <div class="question mx-auto sm:w-11/12 flex items-center">
         <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
         <p class="text-white sm:text-lg">1時間で飲み放題コースは利用できますか？</p>
       </div>
-      <div class="answer flex items-center">
+      <div class="answer mx-auto sm:w-11/12 flex items-center">
         <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
         <p class="sm:text-lg">1.5時間からのご案内となります。</p>
       </div>
     </div>
     <div class="mb-6">
-      <div class="question flex items-center">
+      <div class="question mx-auto sm:w-11/12 flex items-center">
         <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
         <p class="text-white sm:text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
       </div>
-      <div class="answer flex items-center">
+      <div class="answer mx-auto sm:w-11/12 flex items-center">
         <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
         <p class="sm:text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
       </div>
     </div>
-    <p class="text-white text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan"  class="text-app underline font-black">こちら</a></p>
+    <p class="text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan"  class="text-app underline font-black">こちら</a></p>
   </div>
 </div>
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
@@ -263,7 +158,7 @@
   <span class="text-xl text-white">START!</span>
 </button>
 <% if shop_signed_in? %>
-  <div class="flex items-center sm:hidden bg-black bg-opacity-80 md:bg-app_bg pb-24" id="side_menu_shop_f">
+  <div class="flex items-center sm:hidden bg-black bg-opacity-80 md pb-24" id="side_menu_shop_f">
     <%= render "layouts/side_menu_shop" %>
   </div>
 <% else %>

@@ -1,9 +1,9 @@
 <div class="fee_table<%= shop.id %> hidden mt-6" id="fee_table">
-  <h2 class="px-3">
+  <h2 class="px-3 md:px-6">
     <i class="far fa-check-circle mr-1 text-app"></i><%= shop.name %>の料金表
   </h2>
   <div class="lg:grid lg:grid-cols-2">
-    <div class="px-3">
+    <div class="px-3 md:px-6">
       <h3 class="text-center p-2 bg-red-500 text-white mx-auto text-xl md:text-2xl">
         <i class="fas fa-sun text-white"></i>
         昼の料金<span class="text-base text-white ml-3">(OPEN〜19時)</span>
@@ -21,7 +21,8 @@
         <tbody>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <td class="fee_table_body" colspan="2" rowspan="2">
-              30分<br class="sm:hidden lg:block">料金
+              30分<br class="sm:hidden lg:block">
+              料金
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 0, 0).adult_fee %>円</td>
@@ -38,7 +39,8 @@
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <td class="fee_table_body" colspan="2" rowspan="2">
-              3時間<br class="sm:hidden lg:block">パック
+              3時間<br class="sm:hidden lg:block">
+              パック
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 0, 0).adult_fee %>円</td>
@@ -61,7 +63,7 @@
                 OPEN
                 <br id="free_time_br">
                 〜19時
-              </span>              
+              </span>
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 0, 0).adult_fee %>円</td>
@@ -77,22 +79,22 @@
             <td class="fee_table_body text-yellow-700" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 0, 1).senior_fee %>円</td>
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
-            <td class="fee_table_body text-sm py-2" colspan="11"> 
+            <td class="fee_table_body text-sm py-2" colspan="11">
               【ワンドリンク制】
-              <br>
+              <br class="block md:hidden">
               上記ルーム料金に別途ドリンク代が加算されます。
               <br>
               学生/シニアはドリンクバーが
-              <span class="text-red-500">無料!!</span>              
+              <span class="text-red-500">無料!!</span>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="mt-6 lg:mt-0 px-3">
+    <div class="mt-6 lg:mt-0 px-3 md:px-6">
       <h3 class="text-center p-2 bg-blue-600 text-white mx-auto text-xl md:text-2xl">
         <i class="fas fa-moon text-white"></i>
-        夜の料金<span class="text-base text-white ml-3">(19時〜CLOSE)</span>       
+        夜の料金<span class="text-base text-white ml-3">(19時〜CLOSE)</span>
       </h3>
       <table class="w-full border-collapse table-fixed whitespace-no-wrap bg-white mx-auto" id="table_index">
         <thead>
@@ -107,7 +109,8 @@
         <tbody>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <td class="fee_table_body" colspan="2" rowspan="2">
-              30分<br class="sm:hidden lg:block">料金
+              30分<br class="sm:hidden lg:block">
+              料金
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 0, 0, 1, 0).adult_fee %>円</td>
@@ -124,7 +127,8 @@
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
             <td class="fee_table_body" colspan="2" rowspan="2">
-              3時間<br class="sm:hidden lg:block">パック
+              3時間<br class="sm:hidden lg:block">
+              パック
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 1, 0, 1, 0).adult_fee %>円</td>
@@ -147,7 +151,7 @@
                 22時〜
                 <br id="free_time_br">
                 翌5時
-              </span> 
+              </span>
             </td>
             <td class="fee_table_body text-sm">平日</td>
             <td class="fee_table_body text-green-500" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 0, 1, 0).adult_fee %>円</td>
@@ -163,13 +167,13 @@
             <td class="fee_table_body text-yellow-700" colspan="2" colspan="2"><%= @main_plans.search_main_fee(shop.id, 2, 2, 1, 1).senior_fee %>円</td>
           </tr>
           <tr class="border-b border-gray-200 hover:bg-gray-100">
-      <td class="fee_table_body text-sm py-2" colspan="11"> 
+            <td class="fee_table_body text-sm py-2" colspan="11">
               【ワンドリンク制】
-              <br>
+              <br class="block md:hidden">
               上記ルーム料金に別途ドリンク代が加算されます。
               <br>
               学生/シニアはドリンクバーが
-              <span class="text-red-500">無料!!</span>              
+              <span class="text-red-500">無料!!</span>
             </td>
           </tr>
         </tbody>

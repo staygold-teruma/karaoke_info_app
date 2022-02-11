@@ -1,17 +1,16 @@
 <% content_for :title do %>
-    管理画面：ルーム料金登録
+  管理画面:ルーム料金登録
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0 z-50">
     <%= render "layouts/header_shop" %>
-  </div>   
+  </div>
 <% end %>
 <% content_for :footer do %>
   <div class="fixed w-full md:hidden">
     <%= render "layouts/footer_shop" %>
   </div>
 <% end %>
-
 <div class="flex">
   <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
     <%= render "layouts/side_menu_shop" %>
@@ -20,7 +19,7 @@
     <div class="flex justify-center md:hidden">
       <%= render "layouts/flash" %>
     </div>
-    <h1 class="page_title">【ルーム料金登録】</h1>
+    <h1 class="page_title_shop">【ルーム料金登録】</h1>
     <%= render "form_main_plans" %>
   </div>
 </div>
