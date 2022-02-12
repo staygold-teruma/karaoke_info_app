@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :trackable
   mount_uploader :avatar, ImageUploader
+  has_many :favorite_shops, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :password, presence: true, on: :create
