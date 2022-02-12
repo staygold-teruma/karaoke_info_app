@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   resources :main_plans
   resources :drink_plans
   resources :users, only: :show
+  resources :shops do
+    resource :favorite_shops, only: [:create, :destroy]
+  end
+
 
   get "static_pages/coupon"
   get "static_pages/alcohol_plan"
