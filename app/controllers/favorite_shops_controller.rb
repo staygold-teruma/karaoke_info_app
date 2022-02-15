@@ -1,11 +1,11 @@
 class FavoriteShopsController < ApplicationController
   def create
-    current_user.favorite_shops.create!(shop_id: params[:shop_id])
-    redirect_back(fallback_location: root_path)
+    @shop = Shop.find(params[:shop_id])
+    current_user.favorite_shops.create!(shop_id: @shop.id)
   end
 
   def destroy
-    current_user.favorite_shops.find_by(shop_id: params[:shop_id]).destroy!
-    redirect_back(fallback_location: root_path)
+    @shop = Shop.find(params[:shop_id])
+    current_user.favorite_shops.find_by(shop_id: @shop.id).destroy!
   end
 end

@@ -5,19 +5,15 @@
         <%= link_to shop_path(shop) do %>
           <i class="fas fa-chevron-circle-right text-gray-400 mr-1" id="news_i"></i><%= shop.name %>
         <% end %>
-        <div class="ml-4 pl-4 flex items-center">
-          <% if user_signed_in? %>
+        <% if user_signed_in? %>
+          <div class="ml-4 pl-4 flex items-center" id="shop-<%= shop.id %>">
             <% if shop.favorited_by?(current_user) %>
-              <%= link_to(shop_favorite_shops_path(shop), method: :delete) do %>
-                <i class="fa-brands fa-gratipay text-3xl text-app border-l border-gray-200 pl-3"></i>
-              <% end %>
+              <%= render "favorite", shop: shop %>
             <% else %>
-              <%= link_to(shop_favorite_shops_path(shop), method: :post) do %>
-                <i class="fa-brands fa-gratipay text-3xl text-gray-200 border-l border-gray-200 pl-3"></i>
-              <% end %>
+              <%= render "not_favorite", shop: shop %>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
       <div class="sm:hidden mx-auto mt-4 mb-4">
         <%# 運用においては登録した店舗画像を使用 %>
