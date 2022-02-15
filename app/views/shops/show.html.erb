@@ -13,21 +13,47 @@
 <% breadcrumb :shop_show %>
 <%= breadcrumbs separator: " &rsaquo; " %>
 <div class="pb-24 sm:pb-6">
-  <div class="w-11/12 md:h-80 mx-auto max-w-lg md:max-w-3xl mt-3 md:mt-6 p-6 border-2 md:grid md:grid-cols-2 gap-3 shadow-md rounded-lg">
-    <div class="flex items-center">
+  <div class="w-11/12 mx-auto max-w-lg md:max-w-3xl mt-3 md:mt-3 py-3 md:p-5 border-2 md:grid md:grid-cols-2 gap-3 shadow-md rounded-lg">
+    <div class="px-2 md:px-3">
       <%# 運用においては登録した店舗画像を使用 %>
-      <img src="/assets/room01.jpg" alt="" class="h-75 mx-auto">
+      <img src="/assets/room01.jpg" alt="" class="w-11/12 mx-auto mt-4">
+      <h3 class="text-2xl md:text-2xl mt-4 mb-4 text-center"><%= @shop.name %></h3>
+      <% if user_signed_in? %>
+        <div class="flex justify-center mt-1">
+          <p class="text-sm mt-1 mr-5">お気に入り登録</p>
+          <% if @shop.favorited_by?(current_user) %>
+            <div class="flex justify-center">
+              <div id="shop-<%= @shop.id %>">
+                <%= render "favorite", shop: @shop %>
+              </div>
+            </div>
+          <% else %>
+            <div class="flex justify-center">
+              <div id="shop-<%= @shop.id %>">
+                <%= render "not_favorite", shop: @shop %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+      <hr class="mt-3 mb-3">
+      <p class="mb-4 text-xl text-center">
+        <span class="mr-3 text-sm">電話をかける</span>
+        <i class="fas fa-phone-square-alt text-app text-3xl mr-1"></i>
+        <span class="text-blue-500 text-2xl"><%= link_to @shop.phone_number, "tel:" + @shop.phone_number %></span>
+      </p>
+      <hr class="mt-3 mb-3">
     </div>
-    <div class="flex justify-center items-center">
-      <div class="px-2 md:px-3">
-        <h3 class="text-lg md:text-2xl mt-3 md:mt-0 md:mb-2 text-center md:text-left"><%= @shop.name %></h3>
-        <p class="mb-4 md:mb-2 text-2xl text-center md:text-left">
-          <i class="fas fa-phone-square-alt text-app"></i>
-          <span class="text-blue-500"><%= link_to @shop.phone_number, "tel:" + @shop.phone_number %></span>
-        </p>
+    <div class="p-3">
+      <div class="mx-auto mb-4">
         <p class="text-sm">〒<%= postcode_format(@shop.postcode) %></p>
-        <p class="text-sm md:text-base"><%= @shop.prefecture_name %><%= @shop.address_city %><%= @shop.address_street %><br class="md:hidden">
+        <p class="text-sm md:text-base" id="shop_address">
+          <%= full_address(@shop.prefecture_name, @shop.address_city, @shop.address_street ) %>
+          <br class="">
           <%= @shop.address_building %></p>
+      </div>
+      <div class="">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.496766639024!2d135.18897455046232!3d34.692648291061815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008ff707d07b21%3A0xfc3fdd4b2127ce06!2z44Kr44Op44Kq44KxIOODk-ODg-OCsOOCqOOCs-ODvOS4ieWurueUn-eUsOODreODvOODieacrOW6lw!5e0!3m2!1sja!2sjp!4v1644806048444!5m2!1sja!2sjp" class="mx-auto w-full" width="400" height="280" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
       </div>
     </div>
   </div>

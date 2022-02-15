@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_091212) do
+ActiveRecord::Schema.define(version: 2022_02_12_081507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2021_10_03_091212) do
     t.bigint "shop_id"
     t.index ["fee_type", "div_time", "base_time", "shop_id"], name: "drink_plans_unique_index", unique: true
     t.index ["shop_id"], name: "index_drink_plans_on_shop_id"
+  end
+
+  create_table "favorite_shops", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_favorite_shops_on_shop_id"
+    t.index ["user_id", "shop_id"], name: "index_favorite_shops_on_user_id_and_shop_id", unique: true
+    t.index ["user_id"], name: "index_favorite_shops_on_user_id"
   end
 
   create_table "fee_guides", force: :cascade do |t|
@@ -139,6 +149,8 @@ ActiveRecord::Schema.define(version: 2021_10_03_091212) do
   end
 
   add_foreign_key "drink_plans", "shops"
+  add_foreign_key "favorite_shops", "shops"
+  add_foreign_key "favorite_shops", "users"
   add_foreign_key "fee_guides", "shops"
   add_foreign_key "main_plans", "shops"
   add_foreign_key "topics", "shops"

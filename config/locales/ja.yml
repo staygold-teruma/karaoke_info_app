@@ -3,8 +3,9 @@ ja:
     models:
       main_plan: 料金
       drink_plan: 料金
-      fee_info: 料金案内
+      fee_guide: 料金案内
       user: ユーザー
+      favorite_shop: お気に入り店舗
     attributes:
       main_plan:
         fee_type: 料金名
@@ -43,6 +44,9 @@ ja:
         birthday: 誕生日
         sex: 性別
         occupation: 職業
+      favorite_shop:
+        user: ユーザー
+        shop: 店舗
   views:
     pagination:
       first: '&laquo; 最初'
