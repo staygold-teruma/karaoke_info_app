@@ -30,7 +30,7 @@
       <span class="text-app text-xl"><%= @count %>件</span>
       見つかりました!
     </p>
-    <div class="w-full mx-auto mt-2 px-5 md:px-8 grid grid-cols-1 xl:grid-cols-2 gap-4" id="shops_wrapper">
+    <div class="w-full mx-auto mt-2 px-2 md:px-8 grid grid-cols-1 xl:grid-cols-2 gap-4" id="shops_wrapper">
       <%= render partial: "shop", collection: @shops  %>
     </div>
   <% else %>

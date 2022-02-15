@@ -22,4 +22,8 @@ class Shop < ApplicationRecord
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
+
+  def favorited_by?(user)
+    favorite_shops.exists?(user_id: user.id)
+  end
 end

@@ -10,7 +10,7 @@ import 'channels';
 import 'chartkick/chart.js';
 import 'datepicker.js';
 import 'fee_table.js';
-import 'img';
+import 'img.js';
 import 'jquery';
 import 'jquery-ui/ui/widgets/datepicker';
 import 'jquery.jpostal.js';
