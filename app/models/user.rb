@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :trackable
   mount_uploader :avatar, ImageUploader
   has_many :favorite_shops, dependent: :destroy
+  has_many :favorited_shops, through: :favorite_shops, source: :shop
 
   validates :email, uniqueness: true
   validates :password, presence: true, on: :create

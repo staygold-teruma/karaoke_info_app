@@ -37,7 +37,7 @@
       <div class="mx-auto">
         <% @topics_three.each do |users_topic| %>
           <%= link_to(users_topic_path(users_topic)) do %>
-            <div class="mb-3 sm:mb-2 bg-gray-100 mx-auto" id="each_news">
+            <div class="sm:mb-2 bg-gray-100 mx-auto" id="each_news">
               <div class="flex mb-1">
                 <i class="fas fa-chevron-circle-right text-app mr-1"></i>
                 <div class="text-xs sm:text-base" id="news_day">
@@ -52,7 +52,7 @@
                   <%= users_topic.title %>
                 </div>
               </div>
-              <hr class="mt-1 mb-2">
+              <hr class="mt-2 mb-2">
             </div>
           <% end %>
         <% end %>

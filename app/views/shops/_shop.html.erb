@@ -6,7 +6,7 @@
           <i class="fas fa-chevron-circle-right text-gray-400 mr-1" id="news_i"></i><%= shop.name %>
         <% end %>
         <% if user_signed_in? %>
-          <div class="ml-4 pl-4 flex items-center" id="shop-<%= shop.id %>">
+          <div class="ml-4 sm:pl-4 flex items-center" id="shop-<%= shop.id %>">
             <% if shop.favorited_by?(current_user) %>
               <%= render "favorite", shop: shop %>
             <% else %>
