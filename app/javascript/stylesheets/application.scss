@@ -135,7 +135,7 @@
 }
 
 .btn_search_shop {
-  @apply bg-app hover:bg-yellow-700 text-white sm:text-xl py-1 sm:py-2 px-4 rounded w-full sm:w-auto;
+  @apply bg-app hover:bg-yellow-700 text-white sm:text-xl py-1 sm:py-2 px-4 rounded sm:w-auto w-full;
 }
 
 @import 'tailwindcss/utilities';
@@ -343,7 +343,7 @@ div.field_with_errors {
 #sign_wrapper_user {
   margin-top: 10px;
   @include mq-down(sm) {
-    margin-top: 40px;
+    margin-top: 20px;
   }
 }
 
@@ -527,7 +527,6 @@ div.field_with_errors {
   text-align: center;
   @include mq-down(xxs) {
     font-size: 20px;
-    margin-top: 20px;
     margin-bottom: 15px;
   }
 }
@@ -1153,7 +1152,10 @@ div.field_with_errors {
     }
     #tutorial_img_box_detail {
       width: 90%;
-      height: 354px;
+      height: auto;
+      @include mq-down(sm) {
+        width: 100%;
+      }
       #tutorial_img {
         width: 100%;
         height: auto;
@@ -1181,13 +1183,14 @@ div.field_with_errors {
   }
   #news_left {
     width: 50%;
-    max-width: 550px;
+    max-width: 700px;
     max-height: 280px;
-    @include mq-down(xl) {
+    @include mq-down(lg) {
       max-width: 500px;
     }
     @include mq-down(lg) {
       max-width: 700px;
+      max-height: none;
       width: 90%;
     }
   }
@@ -1201,7 +1204,7 @@ div.field_with_errors {
       }
       @include mq-down(sm) {
         width: 100%;
-        height: 16px;
+        height: auto;
       }
       #news_i {
         line-height: 24px;
@@ -1210,12 +1213,12 @@ div.field_with_errors {
         }
       }
       #news_shop {
-        width: 120px;
+        width: 180px;
         white-space: nowrap;
         overflow: hidden;
         line-height: 24px;
         @include mq-down(sm) {
-          width: 60px;
+          width: 140px;
           line-height: 16px;
         }
       }
@@ -1223,17 +1226,17 @@ div.field_with_errors {
         width: 80px;
         line-height: 24px;
         @include mq-down(sm) {
-          width: 90px;
+          width: 60px;
           line-height: 16px;
         }
       }
       #news_title {
-        width: calc(100% - 40px);
+        width: calc(100% - 100px);
         white-space: nowrap;
         overflow: hidden;
         line-height: 24px;
         @include mq-down(sm) {
-          width: calc(100% - 110px);
+          width: 100%;
           line-height: 16px;
         }
       }
@@ -2071,7 +2074,7 @@ ui-datepicker-header {
   @include mq-down(sm) {
     margin-bottom: 30px;
     #shop_search {
-      width: 80%;
+      width: 90%;
       display: block;
       #shop_address_search {
         width: 100%;

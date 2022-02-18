@@ -2,7 +2,7 @@ class ShopsController < ApplicationController
   SHOP_PER_PAGE = 10
 
   def index
-    @shop_search = Shop.ransack(params[:q])
+    @shop_search = Shop.includes(:favorite_shops).ransack(params[:q])
     @shops = @shop_search.result.page(params[:page]).per(SHOP_PER_PAGE)
     @count = @shops.count
   end

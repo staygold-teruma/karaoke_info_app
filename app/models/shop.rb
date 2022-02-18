@@ -26,4 +26,8 @@ class Shop < ApplicationRecord
   def favorited_by?(user)
     favorite_shops.exists?(user_id: user.id)
   end
+
+  def full_address
+    prefecture_name + address_city + address_street
+  end
 end
