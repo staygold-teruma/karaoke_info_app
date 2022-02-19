@@ -1,109 +1,175 @@
 <% content_for :title do %>
-    管理画面：店舗情報編集
+  管理画面：店舗情報編集
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full">
     <%= render "layouts/header_shop" %>
-  </div> 
+  </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_shop" %>
 <% end %>
-
 <div class="flex">
   <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
     <%= render "layouts/side_menu_shop" %>
   </div>
   <div id="main_contents_shop">
-    <h1 class="page_title">店舗情報編集</h1>
-    <div class="border-2 border-app rounded-xl shadow-lg w-11/12 sm:w-5/6 mx-auto py-9 max-w-3xl mb-6">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="flex justify-between items-center ml-2 mb-1 w-11/12">
-          <%= f.label :name, "店舗名", class: "text-sm" %>
-          <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
-        </div>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="flex justify-between items-center ml-2 mb-1 w-11/12">
-          <%= f.label :email, "メールアドレス", class: "text-sm" %>
-          <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
-        </div>
-        <%= f.email_field :email, autocomplete: "email", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="flex items-center ml-2 mb-1">
-          <%= f.label :phone_number, "電話番号", class: "text-sm" %>
-          <p class="text-xs text-gray-400">(ハイフンなし)</p>
-        </div>
-        <%= f.text_field :phone_number, autocomplete: "phone_number", placeholder: "例: 0312345678", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="sm:flex items-center ml-2 mb-1">
-          <div class="flex items-center">
-            <%= f.label :postcode, "郵便番号", class: "text-sm" %>
-            <p class="text-xs text-gray-400">(ハイフンなし)</p>
+    <h1 class="page_title_shop">店舗情報編集</h1>
+    <div class="mx-auto max-w-3xl mb-6 px-2 sm:px-0">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <%= f.label :name, "店舗名", class: "text-sm" %>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
           </div>
-          <p class="text-xs text-gray-400 sm:ml-2">※都道府県/市区町村が自動入力されます</p>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
         </div>
-        <%= f.text_field :postcode, autocomplete: "postcode", placeholder: "例: 1638001", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <%= f.label :prefecture_name, "都道府県", class: "text-sm ml-2" %><br />
-        <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, autocomplete: "prefecture_name", class: "border border-gray-400 rounded-lg ml-2 pl-1 pr-3 py-2 text-sm w-11/12 bg-white" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <%= f.label :address_city, "市区町村", class: "text-sm ml-2" %><br />
-        <%= f.text_field :address_city, autocomplete: "address_city", placeholder: "例: 新宿区", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <%= f.label :address_street, "番地", class: "text-sm ml-2" %><br />
-        <%= f.text_field :address_street, autocomplete: "address_street",placeholder: "例: 西新宿2-8-1", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <%= f.label :address_building, "建物", class: "text-sm ml-2" %><br />
-        <%= f.text_field :address_building, autocomplete: "address_building", placeholder: "例: サンプルビル2F", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
-      <% end %>
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="sm:flex items-end">
-          <%= f.label :password, "新しいパスワード", class: "text-sm ml-2" %> 
-          <% if @minimum_password_length %>
-            <em class="text-xs text-gray-400 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
-          <% end %>
-          <p class="text-xxs sm:text-xxs text-gray-400 pl-2 sm:pl-0">※空欄のままなら変更しません</p>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <%= f.label :email, "メールアドレス", class: "text-sm" %>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.email_field :email, autocomplete: "email", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
         </div>
-        <%= f.password_field :password, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <%= f.label :password_confirmation, "パスワード確認", class: "text-sm ml-2" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-      <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
-        <div class="sm:flex items-end">
-          <%= f.label :current_password, "現在のパスワード", class: "text-sm ml-2" %>
-          <p class="text-xxs text-gray-400 pl-2 sm:pl-0">(変更を反映するためには現在のパスワードが必要です)</p>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :phone_number, "電話番号", class: "text-sm" %>
+            </div>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <p class="text-xs text-gray-400 ml-3">※ハイフンなしで入力してください</p>
+            <%= f.text_field :phone_number, autocomplete: "phone_number", placeholder: "例: 0312345678", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
         </div>
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg ml-2 px-2 py-2 text-sm w-11/12" %>
-      </div>
-      <div class="actions w-5/6 sm:w-2/3 flex justify-evenly mt-6 mx-auto">
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :postcode, "郵便番号", class: "text-sm" %>
+            </div>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <p class="text-xs text-gray-400 ml-3">※ハイフンなしで入力してください</p>
+            <p class="text-xs text-gray-400 ml-3">※都道府県/市区町村が自動入力されます</p>
+            <%= f.text_field :postcode, autocomplete: "postcode", placeholder: "例: 1638001", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :prefecture_name, "都道府県", class: "text-sm"%>
+            </div>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, { prompt: '選択してください' }, autocomplete: "prefecture_name", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12 bg-white" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :address_city, "市区町村", class: "text-sm" %>
+            </div>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.text_field :address_city, autocomplete: "address_city", placeholder: "例: 新宿区", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :address_street, "町名/番地", class: "text-sm" %>
+            </div>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <p class="text-xs text-gray-400 ml-3">※丁目以降はハイフン形式で入力してください</p>
+            <%= f.text_field :address_street, autocomplete: "address_street",placeholder: "例: 西新宿2-8-1", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :address_building, "建物", class: "text-sm" %>
+            </div>
+            <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.text_field :address_building, autocomplete: "address_building", placeholder: "例: サンプルビル2F", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 mb-4">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :image, "店舗画像", class: "text-sm" %>
+            </div>
+          </div>
+          <div class="sm:w-3/5 p-8 mx-auto">
+            <div class="shop_image border border-gray-400 mt-2 text-center rounded-lg overflow-hidden cursor-pointer" id="img_field" onClick="$('#file').click()" >
+              <%= image_tag "/assets/room01.jpg" %>
+            </div>
+            <%= f.file_field :image, class: "image", style: "display:none;", id: "file"%>
+          </div>
+        </div>
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+        <% end %>
+        <div class="w-full sm:w-11/12 mx-auto border border-gray-500 border-b-0 bg-app">
+          <p class="text-center text-white py-2">パスワード変更</p>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :password, "新しいパスワード", class: "text-sm" %>
+              <% if @minimum_password_length %>
+                <em class="text-xs text-gray-400 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+              <% end %>
+              <p class="text-xxs sm:text-xxs text-gray-400">※空欄のままなら変更しません</p>
+            </div>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.password_field :password, autocomplete: "new-password", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500 border-b-0">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :password_confirmation, "パスワード確認", class: "text-sm" %>
+              <% if @minimum_password_length %>
+                <em class="text-xs text-gray-400 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+              <% end %>
+            </div>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-500">
+          <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3">
+            <div class="">
+              <%= f.label :current_password, "現在のパスワード", class: "text-sm" %>
+              <% if @minimum_password_length %>
+                <em class="text-xs text-gray-400 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+              <% end %>
+            </div>
+          </div>
+          <div class="w-full sm:w-3/5 p-3">
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "border rounded-lg ml-3 px-2 py-2 text-sm w-11/12" %>
+          </div>
+        </div>
+        <div class="actions w-5/6 flex justify-evenly mt-6 mx-auto">
           <%= f.submit "編集", class: "w-1/4 text-center text-white bg-green-500 hover:bg-green-700 py-2 rounded cursor-pointer" %>
           <%= link_to t('devise.shared.links.back'), :back, class: "w-1/4 text-center text-white bg-app hover:bg-yellow-700 py-2 rounded" %>
-      </div>
-    <% end %>
-    <%# <%= button_to "削除", registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "w-1/4 text-center text-white bg-red-500 hover:bg-red-700 py-2 rounded cursor-pointer" %>
+        </div>
+      <% end %>
+      <%# <%= button_to "削除", registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete, class: "w-1/4 text-center text-white bg-red-500 hover:bg-red-700 py-2 rounded cursor-pointer" %>
+    </div>
   </div>
-</div>

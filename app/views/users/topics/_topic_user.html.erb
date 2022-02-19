@@ -1,9 +1,10 @@
 <%= link_to users_topic_path(topic_user) do %>
-  <div class="rounded overflow-hidden shadow items-center border border-gray-200 mx-auto mb-2" id="topics_card">
+  <div class="rounded overflow-hidden shadow items-center border border-gray-200 mx-auto mb-4 sm:mb-2" id="topics_card">
     <div class="" id="card_top">
+      <p class="text-xs text-center"><%= topic_user.created_at.strftime('%Y年%m月%d日') %></p>
       <div class="" id="topics_date">
-        <div class="bg-app-light rounded-full text-sm text-center font-semibold text-white px-2 mt-2 mb-2" >
-          <%= topic_user.created_at.strftime('%Y年%m月%d日') %>
+        <div class="bg-app-light rounded-full text-sm text-center font-semibold text-white px-2 mt-2 mb-2 py-1" >
+          <%= topic_user.shop.name %>
         </div>
       </div>
       <div class="w-full text-center font-bold text-sm overflow-hidden" id="topics_title">
