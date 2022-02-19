@@ -1718,8 +1718,8 @@ div.field_with_errors {
 #topics_form_wrapper {
   max-width: 600px;
   #img_field {
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1756,7 +1756,7 @@ div.field_with_errors {
     }
     #card_top {
       width: 100%;
-      height: 60px;
+      height: 80px;
       #topics_date {
         line-height: 20px;
       }
@@ -1789,6 +1789,7 @@ div.field_with_errors {
     }
   }
 }
+
 #topic_show {
   max-width: 700px;
   #topics_img_box {
@@ -1894,6 +1895,10 @@ div.field_with_errors {
 .user_avatar_show {
   width: 200px;
   height: 200px;
+  @include mq-down(xxs) {
+    width: 100px;
+    height: 100px;
+  }
   img {
     object-fit: cover;
     width: 100%;

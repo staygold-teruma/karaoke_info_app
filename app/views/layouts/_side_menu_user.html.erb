@@ -31,18 +31,18 @@
             </div>
           <% end %>
         </div>
-        </div>
+      </div>
     </div>
     <ul class="w-full mx-auto mt-6 p-6 bg-app_bg rounded-lg">
       <% if user_signed_in? %>
-        <%= link_to(destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }) do %>
+        <%= link_to(user_path(current_user)) do %>
           <li class="flex justify-between border-t border-gray-500" id="user_side_list">
-              <div>
-                <p id="side_list_title">ログアウト</p>
-              </div>
-              <div>
-                <i class="fas fa-chevron-right" id="side_list_icon"></i>
-              </div>
+            <div>
+              <p id="side_list_title">マイページ</p>
+            </div>
+            <div>
+              <i class="fas fa-chevron-right" id="side_list_icon"></i>
+            </div>
           </li>
         <% end %>
         <%= link_to(edit_user_registration_path) do %>
@@ -53,7 +53,17 @@
             <div>
               <i class="fas fa-chevron-right" id="side_list_icon"></i>
             </div>
-          </li>   
+          </li>
+        <% end %>
+        <%= link_to(destroy_user_session_path, method: :delete, data: {confirm: "ログアウトしますか?" }) do %>
+          <li class="flex justify-between border-gray-500" id="user_side_list">
+            <div>
+              <p id="side_list_title">ログアウト</p>
+            </div>
+            <div>
+              <i class="fas fa-chevron-right" id="side_list_icon"></i>
+            </div>
+          </li>
         <% end %>
       <% else %>
         <%= link_to(new_user_session_path) do %>
