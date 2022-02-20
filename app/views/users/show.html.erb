@@ -12,10 +12,10 @@
 <div id="margin_wrapper"></div>
 <% breadcrumb :user_show, @user %>
 <%= breadcrumbs separator: " &rsaquo; " %>
-<div class="pb-20 sm:mt-8">
-  <div class="w-full sm:border-2 sm:border-app sm:rounded-xl sm:shadow-lg sm:w-5/6 mx-auto max-w-3xl">
-    <div class="sm:flex bg-app_bg sm:rounded-t-xl px-4 sm:py-6">
-      <div class="mx-auto sm:w-3/5 pt-4 sm:pt-2 pb-4">
+<div class="pb-20 sm:mt-4">
+  <div class="w-full sm:border-2 sm:rounded-xl sm:shadow-lg sm:w-5/6 mx-auto max-w-3xl">
+    <div class="sm:flex sm:bg-app_bg sm:rounded-t-xl px-3 sm:px-2 sm:py-2">
+      <div class="mx-auto sm:w-3/5 pt-4 sm:py-2">
         <p class="text-center mb-3 text-2xl font-black"><%= @user.name %></p>
         <div class="user_avatar_show border border-gray-400 rounded-full text-center overflow-hidden mx-auto" id="img_field" >
           <% if @user.avatar.blank? %>
@@ -24,21 +24,21 @@
             <%= image_tag @user.avatar.url %>
           <% end %>
         </div>
-        <p class="text-sm text-center mt-3">最終ログイン : <%= @user.last_sign_in_at.strftime('%Y年%m月%d日')  %></p>
-        <div class="actions mt-3 sm:mt-6 w-11/12 sm:w-2/3 mx-auto flex justify-center">
+        <p class="text-sm text-center mt-2">最終ログイン : <%= @user.last_sign_in_at.strftime('%Y年%m月%d日')  %></p>
+        <div class="actions mt-3 sm:mt-4 w-11/12 sm:w-2/3 mx-auto flex justify-center">
           <%= link_to "ユーザー編集", edit_user_registration_path(@user), class: "text-sm bg-green-500 hover:bg-green-700 text-white px-2 py-2 rounded cursor-pointer" %>
         </div>
       </div>
-      <div class="mx-auto w-full sm:w-4/5 sm:px-3 py-4">
-        <div class="mb-3 text-center sm:text-left text-xl leading-8 flex">
-          <i class="fa-solid fa-circle-user text-app text-3xl mr-2"></i>
+      <div class="mx-auto w-full sm:w-4/5 px-3 mt-5 sm:mt-2 pt-2 sm:pt-0 pb-2 bg-app_bg rounded-lg sm:rounded-none">
+        <div class="mb-3 text-center sm:text-left text-lg sm:text-xl leading-8 flex w-full pl-2 sm:pl-0">
+          <i class="fa-solid fa-circle-user text-app text-2xl sm:text-3xl mt-1 mr-2"></i>
           <p class="leading-8">プロフィール</p>
         </div>
-        <div class="mb-2">
+        <div class="mb-2 mx-2 sm:mx-0">
           <p class="pl-3 sm:pl-1 py-1"><i class="fas fa-chevron-circle-right text-app mr-1"></i>メールアドレス</p>
           <p class="pl-5 sm:pl-3 pb-2 border-b border-app"><%= @user.email %></p>
         </div>
-        <div class="mb-2">
+        <div class="mb-2 mx-2 sm:mx-0">
           <p class="pl-3 sm:pl-1 py-1"><i class="fas fa-chevron-circle-right text-app mr-1"></i>性別</p>
           <% if @user.sex.nil? %>
             <p class="pl-5 sm:pl-2 pb-2 border-b border-app">未設定</p>
@@ -46,7 +46,7 @@
             <p class="pl-5 sm:pl-3 pb-2 border-b border-app"><%= @user.sex_i18n %></p>
           <% end %>
         </div>
-        <div class="mb-2">
+        <div class="mb-2 mx-2 sm:mx-0">
           <p class="pl-3 sm:pl-1 py-1"><i class="fas fa-chevron-circle-right text-app mr-1"></i>誕生日</p>
           <% if @user.birthday.nil? %>
             <p class="pl-5 sm:pl-2 pb-2 border-b border-app">未設定</p>
@@ -54,7 +54,7 @@
             <p class="pl-5 sm:pl-3 pb-2 border-b border-app"><%= @user.birthday.strftime("%Y年%m月") %></p>
           <% end %>
         </div>
-        <div class="mb-2">
+        <div class="mb-2 mx-2 sm:mx-0">
           <p class="pl-3 sm:pl-1 py-1"><i class="fas fa-chevron-circle-right text-app mr-1"></i>職業</p>
           <% if @user.occupation.nil? %>
             <p class="pl-5 sm:pl-3 pb-2 border-b border-app">未設定</p>
@@ -64,9 +64,9 @@
         </div>
       </div>
     </div>
-    <div class="mb-3 p-4">
+    <div class="mb-3 p-4 pt-2">
       <p class="pl-3 py-1 border-b border-app"><i class="fas fa-chevron-circle-right text-app mr-1"></i>お気に入り店舗一覧(<%= @shops.count %>店舗)</p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-3">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-3">
         <%= render partial: "favorited_shop", collection: @shops  %>
       </div>
     </div>

@@ -14,7 +14,7 @@
 <%= breadcrumbs separator: " &rsaquo; " %>
 <div class="pb-20 mt-6 sm:mt-12" id="sign_wrapper_user">
   <h2 class="page_title">ユーザー編集</h2>
-  <div class="sm:border-2 border-app rounded-xl sm:shadow-lg sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
+  <div class="sm:border-2 rounded-xl sm:shadow-lg sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       <div class="field mb-6 w-11/12 sm:w-5/6 mx-auto">
@@ -41,7 +41,7 @@
             </div>
             <%= f.file_field :avatar, class: "image block", style: "display:none;", id: "file"%>
           </div>
-          <div class="lg:w-1/2">
+          <div class="w-3/7 sm:w-1/2">
             <div class="field mx-auto mb-2">
               <%= f.label :birthday %>
               <p class="mt-1">

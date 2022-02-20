@@ -1863,9 +1863,6 @@ div.field_with_errors {
 
 #user_occupation {
   width: 180px;
-  @include mq-down(xxs) {
-    width: 160px;
-  }
 }
 
 .user_avatar {

@@ -13,7 +13,7 @@
 <% breadcrumb :topic_show %>
 <%= breadcrumbs separator: " &rsaquo; " %>
 <div class="mx-auto" id="main_contents_user">
-  <div class="w-11/12 border border-gray-200 mx-auto rounded-xl mt-3 sm:mt-6 mb-t" id="topic_show">
+  <div class="w-11/12 border border-gray-200 mx-auto rounded-xl mt-3 sm:mt-6 pb-3" id="topic_show">
     <div class="text-center mt-3 my-2 text-sm">
       <%= @users_topic.created_at.strftime('%Y年%m月%d日') %>
     </div>
@@ -23,7 +23,7 @@
     <div class="w-11/12 text-center font-bold text-sm md:text-lg overflow-hidden mx-auto mt-3" id="topics_title">
       【<%= @users_topic.title %>】
     </div>
-    <div class="sm:grid sm:grid-cols-2 gap-1 px-3">
+    <div class="px-3">
       <div class="flex justify-center items-center mx-auto mt-6" id="topics_img_box">
         <%= image_tag @users_topic.image.url %>
       </div>
