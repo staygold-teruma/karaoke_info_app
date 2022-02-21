@@ -1,39 +1,35 @@
 <% content_for :title do %>
-    ユーザー登録
+  ユーザー登録
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0">
     <%= render "layouts/header_user" %>
-  </div> 
+  </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_user" %>
 <% end %>
-
 <div id="margin_wrapper"></div>
 <% breadcrumb :user_sign_in %>
-<%= breadcrumbs separator: " &rsaquo; " %> 
+<%= breadcrumbs separator: " &rsaquo; " %>
 <div class="pb-12" id="sign_wrapper_user">
   <h1 class="page_title">ログイン</h1>
-  <div class="sm:border-2 border-app rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto px-3 py-3 sm:py-8 max-w-xl">
+  <div class="sm:border-2 rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto px-3 py-3 sm:py-8 max-w-xl">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :email, "メールアドレス", class: "text-sm" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-full" %>
       </div>
-
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :password, "パスワード", class: "text-sm" %><br />
         <%= f.password_field :password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-full" %>
       </div>
-
       <% if devise_mapping.rememberable? %>
         <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
           <%= f.check_box :remember_me, class: "text-xs" %>
           <%= f.label :remember_me, "ログイン状態を保存する", class: "text-xs" %>
         </div>
       <% end %>
-
       <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
         <%= f.submit "ログイン", class: "w-full bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded cursor-pointer" %>
       </div>
@@ -43,5 +39,4 @@
     </div>
   </div>
 </div>
-
 <%= render "layouts/side_menu_user" %>

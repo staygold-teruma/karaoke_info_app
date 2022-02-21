@@ -1,21 +1,20 @@
 <% content_for :title do %>
-    ユーザー登録
+  ユーザー登録
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0">
     <%= render "layouts/header_user" %>
-  </div> 
+  </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_user" %>
 <% end %>
-
 <div id="margin_wrapper"></div>
 <% breadcrumb :user_sign_up %>
-<%= breadcrumbs separator: " &rsaquo; " %> 
+<%= breadcrumbs separator: " &rsaquo; " %>
 <div class="pb-24 sm:pb-12" id="sign_wrapper_user">
   <h2 class="page_title">ユーザー登録</h2>
-  <div class="sm:border-2 border-app rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
+  <div class="sm:border-2 rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto py-3 sm:py-9 max-w-3xl sm:mb-6">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       <div class="field mb-3 w-5/6 mx-auto">
@@ -34,7 +33,7 @@
           <div>
             <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
-            <em class="text-xs text-gray-400 -ml-3 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
+              <em class="text-xs text-gray-400 -ml-3 not-italic"><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
             <% end %>
           </div>
           <p class="bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
@@ -57,7 +56,4 @@
     <% end %>
   </div>
 </div>
-
 <%= render "layouts/side_menu_user" %>
-
-
