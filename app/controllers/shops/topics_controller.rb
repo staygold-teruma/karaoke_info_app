@@ -1,10 +1,10 @@
 class Shops::TopicsController < Shops::ApplicationController
   before_action :set_topic, only: %i[show edit update destroy]
   before_action :authenticate_shop!
-  PER_PAGE = 6
+  PER_PAGE = 3
 
   def index
-    @shops_topics = Topic.includes(:shop).page(params[:page]).per(PER_PAGE).order(created_at: :desc)
+    @shops_topics = Topic.includes(:shop).where(shop_id: current_shop.id).page(params[:page]).per(PER_PAGE).order(created_at: :desc)
   end
 
   def new

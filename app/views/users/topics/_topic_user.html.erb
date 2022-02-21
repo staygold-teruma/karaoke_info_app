@@ -3,11 +3,11 @@
     <div class="" id="card_top">
       <p class="text-xs text-center"><%= topic_user.created_at.strftime('%Y年%m月%d日') %></p>
       <div class="" id="topics_date">
-        <div class="bg-app-light rounded-full text-sm text-center font-semibold text-white px-2 mt-2 mb-2 py-1" >
+        <div class="bg-app-light rounded-xl text-center font-semibold text-white p-2 mt-2 mb-3" >
           <%= topic_user.shop.name %>
         </div>
       </div>
-      <div class="w-full text-center font-bold text-sm overflow-hidden" id="topics_title">
+      <div class="w-full text-center font-bold overflow-hidden" id="topics_title">
         【<%= topic_user.title %>】
       </div>
     </div>

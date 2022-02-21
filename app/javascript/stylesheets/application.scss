@@ -535,7 +535,7 @@ div.field_with_errors {
   text-align: center;
   @include mq-down(xxs) {
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 15px;
   }
 }
@@ -792,6 +792,9 @@ div.field_with_errors {
   #d_plan_div_table {
     margin-top: 20px;
     width: 20%;
+    @include mq-down(sm) {
+      width: 40%;
+    }
   }
   #plan_fee_table {
     margin-top: 20px;
@@ -1740,7 +1743,7 @@ div.field_with_errors {
     max-width: 400px;
   }
   #topics_card {
-    height: 300px;
+    height: 330px;
     padding: 10px;
     max-width: 320px;
     @include mq-down(md) {
@@ -1752,7 +1755,61 @@ div.field_with_errors {
     }
     #card_top {
       width: 100%;
-      height: 80px;
+      height: 100px;
+      #topics_date {
+        line-height: 20px;
+      }
+      #topics_title {
+        white-space: nowrap;
+        line-height: 20px;
+      }
+    }
+    #card_bottom {
+      width: 100%;
+      height: 200px;
+      margin-top: 5px;
+      #topics_thumbnail {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        background: #ededed;
+        overflow: hidden;
+        #topics_img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  #topics_card:hover {
+    #topics_img {
+      transform: scale(1.1, 1.1);
+    }
+  }
+}
+#topics_wrapper {
+  max-width: 1200px;
+  @include mq-down(lg) {
+    max-width: 800px;
+  }
+  @include mq-down(sm) {
+    max-width: 400px;
+  }
+  #topics_card_shop {
+    height: 300px;
+    padding: 10px;
+    max-width: 320px;
+    @include mq-down(md) {
+      max-width: 350px;
+      min-width: 300px;
+    }
+    @include mq-down(xls) {
+      min-width: 250px;
+    }
+    #card_top_shop {
+      width: 100%;
+      height: 60px;
       #topics_date {
         line-height: 20px;
       }
@@ -1904,9 +1961,6 @@ div.field_with_errors {
 .alcohol_body {
   @include mq-down(xxs) {
     font-size: 12px;
-  }
-  @include mq-down(xls) {
-    font-size: 10px;
   }
 }
 .stripe_title_deluxe {
