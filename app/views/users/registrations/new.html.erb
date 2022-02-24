@@ -18,7 +18,7 @@
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "users/shared/error_messages", resource: resource %>
       <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-400 border-b-0 rounded-t-lg">
-        <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3 rounded-t-lg">
+        <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3 rounded-tl-lg">
           <%= f.label :name, class: "text-sm" %>
           <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
         </div>
@@ -50,7 +50,7 @@
         </div>
       </div>
       <div class="field w-full sm:w-11/12 mx-auto sm:flex border border-gray-400 rounded-b-lg">
-        <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3 rounded-b-lg">
+        <div class="flex justify-between items-center w-full sm:w-2/5 bg-app_bg p-3 rounded-bl-lg">
           <%= f.label :password_confirmation, "パスワード確認", class: "text-sm " %>
           <p class="w-12 bg-red-500 text-white text-xs text-center px-2 py-1 rounded-lg">必須</p>
         </div>
