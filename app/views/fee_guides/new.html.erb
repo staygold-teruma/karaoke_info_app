@@ -3,9 +3,9 @@
 <% end %>
 <% content_for :header do %>
   <% if shop_signed_in? %>
-    <%= render "guide_top_shop" %>
+    <%= render "top_nav_shop" %>
   <% else %>
-    <%= render "guide_top_user" %>
+    <%= render "top_nav_user" %>
   <% end %>
 <% end %>
 <div id="app_guide_wrapper">

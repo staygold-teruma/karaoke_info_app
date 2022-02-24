@@ -8,19 +8,11 @@
         <%= link_to root_path, class: "md:hidden" do %>
           <img src="/assets/logo.png" class="mr-2" id="logo_sm">
         <% end %>
-        <% if current_shop.name.present?%>
-          <p class="text-xxs">
-            <span class="text-xxs md:text-sm text-blue-500 font-bold"><%= current_shop.name %></span>
-            <br class="md:hidden">
-            さんの管理ページ
-          </p> 
-        <% else %> 
-          <p class="text-xxs">
-            <span class="text-sm text-blue-500 font-bold"><%= current_shop.email %></span>
-            <br class="md:hidden">
-            さんの管理ページ
-          </p>    
-        <% end %>
+        <p class="text-xxs">
+          <span class="text-xxs md:text-sm text-blue-500 font-bold"><%= current_shop.name %></span>
+          <br class="md:hidden">
+          さんの管理ページ
+        </p>
       </div>
       <div class="flex items-center ml-2 md:ml-0" id="nav_btn_box">
         <div class="flex">
@@ -43,5 +35,3 @@
     <span></span>
   </div>
 </nav>
-
-
