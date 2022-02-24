@@ -19,70 +19,7 @@
   <div class="w-11/12 lg:w-2/3 bg-white mx-auto rounded shadow sm:py-12 sm:pt-6">
     <%= render 'form_fee_guide', path: fee_guides_path, method: :post %>
   </div>
-  <div class="w-11/12 lg:w-2/3 mt-8 px-2 py-6 mx-auto bg-white rounded">
-    <h3 class="text-2xl text-center mb-3">よくあるご質問</h3>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">会員にはすぐになれますか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">子供の料金を教えてください。</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">ワンドリンクのドリンク代はいくらですか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">418円からご用意しております。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">1時間で飲み放題コースは利用できますか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">1.5時間からのご案内となります。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
-      </div>
-    </div>
-    <p class="text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan"  class="text-app underline font-black">こちら</a></p>
-  </div>
+  <%= render 'q_and_a' %>
 </div>
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
   <div class="flex items-center justify-evenly" id="footer_btn_left">
