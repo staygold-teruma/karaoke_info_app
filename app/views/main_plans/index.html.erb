@@ -60,23 +60,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @main_plans.each.with_index(1) do |main_plan, i| %>
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-              <td class="index_table_body hidden xl:table-cell"><%= i %></td>
-              <td class="index_table_body text-blue-600"><%= link_to main_plan.fee_type_i18n, main_plan %></td>
-              <td class="index_table_body"><%= main_plan.div_day_i18n %></td>
-              <td class="index_table_body"><%= main_plan.div_time_i18n %></td>
-              <td class="index_table_body"><%= main_plan.div_member_i18n %></td>
-              <td class="index_table_body hidden lg:table-cell"><%= main_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body hidden lg:table-cell"><%= main_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body hidden lg:table-cell"><%= main_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <td class="index_table_body hidden lg:table-cell"><%= main_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
-              <% if current_shop.id == main_plan.shop_id %>
-                <td class="index_table_body text-green-600"><%= link_to "編集", edit_main_plan_path(main_plan) %></td>
-                <td class="index_table_body text-red-600"><%= link_to "削除", main_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
-              <% end %>
-            </tr>
-          <% end %>
+          <%= render partial: "main_plan", collection: @main_plans %>
         </tbody>
       </table>
     </div>
