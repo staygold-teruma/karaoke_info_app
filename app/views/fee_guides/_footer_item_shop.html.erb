@@ -1,0 +1,30 @@
+<div class="flex items-center justify-evenly" id="footer_btn_left">
+  <%= link_to fee_guides_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-chart-pie text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">利用分析</p>
+    </div>
+  <% end %>
+  <%= link_to shops_topics_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-info-circle text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">トピックス</p>
+    </div>
+  <% end %>
+</div>
+<div class="flex items-center justify-evenly" id="footer_btn_right">
+  <%= link_to main_plans_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-couch text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">ルーム料金</p>
+    </div>
+  <% end %>
+  <div class="pt-1" id="btn_box">
+    <%= link_to main_plans_path do %>
+      <div class="text-center pt-2" id="btn_box">
+        <i class="fas fa-coffee text-2xl text-app"></i>
+        <p class="text-center text-xxs text-white">ドリンク料金</p>
+      </div>
+    <% end %>
+  </div>
+</div>

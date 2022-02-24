@@ -1,0 +1,30 @@
+<div class="flex items-center justify-evenly" id="footer_btn_left">
+  <%= link_to users_topics_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-info-circle text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">トピックス</p>
+    </div>
+  <% end %>
+  <%= link_to static_pages_coupon_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-ticket-alt text-2xl text-app"></i>
+      <p class="text-center text-xxs text-white">クーポン</p>
+    </div>
+  <% end %>
+</div>
+<div class="flex items-center justify-evenly" id="footer_btn_right">
+  <%= link_to static_pages_fee_table_path do %>
+    <div class="text-center pt-3" id="btn_box">
+      <i class="fas fa-book-open text-app text-2xl"></i>
+      <p class="text-center text-xxs text-white">料金表</p>
+    </div>
+  <% end %>
+  <div class="pt-1" id="btn_box">
+    <%= link_to static_pages_alcohol_plan_path do %>
+      <div class="text-center pt-2" id="btn_box">
+        <i class="fas fa-beer text-app text-2xl"></i>
+        <p class="text-center text-xxs text-white">飲み放題</p>
+      </div>
+    <% end %>
+  </div>
+</div>

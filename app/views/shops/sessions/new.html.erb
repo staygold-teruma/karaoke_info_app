@@ -1,7 +1,6 @@
 <% content_for :title do %>
-    管理画面：店舗ログイン
+  管理画面：店舗ログイン
 <% end %>
-
 <nav class="flex justify-center items-center w-full" id="gnav">
   <%= link_to root_path do %>
     <img src="/assets/logo.png" id="logo_sign">
@@ -9,25 +8,22 @@
 </nav>
 <div id="sign_wrapper">
   <h1 class="page_title">ログイン</h1>
-  <div class="border-2 border-app rounded-xl shadow-lg w-11/12 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
+  <div class="border-2 rounded-xl shadow-lg w-11/12 sm:w-5/6 mx-auto px-3 py-8 max-w-xl">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :email, "メールアドレス", class: "text-sm" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-full" %>
       </div>
-
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :password, "パスワード", class: "text-sm" %><br />
         <%= f.password_field :password, autocomplete: "current-password", class: "border border-gray-400 rounded-lg px-2 py-2 text-sm w-full" %>
       </div>
-
       <% if devise_mapping.rememberable? %>
         <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
           <%= f.check_box :remember_me, class: "text-xs" %>
           <%= f.label :remember_me, "ログイン状態を保存する", class: "text-xs" %>
         </div>
       <% end %>
-
       <div class="actions flex justify-evenly mt-6 w-5/6 sm:w-2/3 mx-auto">
         <%= f.submit "ログイン", class: "w-full bg-app hover:bg-yellow-600 text-white px-4 py-2 rounded cursor-pointer" %>
       </div>

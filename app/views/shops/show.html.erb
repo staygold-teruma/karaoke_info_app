@@ -13,7 +13,7 @@
 <% breadcrumb :shop_show %>
 <%= breadcrumbs separator: " &rsaquo; " %>
 <div class="pb-24 sm:pb-6">
-  <div class="w-11/12 mx-auto max-w-lg md:max-w-3xl mt-3 md:mt-3 py-3 md:p-5 border-2 md:grid md:grid-cols-2 gap-3 shadow-md rounded-lg">
+  <div class="w-11/12 mx-auto max-w-lg md:max-w-3xl mt-3 md:mt-3 pb-3 md:p-5 border-2 md:grid md:grid-cols-2 gap-3 shadow-md rounded-lg">
     <div class="px-2 md:px-3">
       <%# 運用においては登録した店舗画像を使用 %>
       <img src="/assets/room01.jpg" alt="" class="w-11/12 mx-auto mt-4">
@@ -38,7 +38,7 @@
       <% end %>
       <hr class="mt-3 mb-3">
       <p class="mb-4 text-xl text-center">
-        <span class="mr-3 text-sm">電話をかける</span>
+        <span class="mr-3 pb-1 text-sm">電話をかける</span>
         <i class="fas fa-phone-square-alt text-app text-3xl mr-1"></i>
         <span class="text-blue-500 text-2xl"><%= link_to @shop.phone_number, "tel:" + @shop.phone_number %></span>
       </p>

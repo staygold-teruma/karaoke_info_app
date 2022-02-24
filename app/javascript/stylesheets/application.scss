@@ -134,10 +134,6 @@
   @apply text-base sm:text-sm mx-2 px-2;
 }
 
-.btn_search_shop {
-  @apply bg-app hover:bg-yellow-700 text-white sm:text-xl py-1 sm:py-2 px-4 rounded sm:w-auto w-full;
-}
-
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+JP');
 
@@ -539,7 +535,7 @@ div.field_with_errors {
   text-align: center;
   @include mq-down(xxs) {
     font-size: 20px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 15px;
   }
 }
@@ -796,6 +792,9 @@ div.field_with_errors {
   #d_plan_div_table {
     margin-top: 20px;
     width: 20%;
+    @include mq-down(sm) {
+      width: 40%;
+    }
   }
   #plan_fee_table {
     margin-top: 20px;
@@ -1744,7 +1743,7 @@ div.field_with_errors {
     max-width: 400px;
   }
   #topics_card {
-    height: 300px;
+    height: 330px;
     padding: 10px;
     max-width: 320px;
     @include mq-down(md) {
@@ -1756,7 +1755,61 @@ div.field_with_errors {
     }
     #card_top {
       width: 100%;
-      height: 80px;
+      height: 100px;
+      #topics_date {
+        line-height: 20px;
+      }
+      #topics_title {
+        white-space: nowrap;
+        line-height: 20px;
+      }
+    }
+    #card_bottom {
+      width: 100%;
+      height: 200px;
+      margin-top: 5px;
+      #topics_thumbnail {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        background: #ededed;
+        overflow: hidden;
+        #topics_img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  #topics_card:hover {
+    #topics_img {
+      transform: scale(1.1, 1.1);
+    }
+  }
+}
+#topics_wrapper {
+  max-width: 1200px;
+  @include mq-down(lg) {
+    max-width: 800px;
+  }
+  @include mq-down(sm) {
+    max-width: 400px;
+  }
+  #topics_card_shop {
+    height: 300px;
+    padding: 10px;
+    max-width: 320px;
+    @include mq-down(md) {
+      max-width: 350px;
+      min-width: 300px;
+    }
+    @include mq-down(xls) {
+      min-width: 250px;
+    }
+    #card_top_shop {
+      width: 100%;
+      height: 60px;
       #topics_date {
         line-height: 20px;
       }
@@ -1863,9 +1916,6 @@ div.field_with_errors {
 
 #user_occupation {
   width: 180px;
-  @include mq-down(xxs) {
-    width: 160px;
-  }
 }
 
 .user_avatar {
@@ -1911,9 +1961,6 @@ div.field_with_errors {
 .alcohol_body {
   @include mq-down(xxs) {
     font-size: 12px;
-  }
-  @include mq-down(xls) {
-    font-size: 10px;
   }
 }
 .stripe_title_deluxe {
@@ -2033,83 +2080,7 @@ ui-datepicker-header {
   }
 }
 
-// 店舗検索ページ
-#shop_search_box {
+#q_address_city_cont {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  #shop_search {
-    width: 80%;
-    display: flex;
-    justify-content: center;
-    #shop_address_search {
-      width: 510px;
-      label {
-        width: 175px;
-        height: 44px;
-        font-size: 24px;
-        line-height: 32px;
-        margin-right: 10px;
-      }
-      #q_address_city_cont {
-        width: 300px;
-        height: 44px;
-        border: #666 1px solid;
-        border-radius: 5px;
-        margin-right: 10px;
-        padding-right: 10px;
-        padding-left: 10px;
-        font-size: 20px;
-      }
-      #shop_search_btn {
-        height: 42px;
-        .btn_search_shop {
-          height: 42px;
-        }
-      }
-    }
-  }
-  @include mq-down(md) {
-    #shop_search {
-      width: 100%;
-    }
-  }
-  @include mq-down(sm) {
-    margin-bottom: 30px;
-    #shop_search {
-      width: 90%;
-      display: block;
-      #shop_address_search {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-        label {
-          width: 120px;
-          height: 32px;
-          font-size: 16px;
-          line-height: 32px;
-          margin-right: 10px;
-        }
-        #q_address_city_cont {
-          width: 150px;
-          height: 32px;
-          border: #666 1px solid;
-          border-radius: 5px;
-          margin-right: 0px;
-          font-size: 14px;
-        }
-        #shop_search_btn {
-          display: flex;
-          justify-content: center;
-          height: 32px;
-          .btn_search_shop {
-            height: 32px;
-          }
-        }
-      }
-    }
-  }
+  height: 100%;
 }

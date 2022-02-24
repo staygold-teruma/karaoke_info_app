@@ -11,7 +11,6 @@ class FeeGuide < ApplicationRecord
       validates :number_of_students
       validates :number_of_seniors
       validates :number_of_children
-      validates :number_of_customers
       validates :total_fee
       validates :adult_main_fee
       validates :student_main_fee
@@ -25,6 +24,9 @@ class FeeGuide < ApplicationRecord
       validates :student_total_fee
       validates :senior_total_fee
       validates :child_total_fee
+    end
+    with_options numericality: { only_integer: true, greater_than_or_equal_to: 1 } do
+      validates :number_of_customers
     end
   end
 

@@ -11,4 +11,12 @@ module FeeGuidesHelper
       percentage.round(1)
     end
   end
+
+  def footer_item
+    if shop_signed_in?
+      render partial: "footer_item_shop"
+    else
+      render partial: "footer_item_user"
+    end
+  end
 end

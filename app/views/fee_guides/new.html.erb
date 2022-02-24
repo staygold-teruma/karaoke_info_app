@@ -3,9 +3,9 @@
 <% end %>
 <% content_for :header do %>
   <% if shop_signed_in? %>
-    <%= render "guide_top_shop" %>
+    <%= render "top_nav_shop" %>
   <% else %>
-    <%= render "guide_top_user" %>
+    <%= render "top_nav_user" %>
   <% end %>
 <% end %>
 <div id="app_guide_wrapper">
@@ -19,138 +19,10 @@
   <div class="w-11/12 lg:w-2/3 bg-white mx-auto rounded shadow sm:py-12 sm:pt-6">
     <%= render 'form_fee_guide', path: fee_guides_path, method: :post %>
   </div>
-  <div class="w-11/12 lg:w-2/3 mt-8 px-2 py-6 mx-auto bg-white rounded">
-    <h3 class="text-2xl text-center mb-3">よくあるご質問</h3>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">会員にはすぐになれますか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">店頭にてLINE友達追加で簡単に会員登録ができます。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">子供の料金を教えてください。</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">小学生は大人の方の半額、小学生未満は無料です。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">ワンドリンクのドリンク代はいくらですか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">418円からご用意しております。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">ワンドリンクとドリンクバーはどちらが得ですか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">2杯以上でドリンクバー(440円)がお得です。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">1時間で飲み放題コースは利用できますか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">1.5時間からのご案内となります。</p>
-      </div>
-    </div>
-    <div class="mb-6">
-      <div class="question mx-auto sm:w-11/12 flex items-center">
-        <p class="text-white sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">Q.</p>
-        <p class="text-white sm:text-lg">何杯以上でアルコール飲み放題コースが得ですか？</p>
-      </div>
-      <div class="answer mx-auto sm:w-11/12 flex items-center">
-        <p class="text-app sm:text-lg mr-1 sm:mr-3 text-right" style="width:19px">A.</p>
-        <p class="sm:text-lg">お一人様平均で2杯以上で飲み放題コースがお得です。</p>
-      </div>
-    </div>
-    <p class="text-center">アルコール飲み放題コースの詳細は<a href="/static_pages/alcohol_plan"  class="text-app underline font-black">こちら</a></p>
-  </div>
+  <%= render 'q_and_a' %>
 </div>
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
-  <div class="flex items-center justify-evenly" id="footer_btn_left">
-    <% if shop_signed_in? %>
-      <%= link_to fee_guides_path do %>
-        <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-chart-pie text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">利用分析</p>
-        </div>
-      <% end %>
-    <% else %>
-      <%= link_to users_topics_path do %>
-        <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-info-circle text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">トピックス</p>
-        </div>
-      <% end %>
-    <% end %>
-    <% if shop_signed_in? %>
-      <%= link_to shops_topics_path do %>
-        <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-info-circle text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">トピックス</p>
-        </div>
-      <% end %>
-    <% else %>
-      <%= link_to static_pages_coupon_path do %>
-        <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-ticket-alt text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">クーポン</p>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-  <div class="flex items-center justify-evenly" id="footer_btn_right">
-    <% if shop_signed_in? %>
-      <%= link_to main_plans_path do %>
-        <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-couch text-2xl text-app"></i>
-          <p class="text-center text-xxs text-white">ルーム料金</p>
-        </div>
-      <% end %>
-    <% else %>
-      <%= link_to static_pages_fee_table_path do %>
-        <div class="text-center pt-3" id="btn_box">
-          <i class="fas fa-book-open text-app text-2xl"></i>
-          <p class="text-center text-xxs text-white">料金表</p>
-        </div>
-      <% end %>
-    <% end %>
-    <div class="pt-1" id="btn_box">
-      <% if shop_signed_in? %>
-        <%= link_to main_plans_path do %>
-          <div class="text-center pt-2" id="btn_box">
-            <i class="fas fa-coffee text-2xl text-app"></i>
-            <p class="text-center text-xxs text-white">ドリンク料金</p>
-          </div>
-        <% end %>
-      <% else %>
-        <%= link_to static_pages_alcohol_plan_path do %>
-          <div class="text-center pt-2" id="btn_box">
-            <i class="fas fa-beer text-app text-2xl"></i>
-            <p class="text-center text-xxs text-white">飲み放題</p>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+  <%= footer_item %>
 </div>
 <button id="modal_btn_footer" class="focus:outline-none p-2 pb-4 bg-gray-800 rounded-full ring-8 ring-app sm:hidden" type="button">
   <span class="text-xs text-white">料金案内</span>
@@ -168,3 +40,13 @@
   <i class="far fa-times-circle text-app text-2xl"></i>
   <p class="text-white text-xs">閉じる</p>
 </button>
+<% if @fee_guide.errors.any? %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      history.pushState('', '', location.href + '/new')
+      $('#modal').addClass('scale-100');
+          $('#app_guide_wrapper').addClass('hidden');
+          $('#close_btn').removeClass('hidden');
+    });
+  </script>
+<% end %>
