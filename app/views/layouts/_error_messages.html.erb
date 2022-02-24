@@ -1,0 +1,13 @@
+<% if model.errors.any? %>
+  <div class="text-center mb-5">
+    <div class="border-4 border-red-500 rounded p-3 bg-app_bg">
+      <p class="text-xs sm:text-sm">正しく入力されていない箇所があります</p>
+      <p class="text-xs sm:text-sm">メッセージを参考に再入力してください</p>
+      <ul class="">
+        <% model.errors.full_messages.each do |msg| %>
+          <li class="text-sm sm:text-base font-mono"><span style="color: red;"><%= msg %></span></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

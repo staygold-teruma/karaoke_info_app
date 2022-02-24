@@ -1,9 +1,10 @@
 <%= form_for(@fee_guide, url: path, method: method) do |f| %>
   <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 p-4 pt-5 sm:p-5">
+    <%= render 'layouts/error_messages', model: f.object %>
     <div class="mb-3">
       <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-2 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
         STEP 1
-        <span class="ml-2 text-white" id="step_title">ご利用店舗を選んでください</span>
+        <span class="ml-2 text-white font-mono" id="step_title">ご利用店舗を選んでください</span>
       </p>
     </div>
     <div class="px-2 sm:ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select_shop">
@@ -88,7 +89,7 @@
       </div>
       <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
         <%= f.label :シニア, class: "font-black mr-3"  %>
-        <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
+        <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択し����く���さい ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
       </div>
       <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
         <%= f.label :小学生, class: "font-black mr-3"  %>
