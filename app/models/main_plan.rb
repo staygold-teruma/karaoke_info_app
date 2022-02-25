@@ -37,4 +37,20 @@ class MainPlan < ApplicationRecord
   scope :search_main_fee, lambda { |shop, type, day, time, member|
                             find_by(shop_id: shop, fee_type: type, div_day: day, div_time: time, div_member: member)
                           }
+
+  def self.search_fee(shop, type, day, time, member, target)
+    applicable_fee = find_by(shop_id: shop, fee_type: type, div_day: day, div_time: time, div_member: member)
+    if applicable_fee.nil?
+      "-"
+    else
+      case target
+      when 0
+        applicable_fee.adult_fee
+      when 1
+        applicable_fee.student_fee
+      when 2
+        applicable_fee.senior_fee
+      end
+    end
+  end
 end

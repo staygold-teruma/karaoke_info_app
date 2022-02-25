@@ -1543,7 +1543,6 @@ div.field_with_errors {
 
 #step_num,
 #step_title {
-  text-shadow: 1px 1px 1px black;
   @include mq-down(xls) {
     font-size: 14px;
   }
