@@ -39,7 +39,7 @@ class FeeGuidesController < ApplicationController
       @topics_five = Topic.includes(:shop).order(created_at: :desc).limit(5)
       @topics_three = Topic.includes(:shop).order(created_at: :desc).limit(3)
       flash.now[:alert] = "入力内容に誤りがあります。"
-      render action: :new
+      render :new
     end
   end
 
@@ -53,10 +53,10 @@ class FeeGuidesController < ApplicationController
     @fee_guide = Form::FeeGuide.find(params[:id])
     @fee_guide.reset_params(fee_guide_update_params)
     @fee_guide.store_calculated_result
-    if @fee_guide.save
+    if @fee_guide.update_attributes(params[:fee_guide])
       redirect_to edit_fee_guide_url(@fee_guide)
     else
-      render :edit
+      redirect_to edit_fee_guide_url(@fee_guide)
     end
   end
 

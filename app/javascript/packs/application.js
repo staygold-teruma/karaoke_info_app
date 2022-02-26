@@ -6,11 +6,11 @@
 import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
-import 'change_URL_to_new.js';
 import 'channels';
 import 'chartkick/chart.js';
 import 'datepicker.js';
 import 'fee_table.js';
+import 'fee_list_change.js';
 import 'img.js';
 import 'jquery';
 import 'jquery-ui/ui/widgets/datepicker';

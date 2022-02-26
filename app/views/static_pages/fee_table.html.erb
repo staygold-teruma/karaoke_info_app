@@ -12,14 +12,16 @@
 <div id="margin_wrapper"></div>
 <% breadcrumb :fee_table %>
 <%= breadcrumbs separator: " &rsaquo; " %>
-<p class="mt-6 sm:mt-3 mb-1 text-center text-gray-500">店舗を選んでください</p>
-<div class="flex items-center">
-  <select name="example" class="mx-auto border border-gray-500 bg-white px-4 py-1 rounded-md" id="fee_table_select">
-    <option value="1">三宮生田ロード本店</option>
-    <option value="2">三宮駅前店</option>
-  </select>
-</div>
-<div class="px-1 md:px-5 pb-24 sm:pb-12">
-  <%= render partial: 'shop', collection: @shops %>
+<p class="mt-6 sm:mt-0 mb-1 text-center text-gray-500">店舗を選んでください</p>
+<%= form_tag fee_list_change_path, method: :get, remote: true do %>
+  <div class="flex justify-center">
+    <%= select_tag :id, options_from_collection_for_select(Shop.all, :id, :name ), id: "select-drop", class: "mx-auto sm:text-lg w-72 border border-gray-400 p-2 rounded-lg" %>
+  </div>
+  <div class="hidden">
+    <input type="submit" id="fee_change_btn" >
+  </div>
+<% end %>
+<div class="pb-24 sm:pb-16 flex justify-center" id="fee_list_display">
+  <%= render "fee_list", { shop: @shop, main_plans: @main_plans } %>
 </div>
 <%= render "layouts/side_menu_user" %>
