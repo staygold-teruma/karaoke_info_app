@@ -1,0 +1,113 @@
+<div class="sm:border-2 rounded-lg sm:shadow my-6" id="form_wrap">
+  <%= form_with model: @business_hour, local: true do |f| %>
+    <div class="w-full" id="form_time_wrapper">
+      <div class="sm:flex mx-auto">
+        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
+          <i class="fas fa-caret-square-right text-blue-600"></i>
+          <%= f.label "平日" %>
+        </div>
+        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+            <span class="text-lg mr-2">OPEN</span>
+            <%= f.time_select(:weekday_start, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+          <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
+            <span class="text-lg sm:mr-2">CLOSE</span>
+            <%= f.time_select(:weekday_end, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full" id="form_time_wrapper">
+      <div class="sm:flex mx-auto">
+        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
+          <i class="fas fa-caret-square-right text-blue-600"></i>
+          <%= f.label "金曜日" %>
+        </div>
+        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+            <span class="text-lg mr-2">OPEN</span>
+            <%= f.time_select(:fri_start, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+          <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
+            <span class="text-lg sm:mr-2">CLOSE</span>
+            <%= f.time_select(:fri_end, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full" id="form_time_wrapper">
+      <div class="sm:flex mx-auto">
+        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
+          <i class="fas fa-caret-square-right text-blue-600"></i>
+          <%= f.label "土曜日" %>
+        </div>
+        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+            <span class="text-lg mr-2">OPEN</span>
+            <%= f.time_select(:sat_start, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+          <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
+            <span class="text-lg sm:mr-2">CLOSE</span>
+            <%= f.time_select(:sat_end, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full" id="form_time_wrapper">
+      <div class="sm:flex mx-auto">
+        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
+          <i class="fas fa-caret-square-right text-blue-600"></i>
+          <%= f.label "日曜日" %>
+        </div>
+        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+            <span class="text-lg mr-2">OPEN</span>
+            <%= f.time_select(:sun_start, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+          <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
+            <span class="text-lg sm:mr-2">CLOSE</span>
+            <%= f.time_select(:sun_end, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full" id="form_time_wrapper">
+      <div class="sm:flex mx-auto">
+        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
+          <i class="fas fa-caret-square-right text-blue-600"></i>
+          <%= f.label "祝前日" %>
+        </div>
+        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+            <span class="text-lg mr-2">OPEN</span>
+            <%= f.time_select(:before_holiday_start, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+          <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
+            <span class="text-lg sm:mr-2">CLOSE</span>
+            <%= f.time_select(:before_holiday_end, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full" id="form_time_wrapper">
+      <div class="sm:flex mx-auto">
+        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
+          <i class="fas fa-caret-square-right text-blue-600"></i>
+          <%= f.label "祝日" %>
+        </div>
+        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+            <span class="text-lg mr-2">OPEN</span>
+            <%= f.time_select(:holiday_start, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+          <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
+            <span class="text-lg sm:mr-2">CLOSE</span>
+            <%= f.time_select(:holiday_end, {class:'select-date', id:"start-time", prompt:'--', time_separator: ':', minute_step: 30}, ignore_data: true, ) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "登録", class: "btn_form_create w-full" %>
+  <% end %>
+</div>

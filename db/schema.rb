@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_26_072724) do
+ActiveRecord::Schema.define(version: 2022_02_26_161105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2022_02_26_072724) do
     t.time "holiday_end", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id", "weekday_start", "weekday_end", "fri_start", "fri_end", "sat_start", "sat_end", "sun_start", "sun_end", "before_holiday_start", "before_holiday_end", "holiday_start", "holiday_end"], name: "business_hours_unique_index", unique: true
     t.index ["shop_id"], name: "index_business_hours_on_shop_id"
   end
 

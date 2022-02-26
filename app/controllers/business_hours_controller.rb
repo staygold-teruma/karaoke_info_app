@@ -1,4 +1,11 @@
 class BusinessHoursController < ApplicationController
+  before_action :set_business_hour, only: %i[show edit update destroy]
+  before_action :authenticate_shop!
+
+  def index
+    @business_hours = BusinessHour.includes(:shop).where(shop_id: current_shop.id)
+  end
+
   def new
     @business_hour = BusinessHour.new
   end

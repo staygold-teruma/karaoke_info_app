@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :fee_guides
   resources :main_plans
   resources :drink_plans
+  resources :business_hours
   resources :users, only: :show
   resources :shops do
     resource :favorite_shops, only: [:create, :destroy]
