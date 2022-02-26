@@ -25,8 +25,8 @@ Rails.application.routes.draw do
     resource :favorite_shops, only: [:create, :destroy]
   end
 
-
   get "static_pages/coupon"
   get "static_pages/alcohol_plan"
   get "static_pages/fee_table"
+  get "fee_list_change" => "static_pages#fee_list_change"
 end

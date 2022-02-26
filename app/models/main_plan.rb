@@ -38,8 +38,8 @@ class MainPlan < ApplicationRecord
                             find_by(shop_id: shop, fee_type: type, div_day: day, div_time: time, div_member: member)
                           }
 
-  def self.search_fee(shop, type, day, time, member, target)
-    applicable_fee = find_by(shop_id: shop, fee_type: type, div_day: day, div_time: time, div_member: member)
+  def self.search_fee(type, day, time, member, target)
+    applicable_fee = find_by(fee_type: type, div_day: day, div_time: time, div_member: member)
     if applicable_fee.nil?
       "-"
     else
