@@ -10,10 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_081507) do
+ActiveRecord::Schema.define(version: 2022_02_26_072724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "business_hours", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.time "weekday_start", null: false
+    t.time "weekday_end", null: false
+    t.time "fri_start", null: false
+    t.time "fri_end", null: false
+    t.time "sat_start", null: false
+    t.time "sat_end", null: false
+    t.time "sun_start", null: false
+    t.time "sun_end", null: false
+    t.time "before_holiday_start", null: false
+    t.time "before_holiday_end", null: false
+    t.time "holiday_start", null: false
+    t.time "holiday_end", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_business_hours_on_shop_id"
+  end
 
   create_table "drink_plans", force: :cascade do |t|
     t.integer "fee_type", default: 0, null: false
@@ -148,6 +167,7 @@ ActiveRecord::Schema.define(version: 2022_02_12_081507) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "business_hours", "shops"
   add_foreign_key "drink_plans", "shops"
   add_foreign_key "favorite_shops", "shops"
   add_foreign_key "favorite_shops", "users"
