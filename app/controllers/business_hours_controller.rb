@@ -1,6 +1,10 @@
 class BusinessHoursController < ApplicationController
-  before_action :set_business_hour, only: %i[show edit update]
+  before_action :set_business_hour, only: %i[edit update]
   before_action :authenticate_shop!
+
+  def index
+    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: current_shop.id)
+  end
 
   def new
     @business_hour = BusinessHour.new
@@ -9,7 +13,7 @@ class BusinessHoursController < ApplicationController
   def create
     @business_hour = current_shop.business_hours.new(business_hour_params)
     if @business_hour.save
-      redirect_to business_hour_path(@business_hour), notice: "登録しました"
+      redirect_to business_hours_path, notice: "登録しました"
     else
       flash.now[:alert] = "登録できませんでした"
       render :new
@@ -20,7 +24,7 @@ class BusinessHoursController < ApplicationController
 
   def update
     if @business_hour.update(business_hour_params)
-      redirect_to business_hour_path(@business_hour), notice: "更新しました"
+      redirect_to business_hours_path, notice: "更新しました"
     else
       flash.now[:alert] = "更新できませんでした"
       render :edit
