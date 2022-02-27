@@ -3,7 +3,7 @@ class BusinessHoursController < ApplicationController
   before_action :authenticate_shop!
 
   def index
-    @business_hours = BusinessHour.includes(:shop).where(shop_id: current_shop.id)
+    @business_hour = BusinessHour.includes(:shop).find(shop_id: current_shop.id)
   end
 
   def new
@@ -13,7 +13,7 @@ class BusinessHoursController < ApplicationController
   def create
     @business_hour = current_shop.business_hours.new(business_hour_params)
     if @business_hour.save
-      redirect_to business_hours_path, notice: "登録しました"
+      redirect_to business_hour_path(@business_hour), notice: "登録しました"
     else
       flash.now[:alert] = "登録できませんでした"
       render :new
