@@ -1,113 +1,105 @@
-<div class="sm:border-2 rounded-lg sm:shadow my-6" id="form_wrap">
+<div class="my-6" id="form_wrap">
   <%= form_with model: @business_hour, local: true do |f| %>
     <div class="w-full" id="form_time_wrapper">
       <div class="sm:flex mx-auto">
-        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
-          <i class="fas fa-caret-square-right text-blue-600"></i>
-          <%= f.label "平日" %>
+        <div class="w-full sm:w-1/3 lg:w-1/6 p-3 border bg-app_bg text-lg flex sm:justify-center items-center">
+          <i class="fas fa-caret-square-right text-blue-600 mr-2"></i>
+          <%= f.label "平　日" %>
         </div>
-        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
-          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+        <div class="w-full sm:w-5/6 lg:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-2 lg:mb-0 mx-auto" id="time_select_open">
             <span class="text-lg mr-2">OPEN</span>
             <%= f.time_select :weekday_start,{default:{hour: 10, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
           <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
-            <span class="text-lg sm:mr-2">CLOSE</span>
+            <span class="text-lg lg:mr-2">CLOSE</span>
             <%= f.time_select :weekday_end,{default:{hour: 6, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-full" id="form_time_wrapper">
       <div class="sm:flex mx-auto">
-        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
-          <i class="fas fa-caret-square-right text-blue-600"></i>
+        <div class="w-full sm:w-1/3 lg:w-1/6 p-3 border bg-app_bg text-lg flex sm:justify-center items-center">
+          <i class="fas fa-caret-square-right text-blue-600 mr-2"></i>
           <%= f.label "金曜日" %>
         </div>
-        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
-          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+        <div class="w-full sm:w-5/6 lg:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-2 lg:mb-0 mx-auto" id="time_select_open">
             <span class="text-lg mr-2">OPEN</span>
             <%= f.time_select :fri_start,{default:{hour: 10, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
           <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
-            <span class="text-lg sm:mr-2">CLOSE</span>
+            <span class="text-lg lg:mr-2">CLOSE</span>
             <%= f.time_select :fri_end,{default:{hour: 6, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-full" id="form_time_wrapper">
       <div class="sm:flex mx-auto">
-        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
-          <i class="fas fa-caret-square-right text-blue-600"></i>
+        <div class="w-full sm:w-1/3 lg:w-1/6 p-3 border bg-app_bg text-lg flex sm:justify-center items-center">
+          <i class="fas fa-caret-square-right text-blue-600 mr-2"></i>
           <%= f.label "土曜日" %>
         </div>
-        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
-          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+        <div class="w-full sm:w-5/6 lg:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-2 lg:mb-0 mx-auto" id="time_select_open">
             <span class="text-lg mr-2">OPEN</span>
             <%= f.time_select :sat_start,{default:{hour: 10, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
           <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
-            <span class="text-lg sm:mr-2">CLOSE</span>
+            <span class="text-lg lg:mr-2">CLOSE</span>
             <%= f.time_select :sat_end,{default:{hour: 6, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-full" id="form_time_wrapper">
       <div class="sm:flex mx-auto">
-        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
-          <i class="fas fa-caret-square-right text-blue-600"></i>
+        <div class="w-full sm:w-1/3 lg:w-1/6 p-3 border bg-app_bg text-lg flex sm:justify-center items-center">
+          <i class="fas fa-caret-square-right text-blue-600 mr-2"></i>
           <%= f.label "日曜日" %>
         </div>
-        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
-          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+        <div class="w-full sm:w-5/6 lg:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-2 lg:mb-0 mx-auto" id="time_select_open">
             <span class="text-lg mr-2">OPEN</span>
             <%= f.time_select :sun_start,{default:{hour: 10, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
           <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
-            <span class="text-lg sm:mr-2">CLOSE</span>
+            <span class="text-lg lg:mr-2">CLOSE</span>
             <%= f.time_select :sun_end,{default:{hour: 6, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-full" id="form_time_wrapper">
       <div class="sm:flex mx-auto">
-        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
-          <i class="fas fa-caret-square-right text-blue-600"></i>
+        <div class="w-full sm:w-1/3 lg:w-1/6 p-3 border bg-app_bg text-lg flex sm:justify-center items-center">
+          <i class="fas fa-caret-square-right text-blue-600 mr-2"></i>
           <%= f.label "祝前日" %>
         </div>
-        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
-          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+        <div class="w-full sm:w-5/6 lg:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-2 lg:mb-0 mx-auto" id="time_select_open">
             <span class="text-lg mr-2">OPEN</span>
             <%= f.time_select :before_holiday_start,{default:{hour: 10, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
           <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
-            <span class="text-lg sm:mr-2">CLOSE</span>
+            <span class="text-lg lg:mr-2">CLOSE</span>
             <%= f.time_select :before_holiday_end,{default:{hour: 6, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
         </div>
       </div>
-    </div>
-    <div class="w-full" id="form_time_wrapper">
       <div class="sm:flex mx-auto">
-        <div class="w-full sm:w-1/6 p-3 border bg-app_bg text-lg">
-          <i class="fas fa-caret-square-right text-blue-600"></i>
-          <%= f.label "祝日" %>
+        <div class="w-full sm:w-1/3 lg:w-1/6 p-3 border bg-app_bg text-lg flex sm:justify-center items-center">
+          <i class="fas fa-caret-square-right text-blue-600 mr-2"></i>
+          <%= f.label "祝　日" %>
         </div>
-        <div class="w-full sm:w-5/6 sm:flex p-3 border justify-evenly">
-          <div class="w-5/6 sm:w-full mb-4 sm:mb-0 mx-auto" id="time_select_open">
+        <div class="w-full sm:w-5/6 lg:flex p-3 border justify-evenly">
+          <div class="w-5/6 sm:w-full mb-4 sm:mb-2 lg:mb-0 mx-auto" id="time_select_open">
             <span class="text-lg mr-2">OPEN</span>
             <%= f.time_select :holiday_start,{default:{hour: 10, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
           <div class="w-5/6 sm:w-full mx-auto" id="time_select_close">
-            <span class="text-lg sm:mr-2">CLOSE</span>
+            <span class="text-lg lg:mr-2">CLOSE</span>
             <%= f.time_select :holiday_end,{default:{hour: 6, minute: 0}, minute_step: 60}, class: 'form-control form_date_select' %>
           </div>
         </div>
       </div>
     </div>
-    <%= f.submit "登録", class: "btn_form_create w-full" %>
+    <div class="w-60 mx-auto flex justify-center items-center mt-12">
+      <%= f.submit "登録", class: "btn_form_create w-full" %>
+    </div>
   <% end %>
 </div>
