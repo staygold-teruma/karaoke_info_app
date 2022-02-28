@@ -15,9 +15,9 @@ class MainPlansController < ApplicationController
   def create
     @main_plan = current_shop.main_plans.new(main_plan_params)
     if @main_plan.save
-      redirect_to main_plans_path, notice: "登録が完了しました"
+      redirect_to main_plans_path, notice: "ルーム料金を登録が完了しました"
     else
-      flash.now[:alert] = "登録できませんでした"
+      flash.now[:alert] = "ルーム料金を登録できませんでした"
       render :new
     end
   end
@@ -28,16 +28,16 @@ class MainPlansController < ApplicationController
 
   def update
     if @main_plan.update(main_plan_params)
-      redirect_to main_plans_path, notice: "更新しました"
+      redirect_to main_plans_path, notice: "ルーム料金を更新しました"
     else
-      flash.now[:alert] = "更新できませんでした"
+      flash.now[:alert] = "ルーム料金を更新できませんでした"
       render :edit
     end
   end
 
   def destroy
     @main_plan.destroy!
-    redirect_to main_plans_path, notice: "削除しました"
+    redirect_to main_plans_path, notice: "ルーム料金を削除しました"
   end
 
   private

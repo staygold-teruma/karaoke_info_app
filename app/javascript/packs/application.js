@@ -6,6 +6,7 @@
 import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
+import 'business_hour_change.js';
 import 'channels';
 import 'chartkick/chart.js';
 import 'datepicker.js';

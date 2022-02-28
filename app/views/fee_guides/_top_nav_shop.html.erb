@@ -1,9 +1,8 @@
-  
 <div class="flex sm:justify-center lg:justify-end items-center bg-top-image bg-cover bg-no-repeat bg-center" id="fee_guide_top">
   <div class="hidden sm:flex justify-between items-center w-full bg-app_bg" id="shop_nav">
     <div class="h-full flex items-center pl-4">
       <p class="hidden lg:flex text-app text-center mr-4">【店舗管理アカウント】</p>
-      <div class="flex items-center mr-2 lg:mr-3">
+      <div class="hidden lg:flex items-center mr-2 lg:mr-3">
         <%= link_to "店舗情報編集", edit_shop_registration_path, class: "nav_btn_edit text-xxs lg:text-xs px-2" %>
       </div>
       <div class="flex items-center¥">
@@ -45,10 +44,16 @@
             </li>
           </ul>
         </li>
-        <li class="text-xs dd_short_li hover:text-app mr-2 lg:mr-5">
+        <li class="text-xs dd_short_li hover:text-app">
           <%= link_to(fee_guides_path, id: "dd_li_last") do %>
             <i class="fas fa-list-alt text-app mr-1 ml-1"></i>
             利用分析
+          <% end %>
+        </li>
+        <li class="text-xs dd_short_li hover:text-app mr-2 lg:mr-5">
+          <%= link_to(business_hours_path, id: "dd_li_last") do %>
+            <i class="fa-solid fa-clock text-app mr-1 ml-1"></i>
+            営業時間
           <% end %>
         </li>
       </ul>
@@ -63,6 +68,9 @@
         </div>
       </div>
     <% end %>
+  </div>
+  <div class="hidden">
+    <%= render "layouts/flash" %>
   </div>
   <div>
     <button id="modal_btn" class="focus:outline-none hidden sm:block p-2 bg-black bg-opacity-70 hover:bg-app rounded-full ring-8 ring-app" type="button">

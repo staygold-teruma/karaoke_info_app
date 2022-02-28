@@ -28,6 +28,8 @@ class FeeGuidesController < ApplicationController
     @shop = current_shop
     @topics_five = Topic.includes(:shop).order(created_at: :desc).limit(5)
     @topics_three = Topic.includes(:shop).order(created_at: :desc).limit(3)
+    @selected_shop = Shop.first
+    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: @selected_shop.id)
   end
 
   def create
@@ -47,6 +49,8 @@ class FeeGuidesController < ApplicationController
 
   def edit
     @fee_guide = Form::FeeGuide.find(params[:id])
+    @selected_shop = @fee_guide.shop
+    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: @selected_shop.id)
   end
 
   def update
