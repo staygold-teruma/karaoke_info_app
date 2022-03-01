@@ -1,10 +1,8 @@
 class BusinessHoursController < ApplicationController
-  before_action :set_business_hour, only: %i[edit update]
+  before_action :set_business_hour, only: %i[index edit update]
   before_action :authenticate_shop!, except: :business_hour_change
 
-  def index
-    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: current_shop.id)
-  end
+  def index; end
 
   def new
     @business_hour = BusinessHour.new
@@ -32,8 +30,8 @@ class BusinessHoursController < ApplicationController
   end
 
   def business_hour_change
-    @selected_shop = Shop.find(params[:id])
-    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: @selected_shop.id)
+    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: params[:id])
+    @time_table = @business_hour.search_time_table(params[:wday])
   end
 
   private

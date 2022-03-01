@@ -15,21 +15,25 @@ class BusinessHour < ApplicationRecord
     validates :holiday_end
   end
 
-  def set_time_table
-    self.weekday_time_table = search_time_table(weekday_start)
-    self.fri_time_table = search_time_table(fri_start)
-    self.sat_time_table = search_time_table(sat_start)
-    self.sun_time_table = search_time_table(sun_start)
-    self.before_holiday_time_table = search_time_table(before_holiday_start)
-    self.holiday_time_table = search_time_table(holiday_start)
-  end
+  DEFAULT_OPEN_TIME = 8
+  TIME_TABLE = [["8", 8], ["9", 9], ["10", 10], ["11", 11], ["12", 12], ["13", 13], ["14", 14], ["15", 15], ["16", 16], ["17", 17], ["18", 18], ["19", 19], ["20", 20],
+                ["21", 21], ["22", 22], ["23", 23], ["00", 24], ["01", 25], ["02", 26], ["03", 27]]
 
   def search_time_table(wday)
-    count = wday.hour - STARTTIME
+    start_time = if wday == 0
+                   sun_start.hour
+                 elsif wday == 5
+                   fri_start.hour
+                 elsif wday == 6
+                   sat_start.hour
+                 else
+                   weekday_start.hour
+                 end
+    count = start_time - (DEFAULT_OPEN_TIME - 1)
     if count > 0
-      TIMETABLE.shift(count)
+      TIME_TABLE.slice(count..20)
     else
-      TIMETABLE
+      TIME_TABLE
     end
   end
 end
