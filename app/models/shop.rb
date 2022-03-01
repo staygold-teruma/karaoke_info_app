@@ -4,7 +4,7 @@ class Shop < ApplicationRecord
   has_many :topics, dependent: :destroy
   has_many :fee_guides, dependent: :destroy
   has_many :favorite_shops, dependent: :destroy
-  has_many :business_hours, dependent: :destroy
+  has_one :business_hour, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

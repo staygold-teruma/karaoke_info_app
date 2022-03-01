@@ -14,4 +14,22 @@ class BusinessHour < ApplicationRecord
     validates :holiday_start
     validates :holiday_end
   end
+
+  def set_time_table
+    self.weekday_time_table = search_time_table(weekday_start)
+    self.fri_time_table = search_time_table(fri_start)
+    self.sat_time_table = search_time_table(sat_start)
+    self.sun_time_table = search_time_table(sun_start)
+    self.before_holiday_time_table = search_time_table(before_holiday_start)
+    self.holiday_time_table = search_time_table(holiday_start)
+  end
+
+  def search_time_table(wday)
+    count = wday.hour - STARTTIME
+    if count > 0
+      TIMETABLE.shift(count)
+    else
+      TIMETABLE
+    end
+  end
 end

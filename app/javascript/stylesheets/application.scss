@@ -15,7 +15,7 @@
 }
 
 .btn_fee_guide {
-  @apply bg-white w-full border-app hover:bg-app text-app hover:text-white border-2 mt-8 mb-8 px-2 py-2 rounded-lg text-lg sm:text-xl font-black shadow-2xl transition duration-300 ease-in cursor-pointer;
+  @apply bg-white w-full border-app hover:bg-app text-app hover:text-white border-2 mt-4 mb-4 px-2 py-2 rounded-full text-lg sm:text-xl font-black shadow-2xl transition duration-300 ease-in cursor-pointer;
 }
 
 .btn_form_create {

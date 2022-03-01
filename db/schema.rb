@@ -17,18 +17,18 @@ ActiveRecord::Schema.define(version: 2022_02_26_161105) do
 
   create_table "business_hours", force: :cascade do |t|
     t.bigint "shop_id", null: false
-    t.time "weekday_start", null: false
-    t.time "weekday_end", null: false
-    t.time "fri_start", null: false
-    t.time "fri_end", null: false
-    t.time "sat_start", null: false
-    t.time "sat_end", null: false
-    t.time "sun_start", null: false
-    t.time "sun_end", null: false
-    t.time "before_holiday_start", null: false
-    t.time "before_holiday_end", null: false
-    t.time "holiday_start", null: false
-    t.time "holiday_end", null: false
+    t.time "weekday_start", default: "2000-01-01 01:00:00", null: false
+    t.time "weekday_end", default: "2000-01-01 20:00:00", null: false
+    t.time "fri_start", default: "2000-01-01 01:00:00", null: false
+    t.time "fri_end", default: "2000-01-01 20:00:00", null: false
+    t.time "sat_start", default: "2000-01-01 01:00:00", null: false
+    t.time "sat_end", default: "2000-01-01 20:00:00", null: false
+    t.time "sun_start", default: "2000-01-01 01:00:00", null: false
+    t.time "sun_end", default: "2000-01-01 20:00:00", null: false
+    t.time "before_holiday_start", default: "2000-01-01 01:00:00", null: false
+    t.time "before_holiday_end", default: "2000-01-01 20:00:00", null: false
+    t.time "holiday_start", default: "2000-01-01 01:00:00", null: false
+    t.time "holiday_end", default: "2000-01-01 20:00:00", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id", "weekday_start", "weekday_end", "fri_start", "fri_end", "sat_start", "sat_end", "sun_start", "sun_end", "before_holiday_start", "before_holiday_end", "holiday_start", "holiday_end"], name: "business_hours_unique_index", unique: true

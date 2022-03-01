@@ -11,7 +11,7 @@ class BusinessHoursController < ApplicationController
   end
 
   def create
-    @business_hour = current_shop.business_hours.new(business_hour_params)
+    @business_hour = current_shop.build_business_hour(business_hour_params)
     if @business_hour.save
       redirect_to business_hours_path, notice: "営業時間を登録しました"
     else
@@ -39,7 +39,7 @@ class BusinessHoursController < ApplicationController
   private
 
   def set_business_hour
-    @business_hour = current_shop.business_hours.find(params[:id])
+    @business_hour = current_shop.business_hour
   end
 
   def business_hour_params

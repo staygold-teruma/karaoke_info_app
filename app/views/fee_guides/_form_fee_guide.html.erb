@@ -121,7 +121,8 @@
 <% end %>
 <div class="hidden">
   <%= form_tag business_hour_change_path, method: :get, remote: true do %>
-    <%= select_tag :id, options_from_collection_for_select(Shop.all, :id, :name ), id: "select-shop-business_hour", class: "" %>
+    <input type="hidden" name="id" id="select-shop-business_hour">
+    <input type="hidden" name="wday" id="select-wday">
     <input type="submit" id="business_hour_change_btn" >
   <% end %>
 </div>

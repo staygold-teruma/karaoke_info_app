@@ -5,16 +5,9 @@ document.addEventListener('turbolinks:load', function () {
       let date_value = $('#datepicker').val();
       let selected_date = new Date(date_value);
       let selected_wday = selected_date.getDay();
-      if (selected_num == '2') {
-        if (selected_wday == 0 || selected_wday == 6) {
-          $('#form_fee_guide_start_time_hour').prepend($('<option>').html('10').val('10'));
-          $('#form_fee_guide_start_time_hour option[value=10]').prop('selected', true);
-        } else {
-          $('#form_fee_guide_start_time_hour option[value=10]').remove();
-        }
-      } else {
-        $('#form_fee_guide_start_time_hour option[value=10]').remove();
-      }
+      $('#select-shop-business_hour').val(selected_num);
+      $('#select-wday').val(selected_wday);
+      $('#business_hour_change_btn').click();
     });
   });
 });
