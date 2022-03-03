@@ -1,0 +1,133 @@
+<div class="px-2 sm:px-4 mt-8">
+  <div class="py-6 px-4 lg:px-6 lg:py-12 border-2 shadow-lg lg:col-span-2">
+    <h3 class="text-center mb-6 lg:mb-12 text-lg"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>利用数の推移</h3>
+    <%= line_chart fee_guides.group_by_day(:created_at).count %>
+  </div>
+  <div class="py-6 lg:px-6 lg:py-12 mt-8 border-2 shadow-lg">
+    <h3 class="text-center mb-6 lg:mb-12 text-lg"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>会員データ</h3>
+    <div class="lg:grid lg:grid-cols-3 gap-3">
+      <%= pie_chart member_ratio_data, colors: ["#ff5500", "#10b981", "#3b82f6" ] %>
+      <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl lg:col-span-2 mt-6 lg:mt-0" id="table_index">
+        <thead>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head w-1/5 bg-white"></th>
+            <th class="guide_head text-sm sm:text-base w-1/5 py-6 sm:py-3 bg-white">総数</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-red-100">会員</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-green-100">新規<br class="sm:hidden">
+              入会</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-blue-100">未入会</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+              利用<br class="sm:hidden">
+              (当日)</th>
+            <th class="guide_head w-1/5 bg-white">
+              <%= fee_guides.today_data.count %>
+            </th>
+            <th class="guide_head w-1/5 bg-red-100">
+              <%= fee_guides.today_data.customer_breakdown(1) %>
+            </th>
+            <th class="guide_head w-1/5 bg-green-100">
+              <%= fee_guides.today_data.customer_breakdown(2) %>
+            </th>
+            <th class="guide_head w-1/5 bg-blue-100">
+              <%= fee_guides.today_data.customer_breakdown(0) %>
+            </th>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+              利用<br class="sm:hidden">
+              (月間)
+            </th>
+            <td class="guide_head w-1/5 bg-white">
+              <%= fee_guides.month_data.count %>
+            </td>
+            <td class="guide_head w-1/5 bg-red-100">
+              <%= fee_guides.month_data.customer_breakdown(1) %>
+            </td>
+            <td class="guide_head w-1/5 bg-green-100">
+              <%= fee_guides.month_data.customer_breakdown(2) %>
+            </td>
+            <td class="guide_head w-1/5 bg-blue-100">
+              <%= fee_guides.month_data.customer_breakdown(0) %>
+            </td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white" rowspan="2">月間</th>
+            <td class="guide_head w-2/5 bg-white" colspan="2">リピート率</td>
+            <td class="guide_head w-2/5 bg-white" colspan="2">
+              <%= ratio(fee_guides.month_data.customer_breakdown(1), fee_guides.month_data.count) %>％
+            </td>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">新規獲得率</td>
+            <td class="guide_head w-2/5 bg-white text-red-500" colspan="2">
+              <%= ratio(fee_guides.month_data.customer_breakdown(0), not_member_month) %>％
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="py-6 lg:px-6 lg:py-12 mt-8 border-2 lg:col-span-2 shadow-lg">
+    <h3 class="text-center mb-6 lg:mb-12 text-lg"><i class="fas fa-chevron-circle-right text-app mr-1" id="news_i"></i>顧客層データ</h3>
+    <div class="lg:grid lg:grid-cols-3 gap-3">
+      <%= pie_chart customer_base_data, colors: ["#10b981", "#3b82f6", "#b45309", "#ef4444" ] %>
+      <table class="border-collapse table-fixed w-11/12 whitespace-no-wrap bg-white mx-auto max-w-3xl lg:col-span-2 mt-6" id="table_index">
+        <thead>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head w-1/5 bg-white"></th>
+            <th class="guide_head text-sm sm:text-base w-1/5 py-6 sm:py-3 bg-white hidden sm:table-cell">総数</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-green-500">一般</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-blue-500">学生</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-yellow-700">シニア</th>
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white text-red-500">小学生</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+              利用数</th>
+            <th class="guide_head bg-white w-1/5 hidden sm:table-cell">
+              <%= fee_guides.sum(:number_of_customers) %>
+            </th>
+            <th class="guide_head w-1/5 bg-white text-green-500">
+              <%= fee_guides.sum(:number_of_adults) %>
+            </th>
+            <th class="guide_head w-1/5 bg-white text-blue-500">
+              <%= fee_guides.sum(:number_of_students) %>
+            </th>
+            <th class="guide_head w-1/5 bg-white text-yellow-700">
+              <%= fee_guides.sum(:number_of_seniors) %>
+            </th>
+            <th class="guide_head w-1/5 bg-white text-red-500">
+              <%= fee_guides.sum(:number_of_children) %>
+            </th>
+          </tr>
+          <tr class="border-b border-gray-200 hover:bg-gray-100">
+            <th class="guide_head text-sm sm:text-base w-1/5 bg-white">
+              利用率
+            </th>
+            <td class="guide_head w-1/5 bg-white hidden sm:table-cell">
+              100％
+            </td>
+            <td class="guide_head w-1/5 bg-white text-green-500">
+              <%= ratio(fee_guides.sum(:number_of_adults), fee_guides.sum(:number_of_customers)) %>％
+            </td>
+            <td class="guide_head w-1/5 bg-white text-blue-500">
+              <%= ratio(fee_guides.sum(:number_of_students), fee_guides.sum(:number_of_customers)) %>％
+            </td>
+            <td class="guide_head w-1/5 bg-white text-yellow-700">
+              <%= ratio(fee_guides.sum(:number_of_seniors), fee_guides.sum(:number_of_customers)) %>％
+            </td>
+            <td class="guide_head w-1/5 bg-white text-red-500">
+              <%= ratio(fee_guides.sum(:number_of_children), fee_guides.sum(:number_of_customers)) %>％
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

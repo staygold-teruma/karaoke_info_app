@@ -1,12 +1,14 @@
-<tr class="border-b border-gray-200 hover:bg-gray-100">
-  <td class="index_table_body hidden lg:table-cell"><%= drink_plan_counter + 1 %></td>
-  <td class="border border-gray-400 px-1 py-1 text-center text-blue-600 text-xs xl:text-sm"><%= link_to drink_plan.fee_type_i18n, drink_plan %></td>
-  <td class="index_table_body"><%= drink_plan.div_time_i18n %></td>
-  <td class="index_table_body"><%= drink_plan.base_time_i18n %></td>
-  <td class="index_table_body hidden lg:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
-  <td class="index_table_body hidden lg:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
-  <td class="index_table_body hidden lg:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
-  <td class="index_table_body hidden lg:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
-  <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
-  <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
-</tr>
+<tbody>
+  <tr class="border-b border-gray-200 hover:bg-gray-100">
+    <td class="index_table_body hidden lg:table-cell"><%= drink_plan_counter + 1 %></td>
+    <td class="border border-gray-400 px-1 py-1 text-center text-blue-600 text-xs xl:text-sm"><%= link_to drink_plan.fee_type_i18n, drink_plan %></td>
+    <td class="index_table_body"><%= drink_plan.div_time_i18n %></td>
+    <td class="index_table_body"><%= drink_plan.base_time_i18n %></td>
+    <td class="index_table_body hidden lg:table-cell"><%= drink_plan.adult_fee.to_s(:delimited, delimiter: ',') %>円</td>
+    <td class="index_table_body hidden lg:table-cell"><%= drink_plan.student_fee.to_s(:delimited, delimiter: ',') %>円</td>
+    <td class="index_table_body hidden lg:table-cell"><%= drink_plan.senior_fee.to_s(:delimited, delimiter: ',') %>円</td>
+    <td class="index_table_body hidden lg:table-cell"><%= drink_plan.child_fee.to_s(:delimited, delimiter: ',') %>円</td>
+    <td class="index_table_body sm:text-sm text-green-600"><%= link_to "編集", edit_drink_plan_path(drink_plan) %></td>
+    <td class="index_table_body sm:text-sm text-red-600"><%= link_to "削除", drink_plan, method: :delete, data: { confirm: "このプランを削除しますか?" } %></td>
+  </tr>
+</tbody>

@@ -1,15 +1,14 @@
 <% content_for :title do %>
-    管理画面：料金案内履歴詳細
+  管理画面：料金案内履歴詳細
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full">
     <%= render "layouts/header_shop" %>
-  </div>   
+  </div>
 <% end %>
 <% content_for :footer do %>
   <%= render "layouts/footer_shop" %>
 <% end %>
-
 <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
   <%= render "layouts/side_menu_shop" %>
 </div>
@@ -29,17 +28,6 @@
             <td class="pl-5">
               <%= @fee_guide.start_time.strftime("%Y年%m月%d日(#{%w(日 月 火 水 木 金 土)[@fee_guide.start_time.wday]})%H時%M分") %>
             </td>
-          </tr>
-        </tbody>
-        <tbody id="total_result">
-          <tr class="border-b">
-            <td class="pr-3 py-1">
-              <i class="far fa-check-circle mr-1 text-app"></i>適用料金
-            </td>
-            <td class="">
-              <i class="fas fa-angle-double-right mr-2 sm:mr-0"></i>
-            </td>
-            <td class="pl-5"></td>
           </tr>
         </tbody>
         <tbody id="total_result">
@@ -121,16 +109,20 @@
             <th class="fee_guide_table_head bg-yellow-400">
               税&emsp;込</th>
             <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
-              ルーム<br class="sm:hidden">料金
+              ルーム<br class="sm:hidden">
+              料金
             </th>
             <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
-              ドリンク<br class="sm:hidden">料金       
+              ドリンク<br class="sm:hidden">
+              料金       
             </th>
             <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
-              1名様<br class="sm:hidden">あたり 
+              1名様<br class="sm:hidden">
+              あたり 
             </th>
             <th class="fee_guide_table_head bg-yellow-600 bg-opacity-20">
-              ご利用<br class="sm:hidden">人数
+              ご利用<br class="sm:hidden">
+              人数
             </th>
             <th class="fee_guide_table_head hidden md:table-cell bg-yellow-600 bg-opacity-20">合計</th>
           </tr>
@@ -185,7 +177,7 @@
               <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.senior_total_fee.to_s(:delimited, delimiter: ',') %>円</td>
               <td class="fee_guide_table_body text-yellow-100"><%= @fee_guide.number_of_seniors %>名</td>
               <td class="fee_guide_table_body hidden md:table-cell text-yellow-100"><%= @fee_guide.senior_fee_all.to_s(:delimited, delimiter: ',') %>円</td>
-            <% end %>        
+            <% end %>
           </tr>
           <tr class="border-b border-app hover:bg-yellow-600 hover:bg-opacity-10">
             <% if @fee_guide.number_of_children > 0 %>
