@@ -14,9 +14,9 @@ class DrinkPlansController < ApplicationController
   def create
     @drink_plan = current_shop.drink_plans.new(drink_plan_params)
     if @drink_plan.save
-      redirect_to drink_plans_path, notice: "登録しました"
+      redirect_to drink_plans_path, notice: "ドリンク料金を登録しました"
     else
-      flash.now[:alert] = "登録できませんでした"
+      flash.now[:alert] = "ドリンク料金を登録できませんでした"
       render :new
     end
   end
@@ -27,16 +27,16 @@ class DrinkPlansController < ApplicationController
 
   def update
     if @drink_plan.update(drink_plan_params)
-      redirect_to drink_plans_path, notice: "更新しました"
+      redirect_to drink_plans_path, notice: "ドリンク料金を更新しました"
     else
-      flash.now[:alert] = "更新できませんでした"
+      flash.now[:alert] = "ドリンク料金を更新できませんでした"
       render :edit
     end
   end
 
   def destroy
     @drink_plan.destroy!
-    redirect_to drink_plans_path, notice: "削除しました"
+    redirect_to drink_plans_path, notice: "ドリンク料金を削除しました"
   end
 
   private

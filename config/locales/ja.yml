@@ -6,6 +6,7 @@ ja:
       fee_guide: 料金案内
       user: ユーザー
       favorite_shop: お気に入り店舗
+      business_hour: 営業時間
     attributes:
       main_plan:
         fee_type: 料金名
@@ -47,6 +48,19 @@ ja:
       favorite_shop:
         user: ユーザー
         shop: 店舗
+      business_hour:
+        weekday_start: 平日/開店時刻
+        weekday_end: 平日/閉店時刻
+        fri_start: 金曜日/開店時刻
+        fri_end: 金曜日/閉店時刻
+        sat_start: 土曜日/開店時刻
+        sat_end: 土曜日/閉店時刻
+        sun_start: 日曜日/開店時刻
+        sun_end: 日曜日/閉店時刻
+        before_holiday_start: 祝前日/開店時刻
+        before_holiday_end: 祝前日/閉店時刻
+        holiday_start: 祝日/開店時刻
+        holiday_end: 祝日/閉店時刻
   views:
     pagination:
       first: '&laquo; 最初'

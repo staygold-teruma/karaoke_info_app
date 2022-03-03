@@ -6,6 +6,7 @@
 import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
+import 'business_hour_change.js';
 import 'channels';
 import 'chartkick/chart.js';
 import 'datepicker.js';
@@ -20,12 +21,13 @@ import 'navbar.js';
 import 'pagetop.js';
 import 'postcode.js';
 import 'select_date.js';
-import 'select_shop.js';
 import 'select_time.js';
 import 'sidemenu.js';
 import 'stylesheets/application';
 import 'tabmenu.js';
 import 'topslider.js';
+
+window.$ = jQuery;
 
 Rails.start();
 Turbolinks.start();

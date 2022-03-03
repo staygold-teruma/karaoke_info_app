@@ -10,9 +10,11 @@ class Shops::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    resource.build_business_hour
+    resource.save
+  end
 
   # GET /resource/edit
   # def edit

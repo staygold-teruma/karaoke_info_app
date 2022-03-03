@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', function () {
   $(function () {
-    $('#datepicker').on('change', function () {
-      let selected_num = $('#form_fee_guide_shop_id').val();
+    $('#form_fee_guide_shop_id').on('change', function () {
+      let selected_num = $(this).val();
       let date_value = $('#datepicker').val();
       let selected_date = new Date(date_value);
       let selected_wday = selected_date.getDay();

@@ -1,0 +1,8 @@
+<p class="ml-4 mb-1 sm:text-lg">【営業時間のご案内】</p>
+<p class="ml-7 text-sm text-app"><%= selected_shop.name %></p>
+<p class="text-xs sm:text-base ml-7"><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i><%= business_hour.weekday_start.strftime("%H:%M") %>〜<%= next_day_format(business_hour.weekday_end) %></p>
+<p class="text-xs sm:text-base ml-7"><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i><%= business_hour.fri_start.strftime("%H:%M") %>〜<%= next_day_format(business_hour.fri_end) %></p>
+<p class="text-xs sm:text-base ml-7"><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i><%= business_hour.sat_start.strftime("%H:%M") %>〜<%= next_day_format(business_hour.sat_end) %></p>
+<p class="text-xs sm:text-base ml-7"><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜日<i class="fas fa-angle-double-right text-center mx-2"></i><%= business_hour.sun_start.strftime("%H:%M") %>〜<%= next_day_format(business_hour.sun_end) %></p>
+<p class="text-xs sm:text-base ml-7"><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i><%= business_hour.before_holiday_start.strftime("%H:%M") %>〜<%= next_day_format(business_hour.before_holiday_end) %></p>
+<p class="text-xs sm:text-base ml-7"><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i><%= business_hour.holiday_start.strftime("%H:%M") %>〜<%= next_day_format(business_hour.holiday_end) %></p>

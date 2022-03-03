@@ -10,20 +10,8 @@
     <div class="px-2 sm:ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select_shop">
       <%= f.collection_select :shop_id, Shop.all.order(:id), :id, :name, {selected: 1} %>
     </div>
-    <p class="ml-2 mb-1 sm:text-lg">【営業時間のご案内】</p>
-    <div class="business_hour_box px-2 ml-2 mb-3" id="business_hours_ikuta">
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌6:00</p>
-    </div>
-    <div class="business_hour_box hidden px-2 ml-2 mb-3" id="business_hours_ekimae">
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>平&emsp;日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>金曜日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>土曜日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>祝前日<i class="fas fa-angle-double-right text-center mx-2"></i>11:00〜翌5:00</p>
-      <p class="text-xs sm:text-base"><i class="fas fa-chevron-circle-right text-app mr-1"></i>日曜・祝祭日<i class="fas fa-angle-double-right text-center mx-2"></i>10:00〜翌5:00</p>
+    <div class="" id="business_hour_display">
+      <%= render "business_hour", { business_hour: @business_hour, selected_shop: @selected_shop } %>
     </div>
   </div>
   <div class="sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
@@ -89,12 +77,13 @@
       </div>
       <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
         <%= f.label :シニア, class: "font-black mr-3"  %>
-        <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択し����く���さい ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
+        <%= f.select :number_of_seniors, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
       </div>
       <div class="mb-4 sm:mr-3 pl-3 sm:pl-5" id="fee_guide_input">
         <%= f.label :小学生, class: "font-black mr-3"  %>
         <%= f.select :number_of_children, [["0", 0],["1", 1], ["2", 2], ["3", 3],["4", 4],["5", 5],["6", 6],["7", 7],["8", 8],["9", 9],["10", 10],["11", 11],["12", 12],["13", 13],["14", 14],["15", 15],["16", 16],["17", 17],["18", 18],["19", 19],["20", 20]], { include_blank: "選択してください ▼" }, {class: "mx-2 bg-white", id: "num_customers", required: true} %><span class="">名</span>
       </div>
+      <p class="mt-4 px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>小学生未満は無料でご利用いただけます</p>
     </div>
   </div>
   <div class="sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 pt-2 p-4 sm:p-6">
@@ -131,3 +120,10 @@
     <%= f.submit "結果を表示する", class: "btn_fee_guide" %>
   </div>
 <% end %>
+<div class="hidden">
+  <%= form_tag business_hour_change_path, method: :get, remote: true do %>
+    <%= select_tag :id, options_from_collection_for_select(Shop.all, :id, :name ), id: "select-shop-business_hour", class: "" %>
+    <input type="hidden" name="wday" id="select-wday">
+    <input type="submit" id="business_hour_change_btn" >
+  <% end %>
+</div>

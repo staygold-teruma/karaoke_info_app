@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_081507) do
+ActiveRecord::Schema.define(version: 2022_02_26_161105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "business_hours", force: :cascade do |t|
+    t.bigint "shop_id", null: false
+    t.time "weekday_start", default: "2000-01-01 01:00:00", null: false
+    t.time "weekday_end", default: "2000-01-01 20:00:00", null: false
+    t.time "fri_start", default: "2000-01-01 01:00:00", null: false
+    t.time "fri_end", default: "2000-01-01 20:00:00", null: false
+    t.time "sat_start", default: "2000-01-01 01:00:00", null: false
+    t.time "sat_end", default: "2000-01-01 20:00:00", null: false
+    t.time "sun_start", default: "2000-01-01 01:00:00", null: false
+    t.time "sun_end", default: "2000-01-01 20:00:00", null: false
+    t.time "before_holiday_start", default: "2000-01-01 01:00:00", null: false
+    t.time "before_holiday_end", default: "2000-01-01 20:00:00", null: false
+    t.time "holiday_start", default: "2000-01-01 01:00:00", null: false
+    t.time "holiday_end", default: "2000-01-01 20:00:00", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id", "weekday_start", "weekday_end", "fri_start", "fri_end", "sat_start", "sat_end", "sun_start", "sun_end", "before_holiday_start", "before_holiday_end", "holiday_start", "holiday_end"], name: "business_hours_unique_index", unique: true
+    t.index ["shop_id"], name: "index_business_hours_on_shop_id"
+  end
 
   create_table "drink_plans", force: :cascade do |t|
     t.integer "fee_type", default: 0, null: false
@@ -148,6 +168,7 @@ ActiveRecord::Schema.define(version: 2022_02_12_081507) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "business_hours", "shops"
   add_foreign_key "drink_plans", "shops"
   add_foreign_key "favorite_shops", "shops"
   add_foreign_key "favorite_shops", "users"

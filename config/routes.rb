@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :fee_guides
   resources :main_plans
   resources :drink_plans
+  resources :business_hours
   resources :users, only: :show
   resources :shops do
     resource :favorite_shops, only: [:create, :destroy]
@@ -29,4 +30,5 @@ Rails.application.routes.draw do
   get "static_pages/alcohol_plan"
   get "static_pages/fee_table"
   get "fee_list_change" => "static_pages#fee_list_change"
+  get "business_hour_change" => "business_hours#business_hour_change"
 end

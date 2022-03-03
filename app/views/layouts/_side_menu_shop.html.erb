@@ -18,7 +18,7 @@
         <%= link_to(edit_shop_registration_path) do %>
           <i class="fas fa-user-edit text-app mr-1 ml-1 hidden md:block"></i>
           店舗情報編集
-        <% end %>      
+        <% end %>
       </li>
     </ul>
   </li>
@@ -33,7 +33,7 @@
       <li class="side_li_menu w-1/2 md:w-full text-center md:text-left md:pt-2 md:pb-2 rounded-r-lg">
         <%= link_to(new_main_plan_path) do %>
           <i class="fas fa-folder-plus text-app mr-1 ml-1 hidden md:block"></i>ルーム料金登録
-        <% end %>      
+        <% end %>
       </li>
     </ul>
   </li>
@@ -43,12 +43,12 @@
       <li class="side_li_menu w-1/2 md:w-full md:pt-4 md:pb-2 border-r-0 rounded-l-lg">
         <%= link_to(drink_plans_path) do %>
           <i class="fas fa-list-alt text-app mr-1 ml-1 hidden md:block"></i>ドリンク料金一覧
-        <% end %>      
+        <% end %>
       </li>
       <li class="side_li_menu w-1/2 md:w-full text-center md:text-left md:pt-2 md:pb-2 rounded-r-lg">
         <%= link_to(new_drink_plan_path) do %>
           <i class="fas fa-folder-plus text-app mr-1 ml-1 hidden md:block"></i>ドリンク料金登録
-        <% end %>      
+        <% end %>
       </li>
     </ul>
   </li>
@@ -67,15 +67,58 @@
       </li>
     </ul>
   </li>
-  <li class="side_li_title sm:mx-8 md:mx-3 md:py-5 md:pl-5 sm:mb-3 md:mb-0 md:hover:text-app">
-    <%= link_to(fee_guides_path) do %>
-      <i class="fas fa-chart-pie text-app mr-2"></i>利用分析
-    <% end %>  
+  <li class="side_li_title sm:mx-8 md:mx-3 md:py-5 md:pl-5 sm:mb-3 md:mb-0 md:hover:text-app md:hidden">
+    <div class="flex">
+      <div class="w-1/2 text-white">
+        <%= link_to(fee_guides_path) do %>
+          <i class="fas fa-chart-pie text-app mr-2"></i>利用分析
+        <% end %>
+        <ul class="sm:mt-2 md:mt-0 md:pl-2">
+          <li class="side_li_menu w-full md:pt-4 md:pb-2 md:hidden rounded-l-lg">
+            <%= link_to(fee_guides_path) do %>
+              <i class="fas fa-chart-pie text-app mr-1 ml-1 hidden md:block"></i>利用分析
+            <% end %>
+          </li>
+        </ul>
+      </div>
+      <div class="w-1/2 text-white">
+        <%= link_to(business_hours_path) do %>
+          <i class="fa-solid fa-clock text-app mr-2"></i>営業時間
+        <% end %>
+        <ul class="sm:mt-2 md:mt-0 md:pl-2">
+          <li class="side_li_menu w-full md:pt-4 md:pb-2 md:hidden rounded-r-lg">
+            <%= link_to(business_hours_path) do %>
+              <i class="fa-solid fa-clock text-app mr-1 ml-1 hidden md:block"></i>営業時間
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+  <li class="side_li_title sm:mx-8 md:mx-3 md:py-5 md:pl-5 sm:mb-3 md:mb-0 md:hover:text-app hidden md:block">
+    <div>
+      <%= link_to(fee_guides_path) do %>
+        <i class="fas fa-chart-pie text-app mr-2"></i>利用分析
+      <% end %>
+      <ul class="sm:mt-2 md:mt-0 md:pl-2">
+        <li class="side_li_menu w-1/2 md:w-full md:pt-4 md:pb-2 md:hidden rounded-lg">
+          <%= link_to(fee_guides_path) do %>
+            <i class="fas fa-chart-pie text-app mr-1 ml-1 hidden md:block"></i>利用分析
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </li>
+  <li class="side_li_title sm:mx-8 md:mx-3 md:py-5 md:pl-5 sm:mb-3 md:mb-0 md:hover:text-app hidden md:block">
+    <%= link_to(business_hours_path) do %>
+      <i class="fa-solid fa-clock text-app mr-2"></i>営業時間
+    <% end %>
     <ul class="sm:mt-2 md:mt-0 md:pl-2">
       <li class="side_li_menu w-1/2 md:w-full md:pt-4 md:pb-2 md:hidden rounded-lg">
-        <%= link_to(fee_guides_path) do %>
-          <i class="fas fa-chart-pie text-app mr-1 ml-1 hidden md:block"></i>利用分析
-        <% end %>      
+        <%= link_to(business_hours_path) do %>
+          <i class="fa-solid fa-clock text-app mr-1 ml-1 hidden md:block"></i>営業時間
+        <% end %>
       </li>
-    </ul>  </li>
+    </ul>
+  </li>
 </ul>

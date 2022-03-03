@@ -1,0 +1,38 @@
+document.getElementById('business_hour_display').innerHTML = '<%= j render("/fee_guides/business_hour", { business_hour: @business_hour, selected_shop: @selected_shop }) %>'
+var count = <%= @count %>
+console.log(count)
+var time_table = [
+{ text: '8', value: '8' },
+{ text: '9', value: '9' },
+{ text: '10', value: '10' },
+{ text: '11', value: '11' },
+{ text: '12', value: '12' },
+{ text: '13', value: '13' },
+{ text: '14', value: '14' },
+{ text: '15', value: '15' },
+{ text: '16', value: '16' },
+{ text: '17', value: '17' },
+{ text: '18', value: '18' },
+{ text: '19', value: '19' },
+{ text: '20', value: '20' },
+{ text: '21', value: '21' },
+{ text: '22', value: '22' },
+{ text: '23', value: '23' },
+{ text: '24', value: '24' },
+{ text: '25', value: '25' },
+{ text: '26', value: '26' },
+{ text: '27', value: '27' },
+]
+if (count > 0) {
+time_table.splice( 0, count );
+}
+$('select#form_fee_guide_start_time_hour option').remove();
+var select = $('#form_fee_guide_start_time_hour');
+var keys = Object.keys(time_table);
+keys.forEach(function(key, i){
+var content = this[key];
+var option = $('<option>')
+  .text(content['text'])
+  .val(content['value']);
+  select.append(option);
+  }, time_table);

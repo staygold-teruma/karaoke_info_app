@@ -1,0 +1,68 @@
+<% content_for :title do %>
+  管理画面:営業時間
+<% end %>
+<% content_for :header do %>
+  <div class="fixed w-full top-0 left-0">
+    <%= render "layouts/header_shop" %>
+  </div>
+<% end %>
+<% content_for :footer do %>
+  <div class="fixed w-full md:hidden">
+    <%= render "layouts/footer_shop" %>
+  </div>
+<% end %>
+<div class="flex">
+  <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
+    <%= render "layouts/side_menu_shop" %>
+  </div>
+  <div id="main_contents_shop">
+    <div class="flex justify-center md:hidden">
+      <%= render "layouts/flash" %>
+    </div>
+    <h1 class="page_title_shop">【営業時間】</h1>
+    <table class="mx-auto border-collapse table-auto whitespace-no-wrap bg-white table-striped">
+      <thead>
+        <tr class="border">
+          <th class="border border-gray-400 px-8 py-4 text-center bg-app text-white">曜&emsp;日</th>
+          <th class="border border-gray-400 px-8 py-4 text-center bg-app text-white">OPEN</th>
+          <th class="border border-gray-400 px-8 py-4 text-center bg-app text-white">CLOSE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-8 py-2 text-center">平&emsp;日</td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.weekday_start.strftime("%H:%M") %></td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.weekday_end.strftime("%H:%M") %></td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-8 py-2 text-center">金曜日</td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.fri_start.strftime("%H:%M") %></td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.fri_end.strftime("%H:%M") %></td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-8 py-2 text-center">土曜日</td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.sat_start.strftime("%H:%M") %></td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.sat_end.strftime("%H:%M") %></td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-8 py-2 text-center">日曜日</td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.sun_start.strftime("%H:%M") %></td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.sun_end.strftime("%H:%M") %></td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-8 py-2 text-center">祝前日</td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.before_holiday_start.strftime("%H:%M") %></td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.before_holiday_end.strftime("%H:%M") %></td>
+        </tr>
+        <tr class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="border border-gray-400 px-8 py-2 text-center">祝&emsp;日</td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.holiday_start.strftime("%H:%M") %></td>
+          <td class="border border-gray-400 px-8 py-2 text-center"><%= @business_hour.holiday_end.strftime("%H:%M") %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="w-60 mx-auto flex justify-center items-center mt-12">
+      <%= link_to "更新", edit_business_hour_path(@business_hour), class:"w-full px-3 py-2 bg-green-500 text-white text-center rounded" %>
+    </div>
+  </div>
+</div>
