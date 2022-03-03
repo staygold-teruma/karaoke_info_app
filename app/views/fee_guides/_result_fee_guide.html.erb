@@ -225,6 +225,6 @@
     <h3 class="text-lg mt-8 mb-4 sm:mb-2 xl:my-12 ml-2 sm:ml-0 font-black xl:text-center xl:bg-app xl:text-white xl:py-4 xl:rounded-lg xl:text-2xl"><i class="fas fa-play-circle text-app xl:text-white mr-1"></i>条件を変えてやり直す</h3>
   </div>
   <div class="w-11/12 lg:w-2/3 bg-white mx-auto rounded shadow sm:py-12 sm:pt-6 border-2  border-app">
-    <%= render 'form_fee_guide', path: fee_guides_path, method: :post %>
+    <%= render 'form_fee_guide', path: fee_guides_path, method: :post, time_table: @time_table %>
   </div>
 </div>

@@ -28,6 +28,8 @@ import 'stylesheets/application';
 import 'tabmenu.js';
 import 'topslider.js';
 
+window.$ = jQuery;
+
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();

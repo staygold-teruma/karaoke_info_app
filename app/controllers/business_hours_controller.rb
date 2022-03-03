@@ -30,8 +30,9 @@ class BusinessHoursController < ApplicationController
   end
 
   def business_hour_change
+    @selected_shop = Shop.find(params[:id])
     @business_hour = BusinessHour.includes(:shop).find_by(shop_id: params[:id])
-    @time_table = @business_hour.search_time_table(params[:wday])
+    @count = @business_hour.remove_count(params[:wday].to_i)
   end
 
   private
