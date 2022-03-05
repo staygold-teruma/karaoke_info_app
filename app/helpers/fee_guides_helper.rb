@@ -1,8 +1,10 @@
 module FeeGuidesHelper
+  # 合計計算
   def sum_count(count_a, count_b)
     count_a + count_b
   end
 
+  # 割合計算
   def ratio(numerator, denominator)
     if numerator == 0 || denominator == 0
       0

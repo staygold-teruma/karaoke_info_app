@@ -8,7 +8,7 @@ class StaticPagesController < ApplicationController
   def alcohol_plan; end
 
   def fee_table
-    @shops = Shop.all
+    @shops = Shop.all.order(id: "ASC")
     @shop = Shop.first
     @main_plans = MainPlan.includes(:shop).where(shop_id: @shop.id)
   end

@@ -11,6 +11,18 @@ module.exports = {
         xxxs: ['0.375em', { lineHeight: '1rem' }],
         xxxxs: ['0.25em', { lineHeight: '1rem' }],
       },
+      fontFamily: {
+        strong: [
+          'メイリオ',
+          'Meiryo',
+          'Hiragino Kaku Gothic ProN',
+          'YuGothic',
+          'Yu Gothic',
+          'ヒラギノ角ゴ ProN W3',
+          'ＭＳ ゴシック',
+          'sans-serif',
+        ],
+      },
       colors: {
         app: {
           light: '#FF9966',
@@ -33,8 +45,9 @@ module.exports = {
         '6/7': '85.7142857%',
       },
       screens: {
-        xs: '420px',
-        xsm: '500px',
+        mins: '320px',
+        xls: '400px',
+        xxs: '484px',
       },
     },
   },

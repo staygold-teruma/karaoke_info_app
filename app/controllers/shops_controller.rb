@@ -7,5 +7,6 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
+    @business_hour = BusinessHour.includes(:shop).find_by(shop_id: @shop.id)
   end
 end

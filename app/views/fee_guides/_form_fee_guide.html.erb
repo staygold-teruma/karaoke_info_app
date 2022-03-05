@@ -1,5 +1,5 @@
 <%= form_for(@fee_guide, url: path, method: method) do |f| %>
-  <div class="mt-4 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 p-4 pt-5 sm:p-5">
+  <div class="mt-8 sm:my-0 sm:mb-0 sm:mx-auto xl:mx-0 p-4 pt-5 sm:p-5">
     <%= render 'layouts/error_messages', model: f.object %>
     <div class="mb-3">
       <p class="bg-app px-1 py-2 rounded-lg shadow font-black pl-3 sm:pl-4 sm:mb-1 sm:mr-0.5 sm:text-lg text-white" id="step_num">
@@ -10,7 +10,8 @@
     <div class="px-2 sm:ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select_shop">
       <%= f.collection_select :shop_id, Shop.all.order(:id), :id, :name, {selected: 1} %>
     </div>
-    <div class="" id="business_hour_display">
+    <p class="ml-4 mb-1 sm:text-lg">【営業時間のご案内】</p>
+    <div class="ml-4" id="business_hour_display">
       <%= render "business_hour", { business_hour: @business_hour, selected_shop: @selected_shop } %>
     </div>
   </div>
@@ -111,7 +112,7 @@
     <div class="px-2 ml-2 mt-6 mb-4 xl:mb-3" id="fee_guide_select">
       <%= f.select :drink_plan, FeeGuide.drink_plans_i18n.invert, class: "bg-white" %>
     </div>
-    <p class="ml-2 mb-1">【飲み放題コースのご案内】</p>
+    <p class="ml-2 mb-1 sm:text-lg">【飲み放題コースのご案内】</p>
     <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>未成年混合グループはご利用いただけません</p>
     <p class="px-2 ml-6 text-xs sm:text-base" id="guide_form">※保護者同伴時は成人の方のみご利用可能</p>
     <p class="px-2 ml-2 text-xs sm:text-base" id="guide_form"><i class="fas fa-chevron-circle-right text-app mr-1"></i>年齢確認が必要な場合がございます</p>
