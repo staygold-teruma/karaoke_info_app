@@ -1,42 +1,43 @@
-<div class="w-full rounded overflow-hidden shadow flex items-center border border-gray-200 mx-auto sm:p-2 sm:pt-3 max-w-sm sm:max-w-2xl relative" id="shops_card">
-  <div class="w-full grid grid-cols-1 gap-3 sm:flex">
-    <div class="text-center font-bold text-sm overflow-hidden" id="shop_info">
-      <div class="text-lg sm:text-xl xl:text-lg mt-3 pl-2 sm:pl-4 xl:pl-2 text-left text-blue-500 flex justify-center sm:justify-start" id="shop_name">
-        <%= link_to shop_path(shop) do %>
-          <i class="fas fa-chevron-circle-right text-gray-400 mr-1" id="news_i"></i><%= shop.name %>
-        <% end %>
+<div class="w-full rounded overflow-hidden grid grid-cols-1 mx-auto max-w-lg border border-gray-200 shadow" id="shops_card">
+  <div class="px-3 py-2 h-24 flex items-center">
+    <%= link_to shop_path(shop) do %>
+      <p class="text-xl text-blue-500 font-strong font-bold mt-2"  id="shop_name"><i class="fa-solid fa-circle-chevron-right text-app mr-1"></i><%= shop.name %>
+      </p>
+      <div class="flex text-sm ml-1">
+        <i class="fas fa-map-marker-alt mr-1 mt-1 text-gray-400"></i><%= full_address(shop.prefecture_name, shop.address_city, shop.address_street) %>
+        <br>
+        <%= shop.address_building %>
+      </div>
+    <% end %>
+  </div>
+  <hr class="mt-2">
+  <div class="flex px-2 py-6">
+    <div class="mx-auto px-2 w-3/5">
+      <%# 運用においては登録した店舗画像を使用 %>
+      <img src="/assets/room01.jpg" alt="" class="mx-auto">
+    </div>
+    <div class="text-center font-bold text-sm w-2/5" id="shop_another_info">
+      <div class="h-1/2 pt-2">
         <% if user_signed_in? %>
-          <div class="ml-4 sm:pl-2 sm:ml-2 flex items-center" id="shop-<%= shop.id %>">
+          <div class="flex items-center" id="shop-<%= shop.id %>">
             <% if shop.favorited_by?(current_user) %>
               <%= render "favorite", shop: shop %>
             <% else %>
               <%= render "not_favorite", shop: shop %>
             <% end %>
           </div>
+        <% else %>
+          <%= link_to new_user_session_path do %>
+            <i class="fa-brands fa-gratipay text-5xl sm:text-3xl text-gray-200 border-gray-200"></i>
+          <% end %>
+          <p class="text-xs text-center">お気に入り</p>
         <% end %>
       </div>
-      <div class="sm:hidden mx-auto mt-4 mb-4">
-        <%# 運用においては登録した店舗画像を使用 %>
-        <img src="/assets/room01.jpg" alt="" class="h-44 mx-auto">
+      <div class="mx-auto h-1/2 flex items-end" id="shop_tel">
+        <p class="text-white sm:text-lg hover:text-app bg-app hover:bg-white border-2 border-white hover:border-app sm:mt-4 px-4 py-2 rounded-full mx-auto">
+          <%= link_to "電話をかける", "tel:" + shop.phone_number, class: "" %>
+        </p>
       </div>
-      <div class="flex justify-center text-left mt-2 ml-3 sm:ml-5 xl:ml-3 h-14 sm:justify-start">
-        <i class="fas fa-map-marker-alt mr-1 mt-1 text-gray-400"></i><%= shop.prefecture_name %><%= shop.address_city %><%= shop.address_street %>
-        <br>
-        <%= shop.address_building %>
-      </div>
-      <div class="flex justify-evenly">
-        <div class="text-center font-bold text-sm overflow-hidden mb-3" id="shop_another_info">
-          <div class="mx-auto" id="shop_tel">
-            <p class="w-36 text-white text-lg hover:text-app bg-app hover:bg-white border-2 border-white hover:border-app sm:mt-4 px-2 py-2 rounded-full mx-auto">
-              <%= link_to "電話をかける", "tel:" + shop.phone_number %>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="hidden sm:block sm:mr-4 lg:mr-2 ml-auto">
-      <%# 運用においては登録した店舗画像を使用 %>
-      <img src="/assets/room01.jpg" alt="" class="h-44 mx-auto">
     </div>
   </div>
 </div>

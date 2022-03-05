@@ -83,11 +83,11 @@
 }
 
 .question {
-  @apply text-xs bg-app border border-app rounded-t-lg px-1 sm:px-2 py-1;
+  @apply text-xs  border border-b-0 border-app rounded-t-lg px-1 sm:px-2 py-3 bg-gray-600;
 }
 
 .answer {
-  @apply text-xs border bg-white border-app rounded-b-lg px-1 sm:px-2 py-1;
+  @apply text-xs border  border-app rounded-b-lg px-1 sm:px-2 py-3;
 }
 
 .alcohol_head,
@@ -1021,7 +1021,7 @@ div.field_with_errors {
       }
     }
     p {
-      text-shadow: 2px 2px 2px black;
+      text-shadow: 3px 3px 3px black;
       @include mq-down(xxs) {
         font-size: 40px;
       }
@@ -1097,22 +1097,29 @@ div.field_with_errors {
 
 #tab_menu {
   .tab_menu1,
-  .tab_menu2 {
+  .tab_menu2,
+  .tab_menu3 {
     cursor: pointer;
-    color: #ff5500;
     background: #fff;
+    p {
+      color: #ff5500;
+    }
   }
   .tab_menu1.current,
-  .tab_menu2.current {
+  .tab_menu2.current,
+  .tab_menu3.current {
     display: block;
     opacity: 1;
     background: #ff5500;
-    color: #fff;
+    p {
+      color: white;
+    }
   }
 }
 
 .tab_menu1,
-.tab_menu2 {
+.tab_menu2,
+.tab_menu3 {
   display: inline-block;
   width: 240px;
   font-weight: bold;
@@ -1211,13 +1218,16 @@ div.field_with_errors {
           line-height: 16px;
         }
       }
-      #news_shop {
+      #news_shop_five,
+      #news_shop_three {
         width: 180px;
         white-space: nowrap;
         overflow: hidden;
         line-height: 24px;
+      }
+      #news_shop_three {
         @include mq-down(sm) {
-          width: 140px;
+          width: 220px;
           line-height: 16px;
         }
       }
@@ -1225,7 +1235,7 @@ div.field_with_errors {
         width: 80px;
         line-height: 24px;
         @include mq-down(sm) {
-          width: 60px;
+          width: 70px;
           line-height: 16px;
         }
       }
@@ -1233,6 +1243,7 @@ div.field_with_errors {
         width: calc(100% - 100px);
         white-space: nowrap;
         overflow: hidden;
+        text-overflow: ellipsis;
         line-height: 24px;
         @include mq-down(sm) {
           width: 100%;
@@ -1759,7 +1770,9 @@ div.field_with_errors {
         line-height: 20px;
       }
       #topics_title {
+        overflow: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
         line-height: 20px;
       }
     }
@@ -1788,13 +1801,6 @@ div.field_with_errors {
   }
 }
 #topics_wrapper {
-  max-width: 1200px;
-  @include mq-down(lg) {
-    max-width: 800px;
-  }
-  @include mq-down(sm) {
-    max-width: 400px;
-  }
   #topics_card_shop {
     height: 300px;
     padding: 10px;
@@ -1813,7 +1819,9 @@ div.field_with_errors {
         line-height: 20px;
       }
       #topics_title {
+        overflow: hidden;
         white-space: nowrap;
+        text-overflow: ellipsis;
         line-height: 20px;
       }
     }

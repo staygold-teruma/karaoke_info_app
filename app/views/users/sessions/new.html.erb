@@ -14,7 +14,7 @@
 <%= breadcrumbs separator: " &rsaquo; " %>
 <div class="pb-12" id="sign_wrapper_user">
   <h1 class="page_title">ログイン</h1>
-  <div class="sm:border-2 rounded-xl sm:shadow-lg  sm:w-5/6 mx-auto px-3 py-3 sm:py-8 max-w-xl">
+  <div class="border-2 rounded-xl sm:shadow-lg w-11/12 mx-auto px-3 py-3 sm:py-8 max-w-xl">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field mb-3 w-5/6 sm:w-2/3 mx-auto">
         <%= f.label :email, "メールアドレス", class: "text-sm" %><br />

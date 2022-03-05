@@ -12,10 +12,10 @@
 <div id="margin_wrapper"></div>
 <% breadcrumb :fee_table %>
 <%= breadcrumbs separator: " &rsaquo; " %>
-<p class="mt-6 sm:mt-0 mb-1 text-center text-gray-500">店舗を選んでください</p>
+<p class="mt-6 mb-1 text-center text-gray-500">店舗を選んでください</p>
 <%= form_tag fee_list_change_path, method: :get, remote: true do %>
   <div class="flex justify-center">
-    <%= select_tag :id, options_from_collection_for_select(Shop.all, :id, :name ), id: "select-drop", class: "mx-auto sm:text-lg w-72 border border-gray-400 p-2 rounded-lg" %>
+    <%= select_tag :id, options_from_collection_for_select(@shops, :id, :name ), id: "select-drop", class: "mx-auto sm:text-lg w-72 border border-gray-400 p-2 rounded-lg" %>
   </div>
   <div class="hidden">
     <input type="submit" id="fee_change_btn" >

@@ -19,7 +19,6 @@
   <div class="w-11/12 lg:w-2/3 bg-white mx-auto rounded shadow sm:py-12 sm:pt-6" id="form_display">
     <%= render 'form_fee_guide', path: fee_guides_path, method: :post, fee_guide:@fee_guide, business_hour:@business_hour, selected_shop: @selected_shop, time_table: @time_table %>
   </div>
-  <%= render 'q_and_a' %>
 </div>
 <div class="flex items-center sm:hidden bg-gray-600" id="guide_footer">
   <%= footer_item %>

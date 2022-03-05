@@ -1,17 +1,16 @@
 <% content_for :title do %>
-    TOPICS詳細
+  TOPICS詳細
 <% end %>
 <% content_for :header do %>
   <div class="fixed w-full top-0 left-0 z-10">
     <%= render "layouts/header_shop" %>
-  </div>  
+  </div>
 <% end %>
 <% content_for :footer do %>
   <div class="fixed w-full bottom-0 left-0 md:hidden">
     <%= render "layouts/footer_shop" %>
   </div>
 <% end %>
-
 <div class="flex items-center md:items-start bg-black bg-opacity-80 md:bg-app_bg" id="side_menu_shop">
   <%= render "layouts/side_menu_shop" %>
 </div>
@@ -21,7 +20,7 @@
       <%= @shops_topic.created_at.strftime('%Y年%m月%d日') %>
     </div>
     <div class="w-full text-center font-bold text-sm md:text-lg overflow-hidden" id="topics_title">
-      【<%= @shops_topic.title %>】
+      <%= @shops_topic.title %>
     </div>
     <div class="flex justify-center items-center mx-auto mt-6" id="topics_img_box">
       <%= image_tag @shops_topic.image.url %>

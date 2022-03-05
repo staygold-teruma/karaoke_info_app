@@ -1,4 +1,5 @@
 module StaticPagesHelper
+  # クーポン画面の表示分け
   def render_display_coupon
     if user_signed_in?
       render partial: "coupon_page"
